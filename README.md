@@ -1,69 +1,87 @@
-# Welcome to your Lovable project
+![Shieldmate Banner](docs/assets/shieldmate-banner.png)
 
-## Project info
+<p align="center">
+  <a href="https://github.com/Arbor-Aid/Shieldmate/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/Arbor-Aid/Shieldmate/ci.yml?label=CI%20Build&logo=githubactions&style=for-the-badge" alt="Build Status"></a>
+  <a href="https://github.com/Arbor-Aid/Shieldmate/blob/main/LICENSE.md"><img src="https://img.shields.io/github/license/Arbor-Aid/Shieldmate?style=for-the-badge" alt="License"></a>
+  <a href="https://github.com/Arbor-Aid/Shieldmate/stargazers"><img src="https://img.shields.io/github/stars/Arbor-Aid/Shieldmate?style=for-the-badge&logo=github" alt="Stars"></a>
+  <a href="https://github.com/Arbor-Aid/Shieldmate/issues"><img src="https://img.shields.io/github/issues/Arbor-Aid/Shieldmate?style=for-the-badge" alt="Issues"></a>
+</p>
 
-**URL**: https://lovable.dev/projects/671beb83-d80e-4497-bf72-da7dca1bf7f2
+# 🛡️ Shieldmate — The Autonomous Support Platform
 
-## How can I edit this code?
+Shieldmate orchestrates autonomous AI agents, Firebase, Dockerized Model Context Protocol (MCP) services, Slack workflows, and a Lovable.dev React + Flutter UI to deliver a mission-ready support platform.
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## ✨ Screenshots
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/671beb83-d80e-4497-bf72-da7dca1bf7f2) and start prompting.
+| Dashboard | Mobile | Architecture |
+| --- | --- | --- |
+| ![Dashboard](docs/assets/dashboard.png) | ![Mobile](docs/assets/mobile.png) | ![Architecture Diagram](docs/assets/diagram.png) |
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## 🚀 Features
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- 🤖 **Autonomous AI agents** coordinate tasks across domains.
+- 🔥 **Firebase + Google Cloud backend** for auth, data, and serverless functions.
+- 🐳 **Dockerized MCP services** deployable to Cloud Run.
+- 💬 **Slack + Notion integrations** keep humans in the loop.
+- ⚙️ **CI/CD workflows** with lint, tests, deploy, and health checks.
+- 📊 **Google Workspace + Notion sync** for governance and visibility.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+## ⚡ Quickstart
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+```bash
+# Clone the repo
+git clone https://github.com/Arbor-Aid/Shieldmate.git
+cd Shieldmate
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Web frontend + services
+npm install
 npm run dev
+
+# Flutter client
+cd frontend/arbor_aid_app
+flutter pub get
+flutter run
 ```
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🧠 Architecture
 
-**Use GitHub Codespaces**
+![Shieldmate Architecture](docs/assets/diagram.png)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- **Frontend**: React + Vite UI, plus Flutter companion app.
+- **MCP Services**: Docker containers for AI agents (Cloud Run ready).
+- **Firebase**: Auth, Firestore, Functions, Storage, and Analytics.
+- **Integrations**: Slack workflows, Notion dashboards, Google Workspace automations.
 
-## What technologies are used for this project?
+---
 
-This project is built with .
+## 🗂️ Governance Snapshot
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+See the current compliance + automation posture in [`docs/governance_snapshot.md`](docs/governance_snapshot.md).
 
-## How can I deploy this project?
+---
 
-Simply open [Lovable](https://lovable.dev/projects/671beb83-d80e-4497-bf72-da7dca1bf7f2) and click on Share -> Publish.
+## 🤝 Contributing
 
-## I want to use a custom domain - is that possible?
+- Follow CODEOWNERS review gates for frontend, backend MCPs, DevOps workflows, and sensitive configs.
+- Open a feature branch from `main`, create a PR, and tag the relevant owners.
+- All contributions run through CI, security checks, and branch protection rules.
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+---
+
+## 📄 License
+
+Released under the [MIT License](LICENSE.md).
+
+---
+
+## ⚡ Call to Action
+
+**Deploy your own Shieldmate and let the AI agents do the work!**
