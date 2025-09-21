@@ -1,4 +1,3 @@
-
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
@@ -11,15 +10,12 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
   },
   plugins: [
-    react({
-      tsDecorators: true,
-    }),
-    mode === 'development' &&
-    componentTagger(),
+    react(),
+    mode === 'development' && componentTagger(),
   ].filter(Boolean),
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      "@": path.resolve(process.cwd(), "./src"),
     },
   },
   // Define any default env values here if needed
@@ -27,15 +23,12 @@ export default defineConfig(({ mode }) => ({
     // This is needed for any code that may still reference process.env
     'process.env': {}
   },
-  // Disable TypeScript checking to work around missing tsconfig.node.json
-  build: {
-    outDir: 'dist',
+  optimizeDeps: {
+    include: ['react', 'react-dom'],
   },
-  // Use esbuild for TypeScript transformation without strict config checking
-  esbuild: {
+  build: {
     target: 'esnext',
-    format: 'esm',
-    include: /\.(tsx?|jsx?)$/,
-    exclude: /node_modules/
-  }
+    outDir: 'dist',
+    sourcemap: false,
+  },
 }));
