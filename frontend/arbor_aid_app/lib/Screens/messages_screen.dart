@@ -14,8 +14,7 @@ class MessagesScreen extends StatelessWidget {
         itemCount: 10, // Placeholder: Replace with actual messages count
         itemBuilder: (context, index) {
           return ListTile(
-            title: Text(
-                'Message $index'), // Placeholder: Replace with actual message data
+            title: Text('Message $index'), // Placeholder: Replace with actual message data
             subtitle: const Text('This is a sample message.'),
           );
         },

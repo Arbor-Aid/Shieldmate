@@ -17,8 +17,7 @@ class AIChatScreen extends StatelessWidget {
               itemCount: 10, // Placeholder: Replace with actual chat messages
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(
-                      'Message $index'), // Placeholder: Replace with actual chat data
+                  title: Text('Message $index'), // Placeholder: Replace with actual chat data
                 );
               },
             ),

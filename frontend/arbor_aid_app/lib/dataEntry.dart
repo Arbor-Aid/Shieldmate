@@ -24,8 +24,7 @@ class DataEntryPage extends StatefulWidget {
 
 class _DataEntryPageState extends State<DataEntryPage> {
   // Define a TextEditingController for each field
-  final TextEditingController organizationNameController =
-      TextEditingController();
+  final TextEditingController organizationNameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController servicesController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
@@ -35,8 +34,7 @@ class _DataEntryPageState extends State<DataEntryPage> {
   final TextEditingController whoIsThisForController = TextEditingController();
 
   bool isAppointmentRequired = false;
-  List<bool> isSelected =
-      List.generate(7, (_) => false); // For the days of the week
+  List<bool> isSelected = List.generate(7, (_) => false); // For the days of the week
 
   @override
   void dispose() {
@@ -167,8 +165,8 @@ class _DataEntryPageState extends State<DataEntryPage> {
             ElevatedButton(
               onPressed: handleSubmit,
               style: ElevatedButton.styleFrom(
-                minimumSize: const Size(double.infinity,
-                    50), // double.infinity is the width and 50 is the height
+                minimumSize: const Size(
+                    double.infinity, 50), // double.infinity is the width and 50 is the height
               ),
               child: const Text('Submit'),
             ),
@@ -182,15 +180,13 @@ class _DataEntryPageState extends State<DataEntryPage> {
     return TextField(
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: const TextStyle(
-            color: Colors.white), // Adjust label color if needed
+        labelStyle: const TextStyle(color: Colors.white), // Adjust label color if needed
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
         // Remove filled and fillColor properties if you don't want a white background
       ),
-      style:
-          const TextStyle(color: Colors.white), // Adjust text color if needed
+      style: const TextStyle(color: Colors.white), // Adjust text color if needed
       maxLines: maxLines,
     );
   }
@@ -201,8 +197,7 @@ class GradientAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Color> gradientColors;
   final double barHeight = 56.0;
 
-  const GradientAppBar(
-      {super.key, required this.title, required this.gradientColors});
+  const GradientAppBar({super.key, required this.title, required this.gradientColors});
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 // lib/login_register_screen.dart
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:your_project/firebase_service.dart';
+import 'package:arbor_aid_app/services/firebase_service.dart';
 import 'admin_dashboard.dart'; // Navigate to admin dashboard on successful login
 
 class LoginRegisterScreen extends StatefulWidget {
@@ -30,23 +30,17 @@ class _LoginRegisterScreenState extends State<LoginRegisterScreen> {
 
     if (isLogin) {
       // Sign in user
-      User? user =
-          await _firebaseService.signInWithEmailPassword(email, password);
+      User? user = await _firebaseService.signInWithEmailPassword(email, password);
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-            builder: (context) =>
-                const AdminDashboard()), // Navigate on success
+        MaterialPageRoute(builder: (context) => const AdminDashboard()), // Navigate on success
       );
     } else {
       // Register user
-      User? user =
-          await _firebaseService.signUpWithEmailPassword(email, password);
+      User? user = await _firebaseService.signUpWithEmailPassword(email, password);
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-            builder: (context) =>
-                const AdminDashboard()), // Navigate on success
+        MaterialPageRoute(builder: (context) => const AdminDashboard()), // Navigate on success
       );
     }
   }
@@ -75,9 +69,8 @@ class _LoginRegisterScreenState extends State<LoginRegisterScreen> {
             ),
             TextButton(
               onPressed: _toggleLoginRegister,
-              child: Text(isLogin
-                  ? 'Don\'t have an account? Register'
-                  : 'Already have an account? Login'),
+              child: Text(
+                  isLogin ? 'Don\'t have an account? Register' : 'Already have an account? Login'),
             ),
           ],
         ),

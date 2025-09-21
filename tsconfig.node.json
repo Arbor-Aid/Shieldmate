@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  },
+  "include": [
+    "vite.config.ts",
+    "scripts/**/*.ts",
+    "scripts/**/*.tsx",
+    "scripts/**/*.js",
+    "eslint.config.js",
+    "postcss.config.js",
+    "tailwind.config.ts"
+  ]
+}

@@ -1,57 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert'; // To decode JSON responses
 
 class ServiceLocatorScreen extends StatefulWidget {
   const ServiceLocatorScreen({super.key});
 
   @override
-  _ServiceLocatorScreenState createState() => _ServiceLocatorScreenState();
+  State<ServiceLocatorScreen> createState() => _ServiceLocatorScreenState();
 }
 
 class _ServiceLocatorScreenState extends State<ServiceLocatorScreen> {
   final TextEditingController _zipCodeController = TextEditingController();
-  List<dynamic> services = [];
-  bool isLoading = false;
+  List<Map<String, String>> services = const [];
 
-  // Function to search services based on the entered ZIP Code
-  void _searchServices() async {
+  static const List<Map<String, String>> _mockDirectory = [
+    {
+      'name': 'Base Career Resource Center',
+      'address': 'Camp Pendleton, CA',
+      'zip': '92055',
+    },
+    {
+      'name': 'Family Readiness Office',
+      'address': 'MCB Quantico, VA',
+      'zip': '22134',
+    },
+    {
+      'name': '24/7 Crisis Support Line',
+      'address': 'Virtual',
+      'zip': '00000',
+    },
+  ];
+
+  void _searchServices() {
+    final query = _zipCodeController.text.trim();
+    final results =
+        _mockDirectory.where((service) => query.isEmpty || service['zip'] == query).toList();
+
     setState(() {
-      isLoading = true;
+      services = results;
     });
-
-    // Replace the URL below with your API URL and ensure it returns proper JSON data
-    final String apiUrl = 'https://api.example.com/services?zip=${_zipCodeController.text}';
-    final response = await http.get(Uri.parse(apiUrl));
-
-    if (response.statusCode == 200) {
-      final List<dynamic> serviceList = jsonDecode(response.body);
-      setState(() {
-        services = serviceList;
-        isLoading = false;
-      });
-    } else {
-      // Handle the error by showing a message or any other way you want
-      setState(() {
-        services = [];
-        isLoading = false;
-      });
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('Error'),
-          content: const Text('Failed to load services'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text('OK'),
-            ),
-          ],
-        ),
-      );
-    }
   }
 
   @override
@@ -61,10 +46,9 @@ class _ServiceLocatorScreenState extends State<ServiceLocatorScreen> {
         title: const Text('Service Locator'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            // Input field for ZIP code
             TextField(
               controller: _zipCodeController,
               decoration: const InputDecoration(
@@ -74,26 +58,34 @@ class _ServiceLocatorScreenState extends State<ServiceLocatorScreen> {
               keyboardType: TextInputType.number,
             ),
             const SizedBox(height: 16),
-            // Search button
             ElevatedButton(
               onPressed: _searchServices,
               child: const Text('Search'),
             ),
             const SizedBox(height: 16),
-            // Loading indicator while fetching services
-            isLoading
-                ? const CircularProgressIndicator()
-                : Expanded(
-              // Display list of services
-              child: ListView.builder(
-                itemCount: services.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(services[index]['name']),
-                    subtitle: Text(services[index]['address']),
-                  );
-                },
-              ),
+            Expanded(
+              child: services.isEmpty
+                  ? const Center(
+                      child: Text(
+                        'Enter a ZIP code to view nearby support centers.',
+                        textAlign: TextAlign.center,
+                      ),
+                    )
+                  : ListView.separated(
+                      itemCount: services.length,
+                      separatorBuilder: (_, __) => const SizedBox(height: 12),
+                      itemBuilder: (context, index) {
+                        final service = services[index];
+                        return Card(
+                          child: ListTile(
+                            leading: const Icon(Icons.place),
+                            title: Text(service['name'] ?? ''),
+                            subtitle: Text(service['address'] ?? ''),
+                            trailing: Text(service['zip'] ?? ''),
+                          ),
+                        );
+                      },
+                    ),
             ),
           ],
         ),

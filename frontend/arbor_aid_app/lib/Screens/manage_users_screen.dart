@@ -14,8 +14,7 @@ class ManageUsersScreen extends StatelessWidget {
         itemCount: 10, // Placeholder: Replace with actual user count
         itemBuilder: (context, index) {
           return ListTile(
-            title: Text(
-                'User $index'), // Placeholder: Replace with actual user data
+            title: Text('User $index'), // Placeholder: Replace with actual user data
             trailing: IconButton(
               icon: const Icon(Icons.delete),
               onPressed: () {

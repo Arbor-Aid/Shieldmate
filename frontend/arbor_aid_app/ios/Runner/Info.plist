@@ -43,7 +43,11 @@
 	</array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+    <key>GOOGLE_MAPS_API_KEY</key>
+    <string>YOUR_GOOGLE_MAPS_KEY</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>We use your location to find nearby support resources.</string>
 </dict>
 </plist>

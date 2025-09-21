@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
         leading: const CircleAvatar(
           radius: 80,
           backgroundColor: Colors.transparent,
-          backgroundImage: AssetImage('assets/twoMarines.png'),
+          backgroundImage: AssetImage('assets/images/marines_logo.png'),
         ),
         /*
         leading: IconButton(
@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
-                image: AssetImage('assets/twoMarines.png'),
+                image: AssetImage('assets/images/marines_logo.png'),
                 fit: BoxFit.cover,
               ),
             ),
