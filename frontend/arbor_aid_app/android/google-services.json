@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "779610430003",
+    "firebase_url": "https://marines-ai-agent-default-rtdb.firebaseio.com",
+    "project_id": "marines-ai-agent",
+    "storage_bucket": "marines-ai-agent.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779610430003:android:3d2b143f3c83c800ee6146",
+        "android_client_info": {
+          "package_name": "com.twomarines.twomarinesonline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "779610430003-8t6cr01ni8vcmlhi6tgadeuqoo279vad.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.twomarines.twomarinesonline",
+            "certificate_hash": "bf58485d3b9bc507e4956d8241d8594a541a7c01"
+          }
+        },
+        {
+          "client_id": "779610430003-er7rdbks76p91fk2har0ph6isi0gh69s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbXbBHi7A9lzwI84zzmNirQz8DukdHymE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "779610430003-er7rdbks76p91fk2har0ph6isi0gh69s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

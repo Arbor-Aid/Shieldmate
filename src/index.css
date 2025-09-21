@@ -1,0 +1,169 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold text-navy;
+  }
+  
+  h1 {
+    @apply text-3xl md:text-4xl;
+  }
+  
+  h2 {
+    @apply text-2xl md:text-3xl;
+  }
+  
+  h3 {
+    @apply text-xl md:text-2xl;
+  }
+  
+  h4 {
+    @apply text-lg md:text-xl;
+  }
+}
+
+/* Custom utility classes */
+@layer components {
+  .nav-link {
+    @apply px-4 py-2 text-navy hover:text-blue transition-colors duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-navy hover:bg-navy-light text-white px-6 py-3 rounded-md transition-colors duration-200;
+  }
+
+  .btn-secondary {
+    @apply bg-blue hover:bg-blue-light text-white px-6 py-3 rounded-md transition-colors duration-200;
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200;
+  }
+
+  .section-title {
+    @apply text-2xl md:text-3xl font-semibold text-navy mb-6;
+  }
+
+  .section-subtitle {
+    @apply text-lg md:text-xl text-gray-600 mb-8;
+  }
+  
+  /* Loading state styling */
+  .loading-spinner {
+    @apply animate-spin rounded-full h-8 w-8 border-b-2 border-navy;
+  }
+  
+  .loading-container {
+    @apply flex items-center justify-center p-8;
+  }
+  
+  /* Empty state styling */
+  .empty-state {
+    @apply text-center py-12 bg-gray-50 rounded-lg;
+  }
+  
+  .empty-state-icon {
+    @apply h-12 w-12 mx-auto text-gray-400 mb-3;
+  }
+  
+  .empty-state-text {
+    @apply text-muted-foreground mb-4;
+  }
+  
+  /* Responsive container utilities */
+  .responsive-container {
+    @apply container mx-auto px-4 md:px-6 py-6 md:py-8;
+  }
+  
+  /* Form styling */
+  .form-group {
+    @apply mb-4;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+  }
+  
+  .form-input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-navy focus:border-transparent;
+  }
+  
+  /* Card styling improvements */
+  .card-header {
+    @apply bg-gray-50 border-b pb-4;
+  }
+  
+  .card-title {
+    @apply text-xl text-navy;
+  }
+  
+  .card-content {
+    @apply p-6;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .container {
+    @apply px-4;
+  }
+  
+  .card {
+    @apply p-4;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}

@@ -1,0 +1,157 @@
+{
+  "folders": [
+    {
+      "path": "D:\\shieldmatessd\\shieldmate"
+    }
+  ],
+  "settings": {
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "terminal.integrated.profiles.windows": {
+      "Ubuntu": {
+        "path": "wsl.exe",
+        "cwd": "D:\\shieldmatessd\\shieldmate"
+      },
+      "PowerShell": {
+        "path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "cwd": "D:\\shieldmatessd\\shieldmate"
+      },
+      "Command Prompt": {
+        "path": "C:\\Windows\\System32\\cmd.exe",
+        "cwd": "D:\\shieldmatessd\\shieldmate"
+      }
+    },
+    "cloudcode.project": "marines-ai-agent",
+    "files.autoSave": "afterDelay",
+    "files.exclude": {
+      "**/.git": true,
+      "**/.DS_Store": true,
+      "**/build": true,
+      "**/.dart_tool": true,
+      "**/.gradle": true,
+      "**/.idea": true,
+      "**/.vscode": true,
+      "**/node_modules": true
+    },
+    "files.defaultLanguage": "json",
+    "window.openFoldersInNewWindow": "on",
+    "window.restoreWindows": "all"
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      // === FLUTTER ===
+      {
+        "label": "Flutter Clean",
+        "type": "shell",
+        "command": "flutter clean",
+        "options": { "cwd": "D:\\shieldmatessd\\shieldmate\\frontend\\arbor_aid_app" },
+        "problemMatcher": []
+      },
+      {
+        "label": "Flutter Pub Get",
+        "type": "shell",
+        "command": "flutter pub get",
+        "options": { "cwd": "D:\\shieldmatessd\\shieldmate\\frontend\\arbor_aid_app" },
+        "problemMatcher": []
+      },
+      {
+        "label": "Flutter Run",
+        "type": "shell",
+        "command": "flutter run",
+        "options": { "cwd": "D:\\shieldmatessd\\shieldmate\\frontend\\arbor_aid_app" },
+        "problemMatcher": []
+      },
+      {
+        "label": "Compound: Clean → Pub Get → Run",
+        "dependsOn": ["Flutter Clean", "Flutter Pub Get", "Flutter Run"],
+        "dependsOrder": "sequence"
+      },
+
+      // === GIT ===
+      {
+        "label": "Git Status",
+        "type": "shell",
+        "command": "git status",
+        "options": { "cwd": "D:\\shieldmatessd\\shieldmate" }
+      },
+      {
+        "label": "Git Pull",
+        "type": "shell",
+        "command": "git pull",
+        "options": { "cwd": "D:\\shieldmatessd\\shieldmate" }
+      },
+      {
+        "label": "Git Commit",
+        "type": "shell",
+        "command": "git add .; git commit -m \"Shieldmate: quick commit\"",
+        "options": { "cwd": "D:\\shieldmatessd\\shieldmate" }
+      },
+      {
+        "label": "Git Push",
+        "type": "shell",
+        "command": "git push",
+        "options": { "cwd": "D:\\shieldmatessd\\shieldmate" }
+      },
+
+      // === DEVOPS TOOLS ===
+      {
+        "label": "Check MCP Health",
+        "type": "shell",
+        "command": "node scripts/check_mcp_health.mjs",
+        "options": { "cwd": "D:\\shieldmatessd\\shieldmate" }
+      },
+      {
+        "label": "Docker Build All",
+        "type": "shell",
+        "command": "docker compose build",
+        "options": { "cwd": "D:\\shieldmatessd\\shieldmate" }
+      },
+      {
+        "label": "Docker Up",
+        "type": "shell",
+        "command": "docker compose up",
+        "options": { "cwd": "D:\\shieldmatessd\\shieldmate" }
+      },
+      {
+        "label": "Firebase Deploy",
+        "type": "shell",
+        "command": "firebase deploy",
+        "options": { "cwd": "D:\\shieldmatessd\\shieldmate" }
+      },
+
+      // === NPM ===
+      {
+        "label": "NPM Audit Fix",
+        "type": "shell",
+        "command": "npm audit fix",
+        "options": { "cwd": "D:\\shieldmatessd\\shieldmate" }
+      },
+
+      // === SLACK ===
+      {
+        "label": "Slack: Notify MCP Status",
+        "type": "shell",
+        "command": "node scripts/slack_notify.js",
+        "options": { "cwd": "D:\\shieldmatessd\\shieldmate" }
+      }
+    ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Flutter Debug",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/main.dart",
+        "cwd": "D:\\shieldmatessd\\shieldmate\\frontend\\arbor_aid_app"
+      }
+    ]
+  }
+}
+
+
+
+
+
+

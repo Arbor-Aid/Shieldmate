@@ -1,0 +1,82 @@
+﻿# General
+*.log
+logs/
+*.tmp
+*.temp
+*.swp
+*.swo
+*.orig
+*.patch
+
+# Node / JavaScript
+node_modules/
+dist/
+dist-ssr/
+.next/
+.tmp/
+.cache/
+coverage/
+.vite/
+.eslintcache
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+npm-debug.log*
+lerna-debug.log*
+.browserslistrc.cjs
+
+# TypeScript
+*.tsbuildinfo
+
+# Environment
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env.backup
+
+# Firebase
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+
+# Flutter / Dart
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+.flutter-configuration
+.melos/
+build/
+.ios/
+android/.gradle/
+android/.idea/
+android/*.iml
+ios/DerivedData/
+ios/Pods/
+
+# IDE / Editor
+.vscode/
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.iml
+*.sw?
+
+# Generated Artifacts
+build/windows/
+build/linux/
+build/macos/
+build/web/
+build/ios/
+build/android/
+flutter_export_environment.sh
+
+# Misc
+Thumbs.db
+
+.env

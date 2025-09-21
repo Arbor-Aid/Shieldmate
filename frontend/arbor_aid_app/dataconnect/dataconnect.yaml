@@ -1,0 +1,12 @@
+specVersion: "v1beta"
+serviceId: "arbor_aid_app"
+location: "asia-east1"
+schema:
+  source: "./schema"
+  datasource:
+    postgresql:
+      database: "fdcdb"
+      cloudSql:
+        instanceId: "arboraiddb"
+      # schemaValidation: "COMPATIBLE"
+connectorDirs: ["./connector"]

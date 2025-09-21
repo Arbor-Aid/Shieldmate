@@ -1,0 +1,25 @@
+service_name,slug,local_port,cloud_run_url,health_endpoint
+AI Budget Planner,ai-budget-planner,8080,https://ai-budget-planner-mcp-<PROJECT>.a.run.app,/
+AI Expense Manager,ai-expense-manager,8080,https://ai-expense-manager-mcp-<PROJECT>.a.run.app,/
+AI Financial Analyst,ai-financial-analyst,8080,https://ai-financial-analyst-mcp-<PROJECT>.a.run.app,/
+AI Financial Reporting Specialist,ai-financial-reporting-specialist,8080,https://ai-financial-reporting-specialist-mcp-<PROJECT>.a.run.app,/
+AI Invoice Processor,ai-invoice-processor,8080,https://ai-invoice-processor-mcp-<PROJECT>.a.run.app,/
+AI Payroll Manager,ai-payroll-manager,8080,https://ai-payroll-manager-mcp-<PROJECT>.a.run.app,/
+AI Tax Compliance Agent,ai-tax-compliance-agent,8080,https://ai-tax-compliance-agent-mcp-<PROJECT>.a.run.app,/
+AI Training Coordinator,ai-training-coordinator,8080,https://ai-training-coordinator-mcp-<PROJECT>.a.run.app,/
+AI UX Analyst,ai-ux-analyst,8080,https://ai-ux-analyst-mcp-<PROJECT>.a.run.app,/
+Amazon Drop Shipping AI,amazon-drop-shipping-ai,8080,https://amazon-drop-shipping-ai-mcp-<PROJECT>.a.run.app,/
+Coder Agent,coder-agent,8080,https://coder-agent-mcp-<PROJECT>.a.run.app,/
+Content Generation AI,content-generation-ai,8080,https://content-generation-ai-mcp-<PROJECT>.a.run.app,/
+Cto agent,cto-agent,8080,https://cto-agent-mcp-<PROJECT>.a.run.app,/
+Data Scrubbing AI,data-scrubbing-ai,8080,https://data-scrubbing-ai-mcp-<PROJECT>.a.run.app,/
+Designer AI Agent,designer-ai-agent,8080,https://designer-ai-agent-mcp-<PROJECT>.a.run.app,/
+Email Campaign Optimizer AI,email-campaign-optimizer-ai,8080,https://email-campaign-optimizer-ai-mcp-<PROJECT>.a.run.app,/
+Fundraising Chatbot AI,fundraising-chatbot-ai,8080,https://fundraising-chatbot-ai-mcp-<PROJECT>.a.run.app,/
+HR AI Agent,hr-ai-agent,8080,https://hr-ai-agent-mcp-<PROJECT>.a.run.app,/
+Information Retrieval AI,information-retrieval-ai,8080,https://information-retrieval-ai-mcp-<PROJECT>.a.run.app,/
+Multimodal AI,multimodal-ai,8080,https://multimodal-ai-mcp-<PROJECT>.a.run.app,/
+Personalized Donation AI,personalized-donation-ai,8080,https://personalized-donation-ai-mcp-<PROJECT>.a.run.app,/
+QA AI Agent,qa-ai-agent,8080,https://qa-ai-agent-mcp-<PROJECT>.a.run.app,/
+Reporting Dashboard AI,reporting-dashboard-ai,8080,https://reporting-dashboard-ai-mcp-<PROJECT>.a.run.app,/
+project_manager_agent,project-manager-agent,8080,https://project-manager-agent-mcp-<PROJECT>.a.run.app,/
