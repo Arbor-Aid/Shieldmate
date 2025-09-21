@@ -1,42 +1,40 @@
-
-import { useEffect, useState } from "react";
+﻿import { useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { 
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  LineChart, Line, PieChart, Pie, Cell, Legend 
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  LineChart,
+  Line,
+  PieChart,
+  Pie,
+  Cell,
+  Legend,
 } from "recharts";
 import { trackEvent } from "@/lib/firebase";
-import { Users, FileText, BookOpen, Upload, Activity } from "lucide-react";
-import { getAnalyticsData } from "@/services/analyticsService";
+import { Users, BookOpen, Upload, Activity } from "lucide-react";
 import { AnalyticsData } from "@/types/analytics";
 import { ChartContainer, ChartTooltip } from "@/components/ui/chart";
 
-export function AnalyticsDashboard() {
-  const [analyticsData, setAnalyticsData] = useState<AnalyticsData | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  
+interface AnalyticsDashboardProps {
+  data?: AnalyticsData | null;
+  isLoading?: boolean;
+  error?: unknown;
+}
+
+export function AnalyticsDashboard({ data, isLoading = false, error }: AnalyticsDashboardProps) {
   useEffect(() => {
-    async function fetchAnalytics() {
-      try {
-        setIsLoading(true);
-        const data = await getAnalyticsData();
-        setAnalyticsData(data);
-        
-        // Track analytics view event
-        trackEvent('analytics_dashboard_viewed');
-      } catch (error) {
-        console.error("Failed to fetch analytics:", error);
-      } finally {
-        setIsLoading(false);
-      }
+    if (data) {
+      trackEvent('analytics_dashboard_viewed');
     }
-    
-    fetchAnalytics();
-  }, []);
-  
-  // Colors for charts
+  }, [data]);
+
+  const analyticsData = data ?? null;
   const COLORS = ['#9b87f5', '#7E69AB', '#33C3F0', '#1EAEDB', '#aaadb0'];
-  
+
   if (isLoading) {
     return (
       <div className="space-y-4">
@@ -58,7 +56,20 @@ export function AnalyticsDashboard() {
       </div>
     );
   }
-  
+
+  if (error) {
+    return (
+      <div className="space-y-4">
+        <h2 className="text-2xl font-bold">Analytics Dashboard</h2>
+        <Card>
+          <CardContent className="p-6">
+            <p className="text-center text-red-600">We were unable to load analytics data from the MCP.</p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
   if (!analyticsData) {
     return (
       <div className="space-y-4">
@@ -71,12 +82,11 @@ export function AnalyticsDashboard() {
       </div>
     );
   }
-  
+
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-bold">Analytics Dashboard</h2>
-      
-      {/* Key Metrics Cards */}
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card>
           <CardContent className="p-6 flex items-center justify-between">
@@ -92,7 +102,7 @@ export function AnalyticsDashboard() {
             </div>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardContent className="p-6 flex items-center justify-between">
             <div>
@@ -107,7 +117,7 @@ export function AnalyticsDashboard() {
             </div>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardContent className="p-6 flex items-center justify-between">
             <div>
@@ -122,24 +132,21 @@ export function AnalyticsDashboard() {
             </div>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardContent className="p-6 flex items-center justify-between">
             <div>
-              <p className="text-sm text-muted-foreground">Questionnaires</p>
-              <h3 className="text-3xl font-bold mt-1">{analyticsData.profileCompletions}</h3>
-              <p className="text-xs text-muted-foreground mt-1">
-                {analyticsData.questionnaireCompletionRate}% completion rate
-              </p>
+              <p className="text-sm text-muted-foreground">AI Engagement</p>
+              <h3 className="text-3xl font-bold mt-1">{analyticsData.aiPromptCount}</h3>
+              <p className="text-xs text-muted-foreground mt-1">Prompts this month</p>
             </div>
             <div className="p-3 bg-purple-100 rounded-full">
-              <FileText className="h-6 w-6 text-purple-700" />
+              <Activity className="h-6 w-6 text-purple-700" />
             </div>
           </CardContent>
         </Card>
       </div>
-      
-      {/* User Growth Chart */}
+
       <Card>
         <CardHeader>
           <CardTitle>User Growth Over Time</CardTitle>
@@ -147,18 +154,18 @@ export function AnalyticsDashboard() {
         <CardContent>
           <div className="h-80">
             <ChartContainer config={{
-              users: { color: "#9b87f5", label: "Users" }
+              users: { color: '#9b87f5', label: 'Users' },
             }}>
               <LineChart data={analyticsData.userGrowth || analyticsData.timeSeriesData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="date" />
                 <YAxis />
                 <ChartTooltip />
-                <Line 
-                  type="monotone" 
-                  dataKey="count" 
+                <Line
+                  type="monotone"
+                  dataKey="count"
                   name="users"
-                  stroke="#9b87f5" 
+                  stroke="#9b87f5"
                   strokeWidth={2}
                   activeDot={{ r: 8 }}
                 />
@@ -167,10 +174,8 @@ export function AnalyticsDashboard() {
           </div>
         </CardContent>
       </Card>
-      
-      {/* Two Column Charts */}
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Active Sessions (Bar Chart) */}
         <Card>
           <CardHeader>
             <CardTitle>Active Sessions by Day</CardTitle>
@@ -178,7 +183,7 @@ export function AnalyticsDashboard() {
           <CardContent>
             <div className="h-72">
               <ChartContainer config={{
-                sessions: { color: "#33C3F0", label: "Sessions" }
+                sessions: { color: '#33C3F0', label: 'Sessions' },
               }}>
                 <BarChart data={analyticsData.activeSessions || []}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -191,8 +196,7 @@ export function AnalyticsDashboard() {
             </div>
           </CardContent>
         </Card>
-        
-        {/* Referral Sources (Pie Chart) */}
+
         <Card>
           <CardHeader>
             <CardTitle>Referral Sources</CardTitle>
@@ -200,11 +204,11 @@ export function AnalyticsDashboard() {
           <CardContent>
             <div className="h-72 flex items-center justify-center">
               <ChartContainer config={{
-                housing: { color: "#9b87f5" },
-                employment: { color: "#33C3F0" },
-                healthcare: { color: "#7E69AB" },
-                benefits: { color: "#1EAEDB" },
-                other: { color: "#aaadb0" }
+                housing: { color: '#9b87f5' },
+                employment: { color: '#33C3F0' },
+                healthcare: { color: '#7E69AB' },
+                benefits: { color: '#1EAEDB' },
+                other: { color: '#aaadb0' },
               }}>
                 <PieChart>
                   <Pie
@@ -230,8 +234,7 @@ export function AnalyticsDashboard() {
           </CardContent>
         </Card>
       </div>
-      
-      {/* Activity Over Time */}
+
       <Card>
         <CardHeader>
           <CardTitle>User Activity</CardTitle>
@@ -239,10 +242,10 @@ export function AnalyticsDashboard() {
         <CardContent>
           <div className="h-80">
             <ChartContainer config={{
-              logins: { color: "#9b87f5", label: "Logins" },
-              fileUploads: { color: "#33C3F0", label: "File Uploads" },
-              resumeGens: { color: "#7E69AB", label: "Resume Generations" },
-              aiPrompts: { color: "#1EAEDB", label: "AI Prompts" }
+              logins: { color: '#9b87f5', label: 'Logins' },
+              fileUploads: { color: '#33C3F0', label: 'File Uploads' },
+              resumeGens: { color: '#7E69AB', label: 'Resume Generations' },
+              aiPrompts: { color: '#1EAEDB', label: 'AI Prompts' },
             }}>
               <LineChart data={analyticsData.activityMetrics || []}>
                 <CartesianGrid strokeDasharray="3 3" />
