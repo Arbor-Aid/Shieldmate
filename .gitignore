@@ -80,3 +80,8 @@ flutter_export_environment.sh
 Thumbs.db
 
 .env
+.env.bak
+nuget.exe
+shieldmate_cleanup.ps1
+src/mocks/
+src/hooks/__tests__/
