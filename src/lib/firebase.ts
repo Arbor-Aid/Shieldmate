@@ -5,15 +5,16 @@ import { getFirestore } from "firebase/firestore";
 import { getAnalytics, logEvent } from "firebase/analytics";
 import { getStorage } from "firebase/storage";
 
-// Firebase configuration relies entirely on runtime environment variables to avoid leaking secrets.
+// Firebase configuration from your Firebase project
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
+  apiKey: 'AIzaSyDd8o8XH4vd4MmOtE_RH7qnl22kxNcl8zk',
+  authDomain: 'marines-ai-agent.firebaseapp.com',
+  projectId: 'marines-ai-agent',
+  storageBucket: 'marines-ai-agent.appspot.com',
+  messagingSenderId: '779610430003',
+  appId: '1:779610430003:web:6a6e0de1a2f12630ee6146',
+  measurementId: 'G-9MBFJZQLGY',
+  databaseURL: 'https://marines-ai-agent-default-rtdb.firebaseio.com'
 };
 
 // Initialize Firebase

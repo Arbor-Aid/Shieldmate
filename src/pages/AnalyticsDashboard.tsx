@@ -31,7 +31,7 @@ export default function AnalyticsDashboard() {
   }, [isAdmin, isOrganization, organization?.id]);
 
   const { fetchAnalytics } = useMcpClient({ analyticsOrgId });
-  const analyticsData = (fetchAnalytics.data as AnalyticsData | undefined) ?? null;
+  const analyticsData = fetchAnalytics.data ? (fetchAnalytics.data as unknown as AnalyticsData) : null;
 
   return (
     <ProtectedRoute>

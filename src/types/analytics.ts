@@ -60,6 +60,7 @@ export interface AnalyticsData {
   documentUploadsRate?: number;
   resumesGenerated?: number;
   resumeGenerationRate?: number;
+  aiPromptCount?: number;
   profileCompletions: number;
   questionnaireCompletionRate?: number;
   newUsers: number;
