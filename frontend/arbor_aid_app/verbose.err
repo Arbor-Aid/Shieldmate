@@ -1,0 +1,36 @@
+[+30859 ms] CMake Deprecation Warning at D:/shieldmatessd/Shieldmate/frontend/arbor_aid_app/build/windows/x64/extracted/firebase_cpp_sdk_windows/CMakeLists.txt:17 (cmake_minimum_required):
+[   +6 ms]   Compatibility with CMake < 3.5 will be removed from a future version of
+[   +2 ms]   CMake.
+[   +1 ms]   Update the VERSION argument <min> value or use a ...<max> suffix to tell
+[   +1 ms]   CMake that the project does not need compatibility with older versions.
+[+10610 ms] [+10599 ms] lib/services/auth_service.dart(22,41): error GF7CA4DBF: Couldn't find constructor 'GoogleSignIn'. [D:\shieldmatessd\Shieldmate\frontend\arbor_aid_app\build\windows\x64\flutter\flutter_assemble.vcxproj]
+[        ] [   +2 ms] lib/services/auth_service.dart(59,43): error GE5CFE876: The method 'signIn' isn't defined for the type 'GoogleSignIn'. [D:\shieldmatessd\Shieldmate\frontend\arbor_aid_app\build\windows\x64\flutter\flutter_assemble.vcxproj]
+[ +125 ms] C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(254,5): error MSB8066: Custom build for 'D:\shieldmatessd\Shieldmate\frontend\arbor_aid_app\build\windows\x64\CMakeFiles\3e7d5e56face61cd4b2eee26916f4f87\flutter_windows.dll.rule;D:\shieldmatessd\Shieldmate\frontend\arbor_aid_app\build\windows\x64\CMakeFiles\38fc9b0cdb8425dbdb0d315f89b66939\flutter_assemble.rule;D:\shieldmatessd\Shieldmate\frontend\arbor_aid_app\windows\flutter\CMakeLists.txt' exited with code 1. [D:\shieldmatessd\Shieldmate\frontend\arbor_aid_app\build\windows\x64\flutter\flutter_assemble.vcxproj]
+[        ]   [+10599 ms] lib/services/auth_service.dart(22,41): error GF7CA4DBF: Couldn't find constructor 'GoogleSignIn'. [D:\shieldmatessd\Shieldmate\frontend\arbor_aid_app\build\windows\x64\flutter\flutter_assemble.vcxproj]
+[        ]   [   +2 ms] lib/services/auth_service.dart(59,43): error GE5CFE876: The method 'signIn' isn't defined for the type 'GoogleSignIn'. [D:\shieldmatessd\Shieldmate\frontend\arbor_aid_app\build\windows\x64\flutter\flutter_assemble.vcxproj]
+[   +1 ms]   C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(254,5): error MSB8066: Custom build for 'D:\shieldmatessd\Shieldmate\frontend\arbor_aid_app\build\windows\x64\CMakeFiles\3e7d5e56face61cd4b2eee26916f4f87\flutter_windows.dll.rule;D:\shieldmatessd\Shieldmate\frontend\arbor_aid_app\build\windows\x64\CMakeFiles\38fc9b0cdb8425dbdb0d315f89b66939\flutter_assemble.rule;D:\shieldmatessd\Shieldmate\frontend\arbor_aid_app\windows\flutter\CMakeLists.txt' exited with code 1. [D:\shieldmatessd\Shieldmate\frontend\arbor_aid_app\build\windows\x64\flutter\flutter_assemble.vcxproj]
+[   +1 ms] Error: Build process failed.
+[  +93 ms] 
+           #0      throwToolExit (package:flutter_tools/src/base/common.dart:34:3)
+           #1      RunCommand.runCommand (package:flutter_tools/src/commands/run.dart:872:9)
+           <asynchronous suspension>
+           #2      FlutterCommand.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command.dart:1581:27)
+           <asynchronous suspension>
+           #3      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+           <asynchronous suspension>
+           #4      CommandRunner.runCommand (package:args/command_runner.dart:212:13)
+           <asynchronous suspension>
+           #5      FlutterCommandRunner.runCommand.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:503:9)
+           <asynchronous suspension>
+           #6      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+           <asynchronous suspension>
+           #7      FlutterCommandRunner.runCommand (package:flutter_tools/src/runner/flutter_command_runner.dart:438:5)
+           <asynchronous suspension>
+           #8      run.<anonymous closure>.<anonymous closure> (package:flutter_tools/runner.dart:98:11)
+           <asynchronous suspension>
+           #9      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+           <asynchronous suspension>
+           #10     main (package:flutter_tools/executable.dart:101:3)
+           <asynchronous suspension>
+
+

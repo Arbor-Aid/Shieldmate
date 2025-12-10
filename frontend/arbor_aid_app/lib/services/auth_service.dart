@@ -14,16 +14,19 @@ class AuthResult {
 }
 
 class AuthService {
+  static const List<String> _googleScopes = ['openid', 'email', 'profile'];
+  static Future<void>? _googleInitialization;
+
   AuthService({
     FirebaseAuth? firebaseAuth,
     GoogleSignIn? googleSignIn,
     SessionManager? sessionManager,
   })  : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
-        _googleSignIn = googleSignIn ?? GoogleSignIn(),
+        _googleSignIn = googleSignIn ?? (_platformSupportsGoogleSignIn ? GoogleSignIn.instance : null),
         _sessionManager = sessionManager ?? SessionManager();
 
   final FirebaseAuth _firebaseAuth;
-  final GoogleSignIn _googleSignIn;
+  final GoogleSignIn? _googleSignIn;
   final SessionManager _sessionManager;
 
   Future<AuthResult?> signInWithGoogle() async {
@@ -54,17 +57,50 @@ class AuthService {
     return _signInAnonymously();
   }
 
+  Future<void> _ensureGoogleInitialized(GoogleSignIn googleSignIn) {
+    if (!identical(googleSignIn, GoogleSignIn.instance)) {
+      return Future.value();
+    }
+    final existing = _googleInitialization;
+    if (existing != null) {
+      return existing;
+    }
+    final future = googleSignIn.initialize();
+    _googleInitialization = future;
+    return future;
+  }
+
   Future<AuthResult?> _signInWithGoogleFlow() async {
+    final googleSignIn = _googleSignIn;
+    if (googleSignIn == null) {
+      throw UnsupportedError('Google Sign-In is not available on this platform.');
+    }
+
     try {
-      final account = await _googleSignIn.signIn();
-      if (account == null) {
-        return null;
+      await _ensureGoogleInitialized(googleSignIn);
+      final account = await googleSignIn.authenticate(scopeHint: _googleScopes);
+            final authentication = account.authentication;
+      final idToken = authentication.idToken;
+      if (idToken == null || idToken.isEmpty) {
+        throw StateError('Google Sign-In did not return a valid ID token.');
       }
 
-      final authentication = await account.authentication;
+      String? accessToken;
+      try {
+        final authorizationClient = account.authorizationClient;
+        final cached = await authorizationClient.authorizationForScopes(_googleScopes);
+        if (cached != null) {
+          accessToken = cached.accessToken;
+        } else {
+          accessToken = (await authorizationClient.authorizeScopes(_googleScopes)).accessToken;
+        }
+      } on GoogleSignInException {
+        // Best-effort: continue without an access token if authorization fails.
+      }
+
       final credential = GoogleAuthProvider.credential(
-        accessToken: authentication.accessToken,
-        idToken: authentication.idToken,
+        accessToken: accessToken,
+        idToken: idToken,
       );
 
       final userCredential = await _firebaseAuth.signInWithCredential(credential);
@@ -73,7 +109,10 @@ class AuthService {
       await _sessionManager.persistIdToken(token);
 
       return AuthResult(user: user, idToken: token);
-    } catch (error) {
+    } on GoogleSignInException catch (error) {
+      if (error.code == GoogleSignInExceptionCode.canceled) {
+        return null;
+      }
       rethrow;
     }
   }
@@ -89,7 +128,9 @@ class AuthService {
     return AuthResult(user: user, idToken: token);
   }
 
-  bool get _supportsGoogleSignIn {
+  bool get _supportsGoogleSignIn => _platformSupportsGoogleSignIn;
+
+  static bool get _platformSupportsGoogleSignIn {
     if (kIsWeb) {
       return true;
     }
@@ -160,10 +201,11 @@ class AuthService {
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
     await _sessionManager.clear();
-    if (_supportsGoogleSignIn) {
-      await _googleSignIn.signOut();
+    final googleSignIn = _googleSignIn;
+    if (googleSignIn != null) {
+      await googleSignIn.signOut();
       try {
-        await _googleSignIn.disconnect();
+        await googleSignIn.disconnect();
       } on Exception {
         // Ignore disconnect errors; user may have already revoked the session.
       }
