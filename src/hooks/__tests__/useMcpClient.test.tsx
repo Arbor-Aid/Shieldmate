@@ -20,8 +20,7 @@ jest.mock('@/lib/firebaseService', () => ({
 
 
 declare global {
-  // eslint-disable-next-line no-var
-  var fetch: jest.Mock;
+  function fetch(input: RequestInfo | URL, init?: RequestInit): Promise<Response>;
 }
 
 describe('useMcpClient', () => {

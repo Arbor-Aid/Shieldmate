@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, MessageSquare, Send, Search, Plus, Clock } from 'lucide-react';
 
-import { useAuth } from '@/contexts/AuthContext';
+import { useAuth } from '@/hooks/useAuth';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 
 const MyConversationsPage = () => {
-  const { user, logout } = useAuth();
+  const { currentUser, signOut } = useAuth();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedConversation, setSelectedConversation] = useState<number | null>(null);
   const [newMessage, setNewMessage] = useState('');
@@ -110,7 +110,7 @@ const MyConversationsPage = () => {
             <Link to="/profile">
               <Button variant="ghost">Profile</Button>
             </Link>
-            <Button variant="ghost" onClick={logout}>
+            <Button variant="ghost" onClick={signOut}>
               Sign Out
             </Button>
           </div>
