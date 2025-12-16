@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "marines-ai-agent"
+  },
+  "targets": {
+    "marines-ai-agent": {
+      "hosting": {
+        "shieldmate": [
+          "2m-shieldmate-48cad"
+        ]
+      }
+    }
+  }
+}

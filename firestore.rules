@@ -1,0 +1,102 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function hasAppCheck() {
+      // App Check tokens appear in request.app when enforcement is enabled
+      return request.app != null;
+    }
+
+    function hasGlobalRole(role) {
+      return isAuthenticated()
+        && request.auth.token.roles is list
+        && role in request.auth.token.roles;
+    }
+
+    function isSameUser(userId) {
+      return isAuthenticated()
+        && request.auth.uid == userId;
+    }
+
+    function hasOrgRole(orgId, role) {
+      return isAuthenticated()
+        && orgId in request.auth.token.orgRoles
+        && request.auth.token.orgRoles[orgId] is list
+        && role in request.auth.token.orgRoles[orgId];
+    }
+
+    function canManageOrg(orgId) {
+      return hasGlobalRole('super_admin') || hasOrgRole(orgId, 'org_admin');
+    }
+
+    function canReadOrg(orgId) {
+      return canManageOrg(orgId) || hasOrgRole(orgId, 'staff');
+    }
+
+    // Users collection: users manage their own profile; admins can read
+    match /users/{userId} {
+      allow read: if hasAppCheck() && (isSameUser(userId) || hasGlobalRole('super_admin'));
+      allow write: if hasAppCheck() && isSameUser(userId);
+    }
+
+    // Organizations collection
+    match /organizations/{orgId} {
+      allow read: if hasAppCheck() && canReadOrg(orgId);
+      allow create: if hasAppCheck() && hasGlobalRole('super_admin');
+      allow update, delete: if hasAppCheck() && canManageOrg(orgId);
+    }
+
+    // Organization membership mapping (per-org subcollection)
+    match /organizations/{orgId}/members/{memberId} {
+      allow read: if hasAppCheck() && (
+        isSameUser(memberId) ||
+        canReadOrg(orgId)
+      );
+      allow create, update, delete: if hasAppCheck() && canManageOrg(orgId);
+    }
+
+    // Audits: append-only, no updates/deletes
+    match /audits/{auditId} {
+      allow create: if hasAppCheck()
+        && isAuthenticated()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.action is string
+        && request.resource.data.category is string
+        && !("pii" in request.resource.data);
+      allow read: if hasAppCheck() && hasGlobalRole('super_admin');
+      allow update, delete: if false;
+    }
+
+    // Invites: org-admin creates; invited user can read/accept; expiresAt enforced
+    match /invites/{inviteId} {
+      allow create: if hasAppCheck() && hasGlobalRole('super_admin') || (request.resource.data.orgId is string && canManageOrg(request.resource.data.orgId));
+      allow read: if hasAppCheck() && (
+        (resource.data.invitedUid != null && isSameUser(resource.data.invitedUid)) ||
+        (resource.data.invitedEmail != null && request.auth.token.email == resource.data.invitedEmail) ||
+        (resource.data.orgId != null && canManageOrg(resource.data.orgId))
+      );
+      allow update: if hasAppCheck()
+        && resource.data.status == "pending"
+        && request.resource.data.status in ["accepted", "declined"]
+        && (
+          (resource.data.invitedUid != null && isSameUser(resource.data.invitedUid)) ||
+          (resource.data.invitedEmail != null && request.auth.token.email == resource.data.invitedEmail)
+        )
+        && resource.data.expiresAt > request.time;
+      allow delete: if false;
+    }
+
+    // Conversations/sessions: restrict to owner or org visibility
+    match /conversations/{conversationId} {
+      allow read, write: if hasAppCheck() && isSameUser(resource.data.uid);
+    }
+
+    // Default deny for any other documents
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,10 +1,14 @@
 
 /// <reference types="vite/client" />
 
-interface Window {
-  webkitSpeechRecognition: any;
-  SpeechRecognition: any;
+declare global {
+  interface Window {
+    webkitSpeechRecognition: any;
+    SpeechRecognition: any;
+  }
+
+  const webkitSpeechRecognition: any;
+  const SpeechRecognition: any;
 }
 
-declare var webkitSpeechRecognition: any;
-declare var SpeechRecognition: any;
+export {};

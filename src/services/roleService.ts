@@ -1,8 +1,16 @@
 
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
-import { db } from "@/lib/firebase";
+import { auth, db } from "@/lib/firebase";
+import type { User } from "firebase/auth";
 
-export type UserRole = "admin" | "organization" | "client";
+export type UserRole =
+  | "super_admin"
+  | "org_admin"
+  | "staff"
+  | "client"
+  // legacy roles
+  | "admin"
+  | "organization";
 
 export interface UserRoleData {
   uid: string;
@@ -11,6 +19,40 @@ export interface UserRoleData {
   displayName?: string;
   createdAt?: any;
   updatedAt?: any;
+}
+
+export interface RoleClaims {
+  global?: UserRole[];
+  org?: Record<string, UserRole[]>;
+}
+
+const ROLE_CLAIMS_KEY = "roles" as const;
+const ORG_ROLE_CLAIMS_KEY = "orgRoles" as const;
+
+/**
+ * Read custom role claims from the current user token.
+ * Format:
+ *  roles: string[]            -> global roles (admin/staff/organization/client)
+ *  orgRoles: { [orgId]: string[] } -> org-scoped roles
+ */
+export async function getRoleClaims(user?: User | null): Promise<RoleClaims | null> {
+  const current = user ?? auth.currentUser;
+  if (!current) return null;
+  const token = await current.getIdTokenResult();
+  const globalRoles = (token.claims?.[ROLE_CLAIMS_KEY] as string[] | undefined) ?? [];
+  const orgRoles = (token.claims?.[ORG_ROLE_CLAIMS_KEY] as Record<string, string[]> | undefined) ?? {};
+  return {
+    global: globalRoles.filter(Boolean) as UserRole[],
+    org: Object.fromEntries(
+      Object.entries(orgRoles).map(([orgId, roles]) => [orgId, (roles || []).filter(Boolean) as UserRole[]]),
+    ),
+  };
+}
+
+export function hasRoleClaim(claims: RoleClaims | null, role: UserRole, orgId?: string): boolean {
+  if (!claims) return false;
+  if (orgId && claims.org?.[orgId]?.includes(role)) return true;
+  return claims.global?.includes(role) ?? false;
 }
 
 /**
@@ -82,4 +124,21 @@ export async function isAdmin(userId: string): Promise<boolean> {
  */
 export async function isOrganization(userId: string): Promise<boolean> {
   return await hasRole(userId, "organization");
+}
+
+/**
+ * Resolve a user's role with claims first, falling back to Firestore.
+ */
+export async function resolveEffectiveRole(user?: User | null): Promise<UserRole | null> {
+  const claims = await getRoleClaims(user);
+  if (claims?.global?.length) {
+    // prioritize explicit claims; default to first role
+    return claims.global[0] as UserRole;
+  }
+
+  if (user?.uid) {
+    return await getUserRole(user.uid);
+  }
+
+  return null;
 }

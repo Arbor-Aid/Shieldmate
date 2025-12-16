@@ -11,12 +11,20 @@ import {
   signInWithGithub as firebaseSignInWithGithub,
   signOut as firebaseSignOut,
   createUserDocument,
-  onAuthStateChanged
+  onAuthStateChanged,
+  signInWithEmail,
+  registerWithEmail,
+  getIdToken,
+  emailAuthEnabled,
 } from "@/lib/firebaseService";
 
 export interface AuthContextType {
   currentUser: User | null;
   loading: boolean;
+  emailAuthEnabled: boolean;
+  getIdToken: (forceRefresh?: boolean) => Promise<string>;
+  signInWithEmail: (email: string, password: string) => Promise<UserCredential>;
+  registerWithEmail: (email: string, password: string) => Promise<UserCredential>;
   signInWithGoogle: () => Promise<UserCredential>;
   signInWithApple: () => Promise<UserCredential>;
   signInWithFacebook: () => Promise<UserCredential>;
@@ -63,6 +71,46 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       toast({
         title: "Error",
         description: "Failed to sign in with Google. Please try again.",
+        variant: "destructive",
+      });
+      throw error;
+    }
+  };
+
+  const handleEmailSignIn = async (email: string, password: string) => {
+    try {
+      const result = await signInWithEmail(email, password);
+      toast({
+        title: "Welcome back!",
+        description: "You have successfully signed in.",
+      });
+      const from = location.state?.from?.pathname || '/profile';
+      navigate(from);
+      return result;
+    } catch (error: any) {
+      toast({
+        title: "Sign-in failed",
+        description: error?.message || "Unable to sign in with email/password.",
+        variant: "destructive",
+      });
+      throw error;
+    }
+  };
+
+  const handleEmailRegistration = async (email: string, password: string) => {
+    try {
+      const result = await registerWithEmail(email, password);
+      toast({
+        title: "Account created",
+        description: "You can now continue to your profile.",
+      });
+      const from = location.state?.from?.pathname || '/profile';
+      navigate(from);
+      return result;
+    } catch (error: any) {
+      toast({
+        title: "Sign-up failed",
+        description: error?.message || "Unable to create your account.",
         variant: "destructive",
       });
       throw error;
@@ -163,6 +211,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     <AuthContext.Provider value={{
       currentUser,
       loading,
+      emailAuthEnabled,
+      getIdToken,
+      signInWithEmail: handleEmailSignIn,
+      registerWithEmail: handleEmailRegistration,
       signInWithGoogle,
       signInWithApple,
       signInWithFacebook,

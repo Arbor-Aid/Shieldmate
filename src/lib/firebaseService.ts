@@ -7,12 +7,25 @@ import {
   FacebookAuthProvider,
   GithubAuthProvider,
   signOut as firebaseSignOut,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
   UserCredential,
   onAuthStateChanged as firebaseAuthStateChanged
 } from "firebase/auth";
-import { auth, db, trackEvent } from "@/lib/firebase";
+import { auth, db, trackEvent, getCurrentIdToken } from "@/lib/firebase";
 import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
 import { UserRole } from "@/services/roleService";
+
+const readEnvFlag = (key: string, defaultValue: boolean) => {
+  const value =
+    (typeof import.meta !== "undefined" && (import.meta as any).env?.[key]) ??
+    (typeof process !== "undefined" ? process.env?.[key] : undefined);
+
+  if (value === undefined) return defaultValue;
+  return value.toString().toLowerCase() === "true";
+};
+
+export const emailAuthEnabled = readEnvFlag("VITE_ENABLE_EMAIL_AUTH", true);
 
 // Authentication methods
 export const signInWithGoogle = async (): Promise<UserCredential> => {
@@ -114,6 +127,50 @@ export const signInWithGithub = async (): Promise<UserCredential> => {
   }
 };
 
+export const signInWithEmail = async (email: string, password: string): Promise<UserCredential> => {
+  if (!emailAuthEnabled) {
+    throw new Error("Email/password authentication is disabled for this deployment.");
+  }
+
+  try {
+    const credential = await signInWithEmailAndPassword(auth, email, password);
+    trackEvent("sign_in_attempt", {
+      provider: "email",
+      success: true,
+    });
+    return credential;
+  } catch (error: any) {
+    trackEvent("sign_in_attempt", {
+      provider: "email",
+      success: false,
+      errorCode: error?.code,
+    });
+    throw error;
+  }
+};
+
+export const registerWithEmail = async (email: string, password: string): Promise<UserCredential> => {
+  if (!emailAuthEnabled) {
+    throw new Error("Email/password authentication is disabled for this deployment.");
+  }
+
+  try {
+    const credential = await createUserWithEmailAndPassword(auth, email, password);
+    trackEvent("user_registration", {
+      provider: "email",
+      success: true,
+    });
+    return credential;
+  } catch (error: any) {
+    trackEvent("user_registration", {
+      provider: "email",
+      success: false,
+      errorCode: error?.code,
+    });
+    throw error;
+  }
+};
+
 export const signOut = async (): Promise<void> => {
   try {
     await firebaseSignOut(auth);
@@ -207,4 +264,8 @@ export const createUserDocument = async (user: User): Promise<void> => {
 // Auth state change subscription
 export const onAuthStateChanged = (callback: (user: User | null) => void): (() => void) => {
   return firebaseAuthStateChanged(auth, callback);
+};
+
+export const getIdToken = async (forceRefresh = false): Promise<string> => {
+  return getCurrentIdToken(forceRefresh);
 };

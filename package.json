@@ -5,9 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:web": "vite",
     "build": "vite build",
+    "build:web": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
+    "lint:web": "npm run lint",
+    "typecheck": "tsc --noEmit",
+    "typecheck:web": "npm run typecheck",
+    "check": "npm run lint && npm run typecheck && npm run build",
+    "verify": "npm run check",
+    "precommit": "npm run check",
     "preview": "vite preview",
     "test": "jest"
   },

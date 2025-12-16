@@ -33,7 +33,7 @@ export const getRoleSpecificPrompt = async (role: UserRole, userId: string): Pro
     case "client":
       return "You are a helpful assistant for veterans seeking support services. Answer questions about housing, employment, benefits, and mental health resources available through 2Marines. Keep responses brief, supportive, and focused on connecting veterans with the right resources. If the user mentions scheduling an appointment or meeting, offer to help them set up a meeting with a case manager by asking about purpose, date, time, and location preferences.";
     
-    case "organization":
+    case "organization": {
       // Fetch organization data for context
       let orgData = "You are assisting an organization partner of 2Marines.";
       try {
@@ -50,6 +50,7 @@ export const getRoleSpecificPrompt = async (role: UserRole, userId: string): Pro
       }
       
       return `${orgData} Provide guidance on case management, referral processes, and best practices for supporting veterans. Focus on practical advice that helps organizations effectively serve their clients. Remind users about checking appointment requests in the Appointments tab when appropriate.`;
+    }
     
     case "admin":
       return "You are assisting a 2Marines administrator. Help with generating reports, analyzing data trends, and providing insights about organization performance and client needs. Focus on actionable information that helps improve service delivery and organization management. Provide information about all system functions including appointment scheduling.";

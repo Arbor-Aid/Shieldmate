@@ -1,32 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth, trackEvent } from '@/lib/firebase';
-import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/hooks/useAuth';
+import { useToast } from '@/hooks/use-toast';
+import { getUserOrganizations } from '@/services/orgAccessService';
+import { listInvitesForEmail } from '@/services/inviteService';
 import Navigation from '../components/Navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Apple, Github } from 'lucide-react';
 
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { toast } = useToast();
-  const { signInWithGoogle, signInWithApple, signInWithFacebook, signInWithGithub } = useAuth();
+  const { signInWithGoogle, signInWithEmail, emailAuthEnabled, currentUser } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
+  const resolveRedirectPath = async () => {
+    if (!currentUser) return '/profile';
+    const memberships = await getUserOrganizations(currentUser.uid);
+    if (memberships.length === 0) {
+      const invites = currentUser.email ? await listInvitesForEmail(currentUser.email) : [];
+      if (invites.length > 0) return '/onboarding';
+      return '/profile';
+    }
+    const hasOrgRole = memberships.some((m) => (m.roles || []).includes('org_admin') || (m.roles || []).includes('staff'));
+    if (hasOrgRole) return '/org';
+    return '/client';
+  };
+
   useEffect(() => {
-    if (auth.currentUser) {
-      const from = location.state?.from?.pathname || '/profile';
+    const from = location.state?.from?.pathname || '/profile';
+    if (currentUser) {
+      navigate(from);
+      return;
+    }
+    if (emailAuthEnabled && localStorage.getItem('authLoggedIn') === 'true') {
       navigate(from);
     }
-  }, [navigate, location]);
+  }, [navigate, location, emailAuthEnabled, currentUser]);
 
   const handleEmailLogin = async () => {
     if (!email || !password) {
@@ -38,29 +54,18 @@ const Login = () => {
     setError(null);
     
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      
-      trackEvent('sign_in_attempt', {
-        provider: 'email',
-        success: true
-      });
-      
+      await signInWithEmail(email, password);
+      localStorage.setItem('authLoggedIn', 'true');
+
       toast({
         title: "Welcome back!",
         description: "You have successfully signed in.",
       });
       
-      const from = location.state?.from?.pathname || '/profile';
+      const from = location.state?.from?.pathname || (await resolveRedirectPath());
       navigate(from);
     } catch (err: any) {
       console.error("Email sign-in failed:", err);
-      
-      trackEvent('sign_in_attempt', {
-        provider: 'email',
-        success: false,
-        errorCode: err.code
-      });
-      
       setError(err.message);
       toast({
         title: "Sign-in Failed",
@@ -78,63 +83,11 @@ const Login = () => {
     
     try {
       await signInWithGoogle();
-      
-      const from = location.state?.from?.pathname || '/profile';
+      const from = location.state?.from?.pathname || (await resolveRedirectPath());
       navigate(from);
     } catch (err: any) {
       console.error("Google sign-in failed:", err);
       setError("Failed to sign in with Google. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleAppleLogin = async () => {
-    setLoading(true);
-    setError(null);
-    
-    try {
-      await signInWithApple();
-      
-      const from = location.state?.from?.pathname || '/profile';
-      navigate(from);
-    } catch (err: any) {
-      console.error("Apple sign-in failed:", err);
-      setError("Failed to sign in with Apple. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleFacebookLogin = async () => {
-    setLoading(true);
-    setError(null);
-    
-    try {
-      await signInWithFacebook();
-      
-      const from = location.state?.from?.pathname || '/profile';
-      navigate(from);
-    } catch (err: any) {
-      console.error("Facebook sign-in failed:", err);
-      setError("Failed to sign in with Facebook. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleGithubLogin = async () => {
-    setLoading(true);
-    setError(null);
-    
-    try {
-      await signInWithGithub();
-      
-      const from = location.state?.from?.pathname || '/profile';
-      navigate(from);
-    } catch (err: any) {
-      console.error("GitHub sign-in failed:", err);
-      setError("Failed to sign in with GitHub. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -171,15 +124,16 @@ const Login = () => {
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                disabled={!emailAuthEnabled}
               />
             </div>
 
             <Button
               className="w-full"
               onClick={handleEmailLogin}
-              disabled={loading}
+              disabled={loading || !emailAuthEnabled}
             >
-              {loading ? 'Signing in...' : 'Sign in with Email'}
+              {emailAuthEnabled ? (loading ? 'Signing in...' : 'Sign in with Email') : 'Email sign-in disabled'}
             </Button>
 
             <div className="relative my-6">
@@ -191,7 +145,7 @@ const Login = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4">
               <Button
                 variant="outline"
                 onClick={handleGoogleLogin}
@@ -206,43 +160,17 @@ const Login = () => {
                 </svg>
                 Google
               </Button>
-              
-              <Button
-                variant="outline"
-                onClick={handleAppleLogin}
-                disabled={loading}
-                className="w-full"
-              >
-                <Apple className="mr-2 h-4 w-4" />
-                Apple
-              </Button>
-              
-              <Button
-                variant="outline"
-                onClick={handleFacebookLogin}
-                disabled={loading}
-                className="w-full"
-              >
-                <svg className="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="#1877F2"/>
-                </svg>
-                Facebook
-              </Button>
-              
-              <Button
-                variant="outline"
-                onClick={handleGithubLogin}
-                disabled={loading}
-                className="w-full"
-              >
-                <Github className="mr-2 h-4 w-4" />
-                GitHub
-              </Button>
             </div>
 
             {error && (
               <div className="p-3 text-sm bg-red-50 text-red-700 rounded-md">
                 {error}
+              </div>
+            )}
+
+            {!emailAuthEnabled && (
+              <div className="p-3 text-sm bg-amber-50 text-amber-700 rounded-md">
+                Email/password authentication is disabled for this environment. Use Google sign-in.
               </div>
             )}
           </CardContent>
