@@ -282,6 +282,42 @@ All protected routes must:
 - MCP calls with stale tokens must fail closed.
 - UI must surface "Re-login required" after admin role changes.
 
+## Regulated External Systems: Google Ads (Ad Grants)
+Google Ads (Ad Grants) is a regulated external system that requires strict
+controls to prevent unapproved spend or policy violations. All automation must
+be approval-gated and claims-authorized.
+
+Trust boundary:
+UI -> MCP Gateway -> mcp-google-ads (Cloud Run)
+
+Explicit Non-Goals (Ad Grants):
+- No autonomous spend, launch, or bid changes without human approval.
+- No direct client-side Google Ads API calls.
+- No credential storage in the frontend.
+
+Approval workflow (text diagram):
+- User (org_admin/super_admin) submits change request
+  -> Approval record created (PENDING)
+    -> Human approval (super_admin or org_admin)
+      -> Execute via MCP gateway with approvalId
+        -> mcp-google-ads performs server-side API call
+          -> Audit log append-only record
+
+Audit logging requirements:
+- Log every regulated action with: orgId, actor uid, action, approvalId, toolId,
+  status, timestamp.
+- Fail closed when approvalId is missing or invalid.
+
+Ad Grants policy constraints checklist (enforced in code):
+- Only approved campaigns/ad groups/keywords are created or modified.
+- No automated changes outside approved budgets and policy limits.
+- All mutating actions require approvalId with status APPROVED.
+- Enforce org scoping (claims.org must match orgId).
+
+## MCP Additions
+- mcp-google-ads (mutating actions require approval)
+- mcp-analytics (read-only metrics for GA4/Ads)
+
 ## Operational Guardrails
 - Rotate agent credentials regularly.
 - Revoke tokens for compromised edge devices.
