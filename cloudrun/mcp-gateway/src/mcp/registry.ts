@@ -23,6 +23,7 @@ export const MCP_REGISTRY: Record<string, string> = {
   "personalized-donation-ai": "https://personalized-donation-ai-yd7bwat7eq-uc.a.run.app",
   "qa-ai-agent": "https://qa-ai-agent-yd7bwat7eq-uc.a.run.app",
   "reporting-dashboard-ai": "https://reporting-dashboard-ai-yd7bwat7eq-uc.a.run.app",
+  // TODO: set when deployed
   "mcp-google-ads": "",
   "mcp-analytics": ""
 };

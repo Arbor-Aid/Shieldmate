@@ -44,25 +44,15 @@ All tools are scoped by org. Mutating actions require approval.
 - Approval required: YES (approvalId)
 - Org scope: claims.org must match orgId
 
-5) `googleAds.getPolicyChecks`
+5) `googleAds.policyCheck`
 - Required role: org_admin or super_admin
 - Approval required: NO (read-only)
 - Org scope: claims.org must match orgId
 
-## MCP Analytics (Read-Only)
-Read-only metrics tooling for GA4/Ads reporting.
-
-Example request:
-```json
-{
-  "toolId": "mcp-analytics",
-  "orgId": "2marines",
-  "input": {
-    "action": "analytics.getAdsMetrics",
-    "timeRange": "last_30_days"
-  }
-}
-```
+6) `googleAds.metrics`
+- Required role: org_admin or super_admin
+- Approval required: NO (read-only)
+- Org scope: claims.org must match orgId
 
 ## Approval Guard (Gateway Pseudocode)
 ```ts
