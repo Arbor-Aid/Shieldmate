@@ -12,8 +12,8 @@ service cloud.firestore {
 
     function hasGlobalRole(role) {
       return isAuthenticated()
-        && request.auth.token.roles is list
-        && role in request.auth.token.roles;
+        && request.auth.token.role is string
+        && request.auth.token.role == role;
     }
 
     function isSuperAdmin() {
@@ -27,9 +27,10 @@ service cloud.firestore {
 
     function hasOrgRole(orgId, role) {
       return isAuthenticated()
-        && orgId in request.auth.token.orgRoles
-        && request.auth.token.orgRoles[orgId] is list
-        && role in request.auth.token.orgRoles[orgId];
+        && request.auth.token.org is string
+        && request.auth.token.org == orgId
+        && request.auth.token.role is string
+        && request.auth.token.role == role;
     }
 
     function canManageOrg(orgId) {
@@ -153,18 +154,17 @@ service cloud.firestore {
 
     // Invites: org-admin creates; invited user can read/accept; expiresAt enforced
     match /invites/{inviteId} {
-      allow create: if hasAppCheck() && hasGlobalRole('super_admin') || (request.resource.data.orgId is string && canManageOrg(request.resource.data.orgId));
+      allow create: if hasAppCheck()
+        && (hasGlobalRole('super_admin') || (request.resource.data.orgId is string && canManageOrg(request.resource.data.orgId)));
       allow read: if hasAppCheck() && (
         (resource.data.invitedUid != null && isSameUser(resource.data.invitedUid)) ||
-        (resource.data.invitedEmail != null && request.auth.token.email == resource.data.invitedEmail) ||
         (resource.data.orgId != null && canManageOrg(resource.data.orgId))
       );
       allow update: if hasAppCheck()
         && resource.data.status == "pending"
         && request.resource.data.status in ["accepted", "declined"]
         && (
-          (resource.data.invitedUid != null && isSameUser(resource.data.invitedUid)) ||
-          (resource.data.invitedEmail != null && request.auth.token.email == resource.data.invitedEmail)
+          (resource.data.invitedUid != null && isSameUser(resource.data.invitedUid))
         )
         && resource.data.expiresAt > request.time;
       allow delete: if false;

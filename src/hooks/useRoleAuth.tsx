@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@/hooks/useAuth";
-import { getUserRole, getRoleClaims, hasRoleClaim, resolveEffectiveRole, UserRole } from "@/services/roleService";
+import { getRoleClaims, hasRoleClaim, resolveEffectiveRole, UserRole } from "@/services/roleService";
 
 export function useRoleAuth() {
   const { currentUser, loading: authLoading } = useAuth();
@@ -28,8 +28,7 @@ export function useRoleAuth() {
       if (!currentUser) return null;
 
       const claimsRole = await resolveEffectiveRole(currentUser);
-      if (claimsRole) return claimsRole;
-      return await getUserRole(currentUser.uid);
+      return claimsRole;
     },
     enabled: !!currentUser && !authLoading,
     staleTime: 5 * 60 * 1000,
@@ -40,8 +39,10 @@ export function useRoleAuth() {
 
   const hasRole = (role: UserRole): boolean => {
     if (loading || !userRole) return false;
+    if (role === "super_admin" && userRole === "admin") return true;
     if (role === "admin" && userRole === "super_admin") return true;
     if (role === "organization" && (userRole === "org_admin" || userRole === "staff")) return true;
+    if ((role === "org_admin" || role === "staff") && userRole === "organization") return true;
     return userRole === role;
   };
 

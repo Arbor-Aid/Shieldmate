@@ -13,3 +13,6 @@
 
 ## Error Handling
 - Gateway execution shows "Execution service not deployed yet" when MCP service is missing.
+
+## Ops Note
+- If claims changed, refresh token/relogin.

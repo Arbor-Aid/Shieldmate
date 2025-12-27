@@ -26,21 +26,21 @@ export interface RoleClaims {
   org?: Record<string, UserRole[]>;
 }
 
-const ROLE_CLAIMS_KEY = "roles" as const;
-const ORG_ROLE_CLAIMS_KEY = "orgRoles" as const;
 
 /**
  * Read custom role claims from the current user token.
  * Format:
- *  roles: string[]            -> global roles (admin/staff/organization/client)
- *  orgRoles: { [orgId]: string[] } -> org-scoped roles
+ *  role: string -> single role claim
+ *  org: string  -> single org claim
  */
 export async function getRoleClaims(user?: User | null): Promise<RoleClaims | null> {
   const current = user ?? auth.currentUser;
   if (!current) return null;
   const token = await current.getIdTokenResult();
-  const globalRoles = (token.claims?.[ROLE_CLAIMS_KEY] as string[] | undefined) ?? [];
-  const orgRoles = (token.claims?.[ORG_ROLE_CLAIMS_KEY] as Record<string, string[]> | undefined) ?? {};
+  const role = (token.claims?.role as UserRole | undefined) ?? undefined;
+  const org = (token.claims?.org as string | undefined) ?? undefined;
+  const globalRoles = role === "super_admin" ? [role] : [];
+  const orgRoles = org && role ? { [org]: [role] } : {};
   return {
     global: globalRoles.filter(Boolean) as UserRole[],
     org: Object.fromEntries(
@@ -132,13 +132,22 @@ export async function isOrganization(userId: string): Promise<boolean> {
 export async function resolveEffectiveRole(user?: User | null): Promise<UserRole | null> {
   const claims = await getRoleClaims(user);
   if (claims?.global?.length) {
-    // prioritize explicit claims; default to first role
-    return claims.global[0] as UserRole;
+    const rawRole = claims.global[0] as UserRole;
+    return normalizeRole(rawRole);
   }
 
-  if (user?.uid) {
-    return await getUserRole(user.uid);
+  const orgRoles = claims?.org ?? {};
+  const firstOrg = Object.keys(orgRoles)[0];
+  if (firstOrg && orgRoles[firstOrg]?.length) {
+    const rawRole = orgRoles[firstOrg][0] as UserRole;
+    return normalizeRole(rawRole);
   }
 
   return null;
+}
+
+function normalizeRole(role: UserRole): UserRole {
+  if (role === "super_admin") return "admin";
+  if (role === "org_admin" || role === "staff") return "organization";
+  return role;
 }
