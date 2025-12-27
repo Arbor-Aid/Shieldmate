@@ -15,6 +15,8 @@ const Conversations = React.lazy(() => import('./pages/MyConversationsPage'));
 const OrgLanding = React.lazy(() => import('./pages/OrgLanding'));
 const OrgAdmin = React.lazy(() => import('./pages/OrgAdmin'));
 const AdminRbac = React.lazy(() => import('./pages/AdminRbac'));
+const AdminApprovals = React.lazy(() => import('./pages/AdminApprovals'));
+const AdminApprovalNew = React.lazy(() => import('./pages/AdminApprovalNew'));
 const Onboarding = React.lazy(() => import('./pages/Onboarding'));
 const NotFound = React.lazy(() => import('./pages/NotFound'));
 
@@ -79,6 +81,22 @@ function App() {
               <RoleCheck allowedRoles={["super_admin"]} fallback={<NotFound />}>
                 <AdminRbac />
               </RoleCheck>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/approvals"
+          element={
+            <ProtectedRoute>
+              <AdminApprovals />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/approvals/new"
+          element={
+            <ProtectedRoute>
+              <AdminApprovalNew />
             </ProtectedRoute>
           }
         />

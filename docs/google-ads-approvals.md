@@ -36,11 +36,12 @@ Recommended fields:
 - EXECUTED: Applied in Google Ads via MCP.
 
 ## Required Audit Events
-- approval.requested
-- approval.approved
-- approval.rejected
-- ads.executed
-- ads.failed
+- APPROVAL_CREATED
+- APPROVAL_SUBMITTED
+- APPROVAL_APPROVED
+- APPROVAL_REJECTED
+- EXECUTION_REQUESTED
+- EXECUTION_MARKED
 
 Each event must include orgId, actorUid, approvalId, toolId, and timestamp.
 

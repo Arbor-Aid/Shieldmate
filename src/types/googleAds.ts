@@ -10,6 +10,11 @@ export type GoogleAdsReadOnlyAction =
 
 export type GoogleAdsAction = GoogleAdsMutatingAction | GoogleAdsReadOnlyAction;
 
+export type GoogleAdsActionPayload = {
+  action: GoogleAdsAction;
+  payload: Record<string, unknown>;
+};
+
 export type GoogleAdsExecuteInput =
   | {
       action: GoogleAdsMutatingAction;

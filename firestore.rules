@@ -16,6 +16,10 @@ service cloud.firestore {
         && role in request.auth.token.roles;
     }
 
+    function isSuperAdmin() {
+      return hasGlobalRole('super_admin');
+    }
+
     function isSameUser(userId) {
       return isAuthenticated()
         && request.auth.uid == userId;
@@ -29,11 +33,19 @@ service cloud.firestore {
     }
 
     function canManageOrg(orgId) {
-      return hasGlobalRole('super_admin') || hasOrgRole(orgId, 'org_admin');
+      return isSuperAdmin() || hasOrgRole(orgId, 'org_admin');
     }
 
     function canReadOrg(orgId) {
       return canManageOrg(orgId) || hasOrgRole(orgId, 'staff');
+    }
+
+    function canManageApprovals(orgId) {
+      return isSuperAdmin() || hasOrgRole(orgId, 'org_admin');
+    }
+
+    function approvalStatusValid() {
+      return request.resource.data.status in ["DRAFT", "PENDING", "APPROVED", "REJECTED", "EXECUTED"];
     }
 
     // Users collection: users manage their own profile; admins can read
@@ -67,6 +79,75 @@ service cloud.firestore {
         && request.resource.data.category is string
         && !("pii" in request.resource.data);
       allow read: if hasAppCheck() && hasGlobalRole('super_admin');
+      allow update, delete: if false;
+    }
+
+    // Approvals: claims-only, org-scoped, limited transitions
+    match /approvals/{approvalId} {
+      allow read: if hasAppCheck()
+        && isAuthenticated()
+        && (
+          isSuperAdmin() ||
+          hasOrgRole(resource.data.orgId, 'org_admin') ||
+          resource.data.requestedBy == request.auth.uid
+        );
+
+      allow create: if hasAppCheck()
+        && isAuthenticated()
+        && request.resource.data.type == "GOOGLE_ADS_CHANGE"
+        && request.resource.data.status == "DRAFT"
+        && request.resource.data.requestedBy == request.auth.uid
+        && request.resource.data.orgId is string
+        && canManageApprovals(request.resource.data.orgId);
+
+      allow update: if hasAppCheck()
+        && isAuthenticated()
+        && request.resource.data.orgId == resource.data.orgId
+        && request.resource.data.requestedBy == resource.data.requestedBy
+        && request.resource.data.type == resource.data.type
+        && approvalStatusValid()
+        && (
+          // DRAFT updates or submit to PENDING by requester
+          (resource.data.status == "DRAFT"
+            && request.resource.data.status in ["DRAFT", "PENDING"]
+            && request.auth.uid == resource.data.requestedBy
+            && canManageApprovals(resource.data.orgId))
+          ||
+          // PENDING -> APPROVED/REJECTED by org_admin/super_admin
+          (resource.data.status == "PENDING"
+            && request.resource.data.status in ["APPROVED", "REJECTED"]
+            && canManageApprovals(resource.data.orgId)
+            && request.resource.data.approvedBy == request.auth.uid)
+          ||
+          // EXECUTION metadata updates after APPROVED/EXECUTED
+          (resource.data.status in ["APPROVED", "EXECUTED"]
+            && request.resource.data.status in ["APPROVED", "EXECUTED"]
+            && canManageApprovals(resource.data.orgId))
+        );
+
+      allow delete: if false;
+    }
+
+    // Audit logs for regulated actions: append-only
+    match /auditLogs/{logId} {
+      allow create: if hasAppCheck()
+        && isAuthenticated()
+        && request.resource.data.orgId is string
+        && request.resource.data.actorUid == request.auth.uid
+        && request.resource.data.eventType in [
+          "APPROVAL_CREATED",
+          "APPROVAL_SUBMITTED",
+          "APPROVAL_APPROVED",
+          "APPROVAL_REJECTED",
+          "EXECUTION_REQUESTED",
+          "EXECUTION_MARKED"
+        ]
+        && canManageApprovals(request.resource.data.orgId);
+
+      allow read: if hasAppCheck()
+        && isAuthenticated()
+        && canManageApprovals(resource.data.orgId);
+
       allow update, delete: if false;
     }
 

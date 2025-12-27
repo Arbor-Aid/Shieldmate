@@ -15,7 +15,15 @@ export default function AdminDashboard() {
 
   return (
     <div className="container mx-auto py-6">
-      <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-3xl font-bold">Admin Dashboard</h1>
+        <a
+          href="/admin/approvals"
+          className="px-3 py-2 rounded border text-sm hover:bg-muted"
+        >
+          Approvals
+        </a>
+      </div>
       
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
         <TabsList className="grid grid-cols-7 w-full">
