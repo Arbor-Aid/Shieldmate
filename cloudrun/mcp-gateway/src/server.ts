@@ -1,0 +1,224 @@
+import express from 'express';
+import { randomUUID } from 'crypto';
+import { requireOrg } from './auth/requireOrg';
+import { requireRole } from './auth/requireRole';
+import type { VerifiedTokenClaims } from './auth/verifyFirebaseToken';
+import { MCP_REGISTRY } from './mcp/registry';
+
+type ExecutePayload = {
+  toolId?: string;
+  orgId?: string;
+  input?: unknown;
+  meta?: Record<string, unknown>;
+};
+
+type ContextPayload = {
+  toolId?: string;
+  orgId?: string;
+  input?: unknown;
+  meta?: Record<string, unknown>;
+};
+
+const app = express();
+app.use(express.json({ limit: '1mb' }));
+
+const PORT = Number(process.env.PORT) || 8080;
+const VERSION = process.env.GIT_SHA || process.env.K_REVISION || 'unknown';
+
+const ALLOWED_ROLES = ['super_admin', 'org_admin', 'case_worker'];
+
+function logEvent(entry: Record<string, unknown>) {
+  console.log(JSON.stringify(entry));
+}
+
+app.get('/health', (_req, res) => {
+  logEvent({
+    requestId: randomUUID(),
+    route: '/health',
+    status: 200,
+  });
+  res.status(200).json({ ok: true });
+});
+
+app.get('/version', (_req, res) => {
+  logEvent({
+    requestId: randomUUID(),
+    route: '/version',
+    status: 200,
+  });
+  res.status(200).json({ version: VERSION });
+});
+
+async function proxyPost(
+  url: string,
+  payload: unknown,
+  authHeader: string | undefined,
+  requestId: string
+) {
+  const resp = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': authHeader ?? '',
+      'X-Request-Id': requestId,
+    },
+    body: JSON.stringify(payload ?? {}),
+  });
+  const bodyText = await resp.text();
+  const contentType = resp.headers.get('content-type') ?? 'application/json';
+  return { status: resp.status, bodyText, contentType };
+}
+
+app.post('/mcp/execute', async (req, res) => {
+  const requestId = randomUUID();
+  const authHeader = req.header('Authorization');
+  const payload = req.body as ExecutePayload;
+  const toolId = payload?.toolId;
+  const orgId = payload?.orgId;
+  let claims: VerifiedTokenClaims | null = null;
+  let status = 200;
+  let targetService = '';
+  try {
+    if (!toolId || !orgId) {
+      status = 400;
+      return res.status(status).json({ error: 'toolId and orgId are required' });
+    }
+    claims = await requireRole(authHeader, ALLOWED_ROLES);
+    await requireOrg(authHeader, orgId, claims);
+    const baseUrl = MCP_REGISTRY[toolId];
+    if (!baseUrl) {
+      status = 404;
+      return res.status(status).json({ error: 'Unknown toolId', toolId });
+    }
+    targetService = baseUrl;
+    const targetUrl = `${baseUrl}/execute`;
+    const upstream = await proxyPost(targetUrl, payload, authHeader, requestId);
+    status = upstream.status;
+    if (status === 404) {
+      return res.status(502).json({
+        error: 'MCP route not implemented for toolId/service; update registry/proxy mapping',
+        toolId,
+        targetService,
+      });
+    }
+    res.status(status).type(upstream.contentType).send(upstream.bodyText);
+  } catch (err) {
+    status = 403;
+    res.status(status).json({ error: 'Forbidden' });
+  } finally {
+    logEvent({
+      requestId,
+      uid: claims?.uid,
+      role: claims?.role,
+      route: '/mcp/execute',
+      toolId,
+      org: claims?.org ?? payload?.orgId,
+      targetService,
+      status,
+    });
+  }
+});
+
+app.post('/mcp/tools/:toolId', async (req, res) => {
+  const requestId = randomUUID();
+  const authHeader = req.header('Authorization');
+  const toolId = req.params.toolId;
+  const payload = req.body as ExecutePayload;
+  const orgId = payload?.orgId;
+  let claims: VerifiedTokenClaims | null = null;
+  let status = 200;
+  let targetService = '';
+  try {
+    if (!toolId || !orgId) {
+      status = 400;
+      return res.status(status).json({ error: 'toolId and orgId are required' });
+    }
+    claims = await requireRole(authHeader, ALLOWED_ROLES);
+    await requireOrg(authHeader, orgId, claims);
+    const baseUrl = MCP_REGISTRY[toolId];
+    if (!baseUrl) {
+      status = 404;
+      return res.status(status).json({ error: 'Unknown toolId', toolId });
+    }
+    targetService = baseUrl;
+    const targetUrl = `${baseUrl}/mcp/tools/${toolId}`;
+    const upstream = await proxyPost(targetUrl, payload, authHeader, requestId);
+    status = upstream.status;
+    if (status === 404) {
+      return res.status(502).json({
+        error: 'MCP route not implemented for toolId/service; update registry/proxy mapping',
+        toolId,
+        targetService,
+      });
+    }
+    res.status(status).type(upstream.contentType).send(upstream.bodyText);
+  } catch (err) {
+    status = 403;
+    res.status(status).json({ error: 'Forbidden' });
+  } finally {
+    logEvent({
+      requestId,
+      uid: claims?.uid,
+      role: claims?.role,
+      route: '/mcp/tools/:toolId',
+      toolId,
+      org: claims?.org ?? payload?.orgId,
+      targetService,
+      status,
+    });
+  }
+});
+
+app.post('/mcp/context', async (req, res) => {
+  const requestId = randomUUID();
+  const authHeader = req.header('Authorization');
+  const payload = req.body as ContextPayload;
+  const toolId = payload?.toolId;
+  const orgId = payload?.orgId;
+  let claims: VerifiedTokenClaims | null = null;
+  let status = 200;
+  let targetService = '';
+  try {
+    if (!toolId || !orgId) {
+      status = 400;
+      return res.status(status).json({ error: 'toolId and orgId are required' });
+    }
+    claims = await requireRole(authHeader, ALLOWED_ROLES);
+    await requireOrg(authHeader, orgId, claims);
+    const baseUrl = MCP_REGISTRY[toolId];
+    if (!baseUrl) {
+      status = 404;
+      return res.status(status).json({ error: 'Unknown toolId', toolId });
+    }
+    targetService = baseUrl;
+    const contextUrl = `${baseUrl}/context`;
+    const upstream = await proxyPost(contextUrl, payload, authHeader, requestId);
+    status = upstream.status;
+    if (status === 404) {
+      return res.status(502).json({
+        error: 'MCP context route not implemented; update gateway mapping',
+        toolId,
+        targetService,
+      });
+    }
+    res.status(status).type(upstream.contentType).send(upstream.bodyText);
+  } catch (err) {
+    status = 403;
+    res.status(status).json({ error: 'Forbidden' });
+  } finally {
+    logEvent({
+      requestId,
+      uid: claims?.uid,
+      role: claims?.role,
+      route: '/mcp/context',
+      toolId,
+      org: claims?.org ?? payload?.orgId,
+      targetService,
+      status,
+    });
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(JSON.stringify({ service: 'mcp-gateway', status: 'listening', port: PORT }));
+});
