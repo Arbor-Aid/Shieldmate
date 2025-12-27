@@ -34,6 +34,10 @@ Key rules:
 - Edge agents authenticate as services, not users.
 - Slacker agents are claim-gated and map Slack identity to Firebase identity.
 
+## Gateway/MCP Ingress (External Service)
+Gateway/MCP ingress is not implemented in this repository. It is an external
+Cloud Run service (or separate repo) and must be inventoried independently.
+
 ## Framework Catalog (Reference Use Cases)
 ### Primary
 - Swarms AI: multi-agent orchestration, configurable agent graphs and loops.
@@ -141,13 +145,21 @@ async function handleSlackCommand(cmd) {
 | Edge Agents | Raspberry Pi | Execute tasks | Service token |
 
 ## Gateway Routes (Safety Boundaries)
-### Public (Before Safety Route)
-These routes are accessible without Firebase ID tokens but should still enforce
-basic validation (rate limits, signature checks, schema validation).
-- `GET /health`
-- `GET /version`
-- `GET /status`
-- `POST /slack/events` (Slack signature required)
+### Firebase Hosting (Frontend)
+- SPA entry via `/index.html` with rewrite on all paths.
+
+### Firebase Functions HTTPS Endpoints (This Repo)
+- `setUserClaims` (HTTPS callable; claims-guarded super_admin only)
+
+### External Gateway Route Inventory (Cloud Run)
+TODO: Capture the deployed route inventory from the gateway service.
+Required fields:
+- Base URL
+- Public routes (health/version/status)
+- Protected routes (path + method)
+- Required claims (role/org)
+- Slack routes and signature validation
+- Edge agent routes and token type
 
 ### Enforcement Contract (Hard Requirements)
 All protected routes must:
@@ -156,20 +168,6 @@ All protected routes must:
 - Reject missing or stale claims.
 - Never allow MCP tools, agent tasks, or edge results to bypass the gateway.
 - Treat Slack as a signal, not authority (Slack routes never grant auth).
-
-### Protected (Behind Safety Route)
-These routes require a valid Firebase ID token and claim checks on every call.
-- `POST /mcp/execute` (role-checked)
-- `POST /mcp/tools/:toolId` (role-checked)
-- `POST /mcp/context` (role-checked)
-- `GET /agent/runs` (org-scoped)
-- `POST /agent/tasks` (org-scoped + role-checked)
-- `POST /agent/approve` (super_admin or org_admin)
-- `POST /admin/claims` (super_admin only)
-- `POST /admin/orgs` (super_admin only)
-- `GET /admin/audit` (super_admin only)
-- `POST /edge/heartbeat` (service token + org scope)
-- `POST /edge/results` (service token + org scope)
 
 ## Edge Agent Prototype (Raspberry Pi)
 ### Minimal Structure
