@@ -37,6 +37,9 @@ Key rules:
 ## Gateway/MCP Ingress (External Service)
 Gateway/MCP ingress is not implemented in this repository. It is an external
 Cloud Run service (or separate repo) and must be inventoried independently.
+No Cloud Run service in the current project inventory is clearly named as a
+gateway/ingress service; treat ingress as external until a dedicated service
+is identified.
 
 ## Framework Catalog (Reference Use Cases)
 ### Primary
@@ -144,6 +147,39 @@ async function handleSlackCommand(cmd) {
 | Audit Logs | Firestore | Immutable logs | Admin SDK only |
 | Edge Agents | Raspberry Pi | Execute tasks | Service token |
 
+## Cloud Run Inventory (Authoritative)
+Inventory derived from `gcloud run services list/describe` (project: marines-ai-agent).
+Auth models and routes are not discoverable from this repo unless noted.
+
+| Service Name | Region | Base URL | Purpose | Auth Model | Notes |
+| --- | --- | --- | --- | --- | --- |
+| ai-budget-planner | us-central1 | https://ai-budget-planner-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
+| ai-expense-manager | us-central1 | https://ai-expense-manager-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
+| ai-financial-analyst | us-central1 | https://ai-financial-analyst-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
+| ai-financial-reporting-specialist | us-central1 | https://ai-financial-reporting-specialist-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
+| ai-invoice-processor | us-central1 | https://ai-invoice-processor-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
+| ai-payroll-manager | us-central1 | https://ai-payroll-manager-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
+| ai-tax-compliance-agent | us-central1 | https://ai-tax-compliance-agent-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
+| ai-training-coordinator | us-central1 | https://ai-training-coordinator-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
+| ai-ux-analyst | us-central1 | https://ai-ux-analyst-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
+| amazon-drop-shipping-ai | us-central1 | https://amazon-drop-shipping-ai-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
+| coder-agent | us-central1 | https://coder-agent-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
+| content-generation-ai | us-central1 | https://content-generation-ai-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
+| cto-agent | us-central1 | https://cto-agent-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
+| data-scrubbing-ai | us-central1 | https://data-scrubbing-ai-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
+| designer-ai-agent | us-central1 | https://designer-ai-agent-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
+| email-campaign-optimizer-ai | us-central1 | https://email-campaign-optimizer-ai-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
+| fundraising-chatbot-ai | us-central1 | https://fundraising-chatbot-ai-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
+| hr-ai-agent | us-central1 | https://hr-ai-agent-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
+| information-retrieval-ai | us-central1 | https://information-retrieval-ai-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
+| multimodal-ai | us-central1 | https://multimodal-ai-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
+| org-scrubber-mcp | us-central1 | https://org-scrubber-mcp-yd7bwat7eq-uc.a.run.app | MCP service (name + image include `mcp`) | TBD | Routes unknown |
+| personalized-donation-ai | us-central1 | https://personalized-donation-ai-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
+| project-manager-agent | us-central1 | (no URL assigned) | MCP service (container in `mcp-containers`) | TBD | Service URL missing |
+| qa-ai-agent | us-central1 | https://qa-ai-agent-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
+| reporting-dashboard-ai | us-central1 | https://reporting-dashboard-ai-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
+| setuserclaims | us-central1 | https://setuserclaims-yd7bwat7eq-uc.a.run.app | Firebase Functions Gen2 (setUserClaims callable) | Firebase Auth callable | Cloud Functions artifact |
+
 ## Gateway Routes (Safety Boundaries)
 Gateway/MCP ingress is not implemented in this repository. It is expected to run
 as an external Cloud Run service (or separate repo) and must be inventoried
@@ -162,21 +198,18 @@ Function inventory:
 | `setUserClaims` | HTTPS callable | Firebase ID token + super_admin claim |
 
 ### External Gateway Routes (Out of Repo)
-Design targets only (not implemented here). Final route alignment requires
-Cloud Run service inventory (outside this repo).
+External services are deployed on Cloud Run, but route paths are not discoverable
+from this repo. Use the Cloud Run inventory above for base URLs and treat
+route prefixes as TBD pending the gateway/service repo route map.
 
-Intended patterns:
-- `POST /mcp/execute` (role-checked)
-- `POST /mcp/tools/:toolId` (role-checked)
-- `POST /mcp/context` (role-checked)
-- `GET /agent/runs` (org-scoped)
-- `POST /agent/tasks` (org-scoped + role-checked)
-- `POST /agent/approve` (super_admin or org_admin)
-- `POST /admin/claims` (super_admin only)
-- `POST /admin/orgs` (super_admin only)
-- `GET /admin/audit` (super_admin only)
-- `POST /edge/heartbeat` (service token + org scope)
-- `POST /edge/results` (service token + org scope)
+Final route alignment requires Cloud Run service inventory (outside this repo),
+including the actual gateway/ingress service definition.
+
+Design targets only (pending inventory):
+- `/mcp/*` (role-checked)
+- `/agent/*` (org-scoped + role-checked)
+- `/admin/*` (super_admin only)
+- `/edge/*` (service token + org scope)
 
 ### Enforcement Contract (Hard Requirements)
 All protected routes must:
