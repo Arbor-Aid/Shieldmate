@@ -37,9 +37,7 @@ Key rules:
 ## Gateway/MCP Ingress (External Service)
 Gateway/MCP ingress is not implemented in this repository. It is an external
 Cloud Run service (or separate repo) and must be inventoried independently.
-No Cloud Run service in the current project inventory is clearly named as a
-gateway/ingress service; treat ingress as external until a dedicated service
-is identified.
+Current ingress service identified in Cloud Run: `mcp-gateway` (see inventory).
 
 ## Framework Catalog (Reference Use Cases)
 ### Primary
@@ -153,6 +151,7 @@ Auth models and routes are not discoverable from this repo unless noted.
 
 | Service Name | Region | Base URL | Purpose | Auth Model | Notes |
 | --- | --- | --- | --- | --- | --- |
+| mcp-gateway | us-central1 | https://mcp-gateway-779610430003.us-central1.run.app | Gateway/Ingress | Firebase ID token (protected routes) | Public: `/health`, `/version` |
 | ai-budget-planner | us-central1 | https://ai-budget-planner-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
 | ai-expense-manager | us-central1 | https://ai-expense-manager-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
 | ai-financial-analyst | us-central1 | https://ai-financial-analyst-yd7bwat7eq-uc.a.run.app | MCP service (container in `mcp-containers`) | TBD | Routes unknown |
@@ -198,18 +197,18 @@ Function inventory:
 | `setUserClaims` | HTTPS callable | Firebase ID token + super_admin claim |
 
 ### External Gateway Routes (Out of Repo)
-External services are deployed on Cloud Run, but route paths are not discoverable
-from this repo. Use the Cloud Run inventory above for base URLs and treat
-route prefixes as TBD pending the gateway/service repo route map.
+Gateway base URL (Cloud Run):
+- https://mcp-gateway-779610430003.us-central1.run.app
 
-Final route alignment requires Cloud Run service inventory (outside this repo),
-including the actual gateway/ingress service definition.
+All tool ingress routes through the gateway. Supported routes:
+- `GET /health`
+- `GET /version`
+- `POST /mcp/execute` (role-checked, org-scoped)
+- `POST /mcp/tools/:toolId` (role-checked, org-scoped)
+- `POST /mcp/context` (role-checked, org-scoped)
 
-Design targets only (pending inventory):
-- `/mcp/*` (role-checked)
-- `/agent/*` (org-scoped + role-checked)
-- `/admin/*` (super_admin only)
-- `/edge/*` (service token + org scope)
+Downstream MCP service routes remain unknown in this repo; route inventory must
+be sourced from the gateway/service repo or service owners.
 
 ### Enforcement Contract (Hard Requirements)
 All protected routes must:
