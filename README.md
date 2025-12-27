@@ -55,6 +55,8 @@ npm run dev
 - **Firebase**: Auth, Firestore, Functions, Storage, and Analytics.
 - **Integrations**: Slack workflows, Notion dashboards, Google Workspace automations.
 
+See [`docs/AGENT_ARCHITECTURE.md`](docs/AGENT_ARCHITECTURE.md) for agent, MCP, edge, and RBAC design.
+
 ---
 
 ## Web Platform (Active)
