@@ -56,6 +56,7 @@ npm run dev
 - **Integrations**: Slack workflows, Notion dashboards, Google Workspace automations.
 
 See [`docs/AGENT_ARCHITECTURE.md`](docs/AGENT_ARCHITECTURE.md) for agent, MCP, edge, and RBAC design.
+See [`docs/SYSTEM_OF_RECORD.md`](docs/SYSTEM_OF_RECORD.md) for authoritative ownership and Slack control-plane boundaries.
 
 ---
 
