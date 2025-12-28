@@ -22,6 +22,7 @@ Auth model:
 Notes:
 - All protected routes fail closed on missing/invalid tokens.
 - Gateway does not log tokens, claims, or PII. Logs include method, path, hasAuth, hasAppCheck, status.
+- `/health` returns a static `{"status":"ok"}` payload and does not touch Firestore or external systems.
 
 ## Local Verification (curl)
 
@@ -43,3 +44,6 @@ Expected: `401/403` and a log entry with `hasAuth=false`.
 
 Note: `orgId` is derived from verified claims. If a request includes `orgId`,
 the gateway will verify it against token claims and reject mismatches.
+
+Auth test (with token missing org claim):
+- Expected: `403` with `Missing org claim`.

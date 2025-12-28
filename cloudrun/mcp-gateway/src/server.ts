@@ -1,6 +1,5 @@
 import express from 'express';
 import { randomUUID } from 'crypto';
-import { requireOrg } from './auth/requireOrg';
 import { requireRole } from './auth/requireRole';
 import type { VerifiedTokenClaims } from './auth/verifyFirebaseToken';
 import { MCP_REGISTRY } from './mcp/registry';
@@ -31,13 +30,27 @@ function logEvent(entry: Record<string, unknown>) {
   console.log(JSON.stringify(entry));
 }
 
-function getRequestMeta(req: express.Request) {
+function getRequestMeta(req: express.Request, claims?: VerifiedTokenClaims | null) {
   return {
     method: req.method,
     path: req.path,
     hasAuth: Boolean(req.header('Authorization')),
     hasAppCheck: Boolean(req.header('X-Firebase-AppCheck')),
+    hasOrgClaim: Boolean(claims?.org),
   };
+}
+
+function resolveEffectiveOrg(
+  claims: VerifiedTokenClaims,
+  untrustedOrgId?: string
+): { ok: true; org: string } | { ok: false; error: string } {
+  if (!claims.org) {
+    return { ok: false, error: 'Missing org claim' };
+  }
+  if (untrustedOrgId && claims.org !== untrustedOrgId) {
+    return { ok: false, error: 'Org mismatch' };
+  }
+  return { ok: true, org: claims.org };
 }
 
 app.get('/health', (req, res) => {
@@ -83,23 +96,31 @@ app.post('/mcp/execute', async (req, res) => {
   const authHeader = req.header('Authorization');
   const payload = req.body as ExecutePayload;
   const toolId = payload?.toolId;
-  const orgId = payload?.orgId;
+  const untrustedOrgId = payload?.orgId;
   let claims: VerifiedTokenClaims | null = null;
   let status = 200;
   try {
-    if (!toolId || !orgId) {
+    if (!toolId) {
       status = 400;
-      return res.status(status).json({ error: 'toolId and orgId are required' });
+      return res.status(status).json({ error: 'toolId is required' });
     }
     claims = await requireRole(authHeader, ALLOWED_ROLES);
-    await requireOrg(authHeader, orgId, claims);
+    const resolvedOrg = resolveEffectiveOrg(claims, untrustedOrgId);
+    if (!resolvedOrg.ok) {
+      status = 403;
+      return res.status(status).json({ error: resolvedOrg.error });
+    }
     const baseUrl = MCP_REGISTRY[toolId];
     if (!baseUrl) {
       status = 404;
       return res.status(status).json({ error: 'Unknown toolId', toolId });
     }
     const targetUrl = `${baseUrl}/execute`;
-    const upstream = await proxyPost(targetUrl, payload, authHeader, requestId);
+    const upstreamPayload = {
+      ...payload,
+      orgId: resolvedOrg.org,
+    };
+    const upstream = await proxyPost(targetUrl, upstreamPayload, authHeader, requestId);
     status = upstream.status;
     if (status === 404) {
       return res.status(502).json({
@@ -114,7 +135,7 @@ app.post('/mcp/execute', async (req, res) => {
   } finally {
     logEvent({
       requestId,
-      ...getRequestMeta(req),
+      ...getRequestMeta(req, claims),
       status,
     });
   }
@@ -125,23 +146,31 @@ app.post('/mcp/tools/:toolId', async (req, res) => {
   const authHeader = req.header('Authorization');
   const toolId = req.params.toolId;
   const payload = req.body as ExecutePayload;
-  const orgId = payload?.orgId;
+  const untrustedOrgId = payload?.orgId;
   let claims: VerifiedTokenClaims | null = null;
   let status = 200;
   try {
-    if (!toolId || !orgId) {
+    if (!toolId) {
       status = 400;
-      return res.status(status).json({ error: 'toolId and orgId are required' });
+      return res.status(status).json({ error: 'toolId is required' });
     }
     claims = await requireRole(authHeader, ALLOWED_ROLES);
-    await requireOrg(authHeader, orgId, claims);
+    const resolvedOrg = resolveEffectiveOrg(claims, untrustedOrgId);
+    if (!resolvedOrg.ok) {
+      status = 403;
+      return res.status(status).json({ error: resolvedOrg.error });
+    }
     const baseUrl = MCP_REGISTRY[toolId];
     if (!baseUrl) {
       status = 404;
       return res.status(status).json({ error: 'Unknown toolId', toolId });
     }
     const targetUrl = `${baseUrl}/mcp/tools/${toolId}`;
-    const upstream = await proxyPost(targetUrl, payload, authHeader, requestId);
+    const upstreamPayload = {
+      ...payload,
+      orgId: resolvedOrg.org,
+    };
+    const upstream = await proxyPost(targetUrl, upstreamPayload, authHeader, requestId);
     status = upstream.status;
     if (status === 404) {
       return res.status(502).json({
@@ -156,7 +185,7 @@ app.post('/mcp/tools/:toolId', async (req, res) => {
   } finally {
     logEvent({
       requestId,
-      ...getRequestMeta(req),
+      ...getRequestMeta(req, claims),
       status,
     });
   }
@@ -167,23 +196,31 @@ app.post('/mcp/context', async (req, res) => {
   const authHeader = req.header('Authorization');
   const payload = req.body as ContextPayload;
   const toolId = payload?.toolId;
-  const orgId = payload?.orgId;
+  const untrustedOrgId = payload?.orgId;
   let claims: VerifiedTokenClaims | null = null;
   let status = 200;
   try {
-    if (!toolId || !orgId) {
+    if (!toolId) {
       status = 400;
-      return res.status(status).json({ error: 'toolId and orgId are required' });
+      return res.status(status).json({ error: 'toolId is required' });
     }
     claims = await requireRole(authHeader, ALLOWED_ROLES);
-    await requireOrg(authHeader, orgId, claims);
+    const resolvedOrg = resolveEffectiveOrg(claims, untrustedOrgId);
+    if (!resolvedOrg.ok) {
+      status = 403;
+      return res.status(status).json({ error: resolvedOrg.error });
+    }
     const baseUrl = MCP_REGISTRY[toolId];
     if (!baseUrl) {
       status = 404;
       return res.status(status).json({ error: 'Unknown toolId', toolId });
     }
     const contextUrl = `${baseUrl}/context`;
-    const upstream = await proxyPost(contextUrl, payload, authHeader, requestId);
+    const upstreamPayload = {
+      ...payload,
+      orgId: resolvedOrg.org,
+    };
+    const upstream = await proxyPost(contextUrl, upstreamPayload, authHeader, requestId);
     status = upstream.status;
     if (status === 404) {
       return res.status(502).json({
@@ -198,7 +235,7 @@ app.post('/mcp/context', async (req, res) => {
   } finally {
     logEvent({
       requestId,
-      ...getRequestMeta(req),
+      ...getRequestMeta(req, claims),
       status,
     });
   }

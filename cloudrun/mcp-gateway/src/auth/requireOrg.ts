@@ -1,20 +1,18 @@
 import { verifyFirebaseToken, VerifiedTokenClaims } from './verifyFirebaseToken';
 
-const SUPER_ADMIN = 'super_admin';
-
 export async function requireOrg(
   authHeader: string | undefined,
-  requiredOrg: string,
+  expectedOrg: string | undefined,
   claims?: VerifiedTokenClaims
 ): Promise<VerifiedTokenClaims> {
   const resolvedClaims = claims ?? (await verifyFirebaseToken(authHeader));
   if (!resolvedClaims.role) {
     throw new Error('Missing role claim');
   }
-  if (resolvedClaims.role === SUPER_ADMIN) {
-    return resolvedClaims;
+  if (!resolvedClaims.org) {
+    throw new Error('Missing org claim');
   }
-  if (!resolvedClaims.org || resolvedClaims.org !== requiredOrg) {
+  if (expectedOrg && resolvedClaims.org !== expectedOrg) {
     throw new Error('Org mismatch');
   }
   return resolvedClaims;
