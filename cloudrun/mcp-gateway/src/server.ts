@@ -31,19 +31,28 @@ function logEvent(entry: Record<string, unknown>) {
   console.log(JSON.stringify(entry));
 }
 
-app.get('/health', (_req, res) => {
+function getRequestMeta(req: express.Request) {
+  return {
+    method: req.method,
+    path: req.path,
+    hasAuth: Boolean(req.header('Authorization')),
+    hasAppCheck: Boolean(req.header('X-Firebase-AppCheck')),
+  };
+}
+
+app.get('/health', (req, res) => {
   logEvent({
     requestId: randomUUID(),
-    route: '/health',
+    ...getRequestMeta(req),
     status: 200,
   });
-  res.status(200).json({ ok: true });
+  res.status(200).json({ status: 'ok' });
 });
 
-app.get('/version', (_req, res) => {
+app.get('/version', (req, res) => {
   logEvent({
     requestId: randomUUID(),
-    route: '/version',
+    ...getRequestMeta(req),
     status: 200,
   });
   res.status(200).json({ version: VERSION });
@@ -77,7 +86,6 @@ app.post('/mcp/execute', async (req, res) => {
   const orgId = payload?.orgId;
   let claims: VerifiedTokenClaims | null = null;
   let status = 200;
-  let targetService = '';
   try {
     if (!toolId || !orgId) {
       status = 400;
@@ -90,7 +98,6 @@ app.post('/mcp/execute', async (req, res) => {
       status = 404;
       return res.status(status).json({ error: 'Unknown toolId', toolId });
     }
-    targetService = baseUrl;
     const targetUrl = `${baseUrl}/execute`;
     const upstream = await proxyPost(targetUrl, payload, authHeader, requestId);
     status = upstream.status;
@@ -98,7 +105,6 @@ app.post('/mcp/execute', async (req, res) => {
       return res.status(502).json({
         error: 'MCP route not implemented for toolId/service; update registry/proxy mapping',
         toolId,
-        targetService,
       });
     }
     res.status(status).type(upstream.contentType).send(upstream.bodyText);
@@ -108,12 +114,7 @@ app.post('/mcp/execute', async (req, res) => {
   } finally {
     logEvent({
       requestId,
-      uid: claims?.uid,
-      role: claims?.role,
-      route: '/mcp/execute',
-      toolId,
-      org: claims?.org ?? payload?.orgId,
-      targetService,
+      ...getRequestMeta(req),
       status,
     });
   }
@@ -127,7 +128,6 @@ app.post('/mcp/tools/:toolId', async (req, res) => {
   const orgId = payload?.orgId;
   let claims: VerifiedTokenClaims | null = null;
   let status = 200;
-  let targetService = '';
   try {
     if (!toolId || !orgId) {
       status = 400;
@@ -140,7 +140,6 @@ app.post('/mcp/tools/:toolId', async (req, res) => {
       status = 404;
       return res.status(status).json({ error: 'Unknown toolId', toolId });
     }
-    targetService = baseUrl;
     const targetUrl = `${baseUrl}/mcp/tools/${toolId}`;
     const upstream = await proxyPost(targetUrl, payload, authHeader, requestId);
     status = upstream.status;
@@ -148,7 +147,6 @@ app.post('/mcp/tools/:toolId', async (req, res) => {
       return res.status(502).json({
         error: 'MCP route not implemented for toolId/service; update registry/proxy mapping',
         toolId,
-        targetService,
       });
     }
     res.status(status).type(upstream.contentType).send(upstream.bodyText);
@@ -158,12 +156,7 @@ app.post('/mcp/tools/:toolId', async (req, res) => {
   } finally {
     logEvent({
       requestId,
-      uid: claims?.uid,
-      role: claims?.role,
-      route: '/mcp/tools/:toolId',
-      toolId,
-      org: claims?.org ?? payload?.orgId,
-      targetService,
+      ...getRequestMeta(req),
       status,
     });
   }
@@ -177,7 +170,6 @@ app.post('/mcp/context', async (req, res) => {
   const orgId = payload?.orgId;
   let claims: VerifiedTokenClaims | null = null;
   let status = 200;
-  let targetService = '';
   try {
     if (!toolId || !orgId) {
       status = 400;
@@ -190,7 +182,6 @@ app.post('/mcp/context', async (req, res) => {
       status = 404;
       return res.status(status).json({ error: 'Unknown toolId', toolId });
     }
-    targetService = baseUrl;
     const contextUrl = `${baseUrl}/context`;
     const upstream = await proxyPost(contextUrl, payload, authHeader, requestId);
     status = upstream.status;
@@ -198,7 +189,6 @@ app.post('/mcp/context', async (req, res) => {
       return res.status(502).json({
         error: 'MCP context route not implemented; update gateway mapping',
         toolId,
-        targetService,
       });
     }
     res.status(status).type(upstream.contentType).send(upstream.bodyText);
@@ -208,12 +198,7 @@ app.post('/mcp/context', async (req, res) => {
   } finally {
     logEvent({
       requestId,
-      uid: claims?.uid,
-      role: claims?.role,
-      route: '/mcp/context',
-      toolId,
-      org: claims?.org ?? payload?.orgId,
-      targetService,
+      ...getRequestMeta(req),
       status,
     });
   }
