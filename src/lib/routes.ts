@@ -5,6 +5,12 @@ export const isPublicRoute = (pathname: string) => {
 
   return [
     "/features",
+    "/info",
+    "/shieldmate",
+    "/shop",
+    "/partnerships",
+    "/brand",
+    "/socials",
     "/pricing",
     "/about",
     "/contact",

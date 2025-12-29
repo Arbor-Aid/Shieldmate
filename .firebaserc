@@ -10,6 +10,9 @@
         ],
         "marinecoin": [
           "marinecoin-2marines"
+        ],
+        "marines-ai-agent": [
+          "marines-ai-agent"
         ]
       }
     }
