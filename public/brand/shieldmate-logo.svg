@@ -1,0 +1,8 @@
+<svg width="240" height="64" viewBox="0 0 240 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="240" height="64" rx="12" fill="#0A1C3F"/>
+  <path d="M28 18L40 26V46L28 54L16 46V26L28 18Z" fill="#A59982"/>
+  <path d="M28 24L34 28V44L28 48L22 44V28L28 24Z" fill="#F1F2F7"/>
+  <text x="60" y="40" fill="#F1F2F7" font-family="Poppins, Arial, sans-serif" font-size="20" font-weight="700">
+    ShieldMate
+  </text>
+</svg>

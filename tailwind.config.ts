@@ -53,15 +53,15 @@ const config: Config = {
           foreground: "hsl(var(--card-foreground))",
         },
         navy: {
-          DEFAULT: "#1f2a44",
-          light: "#2d3b5f",
+          DEFAULT: "hsl(var(--primary))",
+          light: "hsl(var(--secondary))",
         },
         blue: {
-          DEFAULT: "#2563eb",
-          light: "#60a5fa",
+          DEFAULT: "hsl(var(--secondary))",
+          light: "hsl(var(--secondary))",
         },
         gray: {
-          DEFAULT: "#f3f4f6",
+          DEFAULT: "hsl(var(--muted))",
         },
         gold: {
           DEFAULT: "hsl(var(--gold))",
@@ -98,6 +98,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
+        heading: ["Poppins", "sans-serif"],
       },
     },
   },
