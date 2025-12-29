@@ -1,9 +1,10 @@
 
-import { createContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useEffect, useRef, useState, ReactNode } from "react";
 import { User, UserCredential } from "firebase/auth";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { trackEvent } from "@/lib/firebase";
+import { isPublicRoute } from "@/lib/routes";
 import { 
   signInWithGoogle as firebaseSignInWithGoogle,
   signInWithApple as firebaseSignInWithApple,
@@ -21,6 +22,7 @@ import {
 export interface AuthContextType {
   currentUser: User | null;
   loading: boolean;
+  claimsReady: boolean;
   emailAuthEnabled: boolean;
   getIdToken: (forceRefresh?: boolean) => Promise<string>;
   signInWithEmail: (email: string, password: string) => Promise<UserCredential>;
@@ -37,21 +39,51 @@ export const AuthContext = createContext<AuthContextType | null>(null);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [claimsReady, setClaimsReady] = useState(false);
+  const userDocAttemptedRef = useRef<string | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
   const { toast } = useToast();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(async (user) => {
+      setLoading(true);
+      setClaimsReady(false);
       setCurrentUser(user);
-      if (user) {
-        await createUserDocument(user);
+
+      if (!user) {
+        setClaimsReady(true);
+        setLoading(false);
+        return;
       }
-      setLoading(false);
+
+      try {
+        await user.getIdTokenResult();
+      } catch (error) {
+        if (import.meta.env.DEV) {
+          console.warn("Failed to read auth claims", error);
+        }
+      } finally {
+        setClaimsReady(true);
+        setLoading(false);
+      }
     });
 
     return unsubscribe;
   }, []);
+
+  useEffect(() => {
+    if (!currentUser || !claimsReady) return;
+    if (isPublicRoute(location.pathname)) return;
+    if (userDocAttemptedRef.current === currentUser.uid) return;
+
+    userDocAttemptedRef.current = currentUser.uid;
+    createUserDocument(currentUser).catch((error) => {
+      if (import.meta.env.DEV) {
+        console.warn("Failed to create user document", error);
+      }
+    });
+  }, [currentUser, claimsReady, location.pathname]);
 
   const signInWithGoogle = async () => {
     try {
@@ -211,6 +243,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     <AuthContext.Provider value={{
       currentUser,
       loading,
+      claimsReady,
       emailAuthEnabled,
       getIdToken,
       signInWithEmail: handleEmailSignIn,

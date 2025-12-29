@@ -1,5 +1,6 @@
 import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "@/lib/firebase";
+import { isPublicRoute } from "@/lib/routes";
 
 type AuditEvent = {
   category: "auth" | "mcp" | "org" | "ui" | "error";
@@ -15,6 +16,9 @@ const isDev = import.meta.env.DEV;
 
 export async function recordAudit(event: AuditEvent) {
   const uid = event.uid ?? auth.currentUser?.uid;
+  const pathname =
+    typeof window !== "undefined" ? window.location.pathname : "";
+  const isPublic = pathname ? isPublicRoute(pathname) : false;
   const audit = {
     ...event,
     uid,
@@ -25,7 +29,7 @@ export async function recordAudit(event: AuditEvent) {
     console.info("[AUDIT]", audit);
   }
 
-  if (!uid) return;
+  if (!uid || isPublic) return;
 
   try {
     await addDoc(collection(db, "audits"), audit);

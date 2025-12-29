@@ -10,12 +10,13 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-  const { currentUser, loading } = useAuth();
+  const { currentUser, loading, claimsReady } = useAuth();
   const { toast } = useToast();
   const location = useLocation();
+  const isInitializing = loading || !claimsReady;
 
   useEffect(() => {
-    if (!loading && !currentUser) {
+    if (!isInitializing && !currentUser) {
       toast({
         title: "Authentication Required",
         description: "Please log in to access this page.",
@@ -28,9 +29,9 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
         authenticated: false
       });
     }
-  }, [currentUser, loading, toast, location.pathname]);
+  }, [currentUser, isInitializing, toast, location.pathname]);
 
-  if (loading) {
+  if (isInitializing) {
     return (
       <div className="flex min-h-screen items-center justify-center">
         <div className="animate-spin h-8 w-8 border-t-2 border-b-2 border-primary rounded-full"></div>
