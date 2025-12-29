@@ -1,0 +1,47 @@
+{
+  "name": "ShieldMate v1",
+  "colors": {
+    "brand": {
+      "marineNavy": "#0A1C3F",
+      "freedomBlue": "#4D65D5",
+      "platinumWhite": "#F1F2F7",
+      "steelGray": "#4F5A6D",
+      "prestigeBronze": "#A59982",
+      "darkInk": "#0D1216"
+    },
+    "semantic": {
+      "primary": "#0A1C3F",
+      "secondary": "#4D65D5",
+      "accent": "#A59982",
+      "background": "#0D1216",
+      "surface": "#F1F2F7",
+      "text": "#0D1216",
+      "muted": "#4F5A6D",
+      "border": "#4F5A6D"
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "heading": "Poppins",
+      "body": "Inter"
+    },
+    "fontWeight": {
+      "regular": 400,
+      "medium": 500,
+      "semibold": 600,
+      "bold": 700
+    }
+  },
+  "radius": {
+    "sm": "6px",
+    "md": "10px",
+    "lg": "14px"
+  },
+  "spacing": {
+    "xs": "4px",
+    "sm": "8px",
+    "md": "16px",
+    "lg": "24px",
+    "xl": "32px"
+  }
+}

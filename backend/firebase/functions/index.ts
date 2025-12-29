@@ -71,3 +71,63 @@ export const setUserClaims = functions.https.onCall(async (data: SetUserClaimsIn
 
   return { uid, claims };
 });
+
+type UiuxPayload = {
+  route?: string;
+  userRole?: string;
+  timestamp?: string;
+  componentList?: string[];
+  eventType?: string;
+  metadata?: Record<string, unknown>;
+};
+
+const buildUiuxHandler = (kind: "audit" | "event") =>
+  functions.https.onRequest(async (req, res) => {
+    if (req.method !== "POST") {
+      res.status(405).json({ error: "Method not allowed" });
+      return;
+    }
+
+    let decoded: admin.auth.DecodedIdToken | null = null;
+    const authHeader = req.headers.authorization;
+    if (authHeader?.startsWith("Bearer ")) {
+      try {
+        decoded = await admin.auth().verifyIdToken(authHeader.slice(7), true);
+      } catch {
+        res.status(401).json({ error: "Unauthorized" });
+        return;
+      }
+    }
+
+    const payload = (req.body ?? {}) as UiuxPayload;
+    const uiuxUrl = process.env.UIUX_MCP_URL;
+    if (uiuxUrl) {
+      const target = `${uiuxUrl.replace(/\/$/, "")}/${kind}`;
+      const upstream = await fetch(target, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(process.env.UIUX_MCP_TOKEN
+            ? { Authorization: `Bearer ${process.env.UIUX_MCP_TOKEN}` }
+            : {}),
+        },
+        body: JSON.stringify(payload),
+      });
+      res.status(upstream.ok ? 200 : 502).json({ ok: upstream.ok });
+      return;
+    }
+
+    await admin.firestore().collection(kind === "audit" ? "ux_audits" : "ux_events").add({
+      ...payload,
+      source: "shieldmate-ui",
+      actorUid: decoded?.uid ?? null,
+      actorRole: (decoded?.role as string | undefined) ?? null,
+      actorOrg: (decoded?.org as string | undefined) ?? null,
+      receivedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    res.status(200).json({ ok: true, stored: true });
+  });
+
+export const uiuxAudit = buildUiuxHandler("audit");
+export const uiuxEvent = buildUiuxHandler("event");
