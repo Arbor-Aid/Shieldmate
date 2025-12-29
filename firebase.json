@@ -90,6 +90,56 @@
           "source": "/",
           "destination": "/marinecoin",
           "type": 302
+        },
+        {
+          "source": "/app/**",
+          "destination": "/marinecoin",
+          "type": 302
+        },
+        {
+          "source": "/admin/**",
+          "destination": "/marinecoin",
+          "type": 302
+        },
+        {
+          "source": "/org/**",
+          "destination": "/marinecoin",
+          "type": 302
+        },
+        {
+          "source": "/client/**",
+          "destination": "/marinecoin",
+          "type": 302
+        },
+        {
+          "source": "/organization/**",
+          "destination": "/marinecoin",
+          "type": 302
+        },
+        {
+          "source": "/profile/**",
+          "destination": "/marinecoin",
+          "type": 302
+        },
+        {
+          "source": "/onboarding/**",
+          "destination": "/marinecoin",
+          "type": 302
+        },
+        {
+          "source": "/login",
+          "destination": "/marinecoin",
+          "type": 302
+        },
+        {
+          "source": "/signin",
+          "destination": "/marinecoin",
+          "type": 302
+        },
+        {
+          "source": "/signup",
+          "destination": "/marinecoin",
+          "type": 302
         }
       ],
       "rewrites": [
