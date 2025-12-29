@@ -37,14 +37,6 @@
       ],
       "rewrites": [
         {
-          "source": "/api/uiux/audit",
-          "function": "uiuxAudit"
-        },
-        {
-          "source": "/api/uiux/event",
-          "function": "uiuxEvent"
-        },
-        {
           "source": "**",
           "destination": "/index.html"
         }
