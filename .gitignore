@@ -87,3 +87,9 @@ nuget.exe
 shieldmate_cleanup.ps1
 src/mocks/
 src/hooks/__tests__/
+
+# Local diagnostics (do not commit)
+firestore.rules.prod.txt
+firestore.indexes.prod.json
+mcp_test.json
+
