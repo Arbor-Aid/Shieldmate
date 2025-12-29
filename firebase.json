@@ -3,6 +3,9 @@
     {
       "site": "2m-shieldmate-48cad",
       "public": "dist",
+      "predeploy": [
+        "npm run build:shieldmate"
+      ],
       "ignore": [
         "firebase.json",
         "**/.*",
@@ -45,6 +48,9 @@
     {
       "target": "marinecoin",
       "public": "dist",
+      "predeploy": [
+        "npm run build:marinecoin"
+      ],
       "ignore": [
         "firebase.json",
         "**/.*",
@@ -144,6 +150,9 @@
     {
       "target": "marines-ai-agent",
       "public": "dist",
+      "predeploy": [
+        "npm run build:2marines"
+      ],
       "ignore": [
         "firebase.json",
         "**/.*",
