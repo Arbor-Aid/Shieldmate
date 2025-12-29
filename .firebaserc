@@ -7,6 +7,9 @@
       "hosting": {
         "shieldmate": [
           "2m-shieldmate-48cad"
+        ],
+        "marinecoin": [
+          "2m-shieldmate-48cad"
         ]
       }
     }
