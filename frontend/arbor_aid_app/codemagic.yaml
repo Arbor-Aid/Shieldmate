@@ -1,0 +1,30 @@
+workflows:
+  ios_testflight:
+    name: iOS TestFlight
+    instance_type: mac_mini_m1
+    max_build_duration: 120
+    environment:
+      flutter: stable
+      xcode: latest
+      vars:
+        BUNDLE_ID: com.2marines.2marinesOnline
+        APP_STORE_CONNECT_KEY_ID: Q77LUSGPN7
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.2marines.2marinesOnline
+    scripts:
+      - name: Flutter pub get
+        script: |
+          flutter pub get
+      - name: Build IPA
+        script: |
+          flutter build ipa --release --build-number=$CM_BUILD_NUMBER
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - build/ios/ipa/*.dSYM.zip
+    publishing:
+      app_store_connect:
+        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
+        key_id: $APP_STORE_CONNECT_KEY_ID
+        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+        submit_to_testflight: true
