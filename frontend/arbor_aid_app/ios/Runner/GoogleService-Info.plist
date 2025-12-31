@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>779610430003-g24sjtrplkoenuv8es4bqe1q9l3uoktk.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.779610430003-g24sjtrplkoenuv8es4bqe1q9l3uoktk</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>779610430003-8t6cr01ni8vcmlhi6tgadeuqoo279vad.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDcTukkFkLwrVmWKv9wuCCXZitDXvLV3rw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>779610430003</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.2marines.2marinesOnline</string>
+	<key>PROJECT_ID</key>
+	<string>marines-ai-agent</string>
+	<key>STORAGE_BUCKET</key>
+	<string>marines-ai-agent.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:779610430003:ios:d27a7613d0f7f515ee6146</string>
+	<key>DATABASE_URL</key>
+	<string>https://marines-ai-agent-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
