@@ -4,6 +4,13 @@ import ProtectedRoute from './components/ProtectedRoute';
 import RoleCheck from './components/RoleCheck';
 
 const Public = React.lazy(() => import('./pages/Public'));
+const SiteHome = React.lazy(() => import('./pages/Index'));
+const ProgramsIndex = React.lazy(() => import('./pages/programs/index'));
+const ProgramDetail = React.lazy(() => import('./pages/programs/ProgramDetail'));
+const TieProgram = React.lazy(() => import('./pages/tie/index'));
+const PartnersIndex = React.lazy(() => import('./pages/partners/index'));
+const PartnerDetail = React.lazy(() => import('./pages/partners/PartnerDetail'));
+const SiteContactPublic = React.lazy(() => import('./pages/contact/index'));
 const ShieldmateFeatures = React.lazy(() => import('./pages/ShieldmateFeatures'));
 const ShieldmatePricing = React.lazy(() => import('./pages/ShieldmatePricing'));
 const ShieldmateAbout = React.lazy(() => import('./pages/ShieldmateAbout'));
@@ -74,13 +81,19 @@ function App() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
-        <Route path="/" element={<Public />} />
+        <Route path="/" element={<SiteHome />} />
+        <Route path="/programs" element={<ProgramsIndex />} />
+        <Route path="/programs/:programSlug" element={<ProgramDetail />} />
+        <Route path="/tie" element={<TieProgram />} />
+        <Route path="/partners" element={<PartnersIndex />} />
+        <Route path="/partners/:orgSlug" element={<PartnerDetail />} />
+        <Route path="/contact" element={<SiteContactPublic />} />
         <Route path="/info" element={<TwoMarinesInfo />} />
         <Route path="/shieldmate" element={<TwoMarinesShieldMate />} />
         <Route path="/features" element={<ShieldmateFeatures />} />
         <Route path="/pricing" element={<ShieldmatePricing />} />
         <Route path="/about" element={<ShieldmateAbout />} />
-        <Route path="/contact" element={<ShieldmateContact />} />
+        <Route path="/public" element={<Public />} />
         <Route path="/marinecoin" element={<MarineCoinRoute />} />
         <Route path="/shop" element={<TwoMarinesShop />} />
         <Route path="/partnerships" element={<TwoMarinesPartnerships />} />

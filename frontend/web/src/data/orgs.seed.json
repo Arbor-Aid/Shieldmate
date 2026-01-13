@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "meta": {
+    "nav_partners": "Partners",
+    "index_title": "Partner Organizations",
+    "index_summary": "Verified partners delivering housing, employment, and wraparound services.",
+    "contact_title": "Contact",
+    "contact_summary": "Reach the coordination desk for intake support and partner routing."
+  },
+  "items": [
+    {
+      "id": "org-two-marines",
+      "slug": "two-marines-foundation",
+      "name": "Two Marines Foundation",
+      "category": "Program sponsor",
+      "description": "National coordination partner supporting veteran housing, referrals, and resource navigation.",
+      "address": "Virtual coordination center (United States)",
+      "phone": "1-800-555-0100",
+      "website": "https://2marines.us",
+      "service_area": "National",
+      "intake_steps": [
+        "Submit ShieldMate intake form",
+        "Provide DD214 or service verification",
+        "Receive coordinated referral plan"
+      ],
+      "last_updated": "2026-01-13"
+    },
+    {
+      "id": "org-housing-network",
+      "slug": "housing-partner-network",
+      "name": "Regional Housing Partner Network",
+      "category": "Housing",
+      "description": "Local housing providers offering rapid placement and lease support for veterans.",
+      "address": "Regional offices (see intake for nearest location)",
+      "phone": "1-800-555-0134",
+      "website": "https://example.org",
+      "service_area": "Regional",
+      "intake_steps": [
+        "Confirm eligibility",
+        "Match to local housing provider",
+        "Schedule placement and follow-up"
+      ],
+      "last_updated": "2026-01-13"
+    },
+    {
+      "id": "org-transition-hub",
+      "slug": "transition-services-hub",
+      "name": "Transition Services Hub",
+      "category": "Employment and benefits",
+      "description": "Career readiness, benefits guidance, and resume support for transitioning service members.",
+      "address": "Virtual intake with regional partners",
+      "phone": "1-800-555-0188",
+      "website": "https://example.org",
+      "service_area": "Multi-state",
+      "intake_steps": [
+        "Complete readiness assessment",
+        "Upload service records",
+        "Receive training and placement plan"
+      ],
+      "last_updated": "2026-01-13"
+    }
+  ]
+}
