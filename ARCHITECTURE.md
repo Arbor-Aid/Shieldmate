@@ -7,7 +7,7 @@
 - MCP calls are made from the browser to Cloud Run over HTTPS using `src/services/mcpClient.ts` or the `useMcpClient` hook; Firebase ID tokens and App Check tokens are attached to every call.
 
 ## Legacy / Isolated Flutter
-- Flutter remains in `android/` and `frontend/arbor_aid_app/` for historical work but is not the active web client.
+- Flutter remains in `android/` and `frontend/flutter/` for historical work but is not the active web client.
 - Do not modify or delete Flutter assets while working on the web platform.
 
 ## Hosting + Build

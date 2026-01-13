@@ -9,7 +9,9 @@ if (!allowedModes.has(mode)) {
   process.exit(1);
 }
 
-const projectRoot = path.resolve(__dirname, "..");
+const repoRoot = path.resolve(__dirname, "..");
+const webRoot = path.join(repoRoot, "frontend", "web");
+const projectRoot = fs.existsSync(path.join(webRoot, "public")) ? webRoot : repoRoot;
 const distDir = path.join(projectRoot, "dist");
 const sourceDir = path.join(projectRoot, "public", "site-meta", mode);
 

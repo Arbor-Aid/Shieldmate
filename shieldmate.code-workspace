@@ -44,21 +44,21 @@
         "label": "Flutter Clean",
         "type": "shell",
         "command": "flutter clean",
-        "options": { "cwd": "D:\\shieldmatessd\\shieldmate\\frontend\\arbor_aid_app" },
+        "options": { "cwd": "D:\\shieldmatessd\\shieldmate\\frontend\\flutter" },
         "problemMatcher": []
       },
       {
         "label": "Flutter Pub Get",
         "type": "shell",
         "command": "flutter pub get",
-        "options": { "cwd": "D:\\shieldmatessd\\shieldmate\\frontend\\arbor_aid_app" },
+        "options": { "cwd": "D:\\shieldmatessd\\shieldmate\\frontend\\flutter" },
         "problemMatcher": []
       },
       {
         "label": "Flutter Run",
         "type": "shell",
         "command": "flutter run",
-        "options": { "cwd": "D:\\shieldmatessd\\shieldmate\\frontend\\arbor_aid_app" },
+        "options": { "cwd": "D:\\shieldmatessd\\shieldmate\\frontend\\flutter" },
         "problemMatcher": []
       },
       {
@@ -144,7 +144,7 @@
         "request": "launch",
         "type": "dart",
         "program": "lib/main.dart",
-        "cwd": "D:\\shieldmatessd\\shieldmate\\frontend\\arbor_aid_app"
+        "cwd": "D:\\shieldmatessd\\shieldmate\\frontend\\flutter"
       }
     ]
   }

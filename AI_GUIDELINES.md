@@ -2,7 +2,7 @@
 
 ## Scope and Boundaries
 - Active UI: Vite + React + TypeScript in `src/`.
-- Legacy/isolated: `android/` and `frontend/arbor_aid_app/` (do **not** modify or remove).
+- Legacy/isolated: `android/` and `frontend/flutter/` (do **not** modify or remove).
 - Deployable artifact: `dist/` built via `vite build`, deployed to Firebase Hosting target `shieldmate`.
 
 ## Where Code Belongs

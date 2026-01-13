@@ -1,0 +1,16 @@
+FROM python:3.11-slim
+
+ARG SERVICE_PATH
+
+WORKDIR /app
+
+COPY common/ /app/common/
+COPY ${SERVICE_PATH}/ /app/service/
+
+WORKDIR /app/service
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+EXPOSE 8080
+
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080"]

@@ -68,7 +68,7 @@ See [`docs/SYSTEM_OF_RECORD.md`](docs/SYSTEM_OF_RECORD.md) for authoritative own
 
 ## Flutter (Legacy / Isolated)
 
-- Historic mobile work lives in `android/` and `frontend/arbor_aid_app/`.
+- Historic mobile work lives in `android/` and `frontend/flutter/`.
 - These paths remain untouched for now; all new product work is in the web stack.
 
 ## Dev Quick Start (Web)
