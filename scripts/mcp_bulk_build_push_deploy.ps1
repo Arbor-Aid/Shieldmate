@@ -77,7 +77,7 @@ if (-not $project) {
   $authResult = Invoke-External "gcloud" @("auth", "configure-docker", "$region-docker.pkg.dev", "--quiet")
 
   foreach ($service in $services) {
-    $image = "$region-docker.pkg.dev/$project/$repo/$service:$tag"
+    $image = "$region-docker.pkg.dev/$project/$repo/${service}:$tag"
     $buildStatus = "skipped"
     $pushStatus = "skipped"
     $deployStatus = "skipped"
