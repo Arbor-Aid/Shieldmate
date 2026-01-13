@@ -24,7 +24,29 @@ app.use(express.json({ limit: '1mb' }));
 const PORT = Number(process.env.PORT) || 8080;
 const VERSION = process.env.GIT_SHA || process.env.K_REVISION || 'unknown';
 const SERVICE_NAME = process.env.SERVICE_NAME || 'mcp-gateway';
+const SERVICE_SLUG = process.env.SERVICE_SLUG || 'mcp-gateway';
+const SERVICE_DESCRIPTION =
+  process.env.SERVICE_DESCRIPTION ||
+  'Gateway routing MCP requests with RBAC enforcement and registry-based dispatch.';
 const SERVICE_VERSION = process.env.SERVICE_VERSION || VERSION;
+const ENV_VARS_REQUIRED = [
+  'PORT',
+  'SERVICE_NAME',
+  'SERVICE_SLUG',
+  'SERVICE_VERSION',
+  'SERVICE_DESCRIPTION',
+  'LOG_LEVEL',
+  'GIT_SHA',
+  'K_REVISION',
+];
+const ROUTES = [
+  '/health',
+  '/meta',
+  '/version',
+  '/mcp/execute',
+  '/mcp/tools/:toolId',
+  '/mcp/context',
+];
 
 const ALLOWED_ROLES = ['super_admin', 'org_admin', 'case_worker'];
 const CAPABILITIES = ['gateway_proxy', 'rbac_enforced', 'mcp_registry_routing'];
@@ -79,6 +101,20 @@ app.get('/meta', (req, res) => {
     status: 200,
   });
   res.status(200).json({
+    name: SERVICE_NAME,
+    slug: SERVICE_SLUG,
+    description: SERVICE_DESCRIPTION,
+    routes: ROUTES,
+    env_vars_required: ENV_VARS_REQUIRED,
+    supports: {
+      tools: CAPABILITIES,
+      data: [],
+    },
+    build: {
+      runtime: 'node',
+      node: process.version,
+    },
+    timestamp: new Date().toISOString(),
     service: SERVICE_NAME,
     version: SERVICE_VERSION,
     capabilities: CAPABILITIES,

@@ -1,0 +1,22 @@
+[
+  {
+    "display_name": "mcp-gateway",
+    "slug": "mcp-gateway",
+    "rel_path": "mcp/mcp-gateway/",
+    "image": "us-central1-docker.pkg.dev/marines-ai-agent/mcp/mcp-gateway:ops-20260113-112049",
+    "cloud_run_service_name": "mcp-gateway",
+    "slack_channel": "#mcp-mcp-gateway",
+    "health_path": "/health",
+    "meta_path": "/meta",
+    "env_vars_required": [
+      "PORT",
+      "SERVICE_NAME",
+      "SERVICE_SLUG",
+      "SERVICE_VERSION",
+      "SERVICE_DESCRIPTION",
+      "LOG_LEVEL",
+      "GIT_SHA",
+      "K_REVISION"
+    ]
+  }
+]
