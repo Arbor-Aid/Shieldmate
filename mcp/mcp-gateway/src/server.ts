@@ -23,8 +23,13 @@ app.use(express.json({ limit: '1mb' }));
 
 const PORT = Number(process.env.PORT) || 8080;
 const VERSION = process.env.GIT_SHA || process.env.K_REVISION || 'unknown';
+const SERVICE_NAME = process.env.SERVICE_NAME || 'mcp-gateway';
+const SERVICE_VERSION = process.env.SERVICE_VERSION || VERSION;
 
 const ALLOWED_ROLES = ['super_admin', 'org_admin', 'case_worker'];
+const CAPABILITIES = ['gateway_proxy', 'rbac_enforced', 'mcp_registry_routing'];
+const INPUTS = ['toolId', 'orgId', 'input', 'meta'];
+const OUTPUTS = ['upstream_response'];
 
 function logEvent(entry: Record<string, unknown>) {
   console.log(JSON.stringify(entry));
@@ -59,7 +64,27 @@ app.get('/health', (req, res) => {
     ...getRequestMeta(req),
     status: 200,
   });
-  res.status(200).json({ status: 'ok' });
+  res.status(200).json({
+    status: 'ok',
+    service: SERVICE_NAME,
+    version: SERVICE_VERSION,
+    time: new Date().toISOString(),
+  });
+});
+
+app.get('/meta', (req, res) => {
+  logEvent({
+    requestId: randomUUID(),
+    ...getRequestMeta(req),
+    status: 200,
+  });
+  res.status(200).json({
+    service: SERVICE_NAME,
+    version: SERVICE_VERSION,
+    capabilities: CAPABILITIES,
+    inputs: INPUTS,
+    outputs: OUTPUTS,
+  });
 });
 
 app.get('/version', (req, res) => {

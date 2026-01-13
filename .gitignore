@@ -81,6 +81,9 @@ flutter_export_environment.sh
 # Misc
 Thumbs.db
 
+.flutter/
+/flutter/
+
 .env
 .env.bak
 nuget.exe

@@ -27,3 +27,8 @@ Key properties:
 
 ## Inventory
 - `mcp_services.csv` lists service name, slug, local port, and Cloud Run URL patterns.
+
+## Docs
+- `docs/MCP_SERVICE_CONTRACT.md`
+- `docs/MCP_ENV_VARS.md`
+- `docs/README_MCP_INDEX.md`
