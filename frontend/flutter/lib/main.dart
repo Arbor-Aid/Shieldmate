@@ -109,6 +109,15 @@ class ShieldmateApp extends StatelessWidget {
   }
 }
 
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const ShieldmateApp();
+  }
+}
+
 class _SessionData {
   const _SessionData({required this.role, required this.profile});
 
