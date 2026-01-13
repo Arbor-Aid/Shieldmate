@@ -1,0 +1,26 @@
+{
+  "service_name": "Data Scrubbing Ai",
+  "slug": "data-scrubbing-ai",
+  "version": "1.0.0",
+  "owner": "2Marines",
+  "description": "Contract-first skeleton service for data-scrubbing-ai.",
+  "endpoints": [
+    "/health",
+    "/meta",
+    "/openapi.json"
+  ],
+  "capabilities": [],
+  "inputs": [],
+  "outputs": [],
+  "required_env": [
+    "PORT",
+    "SERVICE_NAME",
+    "SERVICE_SLUG",
+    "SERVICE_VERSION",
+    "SERVICE_DESCRIPTION",
+    "LOG_LEVEL",
+    "GIT_SHA",
+    "K_REVISION"
+  ],
+  "slack_channel": "#mcp-data-scrubbing-ai"
+}

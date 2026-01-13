@@ -1,22 +1,567 @@
 [
-  {
-    "display_name": "mcp-gateway",
-    "slug": "mcp-gateway",
-    "rel_path": "mcp/mcp-gateway/",
-    "image": "us-central1-docker.pkg.dev/marines-ai-agent/mcp/mcp-gateway:ops-20260113-112049",
-    "cloud_run_service_name": "mcp-gateway",
-    "slack_channel": "#mcp-mcp-gateway",
-    "health_path": "/health",
-    "meta_path": "/meta",
-    "env_vars_required": [
-      "PORT",
-      "SERVICE_NAME",
-      "SERVICE_SLUG",
-      "SERVICE_VERSION",
-      "SERVICE_DESCRIPTION",
-      "LOG_LEVEL",
-      "GIT_SHA",
-      "K_REVISION"
-    ]
-  }
+    {
+        "display_name":  "Ai Budget Planner",
+        "slug":  "ai-budget-planner",
+        "rel_path":  "mcp/ai-budget-planner/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/ai-budget-planner:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/ai-budget-planner:ops-20260113-121143",
+        "cloud_run_service_name":  "ai-budget-planner",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-ai-budget-planner"
+    },
+    {
+        "display_name":  "Ai Expense Manager",
+        "slug":  "ai-expense-manager",
+        "rel_path":  "mcp/ai-expense-manager/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/ai-expense-manager:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/ai-expense-manager:ops-20260113-121143",
+        "cloud_run_service_name":  "ai-expense-manager",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-ai-expense-manager"
+    },
+    {
+        "display_name":  "Ai Financial Analyst",
+        "slug":  "ai-financial-analyst",
+        "rel_path":  "mcp/ai-financial-analyst/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/ai-financial-analyst:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/ai-financial-analyst:ops-20260113-121143",
+        "cloud_run_service_name":  "ai-financial-analyst",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-ai-financial-analyst"
+    },
+    {
+        "display_name":  "Ai Financial Reporting Specialist",
+        "slug":  "ai-financial-reporting-specialist",
+        "rel_path":  "mcp/ai-financial-reporting-specialist/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/ai-financial-reporting-specialist:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/ai-financial-reporting-specialist:ops-20260113-121143",
+        "cloud_run_service_name":  "ai-financial-reporting-specialist",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-ai-financial-reporting-specialist"
+    },
+    {
+        "display_name":  "Ai Invoice Processor",
+        "slug":  "ai-invoice-processor",
+        "rel_path":  "mcp/ai-invoice-processor/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/ai-invoice-processor:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/ai-invoice-processor:ops-20260113-121143",
+        "cloud_run_service_name":  "ai-invoice-processor",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-ai-invoice-processor"
+    },
+    {
+        "display_name":  "Ai Payroll Manager",
+        "slug":  "ai-payroll-manager",
+        "rel_path":  "mcp/ai-payroll-manager/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/ai-payroll-manager:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/ai-payroll-manager:ops-20260113-121143",
+        "cloud_run_service_name":  "ai-payroll-manager",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-ai-payroll-manager"
+    },
+    {
+        "display_name":  "Ai Tax Compliance Agent",
+        "slug":  "ai-tax-compliance-agent",
+        "rel_path":  "mcp/ai-tax-compliance-agent/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/ai-tax-compliance-agent:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/ai-tax-compliance-agent:ops-20260113-121143",
+        "cloud_run_service_name":  "ai-tax-compliance-agent",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-ai-tax-compliance-agent"
+    },
+    {
+        "display_name":  "Ai Training Coordinator",
+        "slug":  "ai-training-coordinator",
+        "rel_path":  "mcp/ai-training-coordinator/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/ai-training-coordinator:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/ai-training-coordinator:ops-20260113-121143",
+        "cloud_run_service_name":  "ai-training-coordinator",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-ai-training-coordinator"
+    },
+    {
+        "display_name":  "Ai Ux Analyst",
+        "slug":  "ai-ux-analyst",
+        "rel_path":  "mcp/ai-ux-analyst/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/ai-ux-analyst:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/ai-ux-analyst:ops-20260113-121143",
+        "cloud_run_service_name":  "ai-ux-analyst",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-ai-ux-analyst"
+    },
+    {
+        "display_name":  "Amazon Drop Shipping Ai",
+        "slug":  "amazon-drop-shipping-ai",
+        "rel_path":  "mcp/amazon-drop-shipping-ai/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/amazon-drop-shipping-ai:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/amazon-drop-shipping-ai:ops-20260113-121143",
+        "cloud_run_service_name":  "amazon-drop-shipping-ai",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-amazon-drop-shipping-ai"
+    },
+    {
+        "display_name":  "Coder Agent",
+        "slug":  "coder-agent",
+        "rel_path":  "mcp/coder-agent/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/coder-agent:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/coder-agent:ops-20260113-121143",
+        "cloud_run_service_name":  "coder-agent",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-coder-agent"
+    },
+    {
+        "display_name":  "Content Generation Ai",
+        "slug":  "content-generation-ai",
+        "rel_path":  "mcp/content-generation-ai/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/content-generation-ai:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/content-generation-ai:ops-20260113-121143",
+        "cloud_run_service_name":  "content-generation-ai",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-content-generation-ai"
+    },
+    {
+        "display_name":  "Cto Agent",
+        "slug":  "cto-agent",
+        "rel_path":  "mcp/cto-agent/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/cto-agent:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/cto-agent:ops-20260113-121143",
+        "cloud_run_service_name":  "cto-agent",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-cto-agent"
+    },
+    {
+        "display_name":  "Data Scrubbing Ai",
+        "slug":  "data-scrubbing-ai",
+        "rel_path":  "mcp/data-scrubbing-ai/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/data-scrubbing-ai:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/data-scrubbing-ai:ops-20260113-121143",
+        "cloud_run_service_name":  "data-scrubbing-ai",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-data-scrubbing-ai"
+    },
+    {
+        "display_name":  "Designer Ai Agent",
+        "slug":  "designer-ai-agent",
+        "rel_path":  "mcp/designer-ai-agent/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/designer-ai-agent:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/designer-ai-agent:ops-20260113-121143",
+        "cloud_run_service_name":  "designer-ai-agent",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-designer-ai-agent"
+    },
+    {
+        "display_name":  "Email Campaign Optimizer Ai",
+        "slug":  "email-campaign-optimizer-ai",
+        "rel_path":  "mcp/email-campaign-optimizer-ai/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/email-campaign-optimizer-ai:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/email-campaign-optimizer-ai:ops-20260113-121143",
+        "cloud_run_service_name":  "email-campaign-optimizer-ai",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-email-campaign-optimizer-ai"
+    },
+    {
+        "display_name":  "Fundraising Chatbot Ai",
+        "slug":  "fundraising-chatbot-ai",
+        "rel_path":  "mcp/fundraising-chatbot-ai/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/fundraising-chatbot-ai:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/fundraising-chatbot-ai:ops-20260113-121143",
+        "cloud_run_service_name":  "fundraising-chatbot-ai",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-fundraising-chatbot-ai"
+    },
+    {
+        "display_name":  "Hr Ai Agent",
+        "slug":  "hr-ai-agent",
+        "rel_path":  "mcp/hr-ai-agent/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/hr-ai-agent:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/hr-ai-agent:ops-20260113-121143",
+        "cloud_run_service_name":  "hr-ai-agent",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-hr-ai-agent"
+    },
+    {
+        "display_name":  "Information Retrieval Ai",
+        "slug":  "information-retrieval-ai",
+        "rel_path":  "mcp/information-retrieval-ai/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/information-retrieval-ai:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/information-retrieval-ai:ops-20260113-121143",
+        "cloud_run_service_name":  "information-retrieval-ai",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-information-retrieval-ai"
+    },
+    {
+        "display_name":  "Mcp Analytics",
+        "slug":  "mcp-analytics",
+        "rel_path":  "mcp/mcp-analytics/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/mcp-analytics:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/mcp-analytics:ops-20260113-121143",
+        "cloud_run_service_name":  "mcp-analytics",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-mcp-analytics"
+    },
+    {
+        "display_name":  "mcp-gateway",
+        "slug":  "mcp-gateway",
+        "rel_path":  "mcp/mcp-gateway/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/mcp-gateway:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/mcp-gateway:ops-20260113-121143",
+        "cloud_run_service_name":  "mcp-gateway",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "GIT_SHA",
+                                  "K_REVISION",
+                                  "LOG_LEVEL",
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_VERSION"
+                              ],
+        "slack_channel":  "#mcp-mcp-gateway"
+    },
+    {
+        "display_name":  "Mcp Google Ads",
+        "slug":  "mcp-google-ads",
+        "rel_path":  "mcp/mcp-google-ads/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/mcp-google-ads:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/mcp-google-ads:ops-20260113-121143",
+        "cloud_run_service_name":  "mcp-google-ads",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-mcp-google-ads"
+    },
+    {
+        "display_name":  "Multimodal Ai",
+        "slug":  "multimodal-ai",
+        "rel_path":  "mcp/multimodal-ai/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/multimodal-ai:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/multimodal-ai:ops-20260113-121143",
+        "cloud_run_service_name":  "multimodal-ai",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-multimodal-ai"
+    },
+    {
+        "display_name":  "Org Scrubber Mcp",
+        "slug":  "org-scrubber-mcp",
+        "rel_path":  "mcp/org-scrubber-mcp/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/org-scrubber-mcp:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/org-scrubber-mcp:ops-20260113-121143",
+        "cloud_run_service_name":  "org-scrubber-mcp",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-org-scrubber-mcp"
+    },
+    {
+        "display_name":  "Personalized Donation Ai",
+        "slug":  "personalized-donation-ai",
+        "rel_path":  "mcp/personalized-donation-ai/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/personalized-donation-ai:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/personalized-donation-ai:ops-20260113-121143",
+        "cloud_run_service_name":  "personalized-donation-ai",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-personalized-donation-ai"
+    },
+    {
+        "display_name":  "Qa Ai Agent",
+        "slug":  "qa-ai-agent",
+        "rel_path":  "mcp/qa-ai-agent/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/qa-ai-agent:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/qa-ai-agent:ops-20260113-121143",
+        "cloud_run_service_name":  "qa-ai-agent",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-qa-ai-agent"
+    },
+    {
+        "display_name":  "Reporting Dashboard Ai",
+        "slug":  "reporting-dashboard-ai",
+        "rel_path":  "mcp/reporting-dashboard-ai/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/reporting-dashboard-ai:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/reporting-dashboard-ai:ops-20260113-121143",
+        "cloud_run_service_name":  "reporting-dashboard-ai",
+        "health_path":  "/health",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#mcp-reporting-dashboard-ai"
+    }
 ]

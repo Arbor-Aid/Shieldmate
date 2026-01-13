@@ -1,0 +1,26 @@
+{
+  "service_name": "Ai Budget Planner",
+  "slug": "ai-budget-planner",
+  "version": "1.0.0",
+  "owner": "2Marines",
+  "description": "Contract-first skeleton service for ai-budget-planner.",
+  "endpoints": [
+    "/health",
+    "/meta",
+    "/openapi.json"
+  ],
+  "capabilities": [],
+  "inputs": [],
+  "outputs": [],
+  "required_env": [
+    "PORT",
+    "SERVICE_NAME",
+    "SERVICE_SLUG",
+    "SERVICE_VERSION",
+    "SERVICE_DESCRIPTION",
+    "LOG_LEVEL",
+    "GIT_SHA",
+    "K_REVISION"
+  ],
+  "slack_channel": "#mcp-ai-budget-planner"
+}
