@@ -20,13 +20,20 @@ $outDir = Join-Path $PSScriptRoot "out"
 New-Item -ItemType Directory -Force -Path $outDir | Out-Null
 $reportPath = Join-Path $outDir "mcp_deploy_report_$timestamp.md"
 
+$gcloudCmd = Get-Command gcloud -ErrorAction SilentlyContinue
+$dockerCmd = Get-Command docker -ErrorAction SilentlyContinue
+$hasGcloud = $null -ne $gcloudCmd
+$hasDocker = $null -ne $dockerCmd
+
 $project = $env:GCP_PROJECT_ID
 if (-not $project) {
-  $projectResult = Invoke-External "gcloud" @("config", "get-value", "project")
-  if ($projectResult.ExitCode -eq 0) {
-    $project = ($projectResult.Output | Select-Object -Last 1).Trim()
-    if ($project -eq "(unset)" -or $project -eq "") {
-      $project = $null
+  if ($hasGcloud) {
+    $projectResult = Invoke-External "gcloud" @("config", "get-value", "project")
+    if ($projectResult.ExitCode -eq 0) {
+      $project = ($projectResult.Output | Select-Object -Last 1).Trim()
+      if ($project -eq "(unset)" -or $project -eq "") {
+        $project = $null
+      }
     }
   }
 }
@@ -47,7 +54,24 @@ if (Test-Path $mcpRoot) {
 
 $reportRows = @()
 
-if (-not $project) {
+if (-not $hasGcloud -or -not $hasDocker) {
+  $missing = @()
+  if (-not $hasGcloud) { $missing += "gcloud" }
+  if (-not $hasDocker) { $missing += "docker" }
+  $missingNote = "missing tools: " + ($missing -join ", ")
+  foreach ($service in $services) {
+    $reportRows += [PSCustomObject]@{
+      Service = $service
+      Image = ""
+      Url = ""
+      BuildStatus = "skipped"
+      PushStatus = "skipped"
+      DeployStatus = "skipped"
+      HealthStatus = "skipped"
+      Notes = $missingNote
+    }
+  }
+} elseif (-not $project) {
   foreach ($service in $services) {
     $reportRows += [PSCustomObject]@{
       Service = $service
