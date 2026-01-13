@@ -76,7 +76,7 @@ flutter:
     - assets/images/marines_logo.png
     - assets/images/shieldmate_logo.png
     - assets/logo.png
-    - .env
+    # - .env
 
 
 

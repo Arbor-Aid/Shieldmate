@@ -19,7 +19,7 @@ class DataEntryPage extends StatefulWidget {
   const DataEntryPage({super.key});
 
   @override
-  _DataEntryPageState createState() => _DataEntryPageState();
+  State<DataEntryPage> createState() => _DataEntryPageState();
 }
 
 class _DataEntryPageState extends State<DataEntryPage> {
@@ -62,16 +62,16 @@ class _DataEntryPageState extends State<DataEntryPage> {
     final String whoIsThisFor = whoIsThisForController.text;
 
     // For demonstration purposes, we just print the values to the console
-    print('Organization Name: $organizationName');
-    print('Description: $description');
-    print('Services: $services');
-    print('Address: $address');
-    print('Phone Number: $phoneNumber');
-    print('Email: $email');
-    print('Website URL: $websiteUrl');
-    print('Appointment Required: $isAppointmentRequired');
-    print('Who is this for: $whoIsThisFor');
-    print(
+    debugPrint('Organization Name: $organizationName');
+    debugPrint('Description: $description');
+    debugPrint('Services: $services');
+    debugPrint('Address: $address');
+    debugPrint('Phone Number: $phoneNumber');
+    debugPrint('Email: $email');
+    debugPrint('Website URL: $websiteUrl');
+    debugPrint('Appointment Required: $isAppointmentRequired');
+    debugPrint('Who is this for: $whoIsThisFor');
+    debugPrint(
         'Days selected: ${isSelected.asMap().entries.where((entry) => entry.value).map((entry) => entry.key).toList()}');
 
     // Here you can add your logic to send this data to a server or save it locally...
