@@ -96,3 +96,16 @@ firestore.rules.prod.txt
 firestore.indexes.prod.json
 mcp_test.json
 
+# --- rebuild_option1 additions ---
+scripts/out/
+.env.*.local
+
+# Generated / transient
+scripts/out/
+*.bak
+*.bak2
+*.bak3
+
+# Local experiments (ignore until we decide to ship it)
+mobile/
+
