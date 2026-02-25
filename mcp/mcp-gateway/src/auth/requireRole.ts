@@ -7,13 +7,20 @@ export async function requireRole(
   allowedRoles: string[]
 ): Promise<VerifiedTokenClaims> {
   const claims = await verifyFirebaseToken(authHeader);
-  if (!claims.role) {
+  const roleSet = new Set<string>();
+  (claims.roles ?? []).forEach((role) => roleSet.add(role));
+  if (claims.role) {
+    roleSet.add(claims.role);
+  }
+  const normalizedRoles = Array.from(roleSet);
+
+  if (normalizedRoles.length === 0) {
     throw new Error('Missing role claim');
   }
-  if (claims.role === SUPER_ADMIN) {
+  if (normalizedRoles.includes(SUPER_ADMIN)) {
     return claims;
   }
-  if (!allowedRoles.includes(claims.role)) {
+  if (!allowedRoles.some((role) => normalizedRoles.includes(role))) {
     throw new Error('Insufficient role');
   }
   return claims;

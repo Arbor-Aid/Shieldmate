@@ -1,0 +1,357 @@
+{
+  "schemaVersion": "2.0",
+  "generatedAt": "2026-02-25",
+  "sourceOfTruth": "ops/mcp_fleet_contract.json",
+  "canonTargetCount": 28,
+  "canonRecommendation": "Option B",
+  "services": [
+    {
+      "serviceId": "ai-budget-planner",
+      "displayName": "Ai Budget Planner",
+      "bucket": "Finance",
+      "deployed": true,
+      "url": "https://ai-budget-planner-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "ai-expense-manager",
+      "displayName": "Ai Expense Manager",
+      "bucket": "Finance",
+      "deployed": true,
+      "url": "https://ai-expense-manager-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "ai-financial-analyst",
+      "displayName": "Ai Financial Analyst",
+      "bucket": "Finance",
+      "deployed": true,
+      "url": "https://ai-financial-analyst-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "ai-financial-reporting-specialist",
+      "displayName": "Ai Financial Reporting Specialist",
+      "bucket": "Finance",
+      "deployed": true,
+      "url": "https://ai-financial-reporting-specialist-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "ai-invoice-processor",
+      "displayName": "Ai Invoice Processor",
+      "bucket": "Finance",
+      "deployed": true,
+      "url": "https://ai-invoice-processor-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "ai-payroll-manager",
+      "displayName": "Ai Payroll Manager",
+      "bucket": "Finance",
+      "deployed": true,
+      "url": "https://ai-payroll-manager-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "ai-tax-compliance-agent",
+      "displayName": "Ai Tax Compliance Agent",
+      "bucket": "Finance",
+      "deployed": true,
+      "url": "https://ai-tax-compliance-agent-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "ai-training-coordinator",
+      "displayName": "Ai Training Coordinator",
+      "bucket": "People",
+      "deployed": true,
+      "url": "https://ai-training-coordinator-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "ai-ux-analyst",
+      "displayName": "Ai Ux Analyst",
+      "bucket": "Product",
+      "deployed": true,
+      "url": "https://ai-ux-analyst-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "amazon-drop-shipping-ai",
+      "displayName": "Amazon Drop Shipping Ai",
+      "bucket": "Growth",
+      "deployed": true,
+      "url": "https://amazon-drop-shipping-ai-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "coder-agent",
+      "displayName": "Coder Agent",
+      "bucket": "Product",
+      "deployed": true,
+      "url": "https://coder-agent-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "content-generation-ai",
+      "displayName": "Content Generation Ai",
+      "bucket": "Growth",
+      "deployed": true,
+      "url": "https://content-generation-ai-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "cto-agent",
+      "displayName": "Cto Agent",
+      "bucket": "Ops",
+      "deployed": true,
+      "url": "https://cto-agent-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "data-scrubbing-ai",
+      "displayName": "Data Scrubbing Ai",
+      "bucket": "Ops",
+      "deployed": true,
+      "url": "https://data-scrubbing-ai-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "designer-ai-agent",
+      "displayName": "Designer Ai Agent",
+      "bucket": "Product",
+      "deployed": true,
+      "url": "https://designer-ai-agent-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "email-campaign-optimizer-ai",
+      "displayName": "Email Campaign Optimizer Ai",
+      "bucket": "Growth",
+      "deployed": true,
+      "url": "https://email-campaign-optimizer-ai-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "fundraising-chatbot-ai",
+      "displayName": "Fundraising Chatbot Ai",
+      "bucket": "Growth",
+      "deployed": true,
+      "url": "https://fundraising-chatbot-ai-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "hr-ai-agent",
+      "displayName": "Hr Ai Agent",
+      "bucket": "People",
+      "deployed": true,
+      "url": "https://hr-ai-agent-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "information-retrieval-ai",
+      "displayName": "Information Retrieval Ai",
+      "bucket": "Knowledge",
+      "deployed": true,
+      "url": "https://information-retrieval-ai-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "mcp-analytics",
+      "displayName": "Mcp Analytics",
+      "bucket": "Knowledge",
+      "deployed": true,
+      "url": "https://mcp-analytics-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "mcp-gateway",
+      "displayName": "Mcp Gateway",
+      "bucket": "Ops",
+      "deployed": true,
+      "url": "https://mcp-gateway-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "express",
+      "status": "canon",
+      "ownerModule": "mcp-gateway/src"
+    },
+    {
+      "serviceId": "mcp-google-ads",
+      "displayName": "Mcp Google Ads",
+      "bucket": "Growth",
+      "deployed": true,
+      "url": "https://mcp-google-ads-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "multimodal-ai",
+      "displayName": "Multimodal Ai",
+      "bucket": "Knowledge",
+      "deployed": true,
+      "url": "https://multimodal-ai-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "org-scrubber-mcp",
+      "displayName": "Org Scrubber Mcp",
+      "bucket": "Ops",
+      "deployed": true,
+      "url": "https://org-scrubber-mcp-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "personalized-donation-ai",
+      "displayName": "Personalized Donation Ai",
+      "bucket": "Growth",
+      "deployed": true,
+      "url": "https://personalized-donation-ai-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "project-manager-agent",
+      "displayName": "Project Manager Agent",
+      "bucket": "Product",
+      "deployed": false,
+      "url": "",
+      "healthPath": "/healthz",
+      "runtime": "fastapi",
+      "status": "canon",
+      "ownerModule": "legacy-rehydrated"
+    },
+    {
+      "serviceId": "qa-ai-agent",
+      "displayName": "Qa Ai Agent",
+      "bucket": "Product",
+      "deployed": true,
+      "url": "https://qa-ai-agent-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "reporting-dashboard-ai",
+      "displayName": "Reporting Dashboard Ai",
+      "bucket": "Knowledge",
+      "deployed": true,
+      "url": "https://reporting-dashboard-ai-yd7bwat7eq-uc.a.run.app",
+      "healthPath": "/health",
+      "runtime": "fastapi",
+      "status": "canon"
+    },
+    {
+      "serviceId": "investment_recommendation",
+      "displayName": "Investment Recommendation",
+      "bucket": "Finance",
+      "deployed": false,
+      "url": "",
+      "healthPath": "/healthz",
+      "runtime": "fastapi",
+      "status": "parked",
+      "ownerModule": "tradeops"
+    },
+    {
+      "serviceId": "trade_execution_gateway",
+      "displayName": "Trade Execution Gateway",
+      "bucket": "Ops",
+      "deployed": false,
+      "url": "",
+      "healthPath": "/healthz",
+      "runtime": "fastapi",
+      "status": "parked",
+      "ownerModule": "tradeops"
+    },
+    {
+      "serviceId": "tradefinance_lc",
+      "displayName": "Tradefinance Lc",
+      "bucket": "Finance",
+      "deployed": false,
+      "url": "",
+      "healthPath": "/healthz",
+      "runtime": "fastapi",
+      "status": "parked",
+      "ownerModule": "tradeops"
+    },
+    {
+      "serviceId": "tradeops",
+      "displayName": "Tradeops",
+      "bucket": "Ops",
+      "deployed": false,
+      "url": "",
+      "healthPath": "/healthz",
+      "runtime": "fastapi",
+      "status": "parked",
+      "ownerModule": "tradeops"
+    },
+    {
+      "serviceId": "training_to_sop",
+      "displayName": "Training To Sop",
+      "bucket": "Ops",
+      "deployed": false,
+      "url": "",
+      "healthPath": "/healthz",
+      "runtime": "fastapi",
+      "status": "parked",
+      "ownerModule": "tradeops"
+    },
+    {
+      "serviceId": "treasury",
+      "displayName": "Treasury",
+      "bucket": "Finance",
+      "deployed": false,
+      "url": "",
+      "healthPath": "/healthz",
+      "runtime": "fastapi",
+      "status": "parked",
+      "ownerModule": "tradeops"
+    }
+  ]
+}

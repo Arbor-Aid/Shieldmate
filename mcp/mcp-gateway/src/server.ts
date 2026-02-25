@@ -48,7 +48,7 @@ const ROUTES = [
   '/mcp/context',
 ];
 
-const ALLOWED_ROLES = ['super_admin', 'org_admin', 'case_worker'];
+const ALLOWED_ROLES = ['super_admin', 'org_admin', 'staff', 'case_worker'];
 const CAPABILITIES = ['gateway_proxy', 'rbac_enforced', 'mcp_registry_routing'];
 const INPUTS = ['toolId', 'orgId', 'input', 'meta'];
 const OUTPUTS = ['upstream_response'];
@@ -63,7 +63,7 @@ function getRequestMeta(req: express.Request, claims?: VerifiedTokenClaims | nul
     path: req.path,
     hasAuth: Boolean(req.header('Authorization')),
     hasAppCheck: Boolean(req.header('X-Firebase-AppCheck')),
-    hasOrgClaim: Boolean(claims?.org),
+    hasOrgClaim: Boolean(claims?.orgId || claims?.org),
   };
 }
 
@@ -71,13 +71,14 @@ function resolveEffectiveOrg(
   claims: VerifiedTokenClaims,
   untrustedOrgId?: string
 ): { ok: true; org: string } | { ok: false; error: string } {
-  if (!claims.org) {
+  const claimOrg = claims.orgId ?? claims.org;
+  if (!claimOrg) {
     return { ok: false, error: 'Missing org claim' };
   }
-  if (untrustedOrgId && claims.org !== untrustedOrgId) {
+  if (untrustedOrgId && claimOrg !== untrustedOrgId) {
     return { ok: false, error: 'Org mismatch' };
   }
-  return { ok: true, org: claims.org };
+  return { ok: true, org: claimOrg };
 }
 
 app.get('/health', (req, res) => {

@@ -82,7 +82,18 @@ class UserProfileService {
     try {
       final token = await user.getIdTokenResult();
       final claims = token.claims;
-      final claimRole = claims == null ? null : claims['role'] as String?;
+      String? claimRole;
+      if (claims != null) {
+        final rolesClaim = claims['roles'];
+        if (rolesClaim is List) {
+          final firstRole = rolesClaim.whereType<String>().cast<String?>().firstWhere(
+                (value) => value != null && value.isNotEmpty,
+                orElse: () => null,
+              );
+          claimRole = firstRole;
+        }
+        claimRole ??= claims['role'] as String?;
+      }
       if (claimRole != null && claimRole.isNotEmpty) {
         return AppRoleMapper.fromString(claimRole);
       }

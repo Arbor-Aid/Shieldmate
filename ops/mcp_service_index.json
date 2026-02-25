@@ -563,5 +563,26 @@
                                   "K_REVISION"
                               ],
         "slack_channel":  "#mcp-reporting-dashboard-ai"
+    },
+    {
+        "display_name":  "Project Manager Agent",
+        "slug":  "project-manager-agent",
+        "rel_path":  "mcp/project-manager-agent/",
+        "image_repo":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/project-manager-agent:ops-20260113-121143",
+        "image":  "us-central1-docker.pkg.dev/marines-ai-agent/mcp/project-manager-agent:ops-20260113-121143",
+        "cloud_run_service_name":  "project-manager-agent",
+        "health_path":  "/healthz",
+        "meta_path":  "/meta",
+        "env_vars_required":  [
+                                  "PORT",
+                                  "SERVICE_NAME",
+                                  "SERVICE_SLUG",
+                                  "SERVICE_VERSION",
+                                  "SERVICE_DESCRIPTION",
+                                  "LOG_LEVEL",
+                                  "GIT_SHA",
+                                  "K_REVISION"
+                              ],
+        "slack_channel":  "#project-manager-agent"
     }
 ]

@@ -7,17 +7,44 @@ if (admin.apps.length === 0) {
 
 const allowedRoles = ["super_admin", "org_admin", "staff", "client"];
 
+const normalizeClaimRoles = (claims = {}) => {
+  const roleSet = new Set();
+  if (Array.isArray(claims.roles)) {
+    claims.roles.forEach((role) => {
+      if (typeof role === "string" && role.length > 0) {
+        roleSet.add(role);
+      }
+    });
+  }
+  if (typeof claims.role === "string" && claims.role.length > 0) {
+    roleSet.add(claims.role);
+  }
+  return Array.from(roleSet);
+};
+
+const resolveClaimOrgId = (orgId, orgRoles) => {
+  if (typeof orgId === "string" && orgId.length > 0) {
+    return orgId;
+  }
+  if (orgRoles && typeof orgRoles === "object") {
+    const firstOrg = Object.keys(orgRoles).find((value) => value.length > 0);
+    return firstOrg;
+  }
+  return undefined;
+};
+
 export const setUserClaims = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     throw new functions.https.HttpsError("unauthenticated", "Authentication required.");
   }
 
   const callerClaims = context.auth.token || {};
-  if (!Array.isArray(callerClaims.roles) || !callerClaims.roles.includes("super_admin")) {
+  const callerRoles = normalizeClaimRoles(callerClaims);
+  if (!callerRoles.includes("super_admin")) {
     throw new functions.https.HttpsError("permission-denied", "Only super_admin may issue roles.");
   }
 
-  const { uid, roles = [], orgRoles = {} } = data || {};
+  const { uid, orgId, roles = [], orgRoles = {} } = data || {};
   if (!uid) {
     throw new functions.https.HttpsError("invalid-argument", "uid is required.");
   }
@@ -41,10 +68,11 @@ export const setUserClaims = functions.https.onCall(async (data, context) => {
     safeOrgRoles[orgId] = validateRoles(roleList);
   });
 
-  const claims = {
-    roles: safeRoles,
-    orgRoles: safeOrgRoles,
-  };
+  const resolvedOrgId = resolveClaimOrgId(orgId, safeOrgRoles);
+  const claims = { roles: safeRoles };
+  if (resolvedOrgId) {
+    claims.orgId = resolvedOrgId;
+  }
 
   await admin.auth().setCustomUserClaims(uid, claims);
 
@@ -53,7 +81,7 @@ export const setUserClaims = functions.https.onCall(async (data, context) => {
     targetUid: uid,
     action: "set_user_claims",
     category: "auth",
-    orgId: data.orgId || null,
+    orgId: resolvedOrgId || null,
     claims,
     timestamp: admin.firestore.FieldValue.serverTimestamp(),
     retentionDays: 365,
@@ -98,12 +126,18 @@ const buildUiuxHandler = (kind) =>
       return;
     }
 
+    const decodedRoles = Array.isArray(decoded?.roles)
+      ? decoded.roles.filter((role) => typeof role === "string" && role.length > 0)
+      : [];
+    const actorRole = decodedRoles[0] || decoded?.role || null;
+    const actorOrg = decoded?.orgId || decoded?.org || null;
+
     await admin.firestore().collection(kind === "audit" ? "ux_audits" : "ux_events").add({
       ...payload,
       source: "shieldmate-ui",
       actorUid: decoded ? decoded.uid : null,
-      actorRole: decoded ? decoded.role : null,
-      actorOrg: decoded ? decoded.org : null,
+      actorRole,
+      actorOrg,
       receivedAt: admin.firestore.FieldValue.serverTimestamp(),
     });
 
