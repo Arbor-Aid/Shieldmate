@@ -1,0 +1,11 @@
+﻿{
+  "orgId": "dev-org",
+  "lcId": "lc-001",
+  "terms": {
+    "amount": 25000,
+    "currency": "USD",
+    "usanceDays": 60,
+    "latestShipmentDate": "2026-03-01",
+    "documentsRequired": ["Commercial Invoice", "Bill of Lading", "Packing List"]
+  }
+}
