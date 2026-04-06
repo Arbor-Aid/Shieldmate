@@ -1,14 +1,16 @@
+import os
 from typing import Any
 
 import requests
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
 from firestore_client import write_doc_record
 
 
 app = FastAPI()
-MCP_GATEWAY_URL = "http://localhost:8080/execute"
+MCP_GATEWAY_URL = os.getenv("MCP_GATEWAY_EXECUTE_URL", "http://localhost:8080/mcp/execute")
 
 
 class DocumentInput(BaseModel):
@@ -32,22 +34,55 @@ ROUTE_MAP = {
     "governance": "data-scrubbing-ai",
 }
 
+CHAIN_TOOL_BY_ROUTE = {
+    "mcp-analytics": "analytics.process",
+    "project-manager-agent": "project.update",
+    "ai-training-coordinator": "training.sync",
+    "data-scrubbing-ai": "data.validate",
+}
 
-def call_mcp(tool: str, payload: dict[str, Any]) -> Any:
+
+def bad_request(error: str, field: str | None = None) -> JSONResponse:
+    body: dict[str, Any] = {
+        "status": "error",
+        "error": error,
+    }
+    if field:
+        body["field"] = field
+    return JSONResponse(status_code=400, content=body)
+
+
+def call_mcp(tool: str, payload: dict[str, Any]) -> dict[str, Any]:
     try:
         res = requests.post(
             MCP_GATEWAY_URL,
             json={
-                "tool": tool,
+                "toolId": tool,
                 "input": payload,
             },
             timeout=5,
         )
         print(f"[CHAIN MCP] {tool} -> {res.status_code}")
-        return res.json()
+        try:
+            response_body: Any = res.json()
+        except ValueError:
+            response_body = res.text
+        return {
+            "tool": tool,
+            "ok": res.ok,
+            "status_code": res.status_code,
+            "response_body": response_body,
+            "error": None,
+        }
     except Exception as e:
         print(f"[CHAIN ERROR] {e}")
-        return None
+        return {
+            "tool": tool,
+            "ok": False,
+            "status_code": None,
+            "response_body": None,
+            "error": str(e),
+        }
 
 
 @app.get("/health")
@@ -55,44 +90,50 @@ def health() -> dict[str, str]:
     return {"status": "ok"}
 
 
-@app.post("/execute")
-def execute(payload: ExecutePayload) -> dict[str, Any]:
+@app.post("/execute", response_model=None)
+def execute(payload: ExecutePayload) -> Any:
     print({"event": "document_manager_payload", "payload": payload.model_dump()})
     input_payload = payload.input
     if input_payload is None:
-        raise HTTPException(status_code=400, detail="input is required")
-    if not input_payload.doc_id:
-        raise HTTPException(status_code=400, detail="doc_id is required")
-    if not input_payload.category:
-        raise HTTPException(status_code=400, detail="category is required")
+        return bad_request("input is required", field="input")
 
-    route = ROUTE_MAP.get(input_payload.category)
-    if route is None:
-        raise HTTPException(status_code=400, detail="unsupported category")
+    doc_id_value = input_payload.doc_id
+    if not isinstance(doc_id_value, str) or not doc_id_value.strip():
+        return bad_request("doc_id must be a non-empty string", field="doc_id")
+    doc_id = doc_id_value.strip()
+
+    category_value = input_payload.category
+    if not isinstance(category_value, str) or not category_value.strip():
+        return bad_request("category must be one of engineering, operations, ai_agents, governance", field="category")
+    category = category_value.strip()
+    if category not in ROUTE_MAP:
+        return bad_request("category must be one of engineering, operations, ai_agents, governance", field="category")
+
+    route = ROUTE_MAP[category]
     payload_dict = input_payload.model_dump(exclude_none=True)
+    payload_dict["doc_id"] = doc_id
+    payload_dict["category"] = category
 
     print(
         {
             "event": "document_manager_route_selected",
-            "doc_id": input_payload.doc_id,
-            "category": input_payload.category,
+            "doc_id": doc_id,
+            "category": category,
             "route": route,
         }
     )
     write_doc_record(payload_dict)
-    if route == "mcp-analytics":
-        call_mcp("analytics.process", payload_dict)
-    if route == "project-manager-agent":
-        call_mcp("project.update", payload_dict)
-    if route == "ai-training-coordinator":
-        call_mcp("training.sync", payload_dict)
-    if route == "data-scrubbing-ai":
-        call_mcp("data.validate", payload_dict)
+
+    chained_results: list[dict[str, Any]] = []
+    chain_tool = CHAIN_TOOL_BY_ROUTE.get(route)
+    if chain_tool:
+        chained_results.append(call_mcp(chain_tool, payload_dict))
 
     return {
         "status": "processed",
         "route": route,
-        "doc_id": input_payload.doc_id,
-        "category": input_payload.category,
+        "doc_id": doc_id,
+        "category": category,
         "chained": True,
+        "chained_results": chained_results,
     }

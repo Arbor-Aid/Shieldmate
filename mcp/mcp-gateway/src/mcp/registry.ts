@@ -6,6 +6,26 @@ const DOCUMENT_PROCESS_TOOL = {
   service: 'document-manager',
   path: '/execute',
 } as const;
+const ANALYTICS_PROCESS_TOOL = {
+  tool: 'analytics.process',
+  service: 'mcp-analytics',
+  path: '/execute',
+} as const;
+const PROJECT_UPDATE_TOOL = {
+  tool: 'project.update',
+  service: 'project-manager-agent',
+  path: '/execute',
+} as const;
+const TRAINING_SYNC_TOOL = {
+  tool: 'training.sync',
+  service: 'ai-training-coordinator',
+  path: '/execute',
+} as const;
+const DATA_VALIDATE_TOOL = {
+  tool: 'data.validate',
+  service: 'data-scrubbing-ai',
+  path: '/execute',
+} as const;
 
 function defaultServiceUrl(slug: string): string {
   if (USE_LOCALHOST) {
@@ -52,5 +72,9 @@ export const MCP_REGISTRY: Record<string, string> = {
   "tradeops": serviceUrl("tradeops", "MCP_TRADEOPS_URL"),
   "training_to_sop": serviceUrl("training_to_sop", "MCP_TRAINING_TO_SOP_URL"),
   "treasury": serviceUrl("treasury", "MCP_TREASURY_URL"),
+  [ANALYTICS_PROCESS_TOOL.tool]: serviceUrl(ANALYTICS_PROCESS_TOOL.service, "MCP_MCP_ANALYTICS_URL"),
+  [PROJECT_UPDATE_TOOL.tool]: serviceUrl(PROJECT_UPDATE_TOOL.service, "MCP_PROJECT_MANAGER_AGENT_URL"),
+  [TRAINING_SYNC_TOOL.tool]: serviceUrl(TRAINING_SYNC_TOOL.service, "MCP_AI_TRAINING_COORDINATOR_URL"),
+  [DATA_VALIDATE_TOOL.tool]: serviceUrl(DATA_VALIDATE_TOOL.service, "MCP_DATA_SCRUBBING_AI_URL"),
   [DOCUMENT_PROCESS_TOOL.tool]: serviceUrl(DOCUMENT_PROCESS_TOOL.service, "MCP_DOCUMENT_MANAGER_URL"),
 };

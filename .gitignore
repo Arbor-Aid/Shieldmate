@@ -105,7 +105,8 @@ scripts/out/
 *.bak
 *.bak2
 *.bak3
+__pycache__/
+*.pyc
 
 # Local experiments (ignore until we decide to ship it)
 mobile/
-
