@@ -8,11 +8,11 @@ ShieldMate provides no legal or medical advice.
 ## Current system summary
 - Flutter frontend targets web, Android, and iOS in `frontend/flutter`.
 - Firebase Auth, Firestore, Storage, and Analytics are part of the platform; Firebase packages are declared in `frontend/flutter/pubspec.yaml`.
-- MCP microservices (approximately 30 in scope; 24 listed in `mcp_services.csv`) are FastAPI ASGI services built from `mcp/Dockerfile.mcp`.
+- MCP microservices (33 services in scope, excluding `common` and `mcp-gateway`) are FastAPI ASGI services built from `mcp/Dockerfile.mcp`.
 - MCP Gateway (`mcp/mcp-gateway`) enforces claims-based RBAC using Firebase Admin and routes requests to Cloud Run services.
 - Slack alerts and intake are configured via `SLACK_*` environment variables (template in `.env.bak`).
 - Codemagic iOS pipeline lives in `frontend/flutter/codemagic.yaml`.
-- Android builds require Kotlin Gradle Plugin 2.1.10 (see `frontend/flutter/android/settings.gradle`).
+- Android builds require Kotlin Gradle Plugin 1.8.22 (see `frontend/flutter/android/settings.gradle`).
 
 ## Repository map
 - `frontend/flutter`: Flutter app for web, Android, and iOS.

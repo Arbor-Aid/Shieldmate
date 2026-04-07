@@ -6,6 +6,7 @@ import 'package:arbor_aid_app/core/widgets/app_state_view.dart';
 import 'package:arbor_aid_app/core/widgets/primary_button.dart';
 import 'package:arbor_aid_app/gen/assets.gen.dart';
 import 'package:arbor_aid_app/services/auth_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -16,9 +17,13 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final AuthService _authService = AuthService();
+  AuthService? _authService;
   bool _isLoading = false;
   String? _errorMessage;
+
+  AuthService get _authServiceInstance {
+    return _authService ??= AuthService();
+  }
 
   Future<void> _handleGoogleSignIn() async {
     setState(() {
@@ -27,16 +32,24 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     try {
-      await _authService.signInWithGoogle();
+      await _authServiceInstance.signInWithGoogle();
     } catch (error) {
+      final message = _messageForError(error);
       setState(() {
-        _errorMessage = 'Sign-in failed. Please try again.';
+        _errorMessage = message;
       });
     } finally {
       if (mounted) {
         setState(() => _isLoading = false);
       }
     }
+  }
+
+  String _messageForError(Object error) {
+    if (error is FirebaseAuthException) {
+      return error.message ?? 'Sign-in failed. Please try again.';
+    }
+    return 'Sign-in failed. Please try again.';
   }
 
   @override
