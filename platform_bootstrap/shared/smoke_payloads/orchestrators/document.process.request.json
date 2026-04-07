@@ -1,0 +1,14 @@
+{
+  "toolId": "document.process",
+  "tool": "document.process",
+  "input": {
+    "doc_id": "doc-smoke-001",
+    "category": "engineering",
+    "actions": {
+      "mode": "smoke"
+    },
+    "repo_path": "platform_bootstrap",
+    "mcp_owner": "document-manager",
+    "file_path": "platform_bootstrap/shared/templates/doc_template.md"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "service": "data-scrubbing-ai",
+  "env": {
+    "PORT": "8080",
+    "MCP_SERVICE_NAME": "data-scrubbing-ai"
+  }
+}

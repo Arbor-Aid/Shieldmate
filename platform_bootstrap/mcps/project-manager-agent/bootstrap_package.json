@@ -1,0 +1,67 @@
+{
+  "service_name": "project-manager-agent",
+  "role_category": "Project coordination MCP for routed updates and delivery workflow tasks.",
+  "learning_pipeline_role": "orchestrator",
+  "primary_tools": [
+    "project.update",
+    "project-manager-agent.status"
+  ],
+  "expected_inputs": {
+    "execute_envelope": {
+      "toolId": "string",
+      "tool": "string (compat)",
+      "input": "object"
+    },
+    "service_specific": [
+      "status check payload for smoke validation",
+      "service-specific domain payloads where implemented"
+    ]
+  },
+  "expected_outputs": {
+    "success_envelope": [
+      "ok",
+      "status",
+      "service",
+      "tool"
+    ],
+    "error_envelope": [
+      "ok",
+      "status",
+      "service",
+      "error",
+      "detail"
+    ]
+  },
+  "upstream_callers": [
+    "mcp-gateway",
+    "document-manager"
+  ],
+  "downstream_dependencies": [
+    "none_required_for_placeholder"
+  ],
+  "external_systems": {
+    "firebase_firestore": "planned",
+    "google_drive": "structurally_ready_bootstrap",
+    "notion": "structurally_ready_bootstrap",
+    "slack": "planned",
+    "windows_admin_tools": "planned",
+    "local_scripts": "planned"
+  },
+  "shared_dataset_readiness": {
+    "google_ads": "planned",
+    "geography": "planned",
+    "demographics": "planned",
+    "org_profiles": "planned",
+    "taxonomies": "planned"
+  },
+  "frontend_exposure_status": "backend_session_exposed",
+  "slack_aliases": [
+    "#mcp-project-manager-agent"
+  ],
+  "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/project-manager-agent.status.request.json",
+  "seed_data_path": "platform_bootstrap/mcps/project-manager-agent/seed_data",
+  "config_path": "platform_bootstrap/mcps/project-manager-agent/config",
+  "bootstrap_status": "bootstrapped_transitional_runtime",
+  "transitional_runtime_note": "Domain logic remains in app.py and is not mounted by active main.py entrypoint.",
+  "notes": "Connected through gateway with minimal smoke-test tool route project-manager-agent.status."
+}

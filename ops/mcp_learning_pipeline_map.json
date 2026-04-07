@@ -1,0 +1,206 @@
+[
+  {
+    "mcp_service": "ai-budget-planner",
+    "learning_pipeline_role": "integration_support",
+    "role_description": "Provides general platform integration support.",
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-budget-planner.status."
+  },
+  {
+    "mcp_service": "ai-expense-manager",
+    "learning_pipeline_role": "integration_support",
+    "role_description": "Provides general platform integration support.",
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-expense-manager.status."
+  },
+  {
+    "mcp_service": "ai-financial-analyst",
+    "learning_pipeline_role": "integration_support",
+    "role_description": "Provides general platform integration support.",
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-financial-analyst.status."
+  },
+  {
+    "mcp_service": "ai-financial-reporting-specialist",
+    "learning_pipeline_role": "integration_support",
+    "role_description": "Provides general platform integration support.",
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-financial-reporting-specialist.status."
+  },
+  {
+    "mcp_service": "ai-invoice-processor",
+    "learning_pipeline_role": "integration_support",
+    "role_description": "Provides general platform integration support.",
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-invoice-processor.status."
+  },
+  {
+    "mcp_service": "ai-payroll-manager",
+    "learning_pipeline_role": "integration_support",
+    "role_description": "Provides general platform integration support.",
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-payroll-manager.status."
+  },
+  {
+    "mcp_service": "ai-tax-compliance-agent",
+    "learning_pipeline_role": "integration_support",
+    "role_description": "Provides general platform integration support.",
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-tax-compliance-agent.status."
+  },
+  {
+    "mcp_service": "ai-training-coordinator",
+    "learning_pipeline_role": "learning_synthesis",
+    "role_description": "Synthesizes learning/training outputs.",
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-training-coordinator.status."
+  },
+  {
+    "mcp_service": "ai-ux-analyst",
+    "learning_pipeline_role": "integration_support",
+    "role_description": "Provides general platform integration support.",
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-ux-analyst.status."
+  },
+  {
+    "mcp_service": "amazon-drop-shipping-ai",
+    "learning_pipeline_role": "integration_support",
+    "role_description": "Provides general platform integration support.",
+    "notes": "Connected through gateway with minimal smoke-test tool route amazon-drop-shipping-ai.status."
+  },
+  {
+    "mcp_service": "coder-agent",
+    "learning_pipeline_role": "integration_support",
+    "role_description": "Provides general platform integration support.",
+    "notes": "Connected through gateway with minimal smoke-test tool route coder-agent.status."
+  },
+  {
+    "mcp_service": "content-generation-ai",
+    "learning_pipeline_role": "integration_support",
+    "role_description": "Provides general platform integration support.",
+    "notes": "Connected through gateway with minimal smoke-test tool route content-generation-ai.status."
+  },
+  {
+    "mcp_service": "cto-agent",
+    "learning_pipeline_role": "integration_support",
+    "role_description": "Provides general platform integration support.",
+    "notes": "Connected through gateway with minimal smoke-test tool route cto-agent.status."
+  },
+  {
+    "mcp_service": "data-scrubbing-ai",
+    "learning_pipeline_role": "validation_normalization",
+    "role_description": "Validates and normalizes workflow data.",
+    "notes": "Connected through gateway with minimal smoke-test tool route data-scrubbing-ai.status."
+  },
+  {
+    "mcp_service": "designer-ai-agent",
+    "learning_pipeline_role": "integration_support",
+    "role_description": "Provides general platform integration support.",
+    "notes": "Connected through gateway with minimal smoke-test tool route designer-ai-agent.status."
+  },
+  {
+    "mcp_service": "document-manager",
+    "learning_pipeline_role": "orchestrator",
+    "role_description": "Coordinates workflow across MCPs.",
+    "notes": "Primary orchestrator for chained flow; supports canonical and compatibility gateway contracts."
+  },
+  {
+    "mcp_service": "email-campaign-optimizer-ai",
+    "learning_pipeline_role": "integration_support",
+    "role_description": "Provides general platform integration support.",
+    "notes": "Connected through gateway with minimal smoke-test tool route email-campaign-optimizer-ai.status."
+  },
+  {
+    "mcp_service": "fundraising-chatbot-ai",
+    "learning_pipeline_role": "integration_support",
+    "role_description": "Provides general platform integration support.",
+    "notes": "Connected through gateway with minimal smoke-test tool route fundraising-chatbot-ai.status."
+  },
+  {
+    "mcp_service": "hr-ai-agent",
+    "learning_pipeline_role": "integration_support",
+    "role_description": "Provides general platform integration support.",
+    "notes": "Connected through gateway with minimal smoke-test tool route hr-ai-agent.status."
+  },
+  {
+    "mcp_service": "information-retrieval-ai",
+    "learning_pipeline_role": "knowledge_retrieval",
+    "role_description": "Retrieves knowledge for downstream reasoning.",
+    "notes": "Connected through gateway with minimal smoke-test tool route information-retrieval-ai.status."
+  },
+  {
+    "mcp_service": "investment_recommendation",
+    "learning_pipeline_role": "integration_support",
+    "role_description": "Provides general platform integration support.",
+    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract."
+  },
+  {
+    "mcp_service": "mcp-analytics",
+    "learning_pipeline_role": "analytics_feedback",
+    "role_description": "Produces analytics feedback loops.",
+    "notes": "Connected through gateway with minimal smoke-test tool route mcp-analytics.status."
+  },
+  {
+    "mcp_service": "mcp-google-ads",
+    "learning_pipeline_role": "delivery_interface",
+    "role_description": "Provides delivery/reporting interfaces via backend.",
+    "notes": "Connected through gateway with minimal smoke-test tool route mcp-google-ads.status."
+  },
+  {
+    "mcp_service": "multimodal-ai",
+    "learning_pipeline_role": "integration_support",
+    "role_description": "Provides general platform integration support.",
+    "notes": "Connected through gateway with minimal smoke-test tool route multimodal-ai.status."
+  },
+  {
+    "mcp_service": "org-scrubber-mcp",
+    "learning_pipeline_role": "validation_normalization",
+    "role_description": "Validates and normalizes workflow data.",
+    "notes": "Connected through gateway with minimal smoke-test tool route org-scrubber-mcp.status."
+  },
+  {
+    "mcp_service": "personalized-donation-ai",
+    "learning_pipeline_role": "integration_support",
+    "role_description": "Provides general platform integration support.",
+    "notes": "Connected through gateway with minimal smoke-test tool route personalized-donation-ai.status."
+  },
+  {
+    "mcp_service": "project-manager-agent",
+    "learning_pipeline_role": "orchestrator",
+    "role_description": "Coordinates workflow across MCPs.",
+    "notes": "Connected through gateway with minimal smoke-test tool route project-manager-agent.status."
+  },
+  {
+    "mcp_service": "qa-ai-agent",
+    "learning_pipeline_role": "validation_normalization",
+    "role_description": "Validates and normalizes workflow data.",
+    "notes": "Connected through gateway with minimal smoke-test tool route qa-ai-agent.status."
+  },
+  {
+    "mcp_service": "reporting-dashboard-ai",
+    "learning_pipeline_role": "delivery_interface",
+    "role_description": "Provides delivery/reporting interfaces via backend.",
+    "notes": "Connected through gateway with minimal smoke-test tool route reporting-dashboard-ai.status."
+  },
+  {
+    "mcp_service": "trade_execution_gateway",
+    "learning_pipeline_role": "legacy_transitional",
+    "role_description": "Present as transitional/legacy bridge in current rollout.",
+    "notes": "Transitional runtime: main.py placeholder MCP contract active; app.py trade routes currently not mounted."
+  },
+  {
+    "mcp_service": "tradefinance_lc",
+    "learning_pipeline_role": "legacy_transitional",
+    "role_description": "Present as transitional/legacy bridge in current rollout.",
+    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract."
+  },
+  {
+    "mcp_service": "tradeops",
+    "learning_pipeline_role": "legacy_transitional",
+    "role_description": "Present as transitional/legacy bridge in current rollout.",
+    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract."
+  },
+  {
+    "mcp_service": "training_to_sop",
+    "learning_pipeline_role": "learning_synthesis",
+    "role_description": "Synthesizes learning/training outputs.",
+    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract."
+  },
+  {
+    "mcp_service": "treasury",
+    "learning_pipeline_role": "validation_normalization",
+    "role_description": "Validates and normalizes workflow data.",
+    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract."
+  }
+]

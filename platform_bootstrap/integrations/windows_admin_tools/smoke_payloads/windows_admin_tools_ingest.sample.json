@@ -1,0 +1,18 @@
+{
+  "toolId": "mcp-analytics.status",
+  "input": {
+    "source": "windows_admin_tools",
+    "collectors": [
+      "network",
+      "services",
+      "firewall",
+      "ports",
+      "event_logs",
+      "scheduled_tasks",
+      "storage",
+      "users_groups"
+    ],
+    "mode": "readiness_smoke",
+    "sample_root": "platform_bootstrap/integrations/windows_admin_tools/outputs/normalized_json"
+  }
+}

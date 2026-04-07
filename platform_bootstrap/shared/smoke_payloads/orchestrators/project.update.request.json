@@ -1,0 +1,9 @@
+{
+  "toolId": "project.update",
+  "tool": "project.update",
+  "input": {
+    "doc_id": "doc-smoke-002",
+    "category": "operations",
+    "mode": "smoke"
+  }
+}

@@ -2,13 +2,15 @@ import express from 'express';
 import { randomUUID } from 'crypto';
 import { requireRole } from './auth/requireRole';
 import type { VerifiedTokenClaims } from './auth/verifyFirebaseToken';
-import { MCP_REGISTRY } from './mcp/registry';
+import { REQUIRED_TOOL_ROUTES, resolveRegistryTarget } from './mcp/registry';
 
 type ExecutePayload = {
   toolId?: string;
+  tool?: string;
   orgId?: string;
   input?: unknown;
   meta?: Record<string, unknown>;
+  traceId?: string;
 };
 
 type ContextPayload = {
@@ -44,6 +46,7 @@ const ROUTES = [
   '/meta',
   '/version',
   '/mcp/execute',
+  '/execute',
   '/mcp/tools/:toolId',
   '/mcp/context',
 ];
@@ -72,13 +75,25 @@ function resolveEffectiveOrg(
   untrustedOrgId?: string
 ): { ok: true; org: string } | { ok: false; error: string } {
   const claimOrg = claims.orgId ?? claims.org;
-  if (!claimOrg) {
+  const claimOrgSet = new Set<string>();
+  if (claimOrg) {
+    claimOrgSet.add(claimOrg);
+  }
+  Object.keys(claims.orgRoles ?? {}).forEach((orgId) => {
+    if (orgId) {
+      claimOrgSet.add(orgId);
+    }
+  });
+  if (claimOrgSet.size === 0) {
     return { ok: false, error: 'Missing org claim' };
   }
-  if (untrustedOrgId && claimOrg !== untrustedOrgId) {
-    return { ok: false, error: 'Org mismatch' };
+  if (untrustedOrgId) {
+    if (!claimOrgSet.has(untrustedOrgId)) {
+      return { ok: false, error: 'Org mismatch' };
+    }
+    return { ok: true, org: untrustedOrgId };
   }
-  return { ok: true, org: claimOrg };
+  return { ok: true, org: Array.from(claimOrgSet)[0] };
 }
 
 app.get('/health', (req, res) => {
@@ -137,14 +152,15 @@ async function proxyPost(
   url: string,
   payload: unknown,
   authHeader: string | undefined,
-  requestId: string
+  traceId: string
 ) {
   const resp = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': authHeader ?? '',
-      'X-Request-Id': requestId,
+      'X-Request-Id': traceId,
+      'X-Trace-Id': traceId,
     },
     body: JSON.stringify(payload ?? {}),
   });
@@ -153,55 +169,140 @@ async function proxyPost(
   return { status: resp.status, bodyText, contentType };
 }
 
-app.post('/mcp/execute', async (req, res) => {
+function firstNonEmptyString(value: unknown): string | undefined {
+  if (typeof value !== 'string') {
+    return undefined;
+  }
+  const trimmed = value.trim();
+  return trimmed.length > 0 ? trimmed : undefined;
+}
+
+function normalizeToolIdentifier(payload: ExecutePayload | null | undefined): {
+  normalizedToolId?: string;
+  originalToolFieldPresent: boolean;
+  originalToolIdFieldPresent: boolean;
+} {
+  const source = payload ?? {};
+  const originalToolFieldPresent = Object.prototype.hasOwnProperty.call(source, 'tool');
+  const originalToolIdFieldPresent = Object.prototype.hasOwnProperty.call(source, 'toolId');
+  const normalizedToolId =
+    firstNonEmptyString(source.toolId) ?? firstNonEmptyString(source.tool);
+  return {
+    normalizedToolId,
+    originalToolFieldPresent,
+    originalToolIdFieldPresent,
+  };
+}
+
+async function handleExecute(req: express.Request, res: express.Response) {
   const requestId = randomUUID();
+  const inboundTraceId = req.header('X-Trace-Id') ?? req.header('X-Request-Id') ?? undefined;
+  const traceId = inboundTraceId ?? requestId;
   const authHeader = req.header('Authorization');
   const payload = req.body as ExecutePayload;
-  const toolId = payload?.toolId;
   const untrustedOrgId = payload?.orgId;
+  const normalizedTool = normalizeToolIdentifier(payload);
+  const toolId = normalizedTool.normalizedToolId;
   let claims: VerifiedTokenClaims | null = null;
+  let routedService: string | null = null;
+  let targetUrl: string | null = null;
   let status = 200;
   try {
     if (!toolId) {
       status = 400;
-      return res.status(status).json({ error: 'toolId is required' });
+      return res.status(status).json({
+        error: 'toolId is required (legacy alias: tool)',
+        normalizedToolId: null,
+        originalToolFieldPresent: normalizedTool.originalToolFieldPresent,
+        originalToolIdFieldPresent: normalizedTool.originalToolIdFieldPresent,
+        authorizationPresent: Boolean(authHeader),
+        traceId,
+      });
     }
     claims = await requireRole(authHeader, ALLOWED_ROLES);
     const resolvedOrg = resolveEffectiveOrg(claims, untrustedOrgId);
     if (!resolvedOrg.ok) {
       status = 403;
-      return res.status(status).json({ error: resolvedOrg.error });
+      return res.status(status).json({
+        error: resolvedOrg.error,
+        normalizedToolId: toolId,
+        originalToolFieldPresent: normalizedTool.originalToolFieldPresent,
+        originalToolIdFieldPresent: normalizedTool.originalToolIdFieldPresent,
+        authorizationPresent: Boolean(authHeader),
+        traceId,
+      });
     }
-    const baseUrl = MCP_REGISTRY[toolId];
-    if (!baseUrl) {
+    const target = resolveRegistryTarget(toolId);
+    if (!target) {
       status = 404;
-      return res.status(status).json({ error: 'Unknown toolId', toolId });
+      return res.status(status).json({
+        error: 'Unknown toolId',
+        toolId,
+        knownToolRoutes: REQUIRED_TOOL_ROUTES,
+        normalizedToolId: toolId,
+        originalToolFieldPresent: normalizedTool.originalToolFieldPresent,
+        originalToolIdFieldPresent: normalizedTool.originalToolIdFieldPresent,
+        routedService: null,
+        targetUrl: null,
+        authorizationPresent: Boolean(authHeader),
+        traceId,
+      });
     }
-    const targetUrl = `${baseUrl}/execute`;
+    routedService = target.service;
+    targetUrl = target.targetUrl;
     const upstreamPayload = {
       ...payload,
+      toolId,
+      tool: toolId,
       orgId: resolvedOrg.org,
+      traceId,
     };
-    const upstream = await proxyPost(targetUrl, upstreamPayload, authHeader, requestId);
+    const upstream = await proxyPost(target.targetUrl, upstreamPayload, authHeader, traceId);
     status = upstream.status;
     if (status === 404) {
       return res.status(502).json({
         error: 'MCP route not implemented for toolId/service; update registry/proxy mapping',
         toolId,
+        routedService: target.service,
+        targetUrl: target.targetUrl,
+        normalizedToolId: toolId,
+        originalToolFieldPresent: normalizedTool.originalToolFieldPresent,
+        originalToolIdFieldPresent: normalizedTool.originalToolIdFieldPresent,
+        authorizationPresent: Boolean(authHeader),
+        traceId,
       });
     }
     res.status(status).type(upstream.contentType).send(upstream.bodyText);
   } catch (err) {
     status = 403;
-    res.status(status).json({ error: 'Forbidden' });
+    res.status(status).json({
+      error: 'Forbidden',
+      normalizedToolId: toolId ?? null,
+      originalToolFieldPresent: normalizedTool.originalToolFieldPresent,
+      originalToolIdFieldPresent: normalizedTool.originalToolIdFieldPresent,
+      routedService,
+      targetUrl,
+      authorizationPresent: Boolean(authHeader),
+      traceId,
+    });
   } finally {
     logEvent({
       requestId,
+      traceId,
       ...getRequestMeta(req, claims),
+      normalizedToolId: toolId ?? null,
+      originalToolFieldPresent: normalizedTool.originalToolFieldPresent,
+      originalToolIdFieldPresent: normalizedTool.originalToolIdFieldPresent,
+      routedService,
+      targetUrl,
+      authorizationPresent: Boolean(authHeader),
       status,
     });
   }
-});
+}
+
+app.post('/mcp/execute', handleExecute);
+app.post('/execute', handleExecute);
 
 app.post('/mcp/tools/:toolId', async (req, res) => {
   const requestId = randomUUID();
@@ -222,12 +323,16 @@ app.post('/mcp/tools/:toolId', async (req, res) => {
       status = 403;
       return res.status(status).json({ error: resolvedOrg.error });
     }
-    const baseUrl = MCP_REGISTRY[toolId];
-    if (!baseUrl) {
+    const target = resolveRegistryTarget(toolId);
+    if (!target) {
       status = 404;
-      return res.status(status).json({ error: 'Unknown toolId', toolId });
+      return res.status(status).json({
+        error: 'Unknown toolId',
+        toolId,
+        knownToolRoutes: REQUIRED_TOOL_ROUTES,
+      });
     }
-    const targetUrl = `${baseUrl}/mcp/tools/${toolId}`;
+    const targetUrl = `${target.baseUrl}/mcp/tools/${toolId}`;
     const upstreamPayload = {
       ...payload,
       orgId: resolvedOrg.org,
@@ -238,6 +343,8 @@ app.post('/mcp/tools/:toolId', async (req, res) => {
       return res.status(502).json({
         error: 'MCP route not implemented for toolId/service; update registry/proxy mapping',
         toolId,
+        routedService: target.service,
+        targetUrl,
       });
     }
     res.status(status).type(upstream.contentType).send(upstream.bodyText);
@@ -272,12 +379,16 @@ app.post('/mcp/context', async (req, res) => {
       status = 403;
       return res.status(status).json({ error: resolvedOrg.error });
     }
-    const baseUrl = MCP_REGISTRY[toolId];
-    if (!baseUrl) {
+    const target = resolveRegistryTarget(toolId);
+    if (!target) {
       status = 404;
-      return res.status(status).json({ error: 'Unknown toolId', toolId });
+      return res.status(status).json({
+        error: 'Unknown toolId',
+        toolId,
+        knownToolRoutes: REQUIRED_TOOL_ROUTES,
+      });
     }
-    const contextUrl = `${baseUrl}/context`;
+    const contextUrl = `${target.baseUrl}/context`;
     const upstreamPayload = {
       ...payload,
       orgId: resolvedOrg.org,
@@ -288,6 +399,8 @@ app.post('/mcp/context', async (req, res) => {
       return res.status(502).json({
         error: 'MCP context route not implemented; update gateway mapping',
         toolId,
+        routedService: target.service,
+        targetUrl: contextUrl,
       });
     }
     res.status(status).type(upstream.contentType).send(upstream.bodyText);

@@ -1,0 +1,9 @@
+{
+  "toolId": "data.validate",
+  "tool": "data.validate",
+  "input": {
+    "doc_id": "doc-smoke-004",
+    "category": "governance",
+    "mode": "smoke"
+  }
+}

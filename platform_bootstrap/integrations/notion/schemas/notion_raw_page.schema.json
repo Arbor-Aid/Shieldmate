@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NotionRawPage",
+  "type": "object",
+  "required": [
+    "id",
+    "object",
+    "last_edited_time"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "object": {
+      "type": "string"
+    },
+    "last_edited_time": {
+      "type": "string"
+    },
+    "properties": {
+      "type": "object"
+    }
+  }
+}

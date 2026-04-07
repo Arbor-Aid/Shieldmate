@@ -1,0 +1,65 @@
+{
+  "service_name": "designer-ai-agent",
+  "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+  "learning_pipeline_role": "integration_support",
+  "primary_tools": [
+    "designer-ai-agent.status"
+  ],
+  "expected_inputs": {
+    "execute_envelope": {
+      "toolId": "string",
+      "tool": "string (compat)",
+      "input": "object"
+    },
+    "service_specific": [
+      "status check payload for smoke validation",
+      "service-specific domain payloads where implemented"
+    ]
+  },
+  "expected_outputs": {
+    "success_envelope": [
+      "ok",
+      "status",
+      "service",
+      "tool"
+    ],
+    "error_envelope": [
+      "ok",
+      "status",
+      "service",
+      "error",
+      "detail"
+    ]
+  },
+  "upstream_callers": [
+    "mcp-gateway"
+  ],
+  "downstream_dependencies": [
+    "none_required_for_placeholder"
+  ],
+  "external_systems": {
+    "firebase_firestore": "planned",
+    "google_drive": "planned",
+    "notion": "planned",
+    "slack": "planned",
+    "windows_admin_tools": "planned",
+    "local_scripts": "planned"
+  },
+  "shared_dataset_readiness": {
+    "google_ads": "planned",
+    "geography": "planned",
+    "demographics": "planned",
+    "org_profiles": "planned",
+    "taxonomies": "planned"
+  },
+  "frontend_exposure_status": "backend_internal_only",
+  "slack_aliases": [
+    "#mcp-designer-ai-agent"
+  ],
+  "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/designer-ai-agent.status.request.json",
+  "seed_data_path": "platform_bootstrap/mcps/designer-ai-agent/seed_data",
+  "config_path": "platform_bootstrap/mcps/designer-ai-agent/config",
+  "bootstrap_status": "bootstrapped",
+  "transitional_runtime_note": "",
+  "notes": "Connected through gateway with minimal smoke-test tool route designer-ai-agent.status."
+}

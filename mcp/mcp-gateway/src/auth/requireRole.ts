@@ -9,6 +9,9 @@ export async function requireRole(
   const claims = await verifyFirebaseToken(authHeader);
   const roleSet = new Set<string>();
   (claims.roles ?? []).forEach((role) => roleSet.add(role));
+  Object.values(claims.orgRoles ?? {}).forEach((roleList) => {
+    roleList.forEach((role) => roleSet.add(role));
+  });
   if (claims.role) {
     roleSet.add(claims.role);
   }

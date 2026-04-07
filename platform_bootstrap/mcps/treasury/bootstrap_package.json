@@ -1,0 +1,65 @@
+{
+  "service_name": "treasury",
+  "role_category": "Treasury/risk MCP with domain endpoints in app.py and standardized placeholder runtime in main.py.",
+  "learning_pipeline_role": "validation_normalization",
+  "primary_tools": [
+    "treasury.status"
+  ],
+  "expected_inputs": {
+    "execute_envelope": {
+      "toolId": "string",
+      "tool": "string (compat)",
+      "input": "object"
+    },
+    "service_specific": [
+      "status check payload for smoke validation",
+      "service-specific domain payloads where implemented"
+    ]
+  },
+  "expected_outputs": {
+    "success_envelope": [
+      "ok",
+      "status",
+      "service",
+      "tool"
+    ],
+    "error_envelope": [
+      "ok",
+      "status",
+      "service",
+      "error",
+      "detail"
+    ]
+  },
+  "upstream_callers": [
+    "mcp-gateway"
+  ],
+  "downstream_dependencies": [
+    "app.py domain routes (not mounted by active entrypoint)"
+  ],
+  "external_systems": {
+    "firebase_firestore": "structurally_ready",
+    "google_drive": "planned",
+    "notion": "planned",
+    "slack": "structurally_ready",
+    "windows_admin_tools": "planned",
+    "local_scripts": "planned"
+  },
+  "shared_dataset_readiness": {
+    "google_ads": "planned",
+    "geography": "planned",
+    "demographics": "planned",
+    "org_profiles": "planned",
+    "taxonomies": "planned"
+  },
+  "frontend_exposure_status": "admin_internal_only",
+  "slack_aliases": [
+    "#mcp-treasury"
+  ],
+  "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/treasury.status.request.json",
+  "seed_data_path": "platform_bootstrap/mcps/treasury/seed_data",
+  "config_path": "platform_bootstrap/mcps/treasury/config",
+  "bootstrap_status": "bootstrapped_transitional_runtime",
+  "transitional_runtime_note": "Domain logic remains in app.py and is not mounted by active main.py entrypoint.",
+  "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract."
+}

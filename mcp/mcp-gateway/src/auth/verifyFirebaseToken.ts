@@ -3,6 +3,7 @@ import admin from 'firebase-admin';
 export type VerifiedTokenClaims = {
   uid: string;
   roles?: string[];
+  orgRoles?: Record<string, string[]>;
   orgId?: string;
   role?: string;
   org?: string;
@@ -29,23 +30,48 @@ export async function verifyFirebaseToken(authHeader?: string): Promise<Verified
     role?: unknown;
     orgId?: unknown;
     org?: unknown;
+    orgRoles?: unknown;
   };
   const rolesFromToken = Array.isArray(decodedAny.roles)
     ? decodedAny.roles.filter((role): role is string => typeof role === 'string' && role.length > 0)
     : [];
+  const orgRolesFromToken =
+    decodedAny.orgRoles && typeof decodedAny.orgRoles === 'object'
+      ? Object.entries(decodedAny.orgRoles as Record<string, unknown>).reduce<Record<string, string[]>>(
+          (acc, [orgKey, roleList]) => {
+            if (!orgKey || !Array.isArray(roleList)) {
+              return acc;
+            }
+            const filteredRoles = roleList.filter(
+              (role): role is string => typeof role === 'string' && role.length > 0
+            );
+            if (filteredRoles.length > 0) {
+              acc[orgKey] = filteredRoles;
+            }
+            return acc;
+          },
+          {}
+        )
+      : {};
+  const orgScopedRoles = Object.values(orgRolesFromToken).flat();
   const legacyRole =
     typeof decodedAny.role === 'string' && decodedAny.role.length > 0 ? decodedAny.role : undefined;
-  const mergedRoles = legacyRole ? Array.from(new Set([...rolesFromToken, legacyRole])) : rolesFromToken;
+  const mergedRoles = legacyRole
+    ? Array.from(new Set([...rolesFromToken, ...orgScopedRoles, legacyRole]))
+    : Array.from(new Set([...rolesFromToken, ...orgScopedRoles]));
   const orgId =
     typeof decodedAny.orgId === 'string' && decodedAny.orgId.length > 0
       ? decodedAny.orgId
       : typeof decodedAny.org === 'string' && decodedAny.org.length > 0
         ? decodedAny.org
+        : Object.keys(orgRolesFromToken)[0]
+          ? Object.keys(orgRolesFromToken)[0]
         : undefined;
 
   return {
     uid: decoded.uid,
     roles: mergedRoles,
+    orgRoles: orgRolesFromToken,
     orgId,
     role: legacyRole ?? mergedRoles[0],
     org: orgId,

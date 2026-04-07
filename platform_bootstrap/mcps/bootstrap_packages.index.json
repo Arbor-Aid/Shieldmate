@@ -1,0 +1,2228 @@
+[
+  {
+    "service_name": "ai-budget-planner",
+    "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "learning_pipeline_role": "integration_support",
+    "primary_tools": [
+      "ai-budget-planner.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_internal_only",
+    "slack_aliases": [
+      "#mcp-ai-budget-planner"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/ai-budget-planner.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/ai-budget-planner/seed_data",
+    "config_path": "platform_bootstrap/mcps/ai-budget-planner/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-budget-planner.status."
+  },
+  {
+    "service_name": "ai-expense-manager",
+    "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "learning_pipeline_role": "integration_support",
+    "primary_tools": [
+      "ai-expense-manager.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_internal_only",
+    "slack_aliases": [
+      "#mcp-ai-expense-manager"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/ai-expense-manager.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/ai-expense-manager/seed_data",
+    "config_path": "platform_bootstrap/mcps/ai-expense-manager/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-expense-manager.status."
+  },
+  {
+    "service_name": "ai-financial-analyst",
+    "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "learning_pipeline_role": "integration_support",
+    "primary_tools": [
+      "ai-financial-analyst.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_internal_only",
+    "slack_aliases": [
+      "#mcp-ai-financial-analyst"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/ai-financial-analyst.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/ai-financial-analyst/seed_data",
+    "config_path": "platform_bootstrap/mcps/ai-financial-analyst/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-financial-analyst.status."
+  },
+  {
+    "service_name": "ai-financial-reporting-specialist",
+    "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "learning_pipeline_role": "integration_support",
+    "primary_tools": [
+      "ai-financial-reporting-specialist.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_internal_only",
+    "slack_aliases": [
+      "#mcp-ai-financial-reporting-specialist"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/ai-financial-reporting-specialist.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/ai-financial-reporting-specialist/seed_data",
+    "config_path": "platform_bootstrap/mcps/ai-financial-reporting-specialist/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-financial-reporting-specialist.status."
+  },
+  {
+    "service_name": "ai-invoice-processor",
+    "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "learning_pipeline_role": "integration_support",
+    "primary_tools": [
+      "ai-invoice-processor.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_internal_only",
+    "slack_aliases": [
+      "#mcp-ai-invoice-processor"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/ai-invoice-processor.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/ai-invoice-processor/seed_data",
+    "config_path": "platform_bootstrap/mcps/ai-invoice-processor/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-invoice-processor.status."
+  },
+  {
+    "service_name": "ai-payroll-manager",
+    "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "learning_pipeline_role": "integration_support",
+    "primary_tools": [
+      "ai-payroll-manager.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_internal_only",
+    "slack_aliases": [
+      "#mcp-ai-payroll-manager"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/ai-payroll-manager.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/ai-payroll-manager/seed_data",
+    "config_path": "platform_bootstrap/mcps/ai-payroll-manager/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-payroll-manager.status."
+  },
+  {
+    "service_name": "ai-tax-compliance-agent",
+    "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "learning_pipeline_role": "integration_support",
+    "primary_tools": [
+      "ai-tax-compliance-agent.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_internal_only",
+    "slack_aliases": [
+      "#mcp-ai-tax-compliance-agent"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/ai-tax-compliance-agent.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/ai-tax-compliance-agent/seed_data",
+    "config_path": "platform_bootstrap/mcps/ai-tax-compliance-agent/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-tax-compliance-agent.status."
+  },
+  {
+    "service_name": "ai-training-coordinator",
+    "role_category": "Training orchestration MCP for synchronization of learning/training workflows.",
+    "learning_pipeline_role": "learning_synthesis",
+    "primary_tools": [
+      "training.sync",
+      "ai-training-coordinator.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway",
+      "document-manager"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "structurally_ready_bootstrap",
+      "notion": "structurally_ready_bootstrap",
+      "slack": "planned",
+      "windows_admin_tools": "structurally_ready_bootstrap",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_session_exposed",
+    "slack_aliases": [
+      "#mcp-ai-training-coordinator"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/ai-training-coordinator.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/ai-training-coordinator/seed_data",
+    "config_path": "platform_bootstrap/mcps/ai-training-coordinator/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-training-coordinator.status."
+  },
+  {
+    "service_name": "ai-ux-analyst",
+    "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "learning_pipeline_role": "integration_support",
+    "primary_tools": [
+      "ai-ux-analyst.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "structurally_ready_bootstrap",
+      "geography": "structurally_ready_bootstrap",
+      "demographics": "structurally_ready_bootstrap",
+      "org_profiles": "structurally_ready_bootstrap",
+      "taxonomies": "structurally_ready_bootstrap"
+    },
+    "frontend_exposure_status": "backend_session_exposed",
+    "slack_aliases": [
+      "#mcp-ai-ux-analyst"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/ai-ux-analyst.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/ai-ux-analyst/seed_data",
+    "config_path": "platform_bootstrap/mcps/ai-ux-analyst/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-ux-analyst.status."
+  },
+  {
+    "service_name": "amazon-drop-shipping-ai",
+    "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "learning_pipeline_role": "integration_support",
+    "primary_tools": [
+      "amazon-drop-shipping-ai.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_internal_only",
+    "slack_aliases": [
+      "#mcp-amazon-drop-shipping-ai"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/amazon-drop-shipping-ai.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/amazon-drop-shipping-ai/seed_data",
+    "config_path": "platform_bootstrap/mcps/amazon-drop-shipping-ai/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route amazon-drop-shipping-ai.status."
+  },
+  {
+    "service_name": "coder-agent",
+    "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "learning_pipeline_role": "integration_support",
+    "primary_tools": [
+      "coder-agent.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "structurally_ready_bootstrap",
+      "local_scripts": "structurally_ready"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_internal_only",
+    "slack_aliases": [
+      "#mcp-coder-agent"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/coder-agent.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/coder-agent/seed_data",
+    "config_path": "platform_bootstrap/mcps/coder-agent/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route coder-agent.status."
+  },
+  {
+    "service_name": "content-generation-ai",
+    "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "learning_pipeline_role": "integration_support",
+    "primary_tools": [
+      "content-generation-ai.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "structurally_ready_bootstrap",
+      "notion": "structurally_ready_bootstrap",
+      "slack": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_internal_only",
+    "slack_aliases": [
+      "#mcp-content-generation-ai"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/content-generation-ai.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/content-generation-ai/seed_data",
+    "config_path": "platform_bootstrap/mcps/content-generation-ai/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route content-generation-ai.status."
+  },
+  {
+    "service_name": "cto-agent",
+    "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "learning_pipeline_role": "integration_support",
+    "primary_tools": [
+      "cto-agent.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "structurally_ready",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_internal_only",
+    "slack_aliases": [
+      "#mcp-cto-agent"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/cto-agent.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/cto-agent/seed_data",
+    "config_path": "platform_bootstrap/mcps/cto-agent/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route cto-agent.status."
+  },
+  {
+    "service_name": "data-scrubbing-ai",
+    "role_category": "Validation and data normalization MCP for governance and quality checks.",
+    "learning_pipeline_role": "validation_normalization",
+    "primary_tools": [
+      "data.validate",
+      "data-scrubbing-ai.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway",
+      "document-manager"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_internal_only",
+    "slack_aliases": [
+      "#mcp-data-scrubbing-ai"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/data-scrubbing-ai.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/data-scrubbing-ai/seed_data",
+    "config_path": "platform_bootstrap/mcps/data-scrubbing-ai/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route data-scrubbing-ai.status."
+  },
+  {
+    "service_name": "designer-ai-agent",
+    "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "learning_pipeline_role": "integration_support",
+    "primary_tools": [
+      "designer-ai-agent.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_internal_only",
+    "slack_aliases": [
+      "#mcp-designer-ai-agent"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/designer-ai-agent.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/designer-ai-agent/seed_data",
+    "config_path": "platform_bootstrap/mcps/designer-ai-agent/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route designer-ai-agent.status."
+  },
+  {
+    "service_name": "document-manager",
+    "role_category": "Primary document orchestration MCP for routed chained execution.",
+    "learning_pipeline_role": "orchestrator",
+    "primary_tools": [
+      "document.process",
+      "document-manager.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway",
+      "backend-session-layer",
+      "uploader-flow"
+    ],
+    "downstream_dependencies": [
+      "mcp-gateway",
+      "mcp-analytics",
+      "project-manager-agent",
+      "ai-training-coordinator",
+      "data-scrubbing-ai",
+      "firestore_client(mock)"
+    ],
+    "external_systems": {
+      "firebase_firestore": "mock_connected",
+      "google_drive": "structurally_ready_bootstrap",
+      "notion": "structurally_ready_bootstrap",
+      "slack": "planned",
+      "windows_admin_tools": "structurally_ready_bootstrap",
+      "local_scripts": "structurally_ready"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_session_exposed",
+    "slack_aliases": [
+      "#mcp-document-manager"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/document-manager.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/document-manager/seed_data",
+    "config_path": "platform_bootstrap/mcps/document-manager/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Primary orchestrator for chained flow; supports canonical and compatibility gateway contracts."
+  },
+  {
+    "service_name": "email-campaign-optimizer-ai",
+    "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "learning_pipeline_role": "integration_support",
+    "primary_tools": [
+      "email-campaign-optimizer-ai.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_internal_only",
+    "slack_aliases": [
+      "#mcp-email-campaign-optimizer-ai"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/email-campaign-optimizer-ai.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/email-campaign-optimizer-ai/seed_data",
+    "config_path": "platform_bootstrap/mcps/email-campaign-optimizer-ai/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route email-campaign-optimizer-ai.status."
+  },
+  {
+    "service_name": "fundraising-chatbot-ai",
+    "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "learning_pipeline_role": "integration_support",
+    "primary_tools": [
+      "fundraising-chatbot-ai.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_internal_only",
+    "slack_aliases": [
+      "#mcp-fundraising-chatbot-ai"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/fundraising-chatbot-ai.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/fundraising-chatbot-ai/seed_data",
+    "config_path": "platform_bootstrap/mcps/fundraising-chatbot-ai/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route fundraising-chatbot-ai.status."
+  },
+  {
+    "service_name": "hr-ai-agent",
+    "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "learning_pipeline_role": "integration_support",
+    "primary_tools": [
+      "hr-ai-agent.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_internal_only",
+    "slack_aliases": [
+      "#mcp-hr-ai-agent"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/hr-ai-agent.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/hr-ai-agent/seed_data",
+    "config_path": "platform_bootstrap/mcps/hr-ai-agent/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route hr-ai-agent.status."
+  },
+  {
+    "service_name": "information-retrieval-ai",
+    "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "learning_pipeline_role": "knowledge_retrieval",
+    "primary_tools": [
+      "information-retrieval-ai.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "structurally_ready_bootstrap",
+      "notion": "structurally_ready_bootstrap",
+      "slack": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_session_exposed",
+    "slack_aliases": [
+      "#mcp-information-retrieval-ai"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/information-retrieval-ai.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/information-retrieval-ai/seed_data",
+    "config_path": "platform_bootstrap/mcps/information-retrieval-ai/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route information-retrieval-ai.status."
+  },
+  {
+    "service_name": "investment_recommendation",
+    "role_category": "Investment recommendation MCP with domain endpoints in app.py and standardized placeholder runtime in main.py.",
+    "learning_pipeline_role": "integration_support",
+    "primary_tools": [
+      "investment_recommendation.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "app.py domain routes (not mounted by active entrypoint)"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_internal_only",
+    "slack_aliases": [
+      "#mcp-investment_recommendation"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/investment_recommendation.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/investment_recommendation/seed_data",
+    "config_path": "platform_bootstrap/mcps/investment_recommendation/config",
+    "bootstrap_status": "bootstrapped_transitional_runtime",
+    "transitional_runtime_note": "Domain logic remains in app.py and is not mounted by active main.py entrypoint.",
+    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract."
+  },
+  {
+    "service_name": "mcp-analytics",
+    "role_category": "Analytics processing MCP for routed document and workflow telemetry tasks.",
+    "learning_pipeline_role": "analytics_feedback",
+    "primary_tools": [
+      "analytics.process",
+      "mcp-analytics.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway",
+      "document-manager"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "structurally_ready_bootstrap",
+      "notion": "structurally_ready_bootstrap",
+      "slack": "planned",
+      "windows_admin_tools": "structurally_ready_bootstrap",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "structurally_ready_bootstrap",
+      "geography": "structurally_ready_bootstrap",
+      "demographics": "structurally_ready_bootstrap",
+      "org_profiles": "structurally_ready_bootstrap",
+      "taxonomies": "structurally_ready_bootstrap"
+    },
+    "frontend_exposure_status": "backend_session_exposed",
+    "slack_aliases": [
+      "#mcp-mcp-analytics"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/mcp-analytics.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/mcp-analytics/seed_data",
+    "config_path": "platform_bootstrap/mcps/mcp-analytics/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route mcp-analytics.status."
+  },
+  {
+    "service_name": "mcp-google-ads",
+    "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "learning_pipeline_role": "delivery_interface",
+    "primary_tools": [
+      "mcp-google-ads.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "structurally_ready_bootstrap",
+      "geography": "structurally_ready_bootstrap",
+      "demographics": "structurally_ready_bootstrap",
+      "org_profiles": "structurally_ready_bootstrap",
+      "taxonomies": "structurally_ready_bootstrap"
+    },
+    "frontend_exposure_status": "backend_internal_only",
+    "slack_aliases": [
+      "#mcp-mcp-google-ads"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/mcp-google-ads.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/mcp-google-ads/seed_data",
+    "config_path": "platform_bootstrap/mcps/mcp-google-ads/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route mcp-google-ads.status."
+  },
+  {
+    "service_name": "multimodal-ai",
+    "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "learning_pipeline_role": "integration_support",
+    "primary_tools": [
+      "multimodal-ai.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_internal_only",
+    "slack_aliases": [
+      "#mcp-multimodal-ai"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/multimodal-ai.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/multimodal-ai/seed_data",
+    "config_path": "platform_bootstrap/mcps/multimodal-ai/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route multimodal-ai.status."
+  },
+  {
+    "service_name": "org-scrubber-mcp",
+    "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "learning_pipeline_role": "validation_normalization",
+    "primary_tools": [
+      "org-scrubber-mcp.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_internal_only",
+    "slack_aliases": [
+      "#mcp-org-scrubber-mcp"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/org-scrubber-mcp.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/org-scrubber-mcp/seed_data",
+    "config_path": "platform_bootstrap/mcps/org-scrubber-mcp/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route org-scrubber-mcp.status."
+  },
+  {
+    "service_name": "personalized-donation-ai",
+    "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "learning_pipeline_role": "integration_support",
+    "primary_tools": [
+      "personalized-donation-ai.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "structurally_ready_bootstrap",
+      "geography": "structurally_ready_bootstrap",
+      "demographics": "structurally_ready_bootstrap",
+      "org_profiles": "structurally_ready_bootstrap",
+      "taxonomies": "structurally_ready_bootstrap"
+    },
+    "frontend_exposure_status": "backend_internal_only",
+    "slack_aliases": [
+      "#mcp-personalized-donation-ai"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/personalized-donation-ai.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/personalized-donation-ai/seed_data",
+    "config_path": "platform_bootstrap/mcps/personalized-donation-ai/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route personalized-donation-ai.status."
+  },
+  {
+    "service_name": "project-manager-agent",
+    "role_category": "Project coordination MCP for routed updates and delivery workflow tasks.",
+    "learning_pipeline_role": "orchestrator",
+    "primary_tools": [
+      "project.update",
+      "project-manager-agent.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway",
+      "document-manager"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "structurally_ready_bootstrap",
+      "notion": "structurally_ready_bootstrap",
+      "slack": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_session_exposed",
+    "slack_aliases": [
+      "#mcp-project-manager-agent"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/project-manager-agent.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/project-manager-agent/seed_data",
+    "config_path": "platform_bootstrap/mcps/project-manager-agent/config",
+    "bootstrap_status": "bootstrapped_transitional_runtime",
+    "transitional_runtime_note": "Domain logic remains in app.py and is not mounted by active main.py entrypoint.",
+    "notes": "Connected through gateway with minimal smoke-test tool route project-manager-agent.status."
+  },
+  {
+    "service_name": "qa-ai-agent",
+    "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "learning_pipeline_role": "validation_normalization",
+    "primary_tools": [
+      "qa-ai-agent.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "structurally_ready_bootstrap",
+      "local_scripts": "structurally_ready"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_internal_only",
+    "slack_aliases": [
+      "#mcp-qa-ai-agent"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/qa-ai-agent.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/qa-ai-agent/seed_data",
+    "config_path": "platform_bootstrap/mcps/qa-ai-agent/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route qa-ai-agent.status."
+  },
+  {
+    "service_name": "reporting-dashboard-ai",
+    "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "learning_pipeline_role": "delivery_interface",
+    "primary_tools": [
+      "reporting-dashboard-ai.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "structurally_ready_bootstrap",
+      "geography": "structurally_ready_bootstrap",
+      "demographics": "structurally_ready_bootstrap",
+      "org_profiles": "structurally_ready_bootstrap",
+      "taxonomies": "structurally_ready_bootstrap"
+    },
+    "frontend_exposure_status": "backend_session_exposed",
+    "slack_aliases": [
+      "#mcp-reporting-dashboard-ai"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/reporting-dashboard-ai.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/reporting-dashboard-ai/seed_data",
+    "config_path": "platform_bootstrap/mcps/reporting-dashboard-ai/config",
+    "bootstrap_status": "bootstrapped",
+    "transitional_runtime_note": "",
+    "notes": "Connected through gateway with minimal smoke-test tool route reporting-dashboard-ai.status."
+  },
+  {
+    "service_name": "trade_execution_gateway",
+    "role_category": "Trade workflow MCP with transitional placeholder runtime in main.py.",
+    "learning_pipeline_role": "legacy_transitional",
+    "primary_tools": [
+      "trade_execution_gateway.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "app.py domain routes (not mounted by active entrypoint)"
+    ],
+    "external_systems": {
+      "firebase_firestore": "structurally_ready",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "structurally_ready",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "admin_internal_only",
+    "slack_aliases": [
+      "#mcp-trade_execution_gateway"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/trade_execution_gateway.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/trade_execution_gateway/seed_data",
+    "config_path": "platform_bootstrap/mcps/trade_execution_gateway/config",
+    "bootstrap_status": "bootstrapped_transitional_runtime",
+    "transitional_runtime_note": "Domain logic remains in app.py and is not mounted by active main.py entrypoint.",
+    "notes": "Transitional runtime: main.py placeholder MCP contract active; app.py trade routes currently not mounted."
+  },
+  {
+    "service_name": "tradefinance_lc",
+    "role_category": "Trade finance MCP with domain endpoints in app.py and standardized placeholder runtime in main.py.",
+    "learning_pipeline_role": "legacy_transitional",
+    "primary_tools": [
+      "tradefinance_lc.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "app.py domain routes (not mounted by active entrypoint)"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "structurally_ready_bootstrap",
+      "local_scripts": "structurally_ready"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "admin_internal_only",
+    "slack_aliases": [
+      "#mcp-tradefinance_lc"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/tradefinance_lc.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/tradefinance_lc/seed_data",
+    "config_path": "platform_bootstrap/mcps/tradefinance_lc/config",
+    "bootstrap_status": "bootstrapped_transitional_runtime",
+    "transitional_runtime_note": "Domain logic remains in app.py and is not mounted by active main.py entrypoint.",
+    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract."
+  },
+  {
+    "service_name": "tradeops",
+    "role_category": "Trade operations MCP with domain endpoints in app.py and standardized placeholder runtime in main.py.",
+    "learning_pipeline_role": "legacy_transitional",
+    "primary_tools": [
+      "tradeops.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "app.py domain routes (not mounted by active entrypoint)"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "windows_admin_tools": "structurally_ready_bootstrap",
+      "local_scripts": "structurally_ready"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "admin_internal_only",
+    "slack_aliases": [
+      "#mcp-tradeops"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/tradeops.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/tradeops/seed_data",
+    "config_path": "platform_bootstrap/mcps/tradeops/config",
+    "bootstrap_status": "bootstrapped_transitional_runtime",
+    "transitional_runtime_note": "Domain logic remains in app.py and is not mounted by active main.py entrypoint.",
+    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract."
+  },
+  {
+    "service_name": "training_to_sop",
+    "role_category": "Training-to-SOP transformation MCP with domain endpoints in app.py and standardized placeholder runtime in main.py.",
+    "learning_pipeline_role": "learning_synthesis",
+    "primary_tools": [
+      "training_to_sop.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "app.py domain routes (not mounted by active entrypoint)"
+    ],
+    "external_systems": {
+      "firebase_firestore": "planned",
+      "google_drive": "structurally_ready_bootstrap",
+      "notion": "structurally_ready_bootstrap",
+      "slack": "planned",
+      "windows_admin_tools": "structurally_ready_bootstrap",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "backend_internal_only",
+    "slack_aliases": [
+      "#mcp-training_to_sop"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/training_to_sop.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/training_to_sop/seed_data",
+    "config_path": "platform_bootstrap/mcps/training_to_sop/config",
+    "bootstrap_status": "bootstrapped_transitional_runtime",
+    "transitional_runtime_note": "Domain logic remains in app.py and is not mounted by active main.py entrypoint.",
+    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract."
+  },
+  {
+    "service_name": "treasury",
+    "role_category": "Treasury/risk MCP with domain endpoints in app.py and standardized placeholder runtime in main.py.",
+    "learning_pipeline_role": "validation_normalization",
+    "primary_tools": [
+      "treasury.status"
+    ],
+    "expected_inputs": {
+      "execute_envelope": {
+        "toolId": "string",
+        "tool": "string (compat)",
+        "input": "object"
+      },
+      "service_specific": [
+        "status check payload for smoke validation",
+        "service-specific domain payloads where implemented"
+      ]
+    },
+    "expected_outputs": {
+      "success_envelope": [
+        "ok",
+        "status",
+        "service",
+        "tool"
+      ],
+      "error_envelope": [
+        "ok",
+        "status",
+        "service",
+        "error",
+        "detail"
+      ]
+    },
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "app.py domain routes (not mounted by active entrypoint)"
+    ],
+    "external_systems": {
+      "firebase_firestore": "structurally_ready",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "structurally_ready",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned"
+    },
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "frontend_exposure_status": "admin_internal_only",
+    "slack_aliases": [
+      "#mcp-treasury"
+    ],
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/treasury.status.request.json",
+    "seed_data_path": "platform_bootstrap/mcps/treasury/seed_data",
+    "config_path": "platform_bootstrap/mcps/treasury/config",
+    "bootstrap_status": "bootstrapped_transitional_runtime",
+    "transitional_runtime_note": "Domain logic remains in app.py and is not mounted by active main.py entrypoint.",
+    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract."
+  }
+]

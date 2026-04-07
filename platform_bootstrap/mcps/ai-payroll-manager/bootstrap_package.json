@@ -1,0 +1,65 @@
+{
+  "service_name": "ai-payroll-manager",
+  "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+  "learning_pipeline_role": "integration_support",
+  "primary_tools": [
+    "ai-payroll-manager.status"
+  ],
+  "expected_inputs": {
+    "execute_envelope": {
+      "toolId": "string",
+      "tool": "string (compat)",
+      "input": "object"
+    },
+    "service_specific": [
+      "status check payload for smoke validation",
+      "service-specific domain payloads where implemented"
+    ]
+  },
+  "expected_outputs": {
+    "success_envelope": [
+      "ok",
+      "status",
+      "service",
+      "tool"
+    ],
+    "error_envelope": [
+      "ok",
+      "status",
+      "service",
+      "error",
+      "detail"
+    ]
+  },
+  "upstream_callers": [
+    "mcp-gateway"
+  ],
+  "downstream_dependencies": [
+    "none_required_for_placeholder"
+  ],
+  "external_systems": {
+    "firebase_firestore": "planned",
+    "google_drive": "planned",
+    "notion": "planned",
+    "slack": "planned",
+    "windows_admin_tools": "planned",
+    "local_scripts": "planned"
+  },
+  "shared_dataset_readiness": {
+    "google_ads": "planned",
+    "geography": "planned",
+    "demographics": "planned",
+    "org_profiles": "planned",
+    "taxonomies": "planned"
+  },
+  "frontend_exposure_status": "backend_internal_only",
+  "slack_aliases": [
+    "#mcp-ai-payroll-manager"
+  ],
+  "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/ai-payroll-manager.status.request.json",
+  "seed_data_path": "platform_bootstrap/mcps/ai-payroll-manager/seed_data",
+  "config_path": "platform_bootstrap/mcps/ai-payroll-manager/config",
+  "bootstrap_status": "bootstrapped",
+  "transitional_runtime_note": "",
+  "notes": "Connected through gateway with minimal smoke-test tool route ai-payroll-manager.status."
+}

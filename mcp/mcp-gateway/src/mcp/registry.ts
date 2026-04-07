@@ -1,31 +1,16 @@
 const CLOUD_RUN_DOMAIN = 'yd7bwat7eq-uc.a.run.app';
 const USE_LOCALHOST = process.env.MCP_USE_LOCALHOST === 'true';
 const LOCALHOST_BASE_URL = process.env.MCP_LOCALHOST_BASE_URL || 'http://localhost:8080';
-const DOCUMENT_PROCESS_TOOL = {
-  tool: 'document.process',
-  service: 'document-manager',
-  path: '/execute',
-} as const;
-const ANALYTICS_PROCESS_TOOL = {
-  tool: 'analytics.process',
-  service: 'mcp-analytics',
-  path: '/execute',
-} as const;
-const PROJECT_UPDATE_TOOL = {
-  tool: 'project.update',
-  service: 'project-manager-agent',
-  path: '/execute',
-} as const;
-const TRAINING_SYNC_TOOL = {
-  tool: 'training.sync',
-  service: 'ai-training-coordinator',
-  path: '/execute',
-} as const;
-const DATA_VALIDATE_TOOL = {
-  tool: 'data.validate',
-  service: 'data-scrubbing-ai',
-  path: '/execute',
-} as const;
+
+export type RegistryRouteKind = 'service' | 'tool';
+
+export type RegistryRouteDefinition = {
+  key: string;
+  service: string;
+  envVar: string;
+  path: '/execute';
+  kind: RegistryRouteKind;
+};
 
 function defaultServiceUrl(slug: string): string {
   if (USE_LOCALHOST) {
@@ -38,43 +23,107 @@ function serviceUrl(slug: string, envVar: string): string {
   return process.env[envVar] || defaultServiceUrl(slug);
 }
 
-export const MCP_REGISTRY: Record<string, string> = {
-  "ai-budget-planner": serviceUrl("ai-budget-planner", "MCP_AI_BUDGET_PLANNER_URL"),
-  "ai-expense-manager": serviceUrl("ai-expense-manager", "MCP_AI_EXPENSE_MANAGER_URL"),
-  "ai-financial-analyst": serviceUrl("ai-financial-analyst", "MCP_AI_FINANCIAL_ANALYST_URL"),
-  "ai-financial-reporting-specialist": serviceUrl("ai-financial-reporting-specialist", "MCP_AI_FINANCIAL_REPORTING_SPECIALIST_URL"),
-  "ai-invoice-processor": serviceUrl("ai-invoice-processor", "MCP_AI_INVOICE_PROCESSOR_URL"),
-  "ai-payroll-manager": serviceUrl("ai-payroll-manager", "MCP_AI_PAYROLL_MANAGER_URL"),
-  "ai-tax-compliance-agent": serviceUrl("ai-tax-compliance-agent", "MCP_AI_TAX_COMPLIANCE_AGENT_URL"),
-  "ai-training-coordinator": serviceUrl("ai-training-coordinator", "MCP_AI_TRAINING_COORDINATOR_URL"),
-  "ai-ux-analyst": serviceUrl("ai-ux-analyst", "MCP_AI_UX_ANALYST_URL"),
-  "amazon-drop-shipping-ai": serviceUrl("amazon-drop-shipping-ai", "MCP_AMAZON_DROP_SHIPPING_AI_URL"),
-  "coder-agent": serviceUrl("coder-agent", "MCP_CODER_AGENT_URL"),
-  "content-generation-ai": serviceUrl("content-generation-ai", "MCP_CONTENT_GENERATION_AI_URL"),
-  "cto-agent": serviceUrl("cto-agent", "MCP_CTO_AGENT_URL"),
-  "data-scrubbing-ai": serviceUrl("data-scrubbing-ai", "MCP_DATA_SCRUBBING_AI_URL"),
-  "designer-ai-agent": serviceUrl("designer-ai-agent", "MCP_DESIGNER_AI_AGENT_URL"),
-  "email-campaign-optimizer-ai": serviceUrl("email-campaign-optimizer-ai", "MCP_EMAIL_CAMPAIGN_OPTIMIZER_AI_URL"),
-  "fundraising-chatbot-ai": serviceUrl("fundraising-chatbot-ai", "MCP_FUNDRAISING_CHATBOT_AI_URL"),
-  "hr-ai-agent": serviceUrl("hr-ai-agent", "MCP_HR_AI_AGENT_URL"),
-  "information-retrieval-ai": serviceUrl("information-retrieval-ai", "MCP_INFORMATION_RETRIEVAL_AI_URL"),
-  "investment_recommendation": serviceUrl("investment_recommendation", "MCP_INVESTMENT_RECOMMENDATION_URL"),
-  "mcp-analytics": serviceUrl("mcp-analytics", "MCP_MCP_ANALYTICS_URL"),
-  "mcp-google-ads": serviceUrl("mcp-google-ads", "MCP_MCP_GOOGLE_ADS_URL"),
-  "multimodal-ai": serviceUrl("multimodal-ai", "MCP_MULTIMODAL_AI_URL"),
-  "org-scrubber-mcp": serviceUrl("org-scrubber-mcp", "MCP_ORG_SCRUBBER_MCP_URL"),
-  "personalized-donation-ai": serviceUrl("personalized-donation-ai", "MCP_PERSONALIZED_DONATION_AI_URL"),
-  "project-manager-agent": serviceUrl("project-manager-agent", "MCP_PROJECT_MANAGER_AGENT_URL"),
-  "qa-ai-agent": serviceUrl("qa-ai-agent", "MCP_QA_AI_AGENT_URL"),
-  "reporting-dashboard-ai": serviceUrl("reporting-dashboard-ai", "MCP_REPORTING_DASHBOARD_AI_URL"),
-  "trade_execution_gateway": serviceUrl("trade_execution_gateway", "MCP_TRADE_EXECUTION_GATEWAY_URL"),
-  "tradefinance_lc": serviceUrl("tradefinance_lc", "MCP_TRADEFINANCE_LC_URL"),
-  "tradeops": serviceUrl("tradeops", "MCP_TRADEOPS_URL"),
-  "training_to_sop": serviceUrl("training_to_sop", "MCP_TRAINING_TO_SOP_URL"),
-  "treasury": serviceUrl("treasury", "MCP_TREASURY_URL"),
-  [ANALYTICS_PROCESS_TOOL.tool]: serviceUrl(ANALYTICS_PROCESS_TOOL.service, "MCP_MCP_ANALYTICS_URL"),
-  [PROJECT_UPDATE_TOOL.tool]: serviceUrl(PROJECT_UPDATE_TOOL.service, "MCP_PROJECT_MANAGER_AGENT_URL"),
-  [TRAINING_SYNC_TOOL.tool]: serviceUrl(TRAINING_SYNC_TOOL.service, "MCP_AI_TRAINING_COORDINATOR_URL"),
-  [DATA_VALIDATE_TOOL.tool]: serviceUrl(DATA_VALIDATE_TOOL.service, "MCP_DATA_SCRUBBING_AI_URL"),
-  [DOCUMENT_PROCESS_TOOL.tool]: serviceUrl(DOCUMENT_PROCESS_TOOL.service, "MCP_DOCUMENT_MANAGER_URL"),
-};
+function route(
+  key: string,
+  service: string,
+  envVar: string,
+  kind: RegistryRouteKind
+): RegistryRouteDefinition {
+  return {
+    key,
+    service,
+    envVar,
+    path: '/execute',
+    kind,
+  };
+}
+
+const SERVICE_ROUTES: RegistryRouteDefinition[] = [
+  route('ai-budget-planner', 'ai-budget-planner', 'MCP_AI_BUDGET_PLANNER_URL', 'service'),
+  route('ai-expense-manager', 'ai-expense-manager', 'MCP_AI_EXPENSE_MANAGER_URL', 'service'),
+  route('ai-financial-analyst', 'ai-financial-analyst', 'MCP_AI_FINANCIAL_ANALYST_URL', 'service'),
+  route('ai-financial-reporting-specialist', 'ai-financial-reporting-specialist', 'MCP_AI_FINANCIAL_REPORTING_SPECIALIST_URL', 'service'),
+  route('ai-invoice-processor', 'ai-invoice-processor', 'MCP_AI_INVOICE_PROCESSOR_URL', 'service'),
+  route('ai-payroll-manager', 'ai-payroll-manager', 'MCP_AI_PAYROLL_MANAGER_URL', 'service'),
+  route('ai-tax-compliance-agent', 'ai-tax-compliance-agent', 'MCP_AI_TAX_COMPLIANCE_AGENT_URL', 'service'),
+  route('ai-training-coordinator', 'ai-training-coordinator', 'MCP_AI_TRAINING_COORDINATOR_URL', 'service'),
+  route('ai-ux-analyst', 'ai-ux-analyst', 'MCP_AI_UX_ANALYST_URL', 'service'),
+  route('amazon-drop-shipping-ai', 'amazon-drop-shipping-ai', 'MCP_AMAZON_DROP_SHIPPING_AI_URL', 'service'),
+  route('coder-agent', 'coder-agent', 'MCP_CODER_AGENT_URL', 'service'),
+  route('content-generation-ai', 'content-generation-ai', 'MCP_CONTENT_GENERATION_AI_URL', 'service'),
+  route('cto-agent', 'cto-agent', 'MCP_CTO_AGENT_URL', 'service'),
+  route('data-scrubbing-ai', 'data-scrubbing-ai', 'MCP_DATA_SCRUBBING_AI_URL', 'service'),
+  route('designer-ai-agent', 'designer-ai-agent', 'MCP_DESIGNER_AI_AGENT_URL', 'service'),
+  route('document-manager', 'document-manager', 'MCP_DOCUMENT_MANAGER_URL', 'service'),
+  route('email-campaign-optimizer-ai', 'email-campaign-optimizer-ai', 'MCP_EMAIL_CAMPAIGN_OPTIMIZER_AI_URL', 'service'),
+  route('fundraising-chatbot-ai', 'fundraising-chatbot-ai', 'MCP_FUNDRAISING_CHATBOT_AI_URL', 'service'),
+  route('hr-ai-agent', 'hr-ai-agent', 'MCP_HR_AI_AGENT_URL', 'service'),
+  route('information-retrieval-ai', 'information-retrieval-ai', 'MCP_INFORMATION_RETRIEVAL_AI_URL', 'service'),
+  route('investment_recommendation', 'investment_recommendation', 'MCP_INVESTMENT_RECOMMENDATION_URL', 'service'),
+  route('mcp-analytics', 'mcp-analytics', 'MCP_MCP_ANALYTICS_URL', 'service'),
+  route('mcp-google-ads', 'mcp-google-ads', 'MCP_MCP_GOOGLE_ADS_URL', 'service'),
+  route('multimodal-ai', 'multimodal-ai', 'MCP_MULTIMODAL_AI_URL', 'service'),
+  route('org-scrubber-mcp', 'org-scrubber-mcp', 'MCP_ORG_SCRUBBER_MCP_URL', 'service'),
+  route('personalized-donation-ai', 'personalized-donation-ai', 'MCP_PERSONALIZED_DONATION_AI_URL', 'service'),
+  route('project-manager-agent', 'project-manager-agent', 'MCP_PROJECT_MANAGER_AGENT_URL', 'service'),
+  route('qa-ai-agent', 'qa-ai-agent', 'MCP_QA_AI_AGENT_URL', 'service'),
+  route('reporting-dashboard-ai', 'reporting-dashboard-ai', 'MCP_REPORTING_DASHBOARD_AI_URL', 'service'),
+  route('trade_execution_gateway', 'trade_execution_gateway', 'MCP_TRADE_EXECUTION_GATEWAY_URL', 'service'),
+  route('tradefinance_lc', 'tradefinance_lc', 'MCP_TRADEFINANCE_LC_URL', 'service'),
+  route('tradeops', 'tradeops', 'MCP_TRADEOPS_URL', 'service'),
+  route('training_to_sop', 'training_to_sop', 'MCP_TRAINING_TO_SOP_URL', 'service'),
+  route('treasury', 'treasury', 'MCP_TREASURY_URL', 'service'),
+];
+
+const TOOL_ROUTES: RegistryRouteDefinition[] = [
+  route('document.process', 'document-manager', 'MCP_DOCUMENT_MANAGER_URL', 'tool'),
+  route('analytics.process', 'mcp-analytics', 'MCP_MCP_ANALYTICS_URL', 'tool'),
+  route('project.update', 'project-manager-agent', 'MCP_PROJECT_MANAGER_AGENT_URL', 'tool'),
+  route('training.sync', 'ai-training-coordinator', 'MCP_AI_TRAINING_COORDINATOR_URL', 'tool'),
+  route('data.validate', 'data-scrubbing-ai', 'MCP_DATA_SCRUBBING_AI_URL', 'tool'),
+];
+
+const CONNECTIVITY_TOOL_ROUTES: RegistryRouteDefinition[] = SERVICE_ROUTES.map((entry) =>
+  route(`${entry.service}.status`, entry.service, entry.envVar, 'tool')
+);
+
+const ROUTES: RegistryRouteDefinition[] = [
+  ...SERVICE_ROUTES,
+  ...TOOL_ROUTES,
+  ...CONNECTIVITY_TOOL_ROUTES,
+];
+
+export const MCP_ROUTE_REGISTRY: Record<string, RegistryRouteDefinition> = Object.fromEntries(
+  ROUTES.map((entry) => [entry.key, entry])
+);
+
+export const MCP_REGISTRY: Record<string, string> = Object.fromEntries(
+  ROUTES.map((entry) => [entry.key, serviceUrl(entry.service, entry.envVar)])
+);
+
+export const REQUIRED_TOOL_ROUTES = [...TOOL_ROUTES, ...CONNECTIVITY_TOOL_ROUTES].map(
+  (entry) => entry.key
+);
+
+export function resolveRegistryTarget(key: string): {
+  key: string;
+  service: string;
+  path: string;
+  kind: RegistryRouteKind;
+  baseUrl: string;
+  targetUrl: string;
+} | null {
+  const route = MCP_ROUTE_REGISTRY[key];
+  if (!route) {
+    return null;
+  }
+  const baseUrl = MCP_REGISTRY[key];
+  return {
+    key,
+    service: route.service,
+    path: route.path,
+    kind: route.kind,
+    baseUrl,
+    targetUrl: `${baseUrl}${route.path}`,
+  };
+}

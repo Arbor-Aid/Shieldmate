@@ -1,0 +1,9 @@
+{
+  "toolId": "training.sync",
+  "tool": "training.sync",
+  "input": {
+    "doc_id": "doc-smoke-003",
+    "category": "ai_agents",
+    "mode": "smoke"
+  }
+}

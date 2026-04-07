@@ -1,0 +1,7 @@
+{
+  "service": "mcp-analytics",
+  "env": {
+    "PORT": "8080",
+    "MCP_SERVICE_NAME": "mcp-analytics"
+  }
+}

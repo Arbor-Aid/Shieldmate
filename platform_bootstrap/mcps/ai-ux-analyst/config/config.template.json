@@ -1,0 +1,7 @@
+{
+  "service": "ai-ux-analyst",
+  "env": {
+    "PORT": "8080",
+    "MCP_SERVICE_NAME": "ai-ux-analyst"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "service": "ai-training-coordinator",
+  "env": {
+    "PORT": "8080",
+    "MCP_SERVICE_NAME": "ai-training-coordinator"
+  }
+}

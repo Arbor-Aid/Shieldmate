@@ -58,13 +58,23 @@ def _extract_org_id(claims: Dict[str, Any]):
     return None
 
 def _extract_roles(claims: Dict[str, Any]):
+    role_set = set()
     roles = claims.get("roles")
     if isinstance(roles, list):
-        return [r for r in roles if isinstance(r, str) and r]
+        for role in roles:
+            if isinstance(role, str) and role:
+                role_set.add(role)
     legacy_role = claims.get("role")
     if isinstance(legacy_role, str) and legacy_role:
-        return [legacy_role]
-    return []
+        role_set.add(legacy_role)
+    org_roles = claims.get("orgRoles")
+    if isinstance(org_roles, dict):
+        for role_list in org_roles.values():
+            if isinstance(role_list, list):
+                for role in role_list:
+                    if isinstance(role, str) and role:
+                        role_set.add(role)
+    return list(role_set)
 
 def enforce_org_match(claims: Dict[str, Any], payload_org_id: str):
     token_org = _extract_org_id(claims)
@@ -77,7 +87,7 @@ def require_approver(claims: Dict[str, Any]):
     roles = _extract_roles(claims)
     admin = bool(claims.get("admin"))
     normalized_roles = [r.lower() for r in roles]
-    # Approver rule: admin OR super_admin OR role includes 'joshua'/'luis'
-    ok = admin or ("super_admin" in normalized_roles) or ("joshua" in normalized_roles) or ("luis" in normalized_roles)
+    # Approver rule: claims-based only.
+    ok = admin or ("super_admin" in normalized_roles) or ("org_admin" in normalized_roles)
     if not ok:
         raise PermissionError("Approver role required.")

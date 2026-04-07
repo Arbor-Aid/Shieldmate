@@ -1,0 +1,67 @@
+{
+  "service_name": "mcp-analytics",
+  "role_category": "Analytics processing MCP for routed document and workflow telemetry tasks.",
+  "learning_pipeline_role": "analytics_feedback",
+  "primary_tools": [
+    "analytics.process",
+    "mcp-analytics.status"
+  ],
+  "expected_inputs": {
+    "execute_envelope": {
+      "toolId": "string",
+      "tool": "string (compat)",
+      "input": "object"
+    },
+    "service_specific": [
+      "status check payload for smoke validation",
+      "service-specific domain payloads where implemented"
+    ]
+  },
+  "expected_outputs": {
+    "success_envelope": [
+      "ok",
+      "status",
+      "service",
+      "tool"
+    ],
+    "error_envelope": [
+      "ok",
+      "status",
+      "service",
+      "error",
+      "detail"
+    ]
+  },
+  "upstream_callers": [
+    "mcp-gateway",
+    "document-manager"
+  ],
+  "downstream_dependencies": [
+    "none_required_for_placeholder"
+  ],
+  "external_systems": {
+    "firebase_firestore": "planned",
+    "google_drive": "structurally_ready_bootstrap",
+    "notion": "structurally_ready_bootstrap",
+    "slack": "planned",
+    "windows_admin_tools": "structurally_ready_bootstrap",
+    "local_scripts": "planned"
+  },
+  "shared_dataset_readiness": {
+    "google_ads": "structurally_ready_bootstrap",
+    "geography": "structurally_ready_bootstrap",
+    "demographics": "structurally_ready_bootstrap",
+    "org_profiles": "structurally_ready_bootstrap",
+    "taxonomies": "structurally_ready_bootstrap"
+  },
+  "frontend_exposure_status": "backend_session_exposed",
+  "slack_aliases": [
+    "#mcp-mcp-analytics"
+  ],
+  "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/mcp-analytics.status.request.json",
+  "seed_data_path": "platform_bootstrap/mcps/mcp-analytics/seed_data",
+  "config_path": "platform_bootstrap/mcps/mcp-analytics/config",
+  "bootstrap_status": "bootstrapped",
+  "transitional_runtime_note": "",
+  "notes": "Connected through gateway with minimal smoke-test tool route mcp-analytics.status."
+}

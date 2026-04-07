@@ -1,0 +1,65 @@
+{
+  "service_name": "trade_execution_gateway",
+  "role_category": "Trade workflow MCP with transitional placeholder runtime in main.py.",
+  "learning_pipeline_role": "legacy_transitional",
+  "primary_tools": [
+    "trade_execution_gateway.status"
+  ],
+  "expected_inputs": {
+    "execute_envelope": {
+      "toolId": "string",
+      "tool": "string (compat)",
+      "input": "object"
+    },
+    "service_specific": [
+      "status check payload for smoke validation",
+      "service-specific domain payloads where implemented"
+    ]
+  },
+  "expected_outputs": {
+    "success_envelope": [
+      "ok",
+      "status",
+      "service",
+      "tool"
+    ],
+    "error_envelope": [
+      "ok",
+      "status",
+      "service",
+      "error",
+      "detail"
+    ]
+  },
+  "upstream_callers": [
+    "mcp-gateway"
+  ],
+  "downstream_dependencies": [
+    "app.py domain routes (not mounted by active entrypoint)"
+  ],
+  "external_systems": {
+    "firebase_firestore": "structurally_ready",
+    "google_drive": "planned",
+    "notion": "planned",
+    "slack": "structurally_ready",
+    "windows_admin_tools": "planned",
+    "local_scripts": "planned"
+  },
+  "shared_dataset_readiness": {
+    "google_ads": "planned",
+    "geography": "planned",
+    "demographics": "planned",
+    "org_profiles": "planned",
+    "taxonomies": "planned"
+  },
+  "frontend_exposure_status": "admin_internal_only",
+  "slack_aliases": [
+    "#mcp-trade_execution_gateway"
+  ],
+  "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/trade_execution_gateway.status.request.json",
+  "seed_data_path": "platform_bootstrap/mcps/trade_execution_gateway/seed_data",
+  "config_path": "platform_bootstrap/mcps/trade_execution_gateway/config",
+  "bootstrap_status": "bootstrapped_transitional_runtime",
+  "transitional_runtime_note": "Domain logic remains in app.py and is not mounted by active main.py entrypoint.",
+  "notes": "Transitional runtime: main.py placeholder MCP contract active; app.py trade routes currently not mounted."
+}

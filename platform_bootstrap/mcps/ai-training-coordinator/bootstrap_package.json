@@ -1,0 +1,67 @@
+{
+  "service_name": "ai-training-coordinator",
+  "role_category": "Training orchestration MCP for synchronization of learning/training workflows.",
+  "learning_pipeline_role": "learning_synthesis",
+  "primary_tools": [
+    "training.sync",
+    "ai-training-coordinator.status"
+  ],
+  "expected_inputs": {
+    "execute_envelope": {
+      "toolId": "string",
+      "tool": "string (compat)",
+      "input": "object"
+    },
+    "service_specific": [
+      "status check payload for smoke validation",
+      "service-specific domain payloads where implemented"
+    ]
+  },
+  "expected_outputs": {
+    "success_envelope": [
+      "ok",
+      "status",
+      "service",
+      "tool"
+    ],
+    "error_envelope": [
+      "ok",
+      "status",
+      "service",
+      "error",
+      "detail"
+    ]
+  },
+  "upstream_callers": [
+    "mcp-gateway",
+    "document-manager"
+  ],
+  "downstream_dependencies": [
+    "none_required_for_placeholder"
+  ],
+  "external_systems": {
+    "firebase_firestore": "planned",
+    "google_drive": "structurally_ready_bootstrap",
+    "notion": "structurally_ready_bootstrap",
+    "slack": "planned",
+    "windows_admin_tools": "structurally_ready_bootstrap",
+    "local_scripts": "planned"
+  },
+  "shared_dataset_readiness": {
+    "google_ads": "planned",
+    "geography": "planned",
+    "demographics": "planned",
+    "org_profiles": "planned",
+    "taxonomies": "planned"
+  },
+  "frontend_exposure_status": "backend_session_exposed",
+  "slack_aliases": [
+    "#mcp-ai-training-coordinator"
+  ],
+  "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/ai-training-coordinator.status.request.json",
+  "seed_data_path": "platform_bootstrap/mcps/ai-training-coordinator/seed_data",
+  "config_path": "platform_bootstrap/mcps/ai-training-coordinator/config",
+  "bootstrap_status": "bootstrapped",
+  "transitional_runtime_note": "",
+  "notes": "Connected through gateway with minimal smoke-test tool route ai-training-coordinator.status."
+}

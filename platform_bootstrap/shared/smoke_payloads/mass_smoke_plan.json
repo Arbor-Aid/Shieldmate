@@ -1,0 +1,53 @@
+{
+  "description": "Cold-start mass smoke input plan generated from bootstrap structures.",
+  "gateway_execute_url_default": "http://localhost:8090/mcp/execute",
+  "service_status_payloads": [
+    "platform_bootstrap/shared/smoke_payloads/services/ai-budget-planner.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/ai-expense-manager.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/ai-financial-analyst.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/ai-financial-reporting-specialist.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/ai-invoice-processor.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/ai-payroll-manager.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/ai-tax-compliance-agent.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/ai-training-coordinator.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/ai-ux-analyst.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/amazon-drop-shipping-ai.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/coder-agent.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/content-generation-ai.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/cto-agent.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/data-scrubbing-ai.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/designer-ai-agent.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/document-manager.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/email-campaign-optimizer-ai.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/fundraising-chatbot-ai.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/hr-ai-agent.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/information-retrieval-ai.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/investment_recommendation.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/mcp-analytics.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/mcp-google-ads.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/multimodal-ai.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/org-scrubber-mcp.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/personalized-donation-ai.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/project-manager-agent.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/qa-ai-agent.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/reporting-dashboard-ai.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/trade_execution_gateway.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/tradefinance_lc.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/tradeops.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/training_to_sop.status.request.json",
+    "platform_bootstrap/shared/smoke_payloads/services/treasury.status.request.json"
+  ],
+  "functional_orchestrator_payloads": [
+    "platform_bootstrap/shared/smoke_payloads/orchestrators/document.process.request.json",
+    "platform_bootstrap/shared/smoke_payloads/orchestrators/analytics.process.request.json",
+    "platform_bootstrap/shared/smoke_payloads/orchestrators/project.update.request.json",
+    "platform_bootstrap/shared/smoke_payloads/orchestrators/training.sync.request.json",
+    "platform_bootstrap/shared/smoke_payloads/orchestrators/data.validate.request.json"
+  ],
+  "integration_readiness_payloads": [
+    "platform_bootstrap/integrations/google_drive/smoke_payloads/google_drive_ingest.sample.json",
+    "platform_bootstrap/integrations/notion/smoke_payloads/notion_ingest.sample.json",
+    "platform_bootstrap/integrations/windows_admin_tools/smoke_payloads/windows_admin_tools_ingest.sample.json"
+  ],
+  "bundle_payload": "platform_bootstrap/shared/smoke_payloads/integrations/drive_notion_windows_bundle.request.json"
+}

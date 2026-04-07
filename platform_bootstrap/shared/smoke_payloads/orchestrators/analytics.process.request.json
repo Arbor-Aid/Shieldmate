@@ -1,0 +1,9 @@
+{
+  "toolId": "analytics.process",
+  "tool": "analytics.process",
+  "input": {
+    "doc_id": "doc-smoke-001",
+    "category": "engineering",
+    "mode": "smoke"
+  }
+}

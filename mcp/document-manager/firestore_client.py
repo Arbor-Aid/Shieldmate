@@ -1,3 +1,4 @@
+﻿# MOCK ONLY — replace with real Firestore via env-gated adapter later
 import json
 from datetime import datetime
 
@@ -16,3 +17,4 @@ def write_doc_record(payload):
     }
 
     print("[FIRESTORE MOCK]", json.dumps(record))
+
