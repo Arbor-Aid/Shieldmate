@@ -99,3 +99,26 @@ flowchart LR
 - Authorization must use Firebase ID token claims (`role`, `org`).
 - No email-based auth or Firestore-only roles.
 - After claim updates, users must refresh token or re-login.
+
+---
+
+## 2026-04-13 Multi-Node Authority Snapshot
+
+Updated: 2026-04-13 21:32:45
+
+Authoritative repo root:
+D:\shieldmatessd\Shieldmate_RECLONE
+
+Authoritative branch:
+ui-rebuild-flutter-gen-ui
+
+System node roles:
+- THE-BOT: primary Windows control, build, and backend node
+- HONEY: Raspberry Pi Kali monitoring and security node
+- LAPTOP: dev, control, and review node
+
+Operating policy:
+- Laptop and THE-BOT stay aligned to canon during bring-up
+- MCP updates must land on canon before endpoint activation
+- Claims and auth schema remain unified end-to-end
+- Do not delete folders; park legacy only after confirmation
