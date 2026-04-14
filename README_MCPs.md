@@ -40,6 +40,14 @@
   - `training.sync -> ai-training-coordinator`
   - `data.validate -> data-scrubbing-ai`
   - `document.process -> document-manager`
+- Activation-layer tool registrations also include:
+  - `retrieval.search -> information-retrieval-ai`
+  - `reporting.aggregate -> reporting-dashboard-ai`
+  - `content.generate -> content-generation-ai`
+  - `sop.generate -> training_to_sop`
+  - `coder.analyze -> coder-agent`
+  - `qa.evaluate -> qa-ai-agent`
+  - `org.scrub -> org-scrubber-mcp`
 - Fleet connectivity registrations also include minimal status routes:
   - `<service>.status -> <service>` for each authoritative MCP service
   - these are intended for bulk smoke routing checks, not deep domain semantics
@@ -51,6 +59,30 @@
 - Chained calls from `document-manager` use `MCP_GATEWAY_EXECUTE_URL` with canonical local default `http://localhost:8090/mcp/execute`.
 - `document-manager` now sends canonical `toolId` and compatibility `tool` in chained requests.
 - Downstream placeholder handlers may still return stub/echo results even when routing is correct.
+
+## Activation status
+- Fleet activation split:
+  - Tier 1 activated: 7 services
+  - Tier 2 activated: 5 services
+  - Tier 3 placeholder: 22 services
+- Tier 1 activated services:
+  - `document-manager`
+  - `mcp-analytics`
+  - `project-manager-agent`
+  - `ai-training-coordinator`
+  - `data-scrubbing-ai`
+  - `information-retrieval-ai`
+  - `reporting-dashboard-ai`
+- Tier 2 activated services:
+  - `content-generation-ai`
+  - `training_to_sop`
+  - `coder-agent`
+  - `qa-ai-agent`
+  - `org-scrubber-mcp`
+- Transitional-but-activated runtime:
+  - `project-manager-agent`
+  - `training_to_sop`
+- `document-manager` now emits structured orchestration records and appends local JSONL events by default at `platform_bootstrap/incidents/document_manager_records.jsonl`.
 
 ## Auth/RBAC note
 - Gateway requests require Firebase ID tokens and claims-based RBAC.
@@ -95,6 +127,10 @@
   - `powershell -ExecutionPolicy Bypass -File scripts/mcp_mass_smoke_from_bootstrap.ps1`
 - Optional functional + integration payload pass:
   - `powershell -ExecutionPolicy Bypass -File scripts/mcp_mass_smoke_from_bootstrap.ps1 -IncludeFunctional`
+- `-IncludeFunctional` now includes:
+  - functional orchestrator payloads
+  - integration readiness payloads
+  - activation payloads for Tier 2 tools
 - Use `MCP_SMOKE_AUTH_TOKEN` env var for authenticated gateway checks when required.
 
 ## Integration Readiness

@@ -18,7 +18,13 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-ai-budget-planner"
+        "slack_channel": "#mcp-ai-budget-planner",
+        "activation_level": "tier3_placeholder",
+        "live_behavior_present": false,
+        "consumes_bootstrap_data": false,
+        "writes_structured_records": false,
+        "frontend_safe_output": false,
+        "slack_trigger_ready": false
     },
     {
         "display_name": "Ai Expense Manager",
@@ -39,7 +45,13 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-ai-expense-manager"
+        "slack_channel": "#mcp-ai-expense-manager",
+        "activation_level": "tier3_placeholder",
+        "live_behavior_present": false,
+        "consumes_bootstrap_data": false,
+        "writes_structured_records": false,
+        "frontend_safe_output": false,
+        "slack_trigger_ready": false
     },
     {
         "display_name": "Ai Financial Analyst",
@@ -60,7 +72,13 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-ai-financial-analyst"
+        "slack_channel": "#mcp-ai-financial-analyst",
+        "activation_level": "tier3_placeholder",
+        "live_behavior_present": false,
+        "consumes_bootstrap_data": false,
+        "writes_structured_records": false,
+        "frontend_safe_output": false,
+        "slack_trigger_ready": false
     },
     {
         "display_name": "Ai Financial Reporting Specialist",
@@ -81,7 +99,13 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-ai-financial-reporting-specialist"
+        "slack_channel": "#mcp-ai-financial-reporting-specialist",
+        "activation_level": "tier3_placeholder",
+        "live_behavior_present": false,
+        "consumes_bootstrap_data": false,
+        "writes_structured_records": false,
+        "frontend_safe_output": false,
+        "slack_trigger_ready": false
     },
     {
         "display_name": "Ai Invoice Processor",
@@ -102,7 +126,13 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-ai-invoice-processor"
+        "slack_channel": "#mcp-ai-invoice-processor",
+        "activation_level": "tier3_placeholder",
+        "live_behavior_present": false,
+        "consumes_bootstrap_data": false,
+        "writes_structured_records": false,
+        "frontend_safe_output": false,
+        "slack_trigger_ready": false
     },
     {
         "display_name": "Ai Payroll Manager",
@@ -123,7 +153,13 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-ai-payroll-manager"
+        "slack_channel": "#mcp-ai-payroll-manager",
+        "activation_level": "tier3_placeholder",
+        "live_behavior_present": false,
+        "consumes_bootstrap_data": false,
+        "writes_structured_records": false,
+        "frontend_safe_output": false,
+        "slack_trigger_ready": false
     },
     {
         "display_name": "Ai Tax Compliance Agent",
@@ -144,7 +180,13 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-ai-tax-compliance-agent"
+        "slack_channel": "#mcp-ai-tax-compliance-agent",
+        "activation_level": "tier3_placeholder",
+        "live_behavior_present": false,
+        "consumes_bootstrap_data": false,
+        "writes_structured_records": false,
+        "frontend_safe_output": false,
+        "slack_trigger_ready": false
     },
     {
         "display_name": "Ai Training Coordinator",
@@ -165,7 +207,14 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-ai-training-coordinator"
+        "slack_channel": "#mcp-ai-training-coordinator",
+        "activation_level": "tier1_activated",
+        "live_behavior_present": true,
+        "consumes_bootstrap_data": true,
+        "writes_structured_records": false,
+        "frontend_safe_output": true,
+        "slack_trigger_ready": true,
+        "runtime_mode": "activated_main"
     },
     {
         "display_name": "Ai Ux Analyst",
@@ -186,7 +235,13 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-ai-ux-analyst"
+        "slack_channel": "#mcp-ai-ux-analyst",
+        "activation_level": "tier3_placeholder",
+        "live_behavior_present": false,
+        "consumes_bootstrap_data": false,
+        "writes_structured_records": false,
+        "frontend_safe_output": false,
+        "slack_trigger_ready": false
     },
     {
         "display_name": "Amazon Drop Shipping Ai",
@@ -207,7 +262,13 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-amazon-drop-shipping-ai"
+        "slack_channel": "#mcp-amazon-drop-shipping-ai",
+        "activation_level": "tier3_placeholder",
+        "live_behavior_present": false,
+        "consumes_bootstrap_data": false,
+        "writes_structured_records": false,
+        "frontend_safe_output": false,
+        "slack_trigger_ready": false
     },
     {
         "display_name": "Coder Agent",
@@ -228,7 +289,14 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-coder-agent"
+        "slack_channel": "#mcp-coder-agent",
+        "activation_level": "tier2_activated",
+        "live_behavior_present": true,
+        "consumes_bootstrap_data": true,
+        "writes_structured_records": false,
+        "frontend_safe_output": true,
+        "slack_trigger_ready": true,
+        "runtime_mode": "activated_main"
     },
     {
         "display_name": "Content Generation Ai",
@@ -249,7 +317,14 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-content-generation-ai"
+        "slack_channel": "#mcp-content-generation-ai",
+        "activation_level": "tier2_activated",
+        "live_behavior_present": true,
+        "consumes_bootstrap_data": true,
+        "writes_structured_records": false,
+        "frontend_safe_output": true,
+        "slack_trigger_ready": true,
+        "runtime_mode": "activated_main"
     },
     {
         "display_name": "Cto Agent",
@@ -270,7 +345,13 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-cto-agent"
+        "slack_channel": "#mcp-cto-agent",
+        "activation_level": "tier3_placeholder",
+        "live_behavior_present": false,
+        "consumes_bootstrap_data": false,
+        "writes_structured_records": false,
+        "frontend_safe_output": false,
+        "slack_trigger_ready": false
     },
     {
         "display_name": "Data Scrubbing Ai",
@@ -291,7 +372,14 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-data-scrubbing-ai"
+        "slack_channel": "#mcp-data-scrubbing-ai",
+        "activation_level": "tier1_activated",
+        "live_behavior_present": true,
+        "consumes_bootstrap_data": true,
+        "writes_structured_records": false,
+        "frontend_safe_output": true,
+        "slack_trigger_ready": true,
+        "runtime_mode": "activated_main"
     },
     {
         "display_name": "Designer Ai Agent",
@@ -312,7 +400,13 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-designer-ai-agent"
+        "slack_channel": "#mcp-designer-ai-agent",
+        "activation_level": "tier3_placeholder",
+        "live_behavior_present": false,
+        "consumes_bootstrap_data": false,
+        "writes_structured_records": false,
+        "frontend_safe_output": false,
+        "slack_trigger_ready": false
     },
     {
         "display_name": "Document Manager",
@@ -333,7 +427,14 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-document-manager"
+        "slack_channel": "#mcp-document-manager",
+        "activation_level": "tier1_activated",
+        "live_behavior_present": true,
+        "consumes_bootstrap_data": true,
+        "writes_structured_records": true,
+        "frontend_safe_output": true,
+        "slack_trigger_ready": true,
+        "runtime_mode": "activated_main"
     },
     {
         "display_name": "Email Campaign Optimizer Ai",
@@ -354,7 +455,13 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-email-campaign-optimizer-ai"
+        "slack_channel": "#mcp-email-campaign-optimizer-ai",
+        "activation_level": "tier3_placeholder",
+        "live_behavior_present": false,
+        "consumes_bootstrap_data": false,
+        "writes_structured_records": false,
+        "frontend_safe_output": false,
+        "slack_trigger_ready": false
     },
     {
         "display_name": "Fundraising Chatbot Ai",
@@ -375,7 +482,13 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-fundraising-chatbot-ai"
+        "slack_channel": "#mcp-fundraising-chatbot-ai",
+        "activation_level": "tier3_placeholder",
+        "live_behavior_present": false,
+        "consumes_bootstrap_data": false,
+        "writes_structured_records": false,
+        "frontend_safe_output": false,
+        "slack_trigger_ready": false
     },
     {
         "display_name": "Hr Ai Agent",
@@ -396,7 +509,13 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-hr-ai-agent"
+        "slack_channel": "#mcp-hr-ai-agent",
+        "activation_level": "tier3_placeholder",
+        "live_behavior_present": false,
+        "consumes_bootstrap_data": false,
+        "writes_structured_records": false,
+        "frontend_safe_output": false,
+        "slack_trigger_ready": false
     },
     {
         "display_name": "Information Retrieval Ai",
@@ -417,7 +536,14 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-information-retrieval-ai"
+        "slack_channel": "#mcp-information-retrieval-ai",
+        "activation_level": "tier1_activated",
+        "live_behavior_present": true,
+        "consumes_bootstrap_data": true,
+        "writes_structured_records": false,
+        "frontend_safe_output": true,
+        "slack_trigger_ready": true,
+        "runtime_mode": "activated_main"
     },
     {
         "display_name": "Investment Recommendation",
@@ -440,7 +566,13 @@
         ],
         "slack_channel": "#mcp-investment_recommendation",
         "runtime_mode": "transitional_domain_in_app_main_placeholder_active",
-        "runtime_note": "main.py serves MCP /health and /execute; app.py domain routes exist but are not mounted by active entrypoint."
+        "runtime_note": "main.py serves MCP /health and /execute; app.py domain routes exist but are not mounted by active entrypoint.",
+        "activation_level": "tier3_placeholder",
+        "live_behavior_present": false,
+        "consumes_bootstrap_data": false,
+        "writes_structured_records": false,
+        "frontend_safe_output": false,
+        "slack_trigger_ready": false
     },
     {
         "display_name": "Mcp Analytics",
@@ -461,7 +593,14 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-mcp-analytics"
+        "slack_channel": "#mcp-mcp-analytics",
+        "activation_level": "tier1_activated",
+        "live_behavior_present": true,
+        "consumes_bootstrap_data": true,
+        "writes_structured_records": false,
+        "frontend_safe_output": true,
+        "slack_trigger_ready": true,
+        "runtime_mode": "activated_main"
     },
     {
         "display_name": "Mcp Google Ads",
@@ -482,7 +621,13 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-mcp-google-ads"
+        "slack_channel": "#mcp-mcp-google-ads",
+        "activation_level": "tier3_placeholder",
+        "live_behavior_present": false,
+        "consumes_bootstrap_data": false,
+        "writes_structured_records": false,
+        "frontend_safe_output": false,
+        "slack_trigger_ready": false
     },
     {
         "display_name": "Multimodal Ai",
@@ -503,7 +648,13 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-multimodal-ai"
+        "slack_channel": "#mcp-multimodal-ai",
+        "activation_level": "tier3_placeholder",
+        "live_behavior_present": false,
+        "consumes_bootstrap_data": false,
+        "writes_structured_records": false,
+        "frontend_safe_output": false,
+        "slack_trigger_ready": false
     },
     {
         "display_name": "Org Scrubber Mcp",
@@ -524,7 +675,14 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-org-scrubber-mcp"
+        "slack_channel": "#mcp-org-scrubber-mcp",
+        "activation_level": "tier2_activated",
+        "live_behavior_present": true,
+        "consumes_bootstrap_data": true,
+        "writes_structured_records": false,
+        "frontend_safe_output": true,
+        "slack_trigger_ready": true,
+        "runtime_mode": "activated_main"
     },
     {
         "display_name": "Personalized Donation Ai",
@@ -545,7 +703,13 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-personalized-donation-ai"
+        "slack_channel": "#mcp-personalized-donation-ai",
+        "activation_level": "tier3_placeholder",
+        "live_behavior_present": false,
+        "consumes_bootstrap_data": false,
+        "writes_structured_records": false,
+        "frontend_safe_output": false,
+        "slack_trigger_ready": false
     },
     {
         "display_name": "Project Manager Agent",
@@ -567,8 +731,14 @@
             "K_REVISION"
         ],
         "slack_channel": "#mcp-project-manager-agent",
-        "runtime_mode": "transitional_domain_in_app_main_placeholder_active",
-        "runtime_note": "main.py serves MCP /health and /execute; app.py domain routes exist but are not mounted by active entrypoint."
+        "runtime_mode": "activated_transitional_main_active",
+        "runtime_note": "main.py serves MCP /health and /execute with activated tool behavior; app.py domain routes remain unmounted by active entrypoint.",
+        "activation_level": "tier1_activated",
+        "live_behavior_present": true,
+        "consumes_bootstrap_data": true,
+        "writes_structured_records": false,
+        "frontend_safe_output": true,
+        "slack_trigger_ready": true
     },
     {
         "display_name": "Qa Ai Agent",
@@ -589,7 +759,14 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-qa-ai-agent"
+        "slack_channel": "#mcp-qa-ai-agent",
+        "activation_level": "tier2_activated",
+        "live_behavior_present": true,
+        "consumes_bootstrap_data": true,
+        "writes_structured_records": false,
+        "frontend_safe_output": true,
+        "slack_trigger_ready": true,
+        "runtime_mode": "activated_main"
     },
     {
         "display_name": "Reporting Dashboard Ai",
@@ -610,7 +787,14 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-reporting-dashboard-ai"
+        "slack_channel": "#mcp-reporting-dashboard-ai",
+        "activation_level": "tier1_activated",
+        "live_behavior_present": true,
+        "consumes_bootstrap_data": true,
+        "writes_structured_records": false,
+        "frontend_safe_output": true,
+        "slack_trigger_ready": true,
+        "runtime_mode": "activated_main"
     },
     {
         "display_name": "Trade Execution Gateway",
@@ -633,7 +817,13 @@
             "GIT_SHA",
             "K_REVISION"
         ],
-        "slack_channel": "#mcp-trade_execution_gateway"
+        "slack_channel": "#mcp-trade_execution_gateway",
+        "activation_level": "tier3_placeholder",
+        "live_behavior_present": false,
+        "consumes_bootstrap_data": false,
+        "writes_structured_records": false,
+        "frontend_safe_output": false,
+        "slack_trigger_ready": false
     },
     {
         "display_name": "Tradefinance Lc",
@@ -656,7 +846,13 @@
         ],
         "slack_channel": "#mcp-tradefinance_lc",
         "runtime_mode": "transitional_domain_in_app_main_placeholder_active",
-        "runtime_note": "main.py serves MCP /health and /execute; app.py domain routes exist but are not mounted by active entrypoint."
+        "runtime_note": "main.py serves MCP /health and /execute; app.py domain routes exist but are not mounted by active entrypoint.",
+        "activation_level": "tier3_placeholder",
+        "live_behavior_present": false,
+        "consumes_bootstrap_data": false,
+        "writes_structured_records": false,
+        "frontend_safe_output": false,
+        "slack_trigger_ready": false
     },
     {
         "display_name": "Tradeops",
@@ -679,7 +875,13 @@
         ],
         "slack_channel": "#mcp-tradeops",
         "runtime_mode": "transitional_domain_in_app_main_placeholder_active",
-        "runtime_note": "main.py serves MCP /health and /execute; app.py domain routes exist but are not mounted by active entrypoint."
+        "runtime_note": "main.py serves MCP /health and /execute; app.py domain routes exist but are not mounted by active entrypoint.",
+        "activation_level": "tier3_placeholder",
+        "live_behavior_present": false,
+        "consumes_bootstrap_data": false,
+        "writes_structured_records": false,
+        "frontend_safe_output": false,
+        "slack_trigger_ready": false
     },
     {
         "display_name": "Training To Sop",
@@ -701,8 +903,14 @@
             "K_REVISION"
         ],
         "slack_channel": "#mcp-training_to_sop",
-        "runtime_mode": "transitional_domain_in_app_main_placeholder_active",
-        "runtime_note": "main.py serves MCP /health and /execute; app.py domain routes exist but are not mounted by active entrypoint."
+        "runtime_mode": "activated_transitional_main_active",
+        "runtime_note": "main.py serves MCP /health and /execute with activated tool behavior; app.py domain routes remain unmounted by active entrypoint.",
+        "activation_level": "tier2_activated",
+        "live_behavior_present": true,
+        "consumes_bootstrap_data": true,
+        "writes_structured_records": false,
+        "frontend_safe_output": true,
+        "slack_trigger_ready": true
     },
     {
         "display_name": "Treasury",
@@ -725,6 +933,12 @@
         ],
         "slack_channel": "#mcp-treasury",
         "runtime_mode": "transitional_domain_in_app_main_placeholder_active",
-        "runtime_note": "main.py serves MCP /health and /execute; app.py domain routes exist but are not mounted by active entrypoint."
+        "runtime_note": "main.py serves MCP /health and /execute; app.py domain routes exist but are not mounted by active entrypoint.",
+        "activation_level": "tier3_placeholder",
+        "live_behavior_present": false,
+        "consumes_bootstrap_data": false,
+        "writes_structured_records": false,
+        "frontend_safe_output": false,
+        "slack_trigger_ready": false
     }
 ]

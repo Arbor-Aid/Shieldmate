@@ -35,7 +35,14 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
   },
   {
     "mcp_service": "ai-expense-manager",
@@ -73,7 +80,14 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
   },
   {
     "mcp_service": "ai-financial-analyst",
@@ -111,7 +125,14 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
   },
   {
     "mcp_service": "ai-financial-reporting-specialist",
@@ -149,7 +170,14 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
   },
   {
     "mcp_service": "ai-invoice-processor",
@@ -187,7 +215,14 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
   },
   {
     "mcp_service": "ai-payroll-manager",
@@ -225,7 +260,14 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
   },
   {
     "mcp_service": "ai-tax-compliance-agent",
@@ -263,7 +305,14 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
   },
   {
     "mcp_service": "ai-training-coordinator",
@@ -284,7 +333,7 @@
       "#mcp-ai-training-coordinator"
     ],
     "frontend_exposed": "backend_session_exposed",
-    "implementation_status": "placeholder_connected",
+    "implementation_status": "activated_main",
     "learning_pipeline_role": "learning_synthesis",
     "integration_readiness": {
       "firebase_firestore": "planned",
@@ -303,7 +352,14 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier1_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
   },
   {
     "mcp_service": "ai-ux-analyst",
@@ -341,7 +397,14 @@
       "demographics": "structurally_ready_bootstrap",
       "org_profiles": "structurally_ready_bootstrap",
       "taxonomies": "structurally_ready_bootstrap"
-    }
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
   },
   {
     "mcp_service": "amazon-drop-shipping-ai",
@@ -379,13 +442,21 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
   },
   {
     "mcp_service": "coder-agent",
     "canonical_service_name": "coder-agent",
     "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
     "primary_tools": [
+      "coder.analyze",
       "coder-agent.status"
     ],
     "upstream_callers": [
@@ -398,7 +469,7 @@
       "#mcp-coder-agent"
     ],
     "frontend_exposed": "backend_internal_only",
-    "implementation_status": "placeholder_connected",
+    "implementation_status": "activated_main",
     "learning_pipeline_role": "integration_support",
     "integration_readiness": {
       "firebase_firestore": "planned",
@@ -417,13 +488,21 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier2_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
   },
   {
     "mcp_service": "content-generation-ai",
     "canonical_service_name": "content-generation-ai",
     "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
     "primary_tools": [
+      "content.generate",
       "content-generation-ai.status"
     ],
     "upstream_callers": [
@@ -436,7 +515,7 @@
       "#mcp-content-generation-ai"
     ],
     "frontend_exposed": "backend_internal_only",
-    "implementation_status": "placeholder_connected",
+    "implementation_status": "activated_main",
     "learning_pipeline_role": "integration_support",
     "integration_readiness": {
       "firebase_firestore": "planned",
@@ -455,7 +534,14 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier2_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
   },
   {
     "mcp_service": "cto-agent",
@@ -493,7 +579,14 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
   },
   {
     "mcp_service": "data-scrubbing-ai",
@@ -514,7 +607,7 @@
       "#mcp-data-scrubbing-ai"
     ],
     "frontend_exposed": "backend_internal_only",
-    "implementation_status": "placeholder_connected",
+    "implementation_status": "activated_main",
     "learning_pipeline_role": "validation_normalization",
     "integration_readiness": {
       "firebase_firestore": "planned",
@@ -533,7 +626,14 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier1_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
   },
   {
     "mcp_service": "designer-ai-agent",
@@ -571,7 +671,14 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
   },
   {
     "mcp_service": "document-manager",
@@ -617,7 +724,14 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier1_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": true,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
   },
   {
     "mcp_service": "email-campaign-optimizer-ai",
@@ -655,7 +769,14 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
   },
   {
     "mcp_service": "fundraising-chatbot-ai",
@@ -693,7 +814,14 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
   },
   {
     "mcp_service": "hr-ai-agent",
@@ -731,13 +859,21 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
   },
   {
     "mcp_service": "information-retrieval-ai",
     "canonical_service_name": "information-retrieval-ai",
     "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
     "primary_tools": [
+      "retrieval.search",
       "information-retrieval-ai.status"
     ],
     "upstream_callers": [
@@ -750,7 +886,7 @@
       "#mcp-information-retrieval-ai"
     ],
     "frontend_exposed": "backend_session_exposed",
-    "implementation_status": "placeholder_connected",
+    "implementation_status": "activated_main",
     "learning_pipeline_role": "knowledge_retrieval",
     "integration_readiness": {
       "firebase_firestore": "planned",
@@ -769,7 +905,14 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier1_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
   },
   {
     "mcp_service": "investment_recommendation",
@@ -807,7 +950,14 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "transitional_domain_in_app"
   },
   {
     "mcp_service": "mcp-analytics",
@@ -828,7 +978,7 @@
       "#mcp-mcp-analytics"
     ],
     "frontend_exposed": "backend_session_exposed",
-    "implementation_status": "placeholder_connected",
+    "implementation_status": "activated_main",
     "learning_pipeline_role": "analytics_feedback",
     "integration_readiness": {
       "firebase_firestore": "planned",
@@ -847,7 +997,14 @@
       "demographics": "structurally_ready_bootstrap",
       "org_profiles": "structurally_ready_bootstrap",
       "taxonomies": "structurally_ready_bootstrap"
-    }
+    },
+    "activation_level": "tier1_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
   },
   {
     "mcp_service": "mcp-google-ads",
@@ -885,7 +1042,14 @@
       "demographics": "structurally_ready_bootstrap",
       "org_profiles": "structurally_ready_bootstrap",
       "taxonomies": "structurally_ready_bootstrap"
-    }
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
   },
   {
     "mcp_service": "multimodal-ai",
@@ -923,13 +1087,21 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
   },
   {
     "mcp_service": "org-scrubber-mcp",
     "canonical_service_name": "org-scrubber-mcp",
     "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
     "primary_tools": [
+      "org.scrub",
       "org-scrubber-mcp.status"
     ],
     "upstream_callers": [
@@ -942,7 +1114,7 @@
       "#mcp-org-scrubber-mcp"
     ],
     "frontend_exposed": "backend_internal_only",
-    "implementation_status": "placeholder_connected",
+    "implementation_status": "activated_main",
     "learning_pipeline_role": "validation_normalization",
     "integration_readiness": {
       "firebase_firestore": "planned",
@@ -961,7 +1133,14 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier2_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
   },
   {
     "mcp_service": "personalized-donation-ai",
@@ -999,7 +1178,14 @@
       "demographics": "structurally_ready_bootstrap",
       "org_profiles": "structurally_ready_bootstrap",
       "taxonomies": "structurally_ready_bootstrap"
-    }
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
   },
   {
     "mcp_service": "project-manager-agent",
@@ -1020,7 +1206,7 @@
       "#mcp-project-manager-agent"
     ],
     "frontend_exposed": "backend_session_exposed",
-    "implementation_status": "transitional_domain_in_app",
+    "implementation_status": "activated_transitional_main_active",
     "learning_pipeline_role": "orchestrator",
     "integration_readiness": {
       "firebase_firestore": "planned",
@@ -1039,13 +1225,21 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier1_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_transitional_main_active"
   },
   {
     "mcp_service": "qa-ai-agent",
     "canonical_service_name": "qa-ai-agent",
     "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
     "primary_tools": [
+      "qa.evaluate",
       "qa-ai-agent.status"
     ],
     "upstream_callers": [
@@ -1058,7 +1252,7 @@
       "#mcp-qa-ai-agent"
     ],
     "frontend_exposed": "backend_internal_only",
-    "implementation_status": "placeholder_connected",
+    "implementation_status": "activated_main",
     "learning_pipeline_role": "validation_normalization",
     "integration_readiness": {
       "firebase_firestore": "planned",
@@ -1077,13 +1271,21 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier2_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
   },
   {
     "mcp_service": "reporting-dashboard-ai",
     "canonical_service_name": "reporting-dashboard-ai",
     "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
     "primary_tools": [
+      "reporting.aggregate",
       "reporting-dashboard-ai.status"
     ],
     "upstream_callers": [
@@ -1096,7 +1298,7 @@
       "#mcp-reporting-dashboard-ai"
     ],
     "frontend_exposed": "backend_session_exposed",
-    "implementation_status": "placeholder_connected",
+    "implementation_status": "activated_main",
     "learning_pipeline_role": "delivery_interface",
     "integration_readiness": {
       "firebase_firestore": "planned",
@@ -1115,7 +1317,14 @@
       "demographics": "structurally_ready_bootstrap",
       "org_profiles": "structurally_ready_bootstrap",
       "taxonomies": "structurally_ready_bootstrap"
-    }
+    },
+    "activation_level": "tier1_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
   },
   {
     "mcp_service": "trade_execution_gateway",
@@ -1153,7 +1362,14 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "transitional_placeholder_main_active"
   },
   {
     "mcp_service": "tradefinance_lc",
@@ -1191,7 +1407,14 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "transitional_domain_in_app"
   },
   {
     "mcp_service": "tradeops",
@@ -1229,13 +1452,21 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "transitional_domain_in_app"
   },
   {
     "mcp_service": "training_to_sop",
     "canonical_service_name": "training_to_sop",
     "purpose": "Training-to-SOP transformation MCP with domain endpoints in app.py and standardized placeholder runtime in main.py.",
     "primary_tools": [
+      "sop.generate",
       "training_to_sop.status"
     ],
     "upstream_callers": [
@@ -1248,7 +1479,7 @@
       "#mcp-training_to_sop"
     ],
     "frontend_exposed": "backend_internal_only",
-    "implementation_status": "transitional_domain_in_app",
+    "implementation_status": "activated_transitional_main_active",
     "learning_pipeline_role": "learning_synthesis",
     "integration_readiness": {
       "firebase_firestore": "planned",
@@ -1267,7 +1498,14 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier2_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_transitional_main_active"
   },
   {
     "mcp_service": "treasury",
@@ -1305,6 +1543,13 @@
       "demographics": "planned",
       "org_profiles": "planned",
       "taxonomies": "planned"
-    }
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "transitional_domain_in_app"
   }
 ]

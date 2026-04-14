@@ -3,6 +3,7 @@
   "role_category": "Training-to-SOP transformation MCP with domain endpoints in app.py and standardized placeholder runtime in main.py.",
   "learning_pipeline_role": "learning_synthesis",
   "primary_tools": [
+    "sop.generate",
     "training_to_sop.status"
   ],
   "expected_inputs": {
@@ -56,10 +57,17 @@
   "slack_aliases": [
     "#mcp-training_to_sop"
   ],
-  "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/training_to_sop.status.request.json",
+  "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/orchestrators/sop.generate.request.json",
   "seed_data_path": "platform_bootstrap/mcps/training_to_sop/seed_data",
   "config_path": "platform_bootstrap/mcps/training_to_sop/config",
   "bootstrap_status": "bootstrapped_transitional_runtime",
   "transitional_runtime_note": "Domain logic remains in app.py and is not mounted by active main.py entrypoint.",
-  "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract."
+  "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract.",
+  "activation_level": "tier2_activated",
+  "live_behavior_present": true,
+  "consumes_bootstrap_data": true,
+  "writes_structured_records": false,
+  "frontend_safe_output": true,
+  "slack_trigger_ready": true,
+  "runtime_mode": "activated_transitional_main_active"
 }

@@ -21,6 +21,16 @@ type ContextPayload = {
 };
 
 const app = express();
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
+  res.header('Vary', 'Origin');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, X-Firebase-AppCheck, X-Request-Id, X-Trace-Id');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE,OPTIONS');
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(204);
+  }
+  next();
+});
 app.use(express.json({ limit: '1mb' }));
 
 const PORT = Number(process.env.PORT) || 8080;
@@ -51,7 +61,7 @@ const ROUTES = [
   '/mcp/context',
 ];
 
-const ALLOWED_ROLES = ['super_admin', 'org_admin', 'staff', 'case_worker'];
+const ALLOWED_ROLES = ['super_admin', 'admin', 'org_admin', 'staff', 'case_worker'];
 const CAPABILITIES = ['gateway_proxy', 'rbac_enforced', 'mcp_registry_routing'];
 const INPUTS = ['toolId', 'orgId', 'input', 'meta'];
 const OUTPUTS = ['upstream_response'];
@@ -260,11 +270,18 @@ async function handleExecute(req: express.Request, res: express.Response) {
     const upstream = await proxyPost(target.targetUrl, upstreamPayload, authHeader, traceId);
     status = upstream.status;
     if (status === 404) {
+      const upstreamBodyPreview =
+        upstream.bodyText && upstream.bodyText.length > 300
+          ? `${upstream.bodyText.slice(0, 300)}...`
+          : upstream.bodyText;
       return res.status(502).json({
         error: 'MCP route not implemented for toolId/service; update registry/proxy mapping',
         toolId,
         routedService: target.service,
         targetUrl: target.targetUrl,
+        upstreamStatus: upstream.status,
+        upstreamContentType: upstream.contentType,
+        upstreamBodyPreview,
         normalizedToolId: toolId,
         originalToolFieldPresent: normalizedTool.originalToolFieldPresent,
         originalToolIdFieldPresent: normalizedTool.originalToolIdFieldPresent,
@@ -274,14 +291,19 @@ async function handleExecute(req: express.Request, res: express.Response) {
     }
     res.status(status).type(upstream.contentType).send(upstream.bodyText);
   } catch (err) {
-    status = 403;
+    status = 500;
+    console.error('MCP EXECUTION ERROR:', err);
+    const details =
+      err instanceof Error ? err.message : typeof err === 'string' ? err : JSON.stringify(err);
     res.status(status).json({
-      error: 'Forbidden',
+      error: 'Gateway execution failure',
+      details,
+      targetUrl,
+      toolId: toolId ?? null,
       normalizedToolId: toolId ?? null,
       originalToolFieldPresent: normalizedTool.originalToolFieldPresent,
       originalToolIdFieldPresent: normalizedTool.originalToolIdFieldPresent,
       routedService,
-      targetUrl,
       authorizationPresent: Boolean(authHeader),
       traceId,
     });
@@ -340,11 +362,18 @@ app.post('/mcp/tools/:toolId', async (req, res) => {
     const upstream = await proxyPost(targetUrl, upstreamPayload, authHeader, requestId);
     status = upstream.status;
     if (status === 404) {
+      const upstreamBodyPreview =
+        upstream.bodyText && upstream.bodyText.length > 300
+          ? `${upstream.bodyText.slice(0, 300)}...`
+          : upstream.bodyText;
       return res.status(502).json({
         error: 'MCP route not implemented for toolId/service; update registry/proxy mapping',
         toolId,
         routedService: target.service,
         targetUrl,
+        upstreamStatus: upstream.status,
+        upstreamContentType: upstream.contentType,
+        upstreamBodyPreview,
       });
     }
     res.status(status).type(upstream.contentType).send(upstream.bodyText);
@@ -396,11 +425,18 @@ app.post('/mcp/context', async (req, res) => {
     const upstream = await proxyPost(contextUrl, upstreamPayload, authHeader, requestId);
     status = upstream.status;
     if (status === 404) {
+      const upstreamBodyPreview =
+        upstream.bodyText && upstream.bodyText.length > 300
+          ? `${upstream.bodyText.slice(0, 300)}...`
+          : upstream.bodyText;
       return res.status(502).json({
         error: 'MCP context route not implemented; update gateway mapping',
         toolId,
         routedService: target.service,
         targetUrl: contextUrl,
+        upstreamStatus: upstream.status,
+        upstreamContentType: upstream.contentType,
+        upstreamBodyPreview,
       });
     }
     res.status(status).type(upstream.contentType).send(upstream.bodyText);

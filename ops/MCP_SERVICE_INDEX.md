@@ -29,10 +29,25 @@
 - Registered: 34/34
 - Reachable contract: 34/34
 - Bootstrapped package coverage: 34/34
-- Domain-implemented (non-placeholder):
-  - `document-manager` (routing and chained execution flow)
-  - `trade_execution_gateway` (transitional: `main.py` placeholder MCP contract is active; domain endpoints in `app.py` are not mounted by active entrypoint)
-- Remaining services are currently placeholder/echo style implementations on the standard contract.
+- Activated (non-placeholder live behavior): 12/34
+  - Tier 1:
+    - `document-manager`
+    - `mcp-analytics`
+    - `project-manager-agent`
+    - `ai-training-coordinator`
+    - `data-scrubbing-ai`
+    - `information-retrieval-ai`
+    - `reporting-dashboard-ai`
+  - Tier 2:
+    - `content-generation-ai`
+    - `training_to_sop`
+    - `coder-agent`
+    - `qa-ai-agent`
+    - `org-scrubber-mcp`
+- Placeholder-connected services: 22/34
+- Transitional runtime note:
+  - `project-manager-agent` and `training_to_sop` are activated in `main.py` while `app.py` domain routes remain unmounted.
+  - `trade_execution_gateway` remains transitional placeholder in `main.py`; `app.py` routes are not mounted.
 
 ## Transitional Runtime Services
 - `trade_execution_gateway`

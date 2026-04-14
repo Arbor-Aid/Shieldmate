@@ -55,6 +55,14 @@ Error responses should return:
 }
 ```
 
+For activated MCPs, include structured output blocks when applicable:
+- `summary_card`
+- `status_badge`
+- `data_table`
+- `timeline_event` or `timeline_events`
+- `alerts`
+- `action_list`
+
 ## Chaining and gateway rule
 - `mcp-gateway` is the only ingress for tool execution.
 - Canonical ingress execute path: `POST /mcp/execute`
@@ -81,6 +89,16 @@ Error responses should return:
   - shared smoke plan: `platform_bootstrap/shared/smoke_payloads/mass_smoke_plan.json`
   - integration readiness roots for Firebase, Google Drive, Notion, Slack, Windows admin tools
   - shared dataset roots for geography, demographics, org profiles, taxonomies, Google Ads
+
+## Activation metadata conventions
+Machine-readable inventory artifacts should maintain these fields:
+- `activation_level` (`tier1_activated`, `tier2_activated`, `tier3_placeholder`)
+- `runtime_mode` (for example `activated_main`, `activated_transitional_main_active`, `placeholder_connected`)
+- `live_behavior_present`
+- `consumes_bootstrap_data`
+- `writes_structured_records`
+- `frontend_safe_output`
+- `slack_trigger_ready`
 
 ## Transitional runtime policy
 - Services with domain routes in `app.py` may remain in transitional mode with placeholder `main.py` active when safer.

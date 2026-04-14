@@ -2,8 +2,14 @@
   "toolId": "project.update",
   "tool": "project.update",
   "input": {
-    "doc_id": "doc-smoke-002",
+    "doc_id": "doc-smoke-activation-002",
+    "project_id": "project-smoke-001",
+    "status": "in_progress",
     "category": "operations",
-    "mode": "smoke"
+    "actions": {
+      "ticket": "OPS-101",
+      "reminder": "daily"
+    },
+    "summary": "Activation smoke project update"
   }
 }

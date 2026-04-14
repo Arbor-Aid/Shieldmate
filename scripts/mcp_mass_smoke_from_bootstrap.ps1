@@ -1,6 +1,6 @@
 Param(
     [string]$RepoRoot = (Resolve-Path ".").Path,
-    [string]$GatewayExecuteUrl = "http://localhost:8090/mcp/execute",
+    [string]$GatewayExecuteUrl = "http://localhost:8080/mcp/execute",
     [switch]$IncludeFunctional
 )
 
@@ -16,8 +16,11 @@ $plan = Get-Content $planPath -Raw | ConvertFrom-Json
 $payloadPaths = @()
 $payloadPaths += $plan.service_status_payloads
 if ($IncludeFunctional) {
-    $payloadPaths += $plan.functional_orchestrator_payloads
-    $payloadPaths += $plan.integration_readiness_payloads
+    foreach ($field in @("functional_orchestrator_payloads", "integration_readiness_payloads", "activation_payloads")) {
+        if ($plan.PSObject.Properties.Name -contains $field) {
+            $payloadPaths += $plan.$field
+        }
+    }
 }
 
 $token = $env:MCP_SMOKE_AUTH_TOKEN

@@ -42,12 +42,21 @@
     "platform_bootstrap/shared/smoke_payloads/orchestrators/analytics.process.request.json",
     "platform_bootstrap/shared/smoke_payloads/orchestrators/project.update.request.json",
     "platform_bootstrap/shared/smoke_payloads/orchestrators/training.sync.request.json",
-    "platform_bootstrap/shared/smoke_payloads/orchestrators/data.validate.request.json"
+    "platform_bootstrap/shared/smoke_payloads/orchestrators/data.validate.request.json",
+    "platform_bootstrap/shared/smoke_payloads/orchestrators/retrieval.search.request.json",
+    "platform_bootstrap/shared/smoke_payloads/orchestrators/reporting.aggregate.request.json"
   ],
   "integration_readiness_payloads": [
     "platform_bootstrap/integrations/google_drive/smoke_payloads/google_drive_ingest.sample.json",
     "platform_bootstrap/integrations/notion/smoke_payloads/notion_ingest.sample.json",
     "platform_bootstrap/integrations/windows_admin_tools/smoke_payloads/windows_admin_tools_ingest.sample.json"
   ],
-  "bundle_payload": "platform_bootstrap/shared/smoke_payloads/integrations/drive_notion_windows_bundle.request.json"
+  "bundle_payload": "platform_bootstrap/shared/smoke_payloads/integrations/drive_notion_windows_bundle.request.json",
+  "activation_payloads": [
+    "platform_bootstrap/shared/smoke_payloads/orchestrators/content.generate.request.json",
+    "platform_bootstrap/shared/smoke_payloads/orchestrators/sop.generate.request.json",
+    "platform_bootstrap/shared/smoke_payloads/orchestrators/coder.analyze.request.json",
+    "platform_bootstrap/shared/smoke_payloads/orchestrators/qa.evaluate.request.json",
+    "platform_bootstrap/shared/smoke_payloads/orchestrators/org.scrub.request.json"
+  ]
 }

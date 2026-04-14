@@ -61,5 +61,12 @@
   "config_path": "platform_bootstrap/mcps/tradefinance_lc/config",
   "bootstrap_status": "bootstrapped_transitional_runtime",
   "transitional_runtime_note": "Domain logic remains in app.py and is not mounted by active main.py entrypoint.",
-  "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract."
+  "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract.",
+  "activation_level": "tier3_placeholder",
+  "live_behavior_present": false,
+  "consumes_bootstrap_data": false,
+  "writes_structured_records": false,
+  "frontend_safe_output": false,
+  "slack_trigger_ready": false,
+  "runtime_mode": "bootstrapped_transitional_runtime"
 }

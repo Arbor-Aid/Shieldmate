@@ -58,10 +58,17 @@
   "slack_aliases": [
     "#mcp-ai-training-coordinator"
   ],
-  "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/ai-training-coordinator.status.request.json",
+  "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/orchestrators/training.sync.request.json",
   "seed_data_path": "platform_bootstrap/mcps/ai-training-coordinator/seed_data",
   "config_path": "platform_bootstrap/mcps/ai-training-coordinator/config",
   "bootstrap_status": "bootstrapped",
   "transitional_runtime_note": "",
-  "notes": "Connected through gateway with minimal smoke-test tool route ai-training-coordinator.status."
+  "notes": "Connected through gateway with minimal smoke-test tool route ai-training-coordinator.status.",
+  "activation_level": "tier1_activated",
+  "live_behavior_present": true,
+  "consumes_bootstrap_data": true,
+  "writes_structured_records": false,
+  "frontend_safe_output": true,
+  "slack_trigger_ready": true,
+  "runtime_mode": "activated_main"
 }

@@ -3,6 +3,7 @@
   "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
   "learning_pipeline_role": "integration_support",
   "primary_tools": [
+    "coder.analyze",
     "coder-agent.status"
   ],
   "expected_inputs": {
@@ -56,10 +57,17 @@
   "slack_aliases": [
     "#mcp-coder-agent"
   ],
-  "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/coder-agent.status.request.json",
+  "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/orchestrators/coder.analyze.request.json",
   "seed_data_path": "platform_bootstrap/mcps/coder-agent/seed_data",
   "config_path": "platform_bootstrap/mcps/coder-agent/config",
   "bootstrap_status": "bootstrapped",
   "transitional_runtime_note": "",
-  "notes": "Connected through gateway with minimal smoke-test tool route coder-agent.status."
+  "notes": "Connected through gateway with minimal smoke-test tool route coder-agent.status.",
+  "activation_level": "tier2_activated",
+  "live_behavior_present": true,
+  "consumes_bootstrap_data": true,
+  "writes_structured_records": false,
+  "frontend_safe_output": true,
+  "slack_trigger_ready": true,
+  "runtime_mode": "activated_main"
 }

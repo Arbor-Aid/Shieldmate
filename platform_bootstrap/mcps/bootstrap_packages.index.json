@@ -62,7 +62,14 @@
     "config_path": "platform_bootstrap/mcps/ai-budget-planner/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route ai-budget-planner.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-budget-planner.status.",
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "bootstrapped"
   },
   {
     "service_name": "ai-expense-manager",
@@ -127,7 +134,14 @@
     "config_path": "platform_bootstrap/mcps/ai-expense-manager/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route ai-expense-manager.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-expense-manager.status.",
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "bootstrapped"
   },
   {
     "service_name": "ai-financial-analyst",
@@ -192,7 +206,14 @@
     "config_path": "platform_bootstrap/mcps/ai-financial-analyst/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route ai-financial-analyst.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-financial-analyst.status.",
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "bootstrapped"
   },
   {
     "service_name": "ai-financial-reporting-specialist",
@@ -257,7 +278,14 @@
     "config_path": "platform_bootstrap/mcps/ai-financial-reporting-specialist/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route ai-financial-reporting-specialist.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-financial-reporting-specialist.status.",
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "bootstrapped"
   },
   {
     "service_name": "ai-invoice-processor",
@@ -322,7 +350,14 @@
     "config_path": "platform_bootstrap/mcps/ai-invoice-processor/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route ai-invoice-processor.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-invoice-processor.status.",
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "bootstrapped"
   },
   {
     "service_name": "ai-payroll-manager",
@@ -387,7 +422,14 @@
     "config_path": "platform_bootstrap/mcps/ai-payroll-manager/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route ai-payroll-manager.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-payroll-manager.status.",
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "bootstrapped"
   },
   {
     "service_name": "ai-tax-compliance-agent",
@@ -452,7 +494,14 @@
     "config_path": "platform_bootstrap/mcps/ai-tax-compliance-agent/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route ai-tax-compliance-agent.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-tax-compliance-agent.status.",
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "bootstrapped"
   },
   {
     "service_name": "ai-training-coordinator",
@@ -514,12 +563,19 @@
     "slack_aliases": [
       "#mcp-ai-training-coordinator"
     ],
-    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/ai-training-coordinator.status.request.json",
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/orchestrators/training.sync.request.json",
     "seed_data_path": "platform_bootstrap/mcps/ai-training-coordinator/seed_data",
     "config_path": "platform_bootstrap/mcps/ai-training-coordinator/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route ai-training-coordinator.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-training-coordinator.status.",
+    "activation_level": "tier1_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
   },
   {
     "service_name": "ai-ux-analyst",
@@ -584,7 +640,14 @@
     "config_path": "platform_bootstrap/mcps/ai-ux-analyst/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route ai-ux-analyst.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-ux-analyst.status.",
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "bootstrapped"
   },
   {
     "service_name": "amazon-drop-shipping-ai",
@@ -649,13 +712,21 @@
     "config_path": "platform_bootstrap/mcps/amazon-drop-shipping-ai/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route amazon-drop-shipping-ai.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route amazon-drop-shipping-ai.status.",
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "bootstrapped"
   },
   {
     "service_name": "coder-agent",
     "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
     "learning_pipeline_role": "integration_support",
     "primary_tools": [
+      "coder.analyze",
       "coder-agent.status"
     ],
     "expected_inputs": {
@@ -709,18 +780,26 @@
     "slack_aliases": [
       "#mcp-coder-agent"
     ],
-    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/coder-agent.status.request.json",
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/orchestrators/coder.analyze.request.json",
     "seed_data_path": "platform_bootstrap/mcps/coder-agent/seed_data",
     "config_path": "platform_bootstrap/mcps/coder-agent/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route coder-agent.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route coder-agent.status.",
+    "activation_level": "tier2_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
   },
   {
     "service_name": "content-generation-ai",
     "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
     "learning_pipeline_role": "integration_support",
     "primary_tools": [
+      "content.generate",
       "content-generation-ai.status"
     ],
     "expected_inputs": {
@@ -774,12 +853,19 @@
     "slack_aliases": [
       "#mcp-content-generation-ai"
     ],
-    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/content-generation-ai.status.request.json",
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/orchestrators/content.generate.request.json",
     "seed_data_path": "platform_bootstrap/mcps/content-generation-ai/seed_data",
     "config_path": "platform_bootstrap/mcps/content-generation-ai/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route content-generation-ai.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route content-generation-ai.status.",
+    "activation_level": "tier2_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
   },
   {
     "service_name": "cto-agent",
@@ -844,7 +930,14 @@
     "config_path": "platform_bootstrap/mcps/cto-agent/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route cto-agent.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route cto-agent.status.",
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "bootstrapped"
   },
   {
     "service_name": "data-scrubbing-ai",
@@ -906,12 +999,19 @@
     "slack_aliases": [
       "#mcp-data-scrubbing-ai"
     ],
-    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/data-scrubbing-ai.status.request.json",
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/orchestrators/data.validate.request.json",
     "seed_data_path": "platform_bootstrap/mcps/data-scrubbing-ai/seed_data",
     "config_path": "platform_bootstrap/mcps/data-scrubbing-ai/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route data-scrubbing-ai.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route data-scrubbing-ai.status.",
+    "activation_level": "tier1_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
   },
   {
     "service_name": "designer-ai-agent",
@@ -976,7 +1076,14 @@
     "config_path": "platform_bootstrap/mcps/designer-ai-agent/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route designer-ai-agent.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route designer-ai-agent.status.",
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "bootstrapped"
   },
   {
     "service_name": "document-manager",
@@ -1044,12 +1151,19 @@
     "slack_aliases": [
       "#mcp-document-manager"
     ],
-    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/document-manager.status.request.json",
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/orchestrators/document.process.request.json",
     "seed_data_path": "platform_bootstrap/mcps/document-manager/seed_data",
     "config_path": "platform_bootstrap/mcps/document-manager/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Primary orchestrator for chained flow; supports canonical and compatibility gateway contracts."
+    "notes": "Primary orchestrator for chained flow; supports canonical and compatibility gateway contracts.",
+    "activation_level": "tier1_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": true,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
   },
   {
     "service_name": "email-campaign-optimizer-ai",
@@ -1114,7 +1228,14 @@
     "config_path": "platform_bootstrap/mcps/email-campaign-optimizer-ai/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route email-campaign-optimizer-ai.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route email-campaign-optimizer-ai.status.",
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "bootstrapped"
   },
   {
     "service_name": "fundraising-chatbot-ai",
@@ -1179,7 +1300,14 @@
     "config_path": "platform_bootstrap/mcps/fundraising-chatbot-ai/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route fundraising-chatbot-ai.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route fundraising-chatbot-ai.status.",
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "bootstrapped"
   },
   {
     "service_name": "hr-ai-agent",
@@ -1244,13 +1372,21 @@
     "config_path": "platform_bootstrap/mcps/hr-ai-agent/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route hr-ai-agent.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route hr-ai-agent.status.",
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "bootstrapped"
   },
   {
     "service_name": "information-retrieval-ai",
     "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
     "learning_pipeline_role": "knowledge_retrieval",
     "primary_tools": [
+      "retrieval.search",
       "information-retrieval-ai.status"
     ],
     "expected_inputs": {
@@ -1304,12 +1440,19 @@
     "slack_aliases": [
       "#mcp-information-retrieval-ai"
     ],
-    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/information-retrieval-ai.status.request.json",
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/orchestrators/retrieval.search.request.json",
     "seed_data_path": "platform_bootstrap/mcps/information-retrieval-ai/seed_data",
     "config_path": "platform_bootstrap/mcps/information-retrieval-ai/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route information-retrieval-ai.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route information-retrieval-ai.status.",
+    "activation_level": "tier1_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
   },
   {
     "service_name": "investment_recommendation",
@@ -1374,7 +1517,14 @@
     "config_path": "platform_bootstrap/mcps/investment_recommendation/config",
     "bootstrap_status": "bootstrapped_transitional_runtime",
     "transitional_runtime_note": "Domain logic remains in app.py and is not mounted by active main.py entrypoint.",
-    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract."
+    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract.",
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "bootstrapped_transitional_runtime"
   },
   {
     "service_name": "mcp-analytics",
@@ -1436,12 +1586,19 @@
     "slack_aliases": [
       "#mcp-mcp-analytics"
     ],
-    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/mcp-analytics.status.request.json",
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/orchestrators/analytics.process.request.json",
     "seed_data_path": "platform_bootstrap/mcps/mcp-analytics/seed_data",
     "config_path": "platform_bootstrap/mcps/mcp-analytics/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route mcp-analytics.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route mcp-analytics.status.",
+    "activation_level": "tier1_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
   },
   {
     "service_name": "mcp-google-ads",
@@ -1506,7 +1663,14 @@
     "config_path": "platform_bootstrap/mcps/mcp-google-ads/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route mcp-google-ads.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route mcp-google-ads.status.",
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "bootstrapped"
   },
   {
     "service_name": "multimodal-ai",
@@ -1571,13 +1735,21 @@
     "config_path": "platform_bootstrap/mcps/multimodal-ai/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route multimodal-ai.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route multimodal-ai.status.",
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "bootstrapped"
   },
   {
     "service_name": "org-scrubber-mcp",
     "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
     "learning_pipeline_role": "validation_normalization",
     "primary_tools": [
+      "org.scrub",
       "org-scrubber-mcp.status"
     ],
     "expected_inputs": {
@@ -1631,12 +1803,19 @@
     "slack_aliases": [
       "#mcp-org-scrubber-mcp"
     ],
-    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/org-scrubber-mcp.status.request.json",
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/orchestrators/org.scrub.request.json",
     "seed_data_path": "platform_bootstrap/mcps/org-scrubber-mcp/seed_data",
     "config_path": "platform_bootstrap/mcps/org-scrubber-mcp/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route org-scrubber-mcp.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route org-scrubber-mcp.status.",
+    "activation_level": "tier2_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
   },
   {
     "service_name": "personalized-donation-ai",
@@ -1701,7 +1880,14 @@
     "config_path": "platform_bootstrap/mcps/personalized-donation-ai/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route personalized-donation-ai.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route personalized-donation-ai.status.",
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "bootstrapped"
   },
   {
     "service_name": "project-manager-agent",
@@ -1763,18 +1949,26 @@
     "slack_aliases": [
       "#mcp-project-manager-agent"
     ],
-    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/project-manager-agent.status.request.json",
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/orchestrators/project.update.request.json",
     "seed_data_path": "platform_bootstrap/mcps/project-manager-agent/seed_data",
     "config_path": "platform_bootstrap/mcps/project-manager-agent/config",
     "bootstrap_status": "bootstrapped_transitional_runtime",
     "transitional_runtime_note": "Domain logic remains in app.py and is not mounted by active main.py entrypoint.",
-    "notes": "Connected through gateway with minimal smoke-test tool route project-manager-agent.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route project-manager-agent.status.",
+    "activation_level": "tier1_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_transitional_main_active"
   },
   {
     "service_name": "qa-ai-agent",
     "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
     "learning_pipeline_role": "validation_normalization",
     "primary_tools": [
+      "qa.evaluate",
       "qa-ai-agent.status"
     ],
     "expected_inputs": {
@@ -1828,18 +2022,26 @@
     "slack_aliases": [
       "#mcp-qa-ai-agent"
     ],
-    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/qa-ai-agent.status.request.json",
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/orchestrators/qa.evaluate.request.json",
     "seed_data_path": "platform_bootstrap/mcps/qa-ai-agent/seed_data",
     "config_path": "platform_bootstrap/mcps/qa-ai-agent/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route qa-ai-agent.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route qa-ai-agent.status.",
+    "activation_level": "tier2_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
   },
   {
     "service_name": "reporting-dashboard-ai",
     "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
     "learning_pipeline_role": "delivery_interface",
     "primary_tools": [
+      "reporting.aggregate",
       "reporting-dashboard-ai.status"
     ],
     "expected_inputs": {
@@ -1893,12 +2095,19 @@
     "slack_aliases": [
       "#mcp-reporting-dashboard-ai"
     ],
-    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/reporting-dashboard-ai.status.request.json",
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/orchestrators/reporting.aggregate.request.json",
     "seed_data_path": "platform_bootstrap/mcps/reporting-dashboard-ai/seed_data",
     "config_path": "platform_bootstrap/mcps/reporting-dashboard-ai/config",
     "bootstrap_status": "bootstrapped",
     "transitional_runtime_note": "",
-    "notes": "Connected through gateway with minimal smoke-test tool route reporting-dashboard-ai.status."
+    "notes": "Connected through gateway with minimal smoke-test tool route reporting-dashboard-ai.status.",
+    "activation_level": "tier1_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
   },
   {
     "service_name": "trade_execution_gateway",
@@ -1963,7 +2172,14 @@
     "config_path": "platform_bootstrap/mcps/trade_execution_gateway/config",
     "bootstrap_status": "bootstrapped_transitional_runtime",
     "transitional_runtime_note": "Domain logic remains in app.py and is not mounted by active main.py entrypoint.",
-    "notes": "Transitional runtime: main.py placeholder MCP contract active; app.py trade routes currently not mounted."
+    "notes": "Transitional runtime: main.py placeholder MCP contract active; app.py trade routes currently not mounted.",
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "bootstrapped_transitional_runtime"
   },
   {
     "service_name": "tradefinance_lc",
@@ -2028,7 +2244,14 @@
     "config_path": "platform_bootstrap/mcps/tradefinance_lc/config",
     "bootstrap_status": "bootstrapped_transitional_runtime",
     "transitional_runtime_note": "Domain logic remains in app.py and is not mounted by active main.py entrypoint.",
-    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract."
+    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract.",
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "bootstrapped_transitional_runtime"
   },
   {
     "service_name": "tradeops",
@@ -2093,13 +2316,21 @@
     "config_path": "platform_bootstrap/mcps/tradeops/config",
     "bootstrap_status": "bootstrapped_transitional_runtime",
     "transitional_runtime_note": "Domain logic remains in app.py and is not mounted by active main.py entrypoint.",
-    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract."
+    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract.",
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "bootstrapped_transitional_runtime"
   },
   {
     "service_name": "training_to_sop",
     "role_category": "Training-to-SOP transformation MCP with domain endpoints in app.py and standardized placeholder runtime in main.py.",
     "learning_pipeline_role": "learning_synthesis",
     "primary_tools": [
+      "sop.generate",
       "training_to_sop.status"
     ],
     "expected_inputs": {
@@ -2153,12 +2384,19 @@
     "slack_aliases": [
       "#mcp-training_to_sop"
     ],
-    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/training_to_sop.status.request.json",
+    "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/orchestrators/sop.generate.request.json",
     "seed_data_path": "platform_bootstrap/mcps/training_to_sop/seed_data",
     "config_path": "platform_bootstrap/mcps/training_to_sop/config",
     "bootstrap_status": "bootstrapped_transitional_runtime",
     "transitional_runtime_note": "Domain logic remains in app.py and is not mounted by active main.py entrypoint.",
-    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract."
+    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract.",
+    "activation_level": "tier2_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_transitional_main_active"
   },
   {
     "service_name": "treasury",
@@ -2223,6 +2461,13 @@
     "config_path": "platform_bootstrap/mcps/treasury/config",
     "bootstrap_status": "bootstrapped_transitional_runtime",
     "transitional_runtime_note": "Domain logic remains in app.py and is not mounted by active main.py entrypoint.",
-    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract."
+    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract.",
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "bootstrapped_transitional_runtime"
   }
 ]

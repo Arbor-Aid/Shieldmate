@@ -61,5 +61,12 @@
   "config_path": "platform_bootstrap/mcps/multimodal-ai/config",
   "bootstrap_status": "bootstrapped",
   "transitional_runtime_note": "",
-  "notes": "Connected through gateway with minimal smoke-test tool route multimodal-ai.status."
+  "notes": "Connected through gateway with minimal smoke-test tool route multimodal-ai.status.",
+  "activation_level": "tier3_placeholder",
+  "live_behavior_present": false,
+  "consumes_bootstrap_data": false,
+  "writes_structured_records": false,
+  "frontend_safe_output": false,
+  "slack_trigger_ready": false,
+  "runtime_mode": "bootstrapped"
 }

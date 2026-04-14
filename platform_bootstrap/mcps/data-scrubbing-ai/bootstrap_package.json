@@ -58,10 +58,17 @@
   "slack_aliases": [
     "#mcp-data-scrubbing-ai"
   ],
-  "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/data-scrubbing-ai.status.request.json",
+  "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/orchestrators/data.validate.request.json",
   "seed_data_path": "platform_bootstrap/mcps/data-scrubbing-ai/seed_data",
   "config_path": "platform_bootstrap/mcps/data-scrubbing-ai/config",
   "bootstrap_status": "bootstrapped",
   "transitional_runtime_note": "",
-  "notes": "Connected through gateway with minimal smoke-test tool route data-scrubbing-ai.status."
+  "notes": "Connected through gateway with minimal smoke-test tool route data-scrubbing-ai.status.",
+  "activation_level": "tier1_activated",
+  "live_behavior_present": true,
+  "consumes_bootstrap_data": true,
+  "writes_structured_records": false,
+  "frontend_safe_output": true,
+  "slack_trigger_ready": true,
+  "runtime_mode": "activated_main"
 }

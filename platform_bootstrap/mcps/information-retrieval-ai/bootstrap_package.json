@@ -3,6 +3,7 @@
   "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
   "learning_pipeline_role": "knowledge_retrieval",
   "primary_tools": [
+    "retrieval.search",
     "information-retrieval-ai.status"
   ],
   "expected_inputs": {
@@ -56,10 +57,17 @@
   "slack_aliases": [
     "#mcp-information-retrieval-ai"
   ],
-  "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/information-retrieval-ai.status.request.json",
+  "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/orchestrators/retrieval.search.request.json",
   "seed_data_path": "platform_bootstrap/mcps/information-retrieval-ai/seed_data",
   "config_path": "platform_bootstrap/mcps/information-retrieval-ai/config",
   "bootstrap_status": "bootstrapped",
   "transitional_runtime_note": "",
-  "notes": "Connected through gateway with minimal smoke-test tool route information-retrieval-ai.status."
+  "notes": "Connected through gateway with minimal smoke-test tool route information-retrieval-ai.status.",
+  "activation_level": "tier1_activated",
+  "live_behavior_present": true,
+  "consumes_bootstrap_data": true,
+  "writes_structured_records": false,
+  "frontend_safe_output": true,
+  "slack_trigger_ready": true,
+  "runtime_mode": "activated_main"
 }

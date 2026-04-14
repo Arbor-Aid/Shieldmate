@@ -33,6 +33,9 @@
   - gateway registry entry (`mcp/mcp-gateway/src/mcp/registry.ts`)
   - downstream service implementation for requested tool behavior
 - Fleet connectivity routes include `<service>.status` tools for each MCP to support broad smoke routing checks.
+- Activation slice (current):
+  - Tier 1 activated tools: `document.process`, `analytics.process`, `project.update`, `training.sync`, `data.validate`, `retrieval.search`, `reporting.aggregate`
+  - Tier 2 activated tools: `content.generate`, `sop.generate`, `coder.analyze`, `qa.evaluate`, `org.scrub`
 - Transitional services intentionally keep placeholder `main.py` active in this pass; `app.py` domain routes are documented but unmounted.
 
 ## Mass smoke strategy
@@ -44,6 +47,8 @@
    - `project.update`
    - `training.sync`
    - `data.validate`
+   - `retrieval.search`
+   - `reporting.aggregate`
 4. Triage failures by category:
    - `registered` failure (registry/inventory mismatch)
    - `reachable` failure (health/execute unreachable)
@@ -52,6 +57,7 @@
    - `powershell -ExecutionPolicy Bypass -File scripts/mcp_mass_smoke_from_bootstrap.ps1`
 6. For functional + integration readiness payloads:
    - `powershell -ExecutionPolicy Bypass -File scripts/mcp_mass_smoke_from_bootstrap.ps1 -IncludeFunctional`
+   - this now includes `activation_payloads` (Tier 2 activation checks) from `mass_smoke_plan.json`
 
 ## Troubleshooting checklist
 1. Verify service health (`/health`) and ingress logs.

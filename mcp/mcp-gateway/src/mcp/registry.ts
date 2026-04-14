@@ -1,6 +1,50 @@
 const CLOUD_RUN_DOMAIN = 'yd7bwat7eq-uc.a.run.app';
 const USE_LOCALHOST = process.env.MCP_USE_LOCALHOST === 'true';
 const LOCALHOST_BASE_URL = process.env.MCP_LOCALHOST_BASE_URL || 'http://localhost:8080';
+const FALLBACK_LOCAL_PORT = 18081;
+
+const LOCAL_PORT_BY_SERVICE: Record<string, number> = {
+  'document-manager': 18081,
+  'mcp-analytics': 18082,
+  'project-manager-agent': 18083,
+  'ai-training-coordinator': 18084,
+  'data-scrubbing-ai': 18085,
+  'information-retrieval-ai': 18086,
+  'reporting-dashboard-ai': 18087,
+  'content-generation-ai': 18088,
+  'training_to_sop': 18089,
+  'coder-agent': 18090,
+  'qa-ai-agent': 18091,
+  'org-scrubber-mcp': 18092,
+
+  'ai-budget-planner': 18081,
+  'ai-expense-manager': 18081,
+  'ai-financial-analyst': 18081,
+  'ai-financial-reporting-specialist': 18081,
+  'ai-invoice-processor': 18081,
+  'ai-payroll-manager': 18081,
+  'ai-tax-compliance-agent': 18081,
+  'ai-ux-analyst': 18081,
+  'amazon-drop-shipping-ai': 18081,
+  'cto-agent': 18081,
+  'designer-ai-agent': 18081,
+  'email-campaign-optimizer-ai': 18081,
+  'fundraising-chatbot-ai': 18081,
+  'hr-ai-agent': 18081,
+  'investment_recommendation': 18081,
+  'mcp-google-ads': 18081,
+  'multimodal-ai': 18081,
+  'personalized-donation-ai': 18081,
+  'trade_execution_gateway': 18081,
+  'tradefinance_lc': 18081,
+  'tradeops': 18081,
+  'treasury': 18081,
+};
+
+function localServiceUrl(slug: string): string {
+  const port = LOCAL_PORT_BY_SERVICE[slug] ?? FALLBACK_LOCAL_PORT;
+  return `http://localhost:${port}`;
+}
 
 export type RegistryRouteKind = 'service' | 'tool';
 
@@ -14,7 +58,7 @@ export type RegistryRouteDefinition = {
 
 function defaultServiceUrl(slug: string): string {
   if (USE_LOCALHOST) {
-    return LOCALHOST_BASE_URL;
+    return localServiceUrl(slug);
   }
   return `https://${slug}-${CLOUD_RUN_DOMAIN}`;
 }
@@ -81,6 +125,13 @@ const TOOL_ROUTES: RegistryRouteDefinition[] = [
   route('project.update', 'project-manager-agent', 'MCP_PROJECT_MANAGER_AGENT_URL', 'tool'),
   route('training.sync', 'ai-training-coordinator', 'MCP_AI_TRAINING_COORDINATOR_URL', 'tool'),
   route('data.validate', 'data-scrubbing-ai', 'MCP_DATA_SCRUBBING_AI_URL', 'tool'),
+  route('retrieval.search', 'information-retrieval-ai', 'MCP_INFORMATION_RETRIEVAL_AI_URL', 'tool'),
+  route('reporting.aggregate', 'reporting-dashboard-ai', 'MCP_REPORTING_DASHBOARD_AI_URL', 'tool'),
+  route('content.generate', 'content-generation-ai', 'MCP_CONTENT_GENERATION_AI_URL', 'tool'),
+  route('sop.generate', 'training_to_sop', 'MCP_TRAINING_TO_SOP_URL', 'tool'),
+  route('coder.analyze', 'coder-agent', 'MCP_CODER_AGENT_URL', 'tool'),
+  route('qa.evaluate', 'qa-ai-agent', 'MCP_QA_AI_AGENT_URL', 'tool'),
+  route('org.scrub', 'org-scrubber-mcp', 'MCP_ORG_SCRUBBER_MCP_URL', 'tool'),
 ];
 
 const CONNECTIVITY_TOOL_ROUTES: RegistryRouteDefinition[] = SERVICE_ROUTES.map((entry) =>

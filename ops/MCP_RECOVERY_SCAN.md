@@ -20,7 +20,25 @@ Operational snapshot of MCP contract conformance and routing posture after the r
 - Gateway-level routing: working with registry-driven dispatch.
 - `document-manager` chaining: working and environment-driven via `MCP_GATEWAY_EXECUTE_URL`.
 - Authorization passthrough for chained calls: implemented in `document-manager`.
-- Downstream behavior caveat: many MCPs are still placeholder/echo handlers.
+- Activation posture:
+  - Tier 1 activated: 7
+  - Tier 2 activated: 5
+  - Tier 3 placeholder: 22
+- Tier 1 activated services:
+  - `document-manager`
+  - `mcp-analytics`
+  - `project-manager-agent`
+  - `ai-training-coordinator`
+  - `data-scrubbing-ai`
+  - `information-retrieval-ai`
+  - `reporting-dashboard-ai`
+- Tier 2 activated services:
+  - `content-generation-ai`
+  - `training_to_sop`
+  - `coder-agent`
+  - `qa-ai-agent`
+  - `org-scrubber-mcp`
+- Downstream behavior caveat: non-activated services remain placeholder/echo handlers.
 - Bulk connectivity posture: `<service>.status` tool route registered per MCP for mass smoke checks.
 - Mass smoke payload corpus present: `platform_bootstrap/shared/smoke_payloads/`
 - Windows/Drive/Notion readiness structures present under `platform_bootstrap/integrations/`
@@ -36,6 +54,9 @@ Operational snapshot of MCP contract conformance and routing posture after the r
   - `tradeops`
   - `training_to_sop`
   - `treasury`
+- Transitional-but-activated in `main.py`:
+  - `project-manager-agent`
+  - `training_to_sop`
 
 ## Authoritative sources
 - `mcp_services.csv`

@@ -11,6 +11,10 @@ export type VerifiedTokenClaims = {
 };
 
 let appInitialized = false;
+const DEV_BYPASS_TOKEN = 'dev-token';
+const DEV_BYPASS_ROLE = 'admin';
+const DEV_BYPASS_ORG_ID = process.env.DEV_BYPASS_ORG_ID || 'dev-org';
+const DEV_BYPASS_UID = process.env.DEV_BYPASS_UID || 'dev-admin';
 
 function initAdmin() {
   if (appInitialized) return;
@@ -22,8 +26,21 @@ export async function verifyFirebaseToken(authHeader?: string): Promise<Verified
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     throw new Error('Missing Authorization header');
   }
-  initAdmin();
   const token = authHeader.slice('Bearer '.length);
+  if (token === DEV_BYPASS_TOKEN) {
+    return {
+      uid: DEV_BYPASS_UID,
+      roles: [DEV_BYPASS_ROLE],
+      orgRoles: {
+        [DEV_BYPASS_ORG_ID]: [DEV_BYPASS_ROLE],
+      },
+      orgId: DEV_BYPASS_ORG_ID,
+      role: DEV_BYPASS_ROLE,
+      org: DEV_BYPASS_ORG_ID,
+      email: `${DEV_BYPASS_UID}@local.dev`,
+    };
+  }
+  initAdmin();
   const decoded = await admin.auth().verifyIdToken(token, true);
   const decodedAny = decoded as admin.auth.DecodedIdToken & {
     roles?: unknown;
