@@ -1,0 +1,25 @@
+{
+  "toolId": "training.sync",
+  "tool": "training.sync",
+  "input": {
+    "doc_id": "doc-smoke-activation-003",
+    "category": "ai_agents",
+    "source": "notion",
+    "source_record": {
+      "source": "notion",
+      "record_id": "notion-page-001",
+      "title": "Policy Draft",
+      "metadata": {
+        "workspace": "demo"
+      }
+    },
+    "lessons": [
+      "Verify gateway chain",
+      "Validate output shaping"
+    ],
+    "tags": [
+      "activation",
+      "smoke"
+    ]
+  }
+}

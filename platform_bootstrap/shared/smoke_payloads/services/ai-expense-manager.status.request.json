@@ -1,0 +1,9 @@
+{
+  "toolId": "ai-expense-manager.status",
+  "tool": "ai-expense-manager.status",
+  "input": {
+    "smoke": true,
+    "service": "ai-expense-manager",
+    "source": "platform_bootstrap"
+  }
+}

@@ -3,7 +3,7 @@ import * as admin from "firebase-admin";
 
 admin.initializeApp();
 
-type Role = "super_admin" | "org_admin" | "staff" | "client";
+type Role = "super_admin" | "org_admin" | "staff" | "case_worker" | "client";
 
 interface SetUserClaimsInput {
   uid: string;
@@ -12,7 +12,7 @@ interface SetUserClaimsInput {
   orgRoles?: Record<string, Role[]>;
 }
 
-const allowedRoles: Role[] = ["super_admin", "org_admin", "staff", "client"];
+const allowedRoles: Role[] = ["super_admin", "org_admin", "staff", "case_worker", "client"];
 
 const normalizeClaimRoles = (claims: { roles?: unknown; role?: unknown }): string[] => {
   const roleSet = new Set<string>();
@@ -78,12 +78,24 @@ export const setUserClaims = functions.https.onCall(async (data: SetUserClaimsIn
     safeOrgRoles[candidateOrgId] = validateRoles(roleList);
   });
   const resolvedOrgId = resolveClaimOrgId(orgId, safeOrgRoles);
+  const legacyRole = safeRoles.find((role) => role.length > 0);
 
-  const claims: { roles: Role[]; orgId?: string } = {
+  const claims: {
+    roles: Role[];
+    orgRoles: Record<string, Role[]>;
+    orgId?: string;
+    role?: Role;
+    org?: string;
+  } = {
     roles: safeRoles,
+    orgRoles: safeOrgRoles,
   };
   if (resolvedOrgId) {
     claims.orgId = resolvedOrgId;
+    claims.org = resolvedOrgId;
+  }
+  if (legacyRole) {
+    claims.role = legacyRole;
   }
 
   await admin.auth().setCustomUserClaims(uid, claims);

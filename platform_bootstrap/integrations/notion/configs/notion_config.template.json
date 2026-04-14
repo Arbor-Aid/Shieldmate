@@ -1,0 +1,6 @@
+{
+  "workspace_id": "<optional>",
+  "notion_version": "2022-06-28",
+  "token_source": "secret_manager_or_env",
+  "notes": "Template only; no live tokens committed."
+}

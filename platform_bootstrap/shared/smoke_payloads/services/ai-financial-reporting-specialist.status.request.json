@@ -1,0 +1,9 @@
+{
+  "toolId": "ai-financial-reporting-specialist.status",
+  "tool": "ai-financial-reporting-specialist.status",
+  "input": {
+    "smoke": true,
+    "service": "ai-financial-reporting-specialist",
+    "source": "platform_bootstrap"
+  }
+}

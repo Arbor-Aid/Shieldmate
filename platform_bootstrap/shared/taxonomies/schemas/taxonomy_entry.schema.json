@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TaxonomyEntry",
+  "type": "object",
+  "required": [
+    "taxonomy",
+    "code",
+    "label"
+  ],
+  "properties": {
+    "taxonomy": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

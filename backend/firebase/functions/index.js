@@ -5,7 +5,7 @@ if (admin.apps.length === 0) {
   admin.initializeApp();
 }
 
-const allowedRoles = ["super_admin", "org_admin", "staff", "client"];
+const allowedRoles = ["super_admin", "org_admin", "staff", "case_worker", "client"];
 
 const normalizeClaimRoles = (claims = {}) => {
   const roleSet = new Set();
@@ -69,9 +69,17 @@ export const setUserClaims = functions.https.onCall(async (data, context) => {
   });
 
   const resolvedOrgId = resolveClaimOrgId(orgId, safeOrgRoles);
-  const claims = { roles: safeRoles };
+  const legacyRole = safeRoles.find((role) => role.length > 0);
+  const claims = {
+    roles: safeRoles,
+    orgRoles: safeOrgRoles,
+  };
   if (resolvedOrgId) {
     claims.orgId = resolvedOrgId;
+    claims.org = resolvedOrgId;
+  }
+  if (legacyRole) {
+    claims.role = legacyRole;
   }
 
   await admin.auth().setCustomUserClaims(uid, claims);

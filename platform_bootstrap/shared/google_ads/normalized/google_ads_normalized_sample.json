@@ -1,0 +1,9 @@
+{
+  "customer_id": "1234567890",
+  "campaign_id": "987654321",
+  "campaign_name": "Sample Campaign",
+  "date": "2026-04-06",
+  "impressions": 1234,
+  "clicks": 98,
+  "cost_micros": 4300000
+}

@@ -1,14 +1,70 @@
 # MCP Recovery Scan
 
-Scan root: D:\shieldmatessd
-Repo root: D:\shieldmatessd\Shieldmate_RECLONE
+## Purpose
+Operational snapshot of MCP contract conformance and routing posture after the routing hardening baseline on `feature/document-manager-routing`.
 
-## Candidate service folders
-- D:\shieldmatessd\Shieldmate_RECLONE\mcp\mcp-gateway
+## Current snapshot
+- Scan date: 2026-04-06
+- Scan root: `mcp/`
+- Authoritative MCP folders (excluding `common`, `mcp-gateway`): **34**
+- Bootstrap root: `platform_bootstrap/` (present)
 
-## Recommended copy plan
-- no external folders to copy
+## Conformance result
+- `main.py` present: 34/34
+- `GET /health` present: 34/34
+- `POST /execute` present: 34/34
+- `PORT` fallback runtime entrypoint: 34/34
+- Per-MCP bootstrap package present: 34/34 (`platform_bootstrap/mcps/<service>/bootstrap_package.json`)
 
-## Notes
-- Only folders containing requirements.txt, app.py/main.py/server.py, or Dockerfile were considered.
-- Access-denied paths were suppressed with --no-messages.
+## Routing and chaining posture
+- Gateway-level routing: working with registry-driven dispatch.
+- `document-manager` chaining: working and environment-driven via `MCP_GATEWAY_EXECUTE_URL`.
+- Authorization passthrough for chained calls: implemented in `document-manager`.
+- Activation posture:
+  - Tier 1 activated: 7
+  - Tier 2 activated: 5
+  - Tier 3 placeholder: 22
+- Tier 1 activated services:
+  - `document-manager`
+  - `mcp-analytics`
+  - `project-manager-agent`
+  - `ai-training-coordinator`
+  - `data-scrubbing-ai`
+  - `information-retrieval-ai`
+  - `reporting-dashboard-ai`
+- Tier 2 activated services:
+  - `content-generation-ai`
+  - `training_to_sop`
+  - `coder-agent`
+  - `qa-ai-agent`
+  - `org-scrubber-mcp`
+- Downstream behavior caveat: non-activated services remain placeholder/echo handlers.
+- Bulk connectivity posture: `<service>.status` tool route registered per MCP for mass smoke checks.
+- Mass smoke payload corpus present: `platform_bootstrap/shared/smoke_payloads/`
+- Windows/Drive/Notion readiness structures present under `platform_bootstrap/integrations/`
+
+## Role clarification
+- `mcp-gateway`: ingress + RBAC + proxy routing.
+- `trade_execution_gateway`: regular service inventory member, not ingress.
+- Transitional services with documented inactive `app.py` domain routes:
+  - `trade_execution_gateway`
+  - `investment_recommendation`
+  - `project-manager-agent`
+  - `tradefinance_lc`
+  - `tradeops`
+  - `training_to_sop`
+  - `treasury`
+- Transitional-but-activated in `main.py`:
+  - `project-manager-agent`
+  - `training_to_sop`
+
+## Authoritative sources
+- `mcp_services.csv`
+- `ops/mcp_service_index.json`
+- `README_MCPs.md`
+- `ops/mcp_collaboration_matrix.json`
+- `ops/mcp_slack_alias_map.json`
+- `ops/mcp_learning_pipeline_map.json`
+- `platform_bootstrap/bootstrap_manifest.json`
+- `platform_bootstrap/mcps/transitional_runtime_status.json`
+- `platform_bootstrap/shared/smoke_payloads/mass_smoke_plan.json`

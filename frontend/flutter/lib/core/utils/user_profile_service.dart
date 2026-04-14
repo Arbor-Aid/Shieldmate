@@ -92,6 +92,21 @@ class UserProfileService {
               );
           claimRole = firstRole;
         }
+        if ((claimRole == null || claimRole.isEmpty) && claims['orgRoles'] is Map) {
+          final orgRoles = claims['orgRoles'] as Map<dynamic, dynamic>;
+          for (final value in orgRoles.values) {
+            if (value is List) {
+              final firstRole = value.whereType<String>().cast<String?>().firstWhere(
+                    (role) => role != null && role.isNotEmpty,
+                    orElse: () => null,
+                  );
+              if (firstRole != null && firstRole.isNotEmpty) {
+                claimRole = firstRole;
+                break;
+              }
+            }
+          }
+        }
         claimRole ??= claims['role'] as String?;
       }
       if (claimRole != null && claimRole.isNotEmpty) {

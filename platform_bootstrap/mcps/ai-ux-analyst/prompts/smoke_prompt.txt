@@ -1,0 +1,1 @@
+Return health/status readiness summary for ai-ux-analyst in compact JSON.

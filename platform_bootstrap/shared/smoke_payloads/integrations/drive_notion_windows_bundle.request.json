@@ -1,0 +1,8 @@
+{
+  "description": "Bundle of integration-readiness smoke payload pointers.",
+  "payloads": [
+    "platform_bootstrap/integrations/google_drive/smoke_payloads/google_drive_ingest.sample.json",
+    "platform_bootstrap/integrations/notion/smoke_payloads/notion_ingest.sample.json",
+    "platform_bootstrap/integrations/windows_admin_tools/smoke_payloads/windows_admin_tools_ingest.sample.json"
+  ]
+}

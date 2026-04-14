@@ -1,0 +1,16 @@
+{
+  "toolId": "analytics.process",
+  "tool": "analytics.process",
+  "input": {
+    "doc_id": "doc-smoke-activation-001",
+    "category": "engineering",
+    "actions": {
+      "mode": "smoke",
+      "review": true,
+      "owner": "ops-bot"
+    },
+    "source": "google_drive",
+    "route": "mcp-analytics",
+    "file_path": "platform_bootstrap/shared/templates/doc_template.md"
+  }
+}

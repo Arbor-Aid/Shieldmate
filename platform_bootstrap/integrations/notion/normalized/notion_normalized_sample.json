@@ -1,0 +1,12 @@
+{
+  "source": "notion",
+  "record_id": "notion-page-001",
+  "title": "Policy Draft",
+  "ingested_at": "2026-04-06T12:07:00Z",
+  "metadata": {
+    "workspace": "demo",
+    "labels": [
+      "policy"
+    ]
+  }
+}

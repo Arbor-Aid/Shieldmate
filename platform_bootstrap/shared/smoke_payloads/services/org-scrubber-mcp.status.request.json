@@ -1,0 +1,9 @@
+{
+  "toolId": "org-scrubber-mcp.status",
+  "tool": "org-scrubber-mcp.status",
+  "input": {
+    "smoke": true,
+    "service": "org-scrubber-mcp",
+    "source": "platform_bootstrap"
+  }
+}

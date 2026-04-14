@@ -4,7 +4,7 @@ if (admin.apps.length === 0) {
   admin.initializeApp();
 }
 
-type Role = "super_admin" | "org_admin" | "staff" | "client";
+type Role = "super_admin" | "org_admin" | "staff" | "case_worker" | "client";
 
 type OrgRoleClaims = Record<string, Role[]>;
 
@@ -19,7 +19,7 @@ export async function assignCustomClaims(params: AssignRoleParams) {
   const safeRoles = roles.filter(Boolean);
 
   // Validate role names
-  const allowed: Role[] = ["super_admin", "org_admin", "staff", "client"];
+  const allowed: Role[] = ["super_admin", "org_admin", "staff", "case_worker", "client"];
   safeRoles.forEach((r) => {
     if (!allowed.includes(r)) {
       throw new Error(`Invalid role: ${r}`);
@@ -33,10 +33,25 @@ export async function assignCustomClaims(params: AssignRoleParams) {
     })
   );
 
-  const customClaims = {
+  const claimOrgId = Object.keys(orgRoles).find((orgId) => orgId.length > 0);
+  const legacyRole = safeRoles.find((role) => role.length > 0);
+  const customClaims: {
+    roles: Role[];
+    orgRoles: OrgRoleClaims;
+    orgId?: string;
+    org?: string;
+    role?: Role;
+  } = {
     roles: safeRoles,
     orgRoles,
   };
+  if (claimOrgId) {
+    customClaims.orgId = claimOrgId;
+    customClaims.org = claimOrgId;
+  }
+  if (legacyRole) {
+    customClaims.role = legacyRole;
+  }
 
   await admin.auth().setCustomUserClaims(uid, customClaims);
   return { uid, claims: customClaims };

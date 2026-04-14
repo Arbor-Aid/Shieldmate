@@ -1,0 +1,1 @@
+Return health/status readiness summary for cto-agent in compact JSON.

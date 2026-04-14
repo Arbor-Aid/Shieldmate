@@ -1,4 +1,10 @@
-﻿from fastapi import FastAPI, Request, Header
+"""Trade domain endpoints for trade_execution_gateway.
+
+These routes are currently not mounted by the active MCP contract entrypoint
+(`main.py`), which serves `/health` and `/execute` for fleet standardization.
+"""
+
+from fastapi import FastAPI, Request, Header
 from typing import Any, Dict, Optional, List
 from mcp.common.utils import now_iso, new_correlation_id
 from mcp.common.auth import verify_firebase_token, enforce_org_match, require_approver

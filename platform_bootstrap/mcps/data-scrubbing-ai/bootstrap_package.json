@@ -1,0 +1,74 @@
+{
+  "service_name": "data-scrubbing-ai",
+  "role_category": "Validation and data normalization MCP for governance and quality checks.",
+  "learning_pipeline_role": "validation_normalization",
+  "primary_tools": [
+    "data.validate",
+    "data-scrubbing-ai.status"
+  ],
+  "expected_inputs": {
+    "execute_envelope": {
+      "toolId": "string",
+      "tool": "string (compat)",
+      "input": "object"
+    },
+    "service_specific": [
+      "status check payload for smoke validation",
+      "service-specific domain payloads where implemented"
+    ]
+  },
+  "expected_outputs": {
+    "success_envelope": [
+      "ok",
+      "status",
+      "service",
+      "tool"
+    ],
+    "error_envelope": [
+      "ok",
+      "status",
+      "service",
+      "error",
+      "detail"
+    ]
+  },
+  "upstream_callers": [
+    "mcp-gateway",
+    "document-manager"
+  ],
+  "downstream_dependencies": [
+    "none_required_for_placeholder"
+  ],
+  "external_systems": {
+    "firebase_firestore": "planned",
+    "google_drive": "planned",
+    "notion": "planned",
+    "slack": "planned",
+    "windows_admin_tools": "planned",
+    "local_scripts": "planned"
+  },
+  "shared_dataset_readiness": {
+    "google_ads": "planned",
+    "geography": "planned",
+    "demographics": "planned",
+    "org_profiles": "planned",
+    "taxonomies": "planned"
+  },
+  "frontend_exposure_status": "backend_internal_only",
+  "slack_aliases": [
+    "#mcp-data-scrubbing-ai"
+  ],
+  "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/orchestrators/data.validate.request.json",
+  "seed_data_path": "platform_bootstrap/mcps/data-scrubbing-ai/seed_data",
+  "config_path": "platform_bootstrap/mcps/data-scrubbing-ai/config",
+  "bootstrap_status": "bootstrapped",
+  "transitional_runtime_note": "",
+  "notes": "Connected through gateway with minimal smoke-test tool route data-scrubbing-ai.status.",
+  "activation_level": "tier1_activated",
+  "live_behavior_present": true,
+  "consumes_bootstrap_data": true,
+  "writes_structured_records": false,
+  "frontend_safe_output": true,
+  "slack_trigger_ready": true,
+  "runtime_mode": "activated_main"
+}

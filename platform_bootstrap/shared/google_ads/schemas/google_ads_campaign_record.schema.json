@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GoogleAdsCampaignRecord",
+  "type": "object",
+  "required": [
+    "customer_id",
+    "campaign_id",
+    "campaign_name",
+    "date"
+  ],
+  "properties": {
+    "customer_id": {
+      "type": "string"
+    },
+    "campaign_id": {
+      "type": "string"
+    },
+    "campaign_name": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "impressions": {
+      "type": "integer"
+    },
+    "clicks": {
+      "type": "integer"
+    },
+    "cost_micros": {
+      "type": "integer"
+    }
+  }
+}

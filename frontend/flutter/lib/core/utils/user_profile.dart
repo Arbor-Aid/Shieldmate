@@ -42,6 +42,7 @@ class AppRoleMapper {
         return AppRole.admin;
       case 'org_admin':
       case 'staff':
+      case 'case_worker':
       case 'organization':
       case 'partner':
         return AppRole.partner;
