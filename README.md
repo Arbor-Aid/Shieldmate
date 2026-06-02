@@ -11,7 +11,7 @@ ShieldMate provides no legal or medical advice.
 - Active UI: Vite + React + TypeScript in `frontend/web`.
 - Legacy / isolated UI: Flutter in `frontend/flutter` for historical web, Android, and iOS work.
 - Firebase Auth, Firestore, Storage, Analytics, App Check, and Hosting config remain core platform services.
-- MCP services (33 deployable service directories in `mcp`, excluding `common` and `mcp-gateway`) are built from `mcp/Dockerfile.mcp`.
+- MCP services (34 deployable service directories in `mcp`, excluding `common` and `mcp-gateway`) are built from `mcp/Dockerfile.mcp`.
 - MCP Gateway (`mcp/mcp-gateway`) enforces claims-based RBAC using Firebase Admin and routes requests to Cloud Run services.
 - Web MCP calls originate from `frontend/web/src/services/mcpClient.ts` and use Firebase ID tokens plus App Check when available.
 - Slack alerts and intake are configured via `SLACK_*` environment variables (template in `.env.bak`).
@@ -43,3 +43,24 @@ ShieldMate provides no legal or medical advice.
 - `README_MCPs.md`
 - `README_DEPLOYMENT.md`
 - `README_COMPLIANCE.md`
+<!-- MSI_CANON_TRANSITION_START -->
+## 2026-05-22 MSI Canon Transition
+
+Active Windows development machine:
+- MSI: active ShieldMate development workstation
+
+Active MSI canon root:
+D:\2marines\Shieldmate
+
+Legacy / parked machine:
+- Old Dell laptop: legacy/parked after MSI onboarding. Preserve historical state; do not delete legacy paths without explicit authority.
+
+Operating policy:
+- MSI is the active development node for Launch Validation Phase.
+- MCP updates must land on canon before endpoint activation.
+- MCP Gateway remains the RBAC ingress.
+- Slack remains notification and intake only, never system of record.
+- Firebase claims, RBAC, and App Check guardrails remain unchanged.
+- Existing Shopify/shop work is preserved.
+<!-- MSI_CANON_TRANSITION_END -->
+

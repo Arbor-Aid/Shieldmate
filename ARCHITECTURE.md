@@ -1,6 +1,6 @@
 # ShieldMate Architecture Overview
 
-This document is the authoritative technical architecture for `D:\shieldmatessd\Shieldmate_RECLONE` on branch `ui-rebuild-flutter-gen-ui`.
+This document is the authoritative technical architecture for `D:\2marines\Shieldmate` on branch `ui-rebuild-flutter-gen-ui`.
 
 ## Web Platform (Active)
 - Vite + React + TypeScript is the primary UI stack in `frontend/web`.
@@ -34,7 +34,7 @@ This document is the authoritative technical architecture for `D:\shieldmatessd\
 - Cloud Run services are reached via HTTPS endpoints configured through `VITE_MCP_ENDPOINT`.
 - Requests use `Authorization: Bearer <firebase-id-token>` and include `X-Firebase-AppCheck` when available.
 - `mcp/mcp-gateway` is the claims-based ingress and routing layer for MCP requests.
-- `mcp_services.csv` remains the service inventory snapshot; the repo currently contains 33 deployable service directories in `mcp` excluding `common` and `mcp-gateway`.
+- `mcp_services.csv` remains the service inventory snapshot; the repo currently contains 34 deployable service directories in `mcp` excluding `common` and `mcp-gateway`.
 - No MCP-to-MCP dependencies or direct calls; keep services independently deployable.
 
 ## Legacy / Isolated Flutter
