@@ -1,6 +1,7 @@
 {
   "hosting": {
-    "public": "public",
+    "target": "marines-ai-agent",
+    "public": "frontend/web/dist",
     "ignore": [
       "firebase.json",
       "**/.*",
