@@ -8,7 +8,7 @@ const navItems = [
   { label: "Info", href: "/info" },
   { label: "ShieldMate", href: "/shieldmate" },
   { label: "MarineCoin", href: "/marinecoin" },
-  { label: "Shop", href: "/shop" },
+  { label: "Shop", href: "/store", reloadDocument: true },
   { label: "Partnerships", href: "/partnerships" },
   { label: "Brand Kit", href: "/brand" },
   { label: "Socials", href: "/socials" },
@@ -60,6 +60,7 @@ export function TwoMarinesNavbar() {
             <Link
               key={item.href}
               to={item.href}
+              reloadDocument={item.reloadDocument}
               className={cn(
                 "text-sm font-medium transition-colors",
                 isActive(location.pathname, item.href)
@@ -115,6 +116,7 @@ export function TwoMarinesNavbar() {
                       <Link
                         key={item.href}
                         to={item.href}
+                        reloadDocument={item.reloadDocument}
                         className="text-sm font-medium"
                       >
                         {item.label}

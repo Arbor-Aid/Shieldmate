@@ -28,9 +28,13 @@ It centralizes public marketing URLs for:
 | `2MARINES_WEBSITE_URL` | `https://2marines.us` |
 | `SHIELDMATE_WEBSITE_URL` | `https://2marines.us/shieldmate` |
 | `2MARINES_STORE_URL` | `https://2marines.us/store` |
+| `2MARINES_STORE_CANONICAL_ROUTE` | `/store` |
+| `2MARINES_STORE_LEGACY_ALIAS` | `/shop` |
 | `MARINECOIN_WEBSITE_URL` | `https://2marines.us/marinecoin` |
 | `SHIELDMATE_SUBDOMAIN_URL` | `https://shieldmate.2marines.us/` |
 | `MARINECOIN_SUBDOMAIN_URL` | `https://marinecoin.2marines.us/marinecoin` |
+| `SHOPIFY_REDIRECT_STATUS` | `ACTIVE` |
+| `SHOPIFY_DNS_STATUS` | `NO_DNS_DELETE_REQUIRED` |
 
 Customer-facing copy should use **Marine Coins** where possible. Technical routes and keys may remain `marinecoin` where that is already the repo convention.
 
@@ -100,7 +104,9 @@ Runtime config uses final captured URLs as defaults and allows deployment enviro
 - `/store` reads `VITE_SHOPIFY_STORE_URL` through `frontend/web/src/config/marketingLinks.ts`.
 - If `VITE_SHOPIFY_STORE_URL` is configured, `/store` performs a client-side redirect to that storefront.
 - If it is missing, `/store` uses the final captured default storefront URL: `https://shieldmateapp.myshopify.com/`.
+- `/shop` is a legacy alias and also hands off to the same Shopify storefront.
 - No Shopify admin URL is hard-coded in the new `/store` registry or route.
+- DNS was not changed or deleted. This fix aligns frontend routes and/or Firebase Hosting redirects so `/shop` and `/store` hand off to Shopify.
 
 Existing dirty Shopify work was left untouched:
 

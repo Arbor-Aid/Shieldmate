@@ -6,6 +6,18 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "redirects": [
+      {
+        "source": "/store",
+        "destination": "https://shieldmateapp.myshopify.com/",
+        "type": 302
+      },
+      {
+        "source": "/shop",
+        "destination": "https://shieldmateapp.myshopify.com/",
+        "type": 302
+      }
+    ],
     "rewrites": [
       {
         "source": "**",

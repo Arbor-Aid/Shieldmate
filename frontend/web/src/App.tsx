@@ -17,7 +17,7 @@ const ShieldmateAbout = React.lazy(() => import('./pages/ShieldmateAbout'));
 const ShieldmateContact = React.lazy(() => import('./pages/ShieldmateContact'));
 const TwoMarinesInfo = React.lazy(() => import('./pages/twomarines/TwoMarinesInfo'));
 const TwoMarinesShieldMate = React.lazy(() => import('./pages/twomarines/TwoMarinesShieldMate'));
-const TwoMarinesShop = React.lazy(() => import('./pages/twomarines/TwoMarinesShop'));
+const StoreRedirect = React.lazy(() => import('./pages/twomarines/StoreRedirect'));
 const TwoMarinesPartnerships = React.lazy(() => import('./pages/twomarines/TwoMarinesPartnerships'));
 const TwoMarinesBrand = React.lazy(() => import('./pages/twomarines/TwoMarinesBrand'));
 const TwoMarinesSocials = React.lazy(() => import('./pages/twomarines/TwoMarinesSocials'));
@@ -95,7 +95,8 @@ function App() {
         <Route path="/about" element={<ShieldmateAbout />} />
         <Route path="/public" element={<Public />} />
         <Route path="/marinecoin" element={<MarineCoinRoute />} />
-        <Route path="/shop" element={<TwoMarinesShop />} />
+        <Route path="/shop" element={<StoreRedirect />} />
+        <Route path="/store" element={<StoreRedirect />} />
         <Route path="/partnerships" element={<TwoMarinesPartnerships />} />
         <Route path="/brand" element={<TwoMarinesBrand />} />
         <Route path="/socials" element={<TwoMarinesSocials />} />
