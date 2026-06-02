@@ -41,7 +41,7 @@ export default function TwoMarinesShieldMate() {
         <div className="mt-8">
           <Button asChild>
             <a
-              href="https://shieldmate.2marines.us"
+              href="https://shieldmate.2marines.us/"
               target="_blank"
               rel="noopener noreferrer"
             >

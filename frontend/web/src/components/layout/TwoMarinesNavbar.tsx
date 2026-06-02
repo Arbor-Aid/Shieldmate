@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Menu, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
+import { Menu, Instagram, Linkedin, Music2, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
@@ -17,7 +17,7 @@ const navItems = [
 const socialLinks = [
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/company/2marines",
+    href: "https://www.linkedin.com/company/2marines/",
     icon: Linkedin,
   },
   {
@@ -27,13 +27,13 @@ const socialLinks = [
   },
   {
     label: "Instagram",
-    href: "https://www.instagram.com/2marines",
+    href: "https://www.instagram.com/weldingking87/",
     icon: Instagram,
   },
   {
-    label: "Twitter",
-    href: "https://x.com/2marines",
-    icon: Twitter,
+    label: "TikTok",
+    href: "https://www.tiktok.com/@2marines87",
+    icon: Music2,
   },
 ];
 

@@ -23,13 +23,13 @@ const quickLinks = [
   {
     title: "ShieldMate",
     body: "The secure operations platform for veteran support workflows.",
-    href: "https://shieldmate.2marines.us",
+    href: "https://shieldmate.2marines.us/",
     cta: "Visit ShieldMate",
   },
   {
     title: "MarineCoin",
     body: "Impact credit concept for verified support actions.",
-    href: "https://marinecoin.2marines.us",
+    href: "https://marinecoin.2marines.us/marinecoin",
     cta: "Explore MarineCoin",
   },
   {
@@ -59,7 +59,7 @@ export default function TwoMarinesHome() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild variant="secondary" className="w-full sm:w-auto">
                 <a
-                  href="https://shieldmate.2marines.us"
+                  href="https://shieldmate.2marines.us/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -68,7 +68,7 @@ export default function TwoMarinesHome() {
               </Button>
               <Button asChild variant="outline" className="w-full sm:w-auto">
                 <a
-                  href="https://marinecoin.2marines.us"
+                  href="https://marinecoin.2marines.us/marinecoin"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

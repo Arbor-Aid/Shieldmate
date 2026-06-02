@@ -19,7 +19,7 @@ export default function ShieldMate() {
 
           <div className="mt-6">
             <Button asChild>
-              <a href="https://shieldmate.2marines.us" target="_blank" rel="noreferrer">
+              <a href="https://shieldmate.2marines.us/" target="_blank" rel="noreferrer">
                 Go to ShieldMate <ExternalLink className="ml-2 h-4 w-4" />
               </a>
             </Button>

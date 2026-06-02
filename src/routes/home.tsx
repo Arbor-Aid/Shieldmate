@@ -38,12 +38,12 @@ export default function Home() {
               <div className="text-sm font-semibold">Quick Links</div>
               <div className="mt-3 grid gap-3">
                 <Button asChild variant="secondary" className="justify-between">
-                  <a href="https://shieldmate.2marines.us" target="_blank" rel="noreferrer">
+                  <a href="https://shieldmate.2marines.us/" target="_blank" rel="noreferrer">
                     Open ShieldMate <span className="text-xs text-muted-foreground">Platform</span>
                   </a>
                 </Button>
                 <Button asChild variant="secondary" className="justify-between">
-                  <a href="https://marinecoin.2marines.us" target="_blank" rel="noreferrer">
+                  <a href="https://marinecoin.2marines.us/marinecoin" target="_blank" rel="noreferrer">
                     View MarineCoin <span className="text-xs text-muted-foreground">Concept</span>
                   </a>
                 </Button>

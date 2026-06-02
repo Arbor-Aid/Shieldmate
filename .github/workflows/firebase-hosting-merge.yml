@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm --prefix frontend/web ci && npm --prefix frontend/web run build
+      - run: npm --prefix frontend/web ci && npm --prefix frontend/web run build:2marines
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}

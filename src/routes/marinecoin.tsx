@@ -19,7 +19,7 @@ export default function MarineCoin() {
 
           <div className="mt-6">
             <Button asChild>
-              <a href="https://marinecoin.2marines.us" target="_blank" rel="noreferrer">
+              <a href="https://marinecoin.2marines.us/marinecoin" target="_blank" rel="noreferrer">
                 Go to MarineCoin <ExternalLink className="ml-2 h-4 w-4" />
               </a>
             </Button>

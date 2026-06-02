@@ -27,13 +27,13 @@ export function SiteFooter() {
           <div className="text-sm">
             <div className="font-semibold">Platforms</div>
             <div className="mt-2 grid gap-2 text-muted-foreground">
-              <a className="hover:text-foreground" href="https://shieldmate.2marines.us" target="_blank" rel="noreferrer">
+              <a className="hover:text-foreground" href="https://shieldmate.2marines.us/" target="_blank" rel="noreferrer">
                 ShieldMate
               </a>
-              <a className="hover:text-foreground" href="https://marinecoin.2marines.us" target="_blank" rel="noreferrer">
+              <a className="hover:text-foreground" href="https://marinecoin.2marines.us/marinecoin" target="_blank" rel="noreferrer">
                 MarineCoin
               </a>
-              <Link to="/shop" className="hover:text-foreground">Shop (Coming Soon)</Link>
+              <Link to="/store" className="hover:text-foreground">Shop</Link>
             </div>
           </div>
         </div>

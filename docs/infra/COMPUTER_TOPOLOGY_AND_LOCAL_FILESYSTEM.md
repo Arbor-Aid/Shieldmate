@@ -1,9 +1,9 @@
 ﻿# ShieldMate Computer Topology and Local Filesystem
 
-Updated: 2026-04-13 21:32:45
+Updated: 2026-06-01 15:16:28
 
 ## Authoritative Windows Repo Root
-D:\shieldmatessd\Shieldmate_RECLONE
+D:\2marines\Shieldmate
 
 ## Authoritative Branch
 ui-rebuild-flutter-gen-ui
@@ -20,7 +20,7 @@ Responsibilities:
 - local build and test coordination
 
 Repo root:
-D:\shieldmatessd\Shieldmate_RECLONE
+D:\2marines\Shieldmate
 
 ### HONEY
 Role: Raspberry Pi Kali monitoring and security node.
@@ -46,7 +46,7 @@ Responsibilities:
 - controlled feature work
 
 Repo root:
-D:\shieldmatessd\Shieldmate_RECLONE
+D:\2marines\Shieldmate
 
 ## Authoritative Branch Policy
 - Canon branch is ui-rebuild-flutter-gen-ui
@@ -54,7 +54,7 @@ D:\shieldmatessd\Shieldmate_RECLONE
 - Laptop and THE-BOT must stay aligned to canon during system bring-up
 
 ## Local Filesystem Policy
-- Canon Windows repo root is D:\shieldmatessd\Shieldmate_RECLONE
+- Canon Windows repo root is D:\2marines\Shieldmate
 - Do not move repo roots without confirmation
 - Do not delete parked or legacy paths without authority confirmation
 - Keep ops notes, logs, and documentation inside repo-controlled paths
@@ -69,3 +69,24 @@ D:\shieldmatessd\Shieldmate_RECLONE
 - THE-BOT aligned to ui-rebuild-flutter-gen-ui
 - HONEY operating as monitoring and security node
 - Feature work preserved separately and merged to canon before activation
+<!-- MSI_CANON_TRANSITION_START -->
+## 2026-05-22 MSI Canon Transition
+
+Active Windows development machine:
+- MSI: active ShieldMate development workstation
+
+Active MSI canon root:
+D:\2marines\Shieldmate
+
+Legacy / parked machine:
+- Old Dell laptop: legacy/parked after MSI onboarding. Preserve historical state; do not delete legacy paths without explicit authority.
+
+Operating policy:
+- MSI is the active development node for Launch Validation Phase.
+- MCP updates must land on canon before endpoint activation.
+- MCP Gateway remains the RBAC ingress.
+- Slack remains notification and intake only, never system of record.
+- Firebase claims, RBAC, and App Check guardrails remain unchanged.
+- Existing Shopify/shop work is preserved.
+<!-- MSI_CANON_TRANSITION_END -->
+

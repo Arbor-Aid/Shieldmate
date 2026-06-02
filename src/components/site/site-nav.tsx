@@ -10,7 +10,7 @@ const nav = [
   { to: "/shieldmate", label: "ShieldMate" },
   { to: "/marinecoin", label: "MarineCoin" },
   { to: "/partnerships", label: "Partnerships" },
-  { to: "/shop", label: "Shop" },
+  { to: "/store", label: "Shop" },
   { to: "/brand", label: "Brand Kit" },
   { to: "/socials", label: "Socials" },
 ];
@@ -50,7 +50,7 @@ export function SiteNav() {
         <div className="flex items-center gap-2">
           {/* Primary external CTA: ShieldMate */}
           <Button asChild size="sm" className="hidden md:inline-flex">
-            <a href="https://shieldmate.2marines.us" target="_blank" rel="noreferrer">
+            <a href="https://shieldmate.2marines.us/" target="_blank" rel="noreferrer">
               Open ShieldMate <ExternalLink className="ml-2 h-4 w-4" />
             </a>
           </Button>
