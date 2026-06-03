@@ -102,6 +102,8 @@ scripts/out/
 
 # Generated / transient
 scripts/out/
+.venv/
+output/
 *.bak
 *.bak2
 *.bak3
