@@ -26,6 +26,25 @@ export interface RoleClaims {
   org?: Record<string, UserRole[]>;
 }
 
+export function doesEffectiveRoleSatisfy(
+  userRole: UserRole | null | undefined,
+  requiredRole: UserRole
+): boolean {
+  if (!userRole) return false;
+  if (userRole === requiredRole) return true;
+  if (requiredRole === "admin" && userRole === "super_admin") return true;
+  if (requiredRole === "organization" && (userRole === "org_admin" || userRole === "staff")) return true;
+  if ((requiredRole === "org_admin" || requiredRole === "staff") && userRole === "organization") return true;
+  return false;
+}
+
+export function doesEffectiveRoleSatisfyAny(
+  userRole: UserRole | null | undefined,
+  requiredRoles: UserRole[]
+): boolean {
+  return requiredRoles.some((role) => doesEffectiveRoleSatisfy(userRole, role));
+}
+
 
 /**
  * Read custom role claims from the current user token.
@@ -146,7 +165,7 @@ export async function setUserRole(userId: string, role: UserRole): Promise<boole
  */
 export async function hasRole(userId: string, role: UserRole): Promise<boolean> {
   const userRole = await getUserRole(userId);
-  return userRole === role;
+  return doesEffectiveRoleSatisfy(userRole, role);
 }
 
 /**
@@ -184,7 +203,6 @@ export async function resolveEffectiveRole(user?: User | null): Promise<UserRole
 }
 
 function normalizeRole(role: UserRole): UserRole {
-  if (role === "super_admin") return "admin";
   if (role === "org_admin" || role === "staff") return "organization";
   return role;
 }

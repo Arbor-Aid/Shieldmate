@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@/hooks/useAuth";
-import { getRoleClaims, hasRoleClaim, resolveEffectiveRole, UserRole } from "@/services/roleService";
+import { doesEffectiveRoleSatisfy, getRoleClaims, hasRoleClaim, resolveEffectiveRole, UserRole } from "@/services/roleService";
 
 export function useRoleAuth() {
   const { currentUser, loading: authLoading } = useAuth();
@@ -39,11 +39,7 @@ export function useRoleAuth() {
 
   const hasRole = (role: UserRole): boolean => {
     if (loading || !userRole) return false;
-    if (role === "super_admin" && userRole === "admin") return true;
-    if (role === "admin" && userRole === "super_admin") return true;
-    if (role === "organization" && (userRole === "org_admin" || userRole === "staff")) return true;
-    if ((role === "org_admin" || role === "staff") && userRole === "organization") return true;
-    return userRole === role;
+    return doesEffectiveRoleSatisfy(userRole, role);
   };
 
   const hasOrgRole = (orgId: string, role: UserRole): boolean => {

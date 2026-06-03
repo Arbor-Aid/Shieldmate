@@ -19,6 +19,7 @@ import {
 import { useAuth } from "@/hooks/useAuth";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { useRoleAuth } from "@/hooks/useRoleAuth";
+import { doesEffectiveRoleSatisfy } from "@/services/roleService";
 import { 
   Home,
   User,
@@ -37,6 +38,9 @@ function NavigationWithNotifications() {
   const { userRole } = useRoleAuth();
   const { profile } = useUserProfile();
   const location = useLocation();
+  const isAdminRole = doesEffectiveRoleSatisfy(userRole, "admin");
+  const isOrganizationRole = doesEffectiveRoleSatisfy(userRole, "organization");
+  const isClientRole = doesEffectiveRoleSatisfy(userRole, "client");
 
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -62,10 +66,10 @@ function NavigationWithNotifications() {
 
   const navLinks = [
     { name: "Home", href: "/", icon: Home },
-    currentUser && userRole === "admin" && { name: "Admin", href: "/admin", icon: Settings },
-    currentUser && userRole === "organization" && { name: "Dashboard", href: "/organization", icon: Building2 },
-    currentUser && userRole === "client" && { name: "Profile", href: "/profile", icon: User },
-    currentUser && (userRole === "client" || userRole === "admin") && { 
+    currentUser && isAdminRole && { name: "Admin", href: "/admin", icon: Settings },
+    currentUser && isOrganizationRole && { name: "Dashboard", href: "/organization", icon: Building2 },
+    currentUser && isClientRole && { name: "Profile", href: "/profile", icon: User },
+    currentUser && (isClientRole || isAdminRole) && {
       name: "My Conversations", 
       href: "/my-conversations", 
       icon: MessageSquare 
@@ -134,7 +138,7 @@ function NavigationWithNotifications() {
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                {userRole === "admin" && (
+                {isAdminRole && (
                   <DropdownMenuItem asChild>
                     <Link to="/admin" className="cursor-pointer">
                       <Settings className="mr-2 h-4 w-4" />
@@ -142,7 +146,7 @@ function NavigationWithNotifications() {
                     </Link>
                   </DropdownMenuItem>
                 )}
-                {userRole === "organization" && (
+                {isOrganizationRole && (
                   <DropdownMenuItem asChild>
                     <Link to="/organization" className="cursor-pointer">
                       <Building2 className="mr-2 h-4 w-4" />
@@ -150,7 +154,7 @@ function NavigationWithNotifications() {
                     </Link>
                   </DropdownMenuItem>
                 )}
-                {userRole === "client" && (
+                {isClientRole && (
                   <DropdownMenuItem asChild>
                     <Link to="/profile" className="cursor-pointer">
                       <User className="mr-2 h-4 w-4" />
@@ -158,7 +162,7 @@ function NavigationWithNotifications() {
                     </Link>
                   </DropdownMenuItem>
                 )}
-                {userRole === "admin" && (
+                {isAdminRole && (
                   <DropdownMenuItem asChild>
                     <Link to="/admin/users" className="cursor-pointer">
                       <Users className="mr-2 h-4 w-4" />
