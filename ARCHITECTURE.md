@@ -21,7 +21,8 @@ This document is the authoritative technical architecture for `D:\2marines\Shiel
 - Local and CI web builds run from `frontend/web` via `vite build`.
 - Vite outputs `frontend/web/dist` (`frontend/web/vite.config.js`).
 - Repo-level Firebase Hosting config lives in `firebase.json` and keeps SPA rewrites to `index.html`.
-- `scripts/site-meta.cjs` resolves the active web project under `frontend/web` and stages assets into that `dist/` output.
+- `frontend/web/index.html` uses safe static default ecosystem metadata; raw `%VITE_*` placeholders must never ship to production or built output.
+- `scripts/site-meta.cjs` resolves the active web project under `frontend/web` and stages site-specific favicon/apple-touch/OG assets into that `dist/` output.
 - `deploy-shieldmate.ps1` still reflects an older root/dist deployment path and should be treated as a legacy helper until aligned.
 
 ## Data + Auth Boundary
