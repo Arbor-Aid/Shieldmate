@@ -4,7 +4,6 @@ import ProtectedRoute from './components/ProtectedRoute';
 import RoleCheck from './components/RoleCheck';
 
 const Public = React.lazy(() => import('./pages/Public'));
-const SiteHome = React.lazy(() => import('./pages/Index'));
 const ProgramsIndex = React.lazy(() => import('./pages/programs/index'));
 const ProgramDetail = React.lazy(() => import('./pages/programs/ProgramDetail'));
 const TieProgram = React.lazy(() => import('./pages/tie/index'));
@@ -81,7 +80,7 @@ function App() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
-        <Route path="/" element={<SiteHome />} />
+        <Route path="/" element={<Public />} />
         <Route path="/programs" element={<ProgramsIndex />} />
         <Route path="/programs/:programSlug" element={<ProgramDetail />} />
         <Route path="/tie" element={<TieProgram />} />

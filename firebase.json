@@ -1,7 +1,10 @@
 {
   "hosting": {
     "target": "marines-ai-agent",
-    "public": "public",
+    "public": "frontend/web/dist",
+    "predeploy": [
+      "npm --prefix frontend/web run build:2marines"
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -14,7 +17,17 @@
         "type": 302
       },
       {
+        "source": "/store/**",
+        "destination": "https://shieldmateapp.myshopify.com/",
+        "type": 302
+      },
+      {
         "source": "/shop",
+        "destination": "https://shieldmateapp.myshopify.com/",
+        "type": 302
+      },
+      {
+        "source": "/shop/**",
         "destination": "https://shieldmateapp.myshopify.com/",
         "type": 302
       }
