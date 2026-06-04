@@ -56,6 +56,73 @@ This is a design-production guide only. Do not publish directly from Canva unles
 | Production note | `needed_asset_notes` |
 | Compliance note | `compliance_notes` |
 
+## Design Sizes and Resize Workflow
+
+Canva Bulk Create uses CSV fields for text and data placement. It does not automatically guarantee that each generated post is the correct platform size unless Joshua starts from the correct Canva design size or uses Canva resize and export steps.
+
+Platform size mapping:
+
+| Platform / format | Canva size |
+| --- | --- |
+| Instagram Square | 1080 x 1080 |
+| Instagram Story | 1080 x 1920 |
+| Facebook Link Post | 1200 x 628 |
+| Facebook Square/feed | 1080 x 1080 |
+| LinkedIn Single Image | 1080 x 1080 |
+| LinkedIn Carousel | 1080 x 1080 per slide |
+| YouTube Short | 1080 x 1920 |
+| TikTok Vertical Video | 1080 x 1920 |
+
+Recommended platform/format-first production workflow:
+
+1. Use the uploaded CSV as the source of truth for each row's `platform` and `format`.
+2. Generate the correct Canva design size for each row based on the platform size mapping.
+3. Group outputs by brand so 2Marines, MarineCoin, and ShieldMate stay easy to review.
+4. Use `asset_name` as the export naming base.
+5. Review every generated design for size, crop, text fit, link accuracy, brand fit, and compliance.
+6. Do not publish directly from Canva.
+7. Export approved graphics for manual Meta draft staging.
+
+Fallback square-first workflow:
+
+Use this only if Canva cannot reliably generate mixed sizes from the uploaded CSV and platform/format fields.
+
+1. Build one 2Marines square template, one MarineCoin square template, and one ShieldMate square template.
+2. Use Bulk Create with each lane's CSV to generate square drafts.
+3. Review generated square designs.
+4. After approval, use Canva resize or copy to create vertical and landscape variants.
+5. Verify sizing manually before export.
+
+## Canva AI Starter Prompts
+
+Multi-format CSV generation prompt:
+
+```text
+Use the uploaded campaign CSV as the source of truth. For each row, read the platform and format fields and create the correct Canva design size for that row. Use Instagram Square as 1080 x 1080, Instagram Story as 1080 x 1920, Facebook Link Post as 1200 x 628, Facebook Square/feed as 1080 x 1080, LinkedIn Single Image as 1080 x 1080, LinkedIn Carousel as 1080 x 1080 per slide, YouTube Short as 1080 x 1920, and TikTok Vertical Video as 1080 x 1920. Group outputs by brand: 2Marines, MarineCoin, and ShieldMate. Use asset_name as the export naming base. Use each row's headline, body, CTA, final_url, visual_source, asset_status, needed_asset_notes, alt_text, and compliance_notes. Do not publish, schedule, post, boost, launch, or spend anything.
+
+MarineCoin restrictions: no investment, no ROI, no profit, no financial return, no token appreciation, no asset appreciation, no securities framing, no yield, no trading, no token-gain, and no guaranteed-return language or imagery. Keep MarineCoin focused on support, participation, mission commerce, and community impact.
+
+Privacy restrictions for all brands: no real client data, no private emails, no tokens, no billing data, no internal IDs, and no sensitive screenshots. Use demo-style mockups and public-safe brand visuals only.
+```
+
+2Marines square/static template prompt:
+
+```text
+Create a 1080 x 1080 square social media template for 2Marines. The design should feel mission-focused, practical, and community-centered. Include space for a short headline, supporting body copy, CTA, small URL or QR area, and 2Marines branding. Visual direction: veteran support, app department progress, referrals, housing resources, service navigation, and community coordination. Use clean structure, strong readability, and a calm professional style.
+```
+
+MarineCoin square/static template prompt:
+
+```text
+Create a 1080 x 1080 square social media template for Marine Coins. The design should focus on supporter commerce, participation, mission support, and community impact. Include space for a short headline, supporting body copy, CTA, small URL or QR area, and MarineCoin branding. Do not use investment, profit, ROI, return, appreciation, trading, yield, guaranteed-return, market chart, price movement, or financial-performance framing. Keep the message about what support helps build.
+```
+
+ShieldMate square/static template prompt:
+
+```text
+Create a 1080 x 1080 square social media template for ShieldMate. The design should communicate coming soon and pre-register for a calmer operations workspace. Include space for a short headline, supporting body copy, CTA, small URL or QR area, and ShieldMate branding. Visual direction: approval-driven workflows, role-based access, partner dashboards, intake, documents, audit logs, and organized support operations. Use only demo-style dashboard mockups and avoid real names, private account data, client records, emails, phone numbers, tokens, billing data, or sensitive screenshots.
+```
+
 ## Review Checklist
 
 - [ ] Correct brand template is used.
