@@ -103,6 +103,8 @@ scripts/out/
 # Generated / transient
 scripts/out/
 .venv/
+.venv-*/
+.venv_broken_*/
 output/
 *.bak
 *.bak2
