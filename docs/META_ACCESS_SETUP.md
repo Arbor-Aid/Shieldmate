@@ -6,6 +6,14 @@ Last updated: 2026-06-03
 
 This checklist covers adding Yolanda and team members to Meta Business assets and billing access. It does not grant approval to launch ads or change spend.
 
+## Current Account-Side Progress
+
+- Shared ad account `119729689` has been observed connected across the 2Marines / ShieldMate / MarineCoin asset structure.
+- People still need to be assigned to the ad account if that has not been completed in Meta Business settings.
+- Yolanda and team invitations still need account-side confirmation if not completed.
+- Billing/payment status must be verified manually in Meta Business settings.
+- Do not document payment details, card details, access tokens, private emails, or private personal information in this repo.
+
 ## Required Inputs
 
 - Meta Business portfolio name or ID.
@@ -45,6 +53,7 @@ This checklist covers adding Yolanda and team members to Meta Business assets an
 ## Billing Access Checklist
 
 - Confirm the ad account is the correct launch ad account.
+- Confirm shared ad account `119729689` is the intended launch ad account across assets.
 - Confirm payment method exists without exposing card details in docs.
 - Confirm billing threshold and spend limit with the account owner.
 - Grant finance analyst or finance editor only as approved.
