@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "meta": {
+    "site_title": "ShieldMate",
+    "site_tagline": "Public program catalog and partner network for veteran transition support.",
+    "nav_home": "Home",
+    "nav_programs": "Programs",
+    "index_title": "Programs",
+    "index_summary": "Structured pathways for housing stability, referrals, and transition readiness."
+  },
+  "items": [
+    {
+      "id": "program-housing-stability",
+      "slug": "housing-stability",
+      "name": "Veteran Housing Stability",
+      "summary": "Short-term housing placement, benefits navigation, and landlord coordination for veterans at risk of displacement.",
+      "eligibility": "Veterans and families experiencing housing instability or pending eviction.",
+      "how_to_apply": "Complete the ShieldMate intake and provide residency documentation for a housing review.",
+      "service_area": "Multi-state with virtual coordination",
+      "last_updated": "2026-01-13"
+    },
+    {
+      "id": "program-referral-navigation",
+      "slug": "referral-navigation",
+      "name": "Referral Navigation",
+      "summary": "Guided referrals to vetted partners for employment, legal, health, and family support.",
+      "eligibility": "Veterans, spouses, and caregivers seeking coordinated services.",
+      "how_to_apply": "Submit a referral request and authorize data sharing for partner intake.",
+      "service_area": "National partner network",
+      "last_updated": "2026-01-13"
+    },
+    {
+      "id": "program-transition-readiness",
+      "slug": "transition-readiness",
+      "name": "Transition Readiness",
+      "summary": "Career planning, documentation prep, and benefits readiness for service members in transition.",
+      "eligibility": "Active-duty members and veterans within 24 months of transition.",
+      "how_to_apply": "Schedule a readiness session through ShieldMate and upload required service records.",
+      "service_area": "Remote-first with regional partners",
+      "last_updated": "2026-01-13"
+    }
+  ]
+}

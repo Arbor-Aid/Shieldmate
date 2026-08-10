@@ -1,0 +1,8 @@
+﻿{
+  "orgId": "dev-org",
+  "cashAvailable": 5000,
+  "currentHoldings": [],
+  "policyRules": { "approvalThreshold": 250 },
+  "universeTickers": ["SPY","QQQ","AAPL","MSFT","NVDA"],
+  "signals": { "TODO": true }
+}

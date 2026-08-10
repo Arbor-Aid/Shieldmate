@@ -1,0 +1,9 @@
+{
+  "toolId": "ai-budget-planner.status",
+  "tool": "ai-budget-planner.status",
+  "input": {
+    "smoke": true,
+    "service": "ai-budget-planner",
+    "source": "platform_bootstrap"
+  }
+}

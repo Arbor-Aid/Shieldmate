@@ -1,37 +1,30 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import 'package:arbor_aid_app/main.dart';
+import 'package:arbor_aid_app/core/routing/app_navigation.dart';
+import 'package:arbor_aid_app/core/routing/app_router.dart';
+import 'package:arbor_aid_app/core/theme/app_theme.dart';
+import 'package:arbor_aid_app/core/utils/user_profile.dart';
+import 'package:arbor_aid_app/core/widgets/app_shell.dart';
 
 void main() {
-  TestWidgetsFlutterBinding.ensureInitialized();
+  testWidgets('App router builds a shell-backed route', (tester) async {
+    final session = AppSession.authenticated(
+      role: AppRole.client,
+      hasProfile: true,
+    );
 
-  setUpAll(() {
-    dotenv.testLoad(fileInput: 'MCP_ENDPOINT=https://mcp.local');
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.light(),
+        onGenerateRoute: AppRouter(session: session).onGenerateRoute,
+        initialRoute: AppRoutes.clientDashboard,
+      ),
+    );
+
+    await tester.pump();
+
+    expect(find.byType(AppShell), findsOneWidget);
+    expect(tester.takeException(), isNull);
   });
-
-  testWidgets(
-    'Counter increments smoke test',
-    (WidgetTester tester) async {
-      await tester.pumpWidget(const MyApp());
-
-      expect(find.text('0'), findsOneWidget);
-      expect(find.text('1'), findsNothing);
-
-      await tester.tap(find.byIcon(Icons.add));
-      await tester.pump();
-
-      expect(find.text('0'), findsNothing);
-      expect(find.text('1'), findsOneWidget);
-    },
-    skip: true,
-  );
 }

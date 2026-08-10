@@ -1,0 +1,8 @@
+﻿{
+  "orgId": "dev-org",
+  "shipmentId": "ship-001",
+  "incoterms": "FOB",
+  "documents": [
+    { "type": "commercial_invoice", "storagePath": "orgs/dev-org/shipments/ship-001/docs/invoice.pdf" }
+  ]
+}

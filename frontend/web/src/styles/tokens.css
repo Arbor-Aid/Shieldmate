@@ -1,0 +1,14 @@
+:root {
+  --primary: 219.6 72.6% 14.3%;
+  --secondary: 229.4 61.8% 56.9%;
+  --accent: 39.4 16.3% 57.8%;
+  --background: 230 27.3% 95.7%;
+  --foreground: 206.7 25.7% 6.9%;
+  --muted-foreground: 218 16% 36.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 206.7 25.7% 6.9%;
+  --radius: .5rem;
+  --gradient-hero: linear-gradient(120deg, hsl(219.6 72.6% 14.3%) 0%, hsl(229.4 61.8% 56.9%) 100%);
+  --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(230 27.3% 95.7%) 100%);
+  --gradient-marinecoin: linear-gradient(120deg, hsl(219.6 72.6% 14.3%) 0%, hsl(39.4 16.3% 57.8%) 100%);
+}

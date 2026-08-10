@@ -1,0 +1,10 @@
+﻿{
+  "orgId": "dev-org",
+  "mode": "B",
+  "approvalThreshold": 250,
+  "maxPerAssetPct": 10,
+  "maxCryptoPct": 10,
+  "drawdownStopPct": 10,
+  "minHoldDays": 7,
+  "universeTickers": ["SPY","QQQ","VTI","AAPL","MSFT","AMZN","NVDA","GOOGL","TSLA","META","BTC-USD","ETH-USD"]
+}

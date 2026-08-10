@@ -1,0 +1,9 @@
+{
+  "toolId": "multimodal-ai.status",
+  "tool": "multimodal-ai.status",
+  "input": {
+    "smoke": true,
+    "service": "multimodal-ai",
+    "source": "platform_bootstrap"
+  }
+}

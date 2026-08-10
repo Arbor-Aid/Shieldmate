@@ -1,0 +1,10 @@
+{
+  "manifest_version": "1.0",
+  "generated_at_utc": "2026-04-07T01:29:52.389328+00:00",
+  "authoritative_mcp_count": 34,
+  "gateway_ingress": "mcp-gateway",
+  "bootstrap_state": "operationally_bootstrappable_layer",
+  "service_bootstrap_index": "platform_bootstrap/mcps/bootstrap_packages.index.json",
+  "shared_smoke_payload_root": "platform_bootstrap/shared/smoke_payloads",
+  "integrations_root": "platform_bootstrap/integrations"
+}

@@ -1,6 +1,5 @@
 // lib/login_register_screen.dart
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:arbor_aid_app/services/firebase_service.dart';
 import 'admin_dashboard.dart'; // Navigate to admin dashboard on successful login
 
@@ -8,7 +7,7 @@ class LoginRegisterScreen extends StatefulWidget {
   const LoginRegisterScreen({super.key});
 
   @override
-  _LoginRegisterScreenState createState() => _LoginRegisterScreenState();
+  State<LoginRegisterScreen> createState() => _LoginRegisterScreenState();
 }
 
 class _LoginRegisterScreenState extends State<LoginRegisterScreen> {
@@ -30,14 +29,16 @@ class _LoginRegisterScreenState extends State<LoginRegisterScreen> {
 
     if (isLogin) {
       // Sign in user
-      User? user = await _firebaseService.signInWithEmailPassword(email, password);
+      await _firebaseService.signInWithEmailPassword(email, password);
+      if (!mounted) return;
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const AdminDashboard()), // Navigate on success
       );
     } else {
       // Register user
-      User? user = await _firebaseService.signUpWithEmailPassword(email, password);
+      await _firebaseService.signUpWithEmailPassword(email, password);
+      if (!mounted) return;
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const AdminDashboard()), // Navigate on success

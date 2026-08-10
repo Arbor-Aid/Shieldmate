@@ -1,0 +1,450 @@
+[
+  {
+    "slack_channel": "#mcp-ai-budget-planner",
+    "canonical_mcp_service": "ai-budget-planner",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-ai-expense-manager",
+    "canonical_mcp_service": "ai-expense-manager",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-ai-financial-analyst",
+    "canonical_mcp_service": "ai-financial-analyst",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-ai-financial-reporting-specialist",
+    "canonical_mcp_service": "ai-financial-reporting-specialist",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-ai-invoice-processor",
+    "canonical_mcp_service": "ai-invoice-processor",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-ai-payroll-manager",
+    "canonical_mcp_service": "ai-payroll-manager",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-ai-tax-compliance-agent",
+    "canonical_mcp_service": "ai-tax-compliance-agent",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-ai-training-coordinator",
+    "canonical_mcp_service": "ai-training-coordinator",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_session_exposed",
+    "primary_collaborators": [
+      "mcp-gateway",
+      "document-manager"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-ai-ux-analyst",
+    "canonical_mcp_service": "ai-ux-analyst",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_session_exposed",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-amazon-drop-shipping-ai",
+    "canonical_mcp_service": "amazon-drop-shipping-ai",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-coder-agent",
+    "canonical_mcp_service": "coder-agent",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-content-generation-ai",
+    "canonical_mcp_service": "content-generation-ai",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-cto-agent",
+    "canonical_mcp_service": "cto-agent",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-data-scrubbing-ai",
+    "canonical_mcp_service": "data-scrubbing-ai",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway",
+      "document-manager"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-designer-ai-agent",
+    "canonical_mcp_service": "designer-ai-agent",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-document-manager",
+    "canonical_mcp_service": "document-manager",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_session_exposed",
+    "primary_collaborators": [
+      "mcp-gateway",
+      "backend-session-layer",
+      "uploader-flow"
+    ],
+    "implementation_status": "implemented_orchestrator",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-email-campaign-optimizer-ai",
+    "canonical_mcp_service": "email-campaign-optimizer-ai",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-fundraising-chatbot-ai",
+    "canonical_mcp_service": "fundraising-chatbot-ai",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-hr-ai-agent",
+    "canonical_mcp_service": "hr-ai-agent",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-information-retrieval-ai",
+    "canonical_mcp_service": "information-retrieval-ai",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_session_exposed",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-investment_recommendation",
+    "canonical_mcp_service": "investment_recommendation",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "transitional_domain_in_app",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-mcp-analytics",
+    "canonical_mcp_service": "mcp-analytics",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_session_exposed",
+    "primary_collaborators": [
+      "mcp-gateway",
+      "document-manager"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-mcp-google-ads",
+    "canonical_mcp_service": "mcp-google-ads",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-multimodal-ai",
+    "canonical_mcp_service": "multimodal-ai",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-org-scrubber-mcp",
+    "canonical_mcp_service": "org-scrubber-mcp",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-personalized-donation-ai",
+    "canonical_mcp_service": "personalized-donation-ai",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-project-manager-agent",
+    "canonical_mcp_service": "project-manager-agent",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_session_exposed",
+    "primary_collaborators": [
+      "mcp-gateway",
+      "document-manager"
+    ],
+    "implementation_status": "transitional_domain_in_app",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-qa-ai-agent",
+    "canonical_mcp_service": "qa-ai-agent",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-reporting-dashboard-ai",
+    "canonical_mcp_service": "reporting-dashboard-ai",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_session_exposed",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "placeholder_connected",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-trade_execution_gateway",
+    "canonical_mcp_service": "trade_execution_gateway",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "admin_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "transitional_placeholder_main_active",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-tradefinance_lc",
+    "canonical_mcp_service": "tradefinance_lc",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "admin_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "transitional_domain_in_app",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-tradeops",
+    "canonical_mcp_service": "tradeops",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "admin_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "transitional_domain_in_app",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-training_to_sop",
+    "canonical_mcp_service": "training_to_sop",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "backend_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "transitional_domain_in_app",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  },
+  {
+    "slack_channel": "#mcp-treasury",
+    "canonical_mcp_service": "treasury",
+    "exists_as_mcp": true,
+    "role_type": "trigger_debug_alias",
+    "trigger_only": false,
+    "frontend_exposed": "admin_internal_only",
+    "primary_collaborators": [
+      "mcp-gateway"
+    ],
+    "implementation_status": "transitional_domain_in_app",
+    "notes": "Slack alias maps to MCP runtime service through backend/session and gateway ingress; not authoritative runtime identifier."
+  }
+]

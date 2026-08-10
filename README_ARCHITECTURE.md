@@ -1,28 +1,33 @@
-# ShieldMate Architecture
+# ShieldMate Architecture Quick Reference
 
-## Core flow (Firebase -> MCP -> UI)
-1. User signs in through Firebase Auth; ID tokens include role and org claims.
-2. Flutter client calls the MCP Gateway on Cloud Run over HTTPS with Authorization: Bearer Firebase ID token (App Check when available).
-3. MCP Gateway enforces RBAC and org scope, then forwards to the target MCP service.
-4. MCP service executes the domain action and writes results to Firestore or Storage, or to external systems when required.
-5. UI reads from Firebase and audit logs capture activity; Slack notifications are emitted when configured.
+Use `ARCHITECTURE.md` as the authoritative technical architecture for the current repo and branch. This file is a quick reference and operational snapshot only.
 
-## Zero-trust and least-privilege
-- All privileged actions require explicit role and org claims.
-- Gateway is the only ingress for MCP execution.
-- Deny-by-default enforcement; missing or invalid claims are rejected.
+## Quick reference
+- Active UI: `frontend/web` (Vite + React + TypeScript).
+- Core platform: Firebase + `mcp/mcp-gateway` + Cloud Run MCP services.
+- Claims and auth schema stay aligned end-to-end; do not loosen authorization to email-only trust.
+- Flutter in `frontend/flutter` is legacy / isolated and must not be deleted.
+- Detailed system flow, hosting notes, and service boundaries live in `ARCHITECTURE.md`.
 
-## Components
-- Flutter client: `frontend/flutter` (web, Android, iOS).
-- Firebase: Auth, Firestore, Storage, Analytics.
-- MCP Gateway: `mcp/mcp-gateway` on Cloud Run.
-- MCP services: Cloud Run containers built from `mcp/Dockerfile.mcp`.
+---
 
-## MCP isolation rules
-- No MCP-to-MCP dependencies or direct calls.
-- Each MCP service owns a single responsibility and deploys independently.
-- Shared state is stored in Firebase or external systems, not in other MCPs.
+## 2026-04-13 Multi-Node Authority Snapshot
 
-## Audit boundaries
-- Firestore rules enforce App Check and claims-based access (see `firestore.rules`).
-- Audit logs are append-only and do not store PII (see `docs/COMPLIANCE.md`).
+Updated: 2026-04-13 21:32:45
+
+Authoritative repo root:
+D:\shieldmatessd\Shieldmate_RECLONE
+
+Authoritative branch:
+ui-rebuild-flutter-gen-ui
+
+System node roles:
+- THE-BOT: primary Windows control, build, and backend node
+- HONEY: Raspberry Pi Kali monitoring and security node
+- LAPTOP: dev, control, and review node
+
+Operating policy:
+- Laptop and THE-BOT stay aligned to canon during bring-up
+- MCP updates must land on canon before endpoint activation
+- Claims and auth schema remain unified end-to-end
+- Do not delete folders; park legacy only after confirmation

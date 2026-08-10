@@ -81,6 +81,9 @@ flutter_export_environment.sh
 # Misc
 Thumbs.db
 
+.flutter/
+/flutter/
+
 .env
 .env.bak
 nuget.exe
@@ -93,3 +96,19 @@ firestore.rules.prod.txt
 firestore.indexes.prod.json
 mcp_test.json
 
+# --- rebuild_option1 additions ---
+scripts/out/
+.env.*.local
+
+# Generated / transient
+scripts/out/
+.venv/
+output/
+*.bak
+*.bak2
+*.bak3
+__pycache__/
+*.pyc
+
+# Local experiments (ignore until we decide to ship it)
+mobile/

@@ -1,0 +1,1555 @@
+[
+  {
+    "mcp_service": "ai-budget-planner",
+    "canonical_service_name": "ai-budget-planner",
+    "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "primary_tools": [
+      "ai-budget-planner.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-ai-budget-planner"
+    ],
+    "frontend_exposed": "backend_internal_only",
+    "implementation_status": "placeholder_connected",
+    "learning_pipeline_role": "integration_support",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-budget-planner.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
+  },
+  {
+    "mcp_service": "ai-expense-manager",
+    "canonical_service_name": "ai-expense-manager",
+    "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "primary_tools": [
+      "ai-expense-manager.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-ai-expense-manager"
+    ],
+    "frontend_exposed": "backend_internal_only",
+    "implementation_status": "placeholder_connected",
+    "learning_pipeline_role": "integration_support",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-expense-manager.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
+  },
+  {
+    "mcp_service": "ai-financial-analyst",
+    "canonical_service_name": "ai-financial-analyst",
+    "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "primary_tools": [
+      "ai-financial-analyst.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-ai-financial-analyst"
+    ],
+    "frontend_exposed": "backend_internal_only",
+    "implementation_status": "placeholder_connected",
+    "learning_pipeline_role": "integration_support",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-financial-analyst.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
+  },
+  {
+    "mcp_service": "ai-financial-reporting-specialist",
+    "canonical_service_name": "ai-financial-reporting-specialist",
+    "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "primary_tools": [
+      "ai-financial-reporting-specialist.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-ai-financial-reporting-specialist"
+    ],
+    "frontend_exposed": "backend_internal_only",
+    "implementation_status": "placeholder_connected",
+    "learning_pipeline_role": "integration_support",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-financial-reporting-specialist.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
+  },
+  {
+    "mcp_service": "ai-invoice-processor",
+    "canonical_service_name": "ai-invoice-processor",
+    "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "primary_tools": [
+      "ai-invoice-processor.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-ai-invoice-processor"
+    ],
+    "frontend_exposed": "backend_internal_only",
+    "implementation_status": "placeholder_connected",
+    "learning_pipeline_role": "integration_support",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-invoice-processor.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
+  },
+  {
+    "mcp_service": "ai-payroll-manager",
+    "canonical_service_name": "ai-payroll-manager",
+    "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "primary_tools": [
+      "ai-payroll-manager.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-ai-payroll-manager"
+    ],
+    "frontend_exposed": "backend_internal_only",
+    "implementation_status": "placeholder_connected",
+    "learning_pipeline_role": "integration_support",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-payroll-manager.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
+  },
+  {
+    "mcp_service": "ai-tax-compliance-agent",
+    "canonical_service_name": "ai-tax-compliance-agent",
+    "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "primary_tools": [
+      "ai-tax-compliance-agent.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-ai-tax-compliance-agent"
+    ],
+    "frontend_exposed": "backend_internal_only",
+    "implementation_status": "placeholder_connected",
+    "learning_pipeline_role": "integration_support",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-tax-compliance-agent.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
+  },
+  {
+    "mcp_service": "ai-training-coordinator",
+    "canonical_service_name": "ai-training-coordinator",
+    "purpose": "Training orchestration MCP for synchronization of learning/training workflows.",
+    "primary_tools": [
+      "training.sync",
+      "ai-training-coordinator.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway",
+      "document-manager"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-ai-training-coordinator"
+    ],
+    "frontend_exposed": "backend_session_exposed",
+    "implementation_status": "activated_main",
+    "learning_pipeline_role": "learning_synthesis",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "structurally_ready_bootstrap",
+      "notion": "structurally_ready_bootstrap",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "structurally_ready_bootstrap",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-training-coordinator.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier1_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
+  },
+  {
+    "mcp_service": "ai-ux-analyst",
+    "canonical_service_name": "ai-ux-analyst",
+    "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "primary_tools": [
+      "ai-ux-analyst.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-ai-ux-analyst"
+    ],
+    "frontend_exposed": "backend_session_exposed",
+    "implementation_status": "placeholder_connected",
+    "learning_pipeline_role": "integration_support",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route ai-ux-analyst.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "structurally_ready_bootstrap",
+      "geography": "structurally_ready_bootstrap",
+      "demographics": "structurally_ready_bootstrap",
+      "org_profiles": "structurally_ready_bootstrap",
+      "taxonomies": "structurally_ready_bootstrap"
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
+  },
+  {
+    "mcp_service": "amazon-drop-shipping-ai",
+    "canonical_service_name": "amazon-drop-shipping-ai",
+    "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "primary_tools": [
+      "amazon-drop-shipping-ai.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-amazon-drop-shipping-ai"
+    ],
+    "frontend_exposed": "backend_internal_only",
+    "implementation_status": "placeholder_connected",
+    "learning_pipeline_role": "integration_support",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route amazon-drop-shipping-ai.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
+  },
+  {
+    "mcp_service": "coder-agent",
+    "canonical_service_name": "coder-agent",
+    "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "primary_tools": [
+      "coder.analyze",
+      "coder-agent.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-coder-agent"
+    ],
+    "frontend_exposed": "backend_internal_only",
+    "implementation_status": "activated_main",
+    "learning_pipeline_role": "integration_support",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "structurally_ready",
+      "windows_admin_tools": "structurally_ready_bootstrap",
+      "local_scripts": "structurally_ready",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route coder-agent.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier2_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
+  },
+  {
+    "mcp_service": "content-generation-ai",
+    "canonical_service_name": "content-generation-ai",
+    "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "primary_tools": [
+      "content.generate",
+      "content-generation-ai.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-content-generation-ai"
+    ],
+    "frontend_exposed": "backend_internal_only",
+    "implementation_status": "activated_main",
+    "learning_pipeline_role": "integration_support",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "structurally_ready_bootstrap",
+      "notion": "structurally_ready_bootstrap",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route content-generation-ai.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier2_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
+  },
+  {
+    "mcp_service": "cto-agent",
+    "canonical_service_name": "cto-agent",
+    "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "primary_tools": [
+      "cto-agent.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-cto-agent"
+    ],
+    "frontend_exposed": "backend_internal_only",
+    "implementation_status": "placeholder_connected",
+    "learning_pipeline_role": "integration_support",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "structurally_ready",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route cto-agent.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
+  },
+  {
+    "mcp_service": "data-scrubbing-ai",
+    "canonical_service_name": "data-scrubbing-ai",
+    "purpose": "Validation and data normalization MCP for governance and quality checks.",
+    "primary_tools": [
+      "data.validate",
+      "data-scrubbing-ai.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway",
+      "document-manager"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-data-scrubbing-ai"
+    ],
+    "frontend_exposed": "backend_internal_only",
+    "implementation_status": "activated_main",
+    "learning_pipeline_role": "validation_normalization",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route data-scrubbing-ai.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier1_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
+  },
+  {
+    "mcp_service": "designer-ai-agent",
+    "canonical_service_name": "designer-ai-agent",
+    "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "primary_tools": [
+      "designer-ai-agent.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-designer-ai-agent"
+    ],
+    "frontend_exposed": "backend_internal_only",
+    "implementation_status": "placeholder_connected",
+    "learning_pipeline_role": "integration_support",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route designer-ai-agent.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
+  },
+  {
+    "mcp_service": "document-manager",
+    "canonical_service_name": "document-manager",
+    "purpose": "Primary document orchestration MCP for routed chained execution.",
+    "primary_tools": [
+      "document.process",
+      "document-manager.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway",
+      "backend-session-layer",
+      "uploader-flow"
+    ],
+    "downstream_dependencies": [
+      "mcp-gateway",
+      "mcp-analytics",
+      "project-manager-agent",
+      "ai-training-coordinator",
+      "data-scrubbing-ai",
+      "firestore_client(mock)"
+    ],
+    "slack_aliases": [
+      "#mcp-document-manager"
+    ],
+    "frontend_exposed": "backend_session_exposed",
+    "implementation_status": "implemented_orchestrator",
+    "learning_pipeline_role": "orchestrator",
+    "integration_readiness": {
+      "firebase_firestore": "mock_connected",
+      "google_drive": "structurally_ready_bootstrap",
+      "notion": "structurally_ready_bootstrap",
+      "slack": "planned",
+      "local_filesystem": "structurally_ready",
+      "windows_admin_tools": "structurally_ready_bootstrap",
+      "local_scripts": "structurally_ready",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Primary orchestrator for chained flow; supports canonical and compatibility gateway contracts.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier1_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": true,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
+  },
+  {
+    "mcp_service": "email-campaign-optimizer-ai",
+    "canonical_service_name": "email-campaign-optimizer-ai",
+    "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "primary_tools": [
+      "email-campaign-optimizer-ai.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-email-campaign-optimizer-ai"
+    ],
+    "frontend_exposed": "backend_internal_only",
+    "implementation_status": "placeholder_connected",
+    "learning_pipeline_role": "integration_support",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route email-campaign-optimizer-ai.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
+  },
+  {
+    "mcp_service": "fundraising-chatbot-ai",
+    "canonical_service_name": "fundraising-chatbot-ai",
+    "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "primary_tools": [
+      "fundraising-chatbot-ai.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-fundraising-chatbot-ai"
+    ],
+    "frontend_exposed": "backend_internal_only",
+    "implementation_status": "placeholder_connected",
+    "learning_pipeline_role": "integration_support",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route fundraising-chatbot-ai.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
+  },
+  {
+    "mcp_service": "hr-ai-agent",
+    "canonical_service_name": "hr-ai-agent",
+    "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "primary_tools": [
+      "hr-ai-agent.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-hr-ai-agent"
+    ],
+    "frontend_exposed": "backend_internal_only",
+    "implementation_status": "placeholder_connected",
+    "learning_pipeline_role": "integration_support",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route hr-ai-agent.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
+  },
+  {
+    "mcp_service": "information-retrieval-ai",
+    "canonical_service_name": "information-retrieval-ai",
+    "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "primary_tools": [
+      "retrieval.search",
+      "information-retrieval-ai.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-information-retrieval-ai"
+    ],
+    "frontend_exposed": "backend_session_exposed",
+    "implementation_status": "activated_main",
+    "learning_pipeline_role": "knowledge_retrieval",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "structurally_ready_bootstrap",
+      "notion": "structurally_ready_bootstrap",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route information-retrieval-ai.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier1_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
+  },
+  {
+    "mcp_service": "investment_recommendation",
+    "canonical_service_name": "investment_recommendation",
+    "purpose": "Investment recommendation MCP with domain endpoints in app.py and standardized placeholder runtime in main.py.",
+    "primary_tools": [
+      "investment_recommendation.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "app.py domain routes (not mounted by active entrypoint)"
+    ],
+    "slack_aliases": [
+      "#mcp-investment_recommendation"
+    ],
+    "frontend_exposed": "backend_internal_only",
+    "implementation_status": "transitional_domain_in_app",
+    "learning_pipeline_role": "integration_support",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "transitional_domain_in_app"
+  },
+  {
+    "mcp_service": "mcp-analytics",
+    "canonical_service_name": "mcp-analytics",
+    "purpose": "Analytics processing MCP for routed document and workflow telemetry tasks.",
+    "primary_tools": [
+      "analytics.process",
+      "mcp-analytics.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway",
+      "document-manager"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-mcp-analytics"
+    ],
+    "frontend_exposed": "backend_session_exposed",
+    "implementation_status": "activated_main",
+    "learning_pipeline_role": "analytics_feedback",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "structurally_ready_bootstrap",
+      "notion": "structurally_ready_bootstrap",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "structurally_ready_bootstrap",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route mcp-analytics.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "structurally_ready_bootstrap",
+      "geography": "structurally_ready_bootstrap",
+      "demographics": "structurally_ready_bootstrap",
+      "org_profiles": "structurally_ready_bootstrap",
+      "taxonomies": "structurally_ready_bootstrap"
+    },
+    "activation_level": "tier1_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
+  },
+  {
+    "mcp_service": "mcp-google-ads",
+    "canonical_service_name": "mcp-google-ads",
+    "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "primary_tools": [
+      "mcp-google-ads.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-mcp-google-ads"
+    ],
+    "frontend_exposed": "backend_internal_only",
+    "implementation_status": "placeholder_connected",
+    "learning_pipeline_role": "delivery_interface",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route mcp-google-ads.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "structurally_ready_bootstrap",
+      "geography": "structurally_ready_bootstrap",
+      "demographics": "structurally_ready_bootstrap",
+      "org_profiles": "structurally_ready_bootstrap",
+      "taxonomies": "structurally_ready_bootstrap"
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
+  },
+  {
+    "mcp_service": "multimodal-ai",
+    "canonical_service_name": "multimodal-ai",
+    "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "primary_tools": [
+      "multimodal-ai.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-multimodal-ai"
+    ],
+    "frontend_exposed": "backend_internal_only",
+    "implementation_status": "placeholder_connected",
+    "learning_pipeline_role": "integration_support",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route multimodal-ai.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
+  },
+  {
+    "mcp_service": "org-scrubber-mcp",
+    "canonical_service_name": "org-scrubber-mcp",
+    "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "primary_tools": [
+      "org.scrub",
+      "org-scrubber-mcp.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-org-scrubber-mcp"
+    ],
+    "frontend_exposed": "backend_internal_only",
+    "implementation_status": "activated_main",
+    "learning_pipeline_role": "validation_normalization",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route org-scrubber-mcp.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier2_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
+  },
+  {
+    "mcp_service": "personalized-donation-ai",
+    "canonical_service_name": "personalized-donation-ai",
+    "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "primary_tools": [
+      "personalized-donation-ai.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-personalized-donation-ai"
+    ],
+    "frontend_exposed": "backend_internal_only",
+    "implementation_status": "placeholder_connected",
+    "learning_pipeline_role": "integration_support",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route personalized-donation-ai.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "structurally_ready_bootstrap",
+      "geography": "structurally_ready_bootstrap",
+      "demographics": "structurally_ready_bootstrap",
+      "org_profiles": "structurally_ready_bootstrap",
+      "taxonomies": "structurally_ready_bootstrap"
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "placeholder_connected"
+  },
+  {
+    "mcp_service": "project-manager-agent",
+    "canonical_service_name": "project-manager-agent",
+    "purpose": "Project coordination MCP for routed updates and delivery workflow tasks.",
+    "primary_tools": [
+      "project.update",
+      "project-manager-agent.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway",
+      "document-manager"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-project-manager-agent"
+    ],
+    "frontend_exposed": "backend_session_exposed",
+    "implementation_status": "activated_transitional_main_active",
+    "learning_pipeline_role": "orchestrator",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "structurally_ready_bootstrap",
+      "notion": "structurally_ready_bootstrap",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route project-manager-agent.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier1_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_transitional_main_active"
+  },
+  {
+    "mcp_service": "qa-ai-agent",
+    "canonical_service_name": "qa-ai-agent",
+    "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "primary_tools": [
+      "qa.evaluate",
+      "qa-ai-agent.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-qa-ai-agent"
+    ],
+    "frontend_exposed": "backend_internal_only",
+    "implementation_status": "activated_main",
+    "learning_pipeline_role": "validation_normalization",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "structurally_ready",
+      "windows_admin_tools": "structurally_ready_bootstrap",
+      "local_scripts": "structurally_ready",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route qa-ai-agent.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier2_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
+  },
+  {
+    "mcp_service": "reporting-dashboard-ai",
+    "canonical_service_name": "reporting-dashboard-ai",
+    "purpose": "Specialized MCP service connected for standardized routing and smoke tests.",
+    "primary_tools": [
+      "reporting.aggregate",
+      "reporting-dashboard-ai.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "none_required_for_placeholder"
+    ],
+    "slack_aliases": [
+      "#mcp-reporting-dashboard-ai"
+    ],
+    "frontend_exposed": "backend_session_exposed",
+    "implementation_status": "activated_main",
+    "learning_pipeline_role": "delivery_interface",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Connected through gateway with minimal smoke-test tool route reporting-dashboard-ai.status.",
+    "shared_dataset_readiness": {
+      "google_ads": "structurally_ready_bootstrap",
+      "geography": "structurally_ready_bootstrap",
+      "demographics": "structurally_ready_bootstrap",
+      "org_profiles": "structurally_ready_bootstrap",
+      "taxonomies": "structurally_ready_bootstrap"
+    },
+    "activation_level": "tier1_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_main"
+  },
+  {
+    "mcp_service": "trade_execution_gateway",
+    "canonical_service_name": "trade_execution_gateway",
+    "purpose": "Trade workflow MCP with transitional placeholder runtime in main.py.",
+    "primary_tools": [
+      "trade_execution_gateway.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "app.py domain routes (not mounted by active entrypoint)"
+    ],
+    "slack_aliases": [
+      "#mcp-trade_execution_gateway"
+    ],
+    "frontend_exposed": "admin_internal_only",
+    "implementation_status": "transitional_placeholder_main_active",
+    "learning_pipeline_role": "legacy_transitional",
+    "integration_readiness": {
+      "firebase_firestore": "structurally_ready",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "structurally_ready",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Transitional runtime: main.py placeholder MCP contract active; app.py trade routes currently not mounted.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "transitional_placeholder_main_active"
+  },
+  {
+    "mcp_service": "tradefinance_lc",
+    "canonical_service_name": "tradefinance_lc",
+    "purpose": "Trade finance MCP with domain endpoints in app.py and standardized placeholder runtime in main.py.",
+    "primary_tools": [
+      "tradefinance_lc.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "app.py domain routes (not mounted by active entrypoint)"
+    ],
+    "slack_aliases": [
+      "#mcp-tradefinance_lc"
+    ],
+    "frontend_exposed": "admin_internal_only",
+    "implementation_status": "transitional_domain_in_app",
+    "learning_pipeline_role": "legacy_transitional",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "structurally_ready",
+      "windows_admin_tools": "structurally_ready_bootstrap",
+      "local_scripts": "structurally_ready",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "transitional_domain_in_app"
+  },
+  {
+    "mcp_service": "tradeops",
+    "canonical_service_name": "tradeops",
+    "purpose": "Trade operations MCP with domain endpoints in app.py and standardized placeholder runtime in main.py.",
+    "primary_tools": [
+      "tradeops.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "app.py domain routes (not mounted by active entrypoint)"
+    ],
+    "slack_aliases": [
+      "#mcp-tradeops"
+    ],
+    "frontend_exposed": "admin_internal_only",
+    "implementation_status": "transitional_domain_in_app",
+    "learning_pipeline_role": "legacy_transitional",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "planned",
+      "local_filesystem": "structurally_ready",
+      "windows_admin_tools": "structurally_ready_bootstrap",
+      "local_scripts": "structurally_ready",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "transitional_domain_in_app"
+  },
+  {
+    "mcp_service": "training_to_sop",
+    "canonical_service_name": "training_to_sop",
+    "purpose": "Training-to-SOP transformation MCP with domain endpoints in app.py and standardized placeholder runtime in main.py.",
+    "primary_tools": [
+      "sop.generate",
+      "training_to_sop.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "app.py domain routes (not mounted by active entrypoint)"
+    ],
+    "slack_aliases": [
+      "#mcp-training_to_sop"
+    ],
+    "frontend_exposed": "backend_internal_only",
+    "implementation_status": "activated_transitional_main_active",
+    "learning_pipeline_role": "learning_synthesis",
+    "integration_readiness": {
+      "firebase_firestore": "planned",
+      "google_drive": "structurally_ready_bootstrap",
+      "notion": "structurally_ready_bootstrap",
+      "slack": "planned",
+      "local_filesystem": "structurally_ready",
+      "windows_admin_tools": "structurally_ready_bootstrap",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier2_activated",
+    "live_behavior_present": true,
+    "consumes_bootstrap_data": true,
+    "writes_structured_records": false,
+    "frontend_safe_output": true,
+    "slack_trigger_ready": true,
+    "runtime_mode": "activated_transitional_main_active"
+  },
+  {
+    "mcp_service": "treasury",
+    "canonical_service_name": "treasury",
+    "purpose": "Treasury/risk MCP with domain endpoints in app.py and standardized placeholder runtime in main.py.",
+    "primary_tools": [
+      "treasury.status"
+    ],
+    "upstream_callers": [
+      "mcp-gateway"
+    ],
+    "downstream_dependencies": [
+      "app.py domain routes (not mounted by active entrypoint)"
+    ],
+    "slack_aliases": [
+      "#mcp-treasury"
+    ],
+    "frontend_exposed": "admin_internal_only",
+    "implementation_status": "transitional_domain_in_app",
+    "learning_pipeline_role": "validation_normalization",
+    "integration_readiness": {
+      "firebase_firestore": "structurally_ready",
+      "google_drive": "planned",
+      "notion": "planned",
+      "slack": "structurally_ready",
+      "local_filesystem": "planned",
+      "windows_admin_tools": "planned",
+      "local_scripts": "planned",
+      "google_cloud_services": "structurally_ready"
+    },
+    "notes": "Domain endpoints live in app.py but standardized main.py is active entrypoint for fleet contract.",
+    "shared_dataset_readiness": {
+      "google_ads": "planned",
+      "geography": "planned",
+      "demographics": "planned",
+      "org_profiles": "planned",
+      "taxonomies": "planned"
+    },
+    "activation_level": "tier3_placeholder",
+    "live_behavior_present": false,
+    "consumes_bootstrap_data": false,
+    "writes_structured_records": false,
+    "frontend_safe_output": false,
+    "slack_trigger_ready": false,
+    "runtime_mode": "transitional_domain_in_app"
+  }
+]

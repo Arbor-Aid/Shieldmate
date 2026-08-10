@@ -1,0 +1,16 @@
+{
+  "toolId": "content.generate",
+  "tool": "content.generate",
+  "input": {
+    "topic": "Activation Summary",
+    "context": "Generate concise rollout content for operators.",
+    "keywords": [
+      "activation",
+      "tier1",
+      "smoke"
+    ],
+    "actions": {
+      "publish": true
+    }
+  }
+}

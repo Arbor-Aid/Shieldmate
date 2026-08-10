@@ -1,0 +1,7 @@
+{
+  "service": "ai-financial-analyst",
+  "env": {
+    "PORT": "8080",
+    "MCP_SERVICE_NAME": "ai-financial-analyst"
+  }
+}

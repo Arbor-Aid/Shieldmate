@@ -3,7 +3,7 @@ import * as admin from "firebase-admin";
 
 admin.initializeApp();
 
-type Role = "super_admin" | "org_admin" | "staff" | "client";
+type Role = "super_admin" | "org_admin" | "staff" | "case_worker" | "client";
 
 interface SetUserClaimsInput {
   uid: string;
@@ -12,19 +12,46 @@ interface SetUserClaimsInput {
   orgRoles?: Record<string, Role[]>;
 }
 
-const allowedRoles: Role[] = ["super_admin", "org_admin", "staff", "client"];
+const allowedRoles: Role[] = ["super_admin", "org_admin", "staff", "case_worker", "client"];
+
+const normalizeClaimRoles = (claims: { roles?: unknown; role?: unknown }): string[] => {
+  const roleSet = new Set<string>();
+  if (Array.isArray(claims.roles)) {
+    claims.roles.forEach((role) => {
+      if (typeof role === "string" && role.length > 0) {
+        roleSet.add(role);
+      }
+    });
+  }
+  if (typeof claims.role === "string" && claims.role.length > 0) {
+    roleSet.add(claims.role);
+  }
+  return Array.from(roleSet);
+};
+
+const resolveClaimOrgId = (orgId?: string, orgRoles?: Record<string, Role[]>): string | undefined => {
+  if (orgId && orgId.length > 0) {
+    return orgId;
+  }
+  if (orgRoles && typeof orgRoles === "object") {
+    const firstOrg = Object.keys(orgRoles).find((value) => value.length > 0);
+    return firstOrg;
+  }
+  return undefined;
+};
 
 export const setUserClaims = functions.https.onCall(async (data: SetUserClaimsInput, context) => {
   if (!context.auth) {
     throw new functions.https.HttpsError("unauthenticated", "Authentication required.");
   }
 
-  const callerClaims = context.auth.token as { roles?: string[] };
-  if (!callerClaims.roles || !callerClaims.roles.includes("super_admin")) {
+  const callerClaims = context.auth.token as { roles?: unknown; role?: unknown };
+  const callerRoles = normalizeClaimRoles(callerClaims);
+  if (!callerRoles.includes("super_admin")) {
     throw new functions.https.HttpsError("permission-denied", "Only super_admin may issue roles.");
   }
 
-  const { uid, roles = [], orgRoles = {} } = data;
+  const { uid, orgId, roles = [], orgRoles = {} } = data;
   if (!uid) {
     throw new functions.https.HttpsError("invalid-argument", "uid is required.");
   }
@@ -46,14 +73,30 @@ export const setUserClaims = functions.https.onCall(async (data: SetUserClaimsIn
 
   const safeRoles = validateRoles(roles);
   const safeOrgRoles: Record<string, Role[]> = {};
-  Object.entries(orgRoles).forEach(([orgId, roleList]) => {
-    safeOrgRoles[orgId] = validateRoles(roleList);
+  Object.entries(orgRoles).forEach(([candidateOrgId, roleList]) => {
+    if (!candidateOrgId) return;
+    safeOrgRoles[candidateOrgId] = validateRoles(roleList);
   });
+  const resolvedOrgId = resolveClaimOrgId(orgId, safeOrgRoles);
+  const legacyRole = safeRoles.find((role) => role.length > 0);
 
-  const claims = {
+  const claims: {
+    roles: Role[];
+    orgRoles: Record<string, Role[]>;
+    orgId?: string;
+    role?: Role;
+    org?: string;
+  } = {
     roles: safeRoles,
     orgRoles: safeOrgRoles,
   };
+  if (resolvedOrgId) {
+    claims.orgId = resolvedOrgId;
+    claims.org = resolvedOrgId;
+  }
+  if (legacyRole) {
+    claims.role = legacyRole;
+  }
 
   await admin.auth().setCustomUserClaims(uid, claims);
 
@@ -63,7 +106,7 @@ export const setUserClaims = functions.https.onCall(async (data: SetUserClaimsIn
     targetUid: uid,
     action: "set_user_claims",
     category: "auth",
-    orgId: data.orgId ?? null,
+    orgId: resolvedOrgId ?? null,
     claims,
     timestamp: admin.firestore.FieldValue.serverTimestamp(),
     retentionDays: 365,
@@ -117,12 +160,25 @@ const buildUiuxHandler = (kind: "audit" | "event") =>
       return;
     }
 
+    const decodedRoles = Array.isArray((decoded as { roles?: unknown } | null)?.roles)
+      ? ((decoded as { roles?: unknown }).roles as unknown[]).filter(
+          (role): role is string => typeof role === "string" && role.length > 0,
+        )
+      : [];
+    const actorRole =
+      decodedRoles[0] ??
+      (((decoded as { role?: string } | null)?.role as string | undefined) ?? null);
+    const actorOrg =
+      (((decoded as { orgId?: string } | null)?.orgId as string | undefined) ??
+        ((decoded as { org?: string } | null)?.org as string | undefined) ??
+        null);
+
     await admin.firestore().collection(kind === "audit" ? "ux_audits" : "ux_events").add({
       ...payload,
       source: "shieldmate-ui",
       actorUid: decoded?.uid ?? null,
-      actorRole: (decoded?.role as string | undefined) ?? null,
-      actorOrg: (decoded?.org as string | undefined) ?? null,
+      actorRole,
+      actorOrg,
       receivedAt: admin.firestore.FieldValue.serverTimestamp(),
     });
 

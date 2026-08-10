@@ -1,0 +1,73 @@
+{
+  "service_name": "information-retrieval-ai",
+  "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+  "learning_pipeline_role": "knowledge_retrieval",
+  "primary_tools": [
+    "retrieval.search",
+    "information-retrieval-ai.status"
+  ],
+  "expected_inputs": {
+    "execute_envelope": {
+      "toolId": "string",
+      "tool": "string (compat)",
+      "input": "object"
+    },
+    "service_specific": [
+      "status check payload for smoke validation",
+      "service-specific domain payloads where implemented"
+    ]
+  },
+  "expected_outputs": {
+    "success_envelope": [
+      "ok",
+      "status",
+      "service",
+      "tool"
+    ],
+    "error_envelope": [
+      "ok",
+      "status",
+      "service",
+      "error",
+      "detail"
+    ]
+  },
+  "upstream_callers": [
+    "mcp-gateway"
+  ],
+  "downstream_dependencies": [
+    "none_required_for_placeholder"
+  ],
+  "external_systems": {
+    "firebase_firestore": "planned",
+    "google_drive": "structurally_ready_bootstrap",
+    "notion": "structurally_ready_bootstrap",
+    "slack": "planned",
+    "windows_admin_tools": "planned",
+    "local_scripts": "planned"
+  },
+  "shared_dataset_readiness": {
+    "google_ads": "planned",
+    "geography": "planned",
+    "demographics": "planned",
+    "org_profiles": "planned",
+    "taxonomies": "planned"
+  },
+  "frontend_exposure_status": "backend_session_exposed",
+  "slack_aliases": [
+    "#mcp-information-retrieval-ai"
+  ],
+  "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/orchestrators/retrieval.search.request.json",
+  "seed_data_path": "platform_bootstrap/mcps/information-retrieval-ai/seed_data",
+  "config_path": "platform_bootstrap/mcps/information-retrieval-ai/config",
+  "bootstrap_status": "bootstrapped",
+  "transitional_runtime_note": "",
+  "notes": "Connected through gateway with minimal smoke-test tool route information-retrieval-ai.status.",
+  "activation_level": "tier1_activated",
+  "live_behavior_present": true,
+  "consumes_bootstrap_data": true,
+  "writes_structured_records": false,
+  "frontend_safe_output": true,
+  "slack_trigger_ready": true,
+  "runtime_mode": "activated_main"
+}

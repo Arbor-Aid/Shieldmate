@@ -26,26 +26,82 @@ export interface RoleClaims {
   org?: Record<string, UserRole[]>;
 }
 
+export function doesEffectiveRoleSatisfy(
+  userRole: UserRole | null | undefined,
+  requiredRole: UserRole
+): boolean {
+  if (!userRole) return false;
+  if (userRole === requiredRole) return true;
+  if (requiredRole === "admin" && userRole === "super_admin") return true;
+  if (requiredRole === "organization" && (userRole === "org_admin" || userRole === "staff")) return true;
+  if ((requiredRole === "org_admin" || requiredRole === "staff") && userRole === "organization") return true;
+  return false;
+}
+
+export function doesEffectiveRoleSatisfyAny(
+  userRole: UserRole | null | undefined,
+  requiredRoles: UserRole[]
+): boolean {
+  return requiredRoles.some((role) => doesEffectiveRoleSatisfy(userRole, role));
+}
+
 
 /**
  * Read custom role claims from the current user token.
  * Format:
- *  role: string -> single role claim
- *  org: string  -> single org claim
+ *  orgId: string -> canonical org claim
+ *  roles: string[] -> canonical role claims
+ * Legacy fallback:
+ *  role: string
+ *  org: string
+ *  orgRoles: Record<string, string[]>
  */
 export async function getRoleClaims(user?: User | null): Promise<RoleClaims | null> {
   const current = user ?? auth.currentUser;
   if (!current) return null;
   const token = await current.getIdTokenResult();
-  const role = (token.claims?.role as UserRole | undefined) ?? undefined;
-  const org = (token.claims?.org as string | undefined) ?? undefined;
-  const globalRoles = role === "super_admin" ? [role] : [];
-  const orgRoles = org && role ? { [org]: [role] } : {};
+  const claims = (token.claims ?? {}) as Record<string, unknown>;
+
+  const canonicalRoles = Array.isArray(claims.roles)
+    ? (claims.roles.filter((role): role is UserRole => typeof role === "string" && role.length > 0) as UserRole[])
+    : [];
+  const legacyRole =
+    typeof claims.role === "string" && claims.role.length > 0
+      ? (claims.role as UserRole)
+      : undefined;
+  const mergedRoles = Array.from(new Set<UserRole>([
+    ...canonicalRoles,
+    ...(legacyRole ? [legacyRole] : []),
+  ]));
+
+  const canonicalOrgId =
+    typeof claims.orgId === "string" && claims.orgId.length > 0
+      ? claims.orgId
+      : typeof claims.org === "string" && claims.org.length > 0
+        ? claims.org
+        : undefined;
+
+  const orgRoleMap: Record<string, UserRole[]> = {};
+  if (canonicalOrgId) {
+    const scopedRoles = mergedRoles.filter((role) => role !== "super_admin");
+    if (scopedRoles.length > 0) {
+      orgRoleMap[canonicalOrgId] = scopedRoles;
+    }
+  } else if (claims.orgRoles && typeof claims.orgRoles === "object") {
+    Object.entries(claims.orgRoles as Record<string, unknown>).forEach(([orgId, value]) => {
+      if (!Array.isArray(value)) return;
+      const roles = value.filter((role): role is UserRole => typeof role === "string" && role.length > 0);
+      if (roles.length > 0) {
+        orgRoleMap[orgId] = roles;
+      }
+    });
+  }
+
+  const globalRoles = mergedRoles.filter((role) => role === "super_admin");
+
   return {
-    global: globalRoles.filter(Boolean) as UserRole[],
-    org: Object.fromEntries(
-      Object.entries(orgRoles).map(([orgId, roles]) => [orgId, (roles || []).filter(Boolean) as UserRole[]]),
-    ),
+    global: globalRoles,
+    org: orgRoleMap,
   };
 }
 
@@ -109,7 +165,7 @@ export async function setUserRole(userId: string, role: UserRole): Promise<boole
  */
 export async function hasRole(userId: string, role: UserRole): Promise<boolean> {
   const userRole = await getUserRole(userId);
-  return userRole === role;
+  return doesEffectiveRoleSatisfy(userRole, role);
 }
 
 /**
@@ -147,7 +203,6 @@ export async function resolveEffectiveRole(user?: User | null): Promise<UserRole
 }
 
 function normalizeRole(role: UserRole): UserRole {
-  if (role === "super_admin") return "admin";
   if (role === "org_admin" || role === "staff") return "organization";
   return role;
 }
