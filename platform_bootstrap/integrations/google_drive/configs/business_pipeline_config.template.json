@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "mode": "DRY_RUN_NO_WRITE",
+  "fuzzyThreshold": 0.85,
+  "googleSheet": {
+    "spreadsheetId": "<approved-spreadsheet-id>",
+    "title": "2Marines Ecosystem | Grants & Contracts Pipeline | October 2026",
+    "targetSheets": {
+      "Possible Fit": {
+        "sheetId": 9101,
+        "logicalToHeader": {
+          "opportunity_id": "Opportunity ID",
+          "source": "Source",
+          "notice_award_id": "Notice / Award ID",
+          "title": "Title",
+          "agency_buyer": "Agency / Buyer",
+          "naics_psc": "NAICS / PSC",
+          "place_of_performance": "Place of Performance",
+          "posted_verified_date": "Posted / Verified Date",
+          "response_deadline": "Response Deadline",
+          "opportunity_url": "Opportunity URL",
+          "lead_entity": "Lead Entity",
+          "partner_candidate": "Partner Candidate",
+          "fit_rationale": "Fit Rationale",
+          "eligibility_gate": "Eligibility Gate",
+          "trade_flag": "Domestic-Origin / Trade Flag",
+          "source_confidence": "Source Confidence",
+          "review_owner": "Review Owner",
+          "review_status": "Review Status",
+          "next_action": "Next Action",
+          "last_checked": "Last Checked"
+        }
+      },
+      "Screening Review": {
+        "sheetId": 9102,
+        "logicalToHeader": {
+          "screening_case_id": "Screening Case ID",
+          "linked_record": "Linked Opportunity / Transaction",
+          "party_role": "Party Role",
+          "party_reference": "Entity / Party Reference (minimum data)",
+          "official_source": "Official Source / List",
+          "source_version_retrieved_utc": "Source Version / Retrieved UTC",
+          "candidate_match_reference": "Candidate Match Reference",
+          "match_evidence_url": "Match Evidence URL",
+          "match_type_identifiers": "Match Type / Identifiers",
+          "ownership_control_review": "Ownership / Control Review",
+          "destination_end_use_review": "Destination / End-use Review",
+          "potential_restriction": "Potential Restriction",
+          "review_status": "Review Status",
+          "assigned_reviewer": "Assigned Reviewer",
+          "reviewer_decision": "Reviewer Decision",
+          "decision_rationale_evidence": "Decision Rationale / Evidence",
+          "approver": "Approver",
+          "approval_timestamp": "Approval Timestamp",
+          "rescreen_due": "Rescreen Due",
+          "execution_hold": "Execution Hold"
+        }
+      },
+      "Jarvis Approval Queue": {
+        "sheetId": 9103,
+        "logicalToHeader": {
+          "approval_id": "Approval ID",
+          "source_record_link": "Source Record / Link",
+          "organization": "Organization",
+          "approval_type": "Approval Type",
+          "summary": "Summary",
+          "risk_compliance_flags": "Risk / Compliance Flags",
+          "evidence_location": "Evidence Location",
+          "prepared_by": "Prepared By",
+          "recommended_action": "Recommended Action (not approval)",
+          "approval_owner": "Approval Owner",
+          "approval_status": "Approval Status",
+          "decision": "Decision",
+          "decision_timestamp": "Decision Timestamp",
+          "deadline": "Deadline",
+          "next_action": "Next Action",
+          "draft_email_link": "Draft Email Link",
+          "external_send_status": "External Send Status",
+          "daily_tracker_link": "Daily Tracker Link",
+          "last_updated": "Last Updated"
+        }
+      }
+    }
+  },
+  "sources": {
+    "samGov": {
+      "endpoint": "https://api.sam.gov/opportunities/v2/search",
+      "documentation": "https://open.gsa.gov/api/get-opportunities-public-api/",
+      "apiKeyEnv": "SAM_API_KEY",
+      "queryDateFormat": "MM/dd/yyyy",
+      "maxPageSize": 1000,
+      "maxWindow": "one_calendar_year"
+    },
+    "usaSpending": {
+      "endpoint": "https://api.usaspending.gov/api/v2/search/spending_by_award/",
+      "documentation": "https://api.usaspending.gov/docs/intro-tutorial",
+      "authentication": "none_for_public_endpoint"
+    },
+    "grantsGov": {
+      "endpoint": "https://api.grants.gov/v1/api/search2",
+      "detailEndpoint": "https://api.grants.gov/v1/api/fetchOpportunity",
+      "documentation": "https://grants.gov/api/api-guide",
+      "authentication": "none_for_search2_and_fetchOpportunity",
+      "reuse": "existing_master_workbook_source_registry_refresh_and_discovery_flow"
+    },
+    "census": {
+      "endpoint": "https://api.census.gov/data/2023/cbp",
+      "documentation": "https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/cbp-api.html",
+      "apiKeyEnv": "CENSUS_API_KEY",
+      "dataset": "County Business Patterns",
+      "vintage": 2023,
+      "industryClassification": "NAICS2017",
+      "accessMode": "OWNER_MANAGED_ENVIRONMENT_CREDENTIAL_READ_ONLY",
+      "permittedUse": "aggregate county and industry market intelligence",
+      "notSupported": "identified company buyer or seller discovery"
+    },
+    "federalSubcontracting": {
+      "subnet": "https://www.sba.gov/federal-contracting/contracting-guide/prime-subcontracting/subcontracting-opportunities",
+      "sbaGuidance": "https://www.sba.gov/counseling/prime-and-subcontracting/",
+      "accessMode": "MANUAL_OR_PERMISSIONED_RETRIEVAL",
+      "reason": "No documented supported machine API was verified; do not scrape the human-facing directory."
+    },
+    "unComtrade": {
+      "documentation": "https://uncomtrade.org/docs/developer-tools/",
+      "endpoint": "https://comtradeapi.un.org/data/v1/get/C/A/HS",
+      "baseUrl": "https://comtradeapi.un.org",
+      "apiKeyEnv": "COMTRADE_API_KEY",
+      "secondaryApiKeyEnv": "COMTRADE_SECONDARY_API_KEY",
+      "authenticationHeader": "Ocp-Apim-Subscription-Key",
+      "accessMode": "OWNER_MANAGED_PRIMARY_ENVIRONMENT_CREDENTIAL_READ_ONLY",
+      "subscription": "Free",
+      "callsPerDay": 500,
+      "providerMaxRecordsPerDownload": 100000,
+      "localDefaultMaxRecords": 500,
+      "localHardMaxRecords": 1000,
+      "asynchronousBulkEntitlement": false,
+      "permittedUse": "aggregate country/product trade-flow intelligence",
+      "notSupported": "automatic individual buyer or seller discovery"
+    },
+    "commercialCompanyData": {
+      "accessMode": "BLOCKED_EXTERNAL_ACCOUNT_DATA_TERMS_AND_OWNER_AUTHORIZATION",
+      "automaticInstallation": false
+    },
+    "csl": {
+      "documentation": "https://www.trade.gov/consolidated-screening-list",
+      "download": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.json"
+    },
+    "ofac": {
+      "documentation": "https://ofac.treasury.gov/sanctions-list-service",
+      "sdnXml": "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/SDN.XML",
+      "consolidatedXml": "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/CONSOLIDATED.XML",
+      "requiresUserAgent": true
+    }
+  },
+  "evaluatedReferenceImplementations": {
+    "uncomtrade/comtradeapicall": {
+      "revision": "0848a3f1cf63234a93fb5635b9b19b2265afab71",
+      "license": "MIT",
+      "used": false,
+      "decision": "Patterns reviewed only; existing standard-library HTTP approach retained with no dependency."
+    },
+    "Upkuajing/upkuajing-trade-company-search": {
+      "revision": "5de42c0474f833c6bdc1ac0b639426db20828877",
+      "license": "MIT",
+      "used": false,
+      "decision": "Code not copied; underlying API is paid and requires a separate account/key and owner authorization."
+    },
+    "IndoTender/thecompanyatlas-mcp": {
+      "revision": "7478c38ba6a6b2b32190fa8ca00cb7a0c4353471",
+      "license": "NO_LICENSE_FILE_VERIFIED",
+      "used": false,
+      "decision": "Not reusable without a verified license and separately authorized OAuth/data terms."
+    }
+  },
+  "requiredEvidencePaths": [
+    "docs/SYSTEM_OF_RECORD.md",
+    "docs/infra/COMPUTER_TOPOLOGY_AND_LOCAL_FILESYSTEM.md",
+    "docs/mcp/mcp-fleet-audit.md",
+    "docs/claims/claims-schema-audit.md",
+    "docs/MCP_SERVICE_AUDIT.md",
+    "docs/tradeops",
+    "docs/contracts",
+    "docs/business-compliance"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "fixtureType": "SYNTHETIC",
+  "sourceVersion": "SIMULATED-LIST-2026-10-14",
+  "records": [
+    {
+      "uid": "SIM-LIST-001",
+      "source": "SYNTHETIC_CSL_STYLE_FIXTURE",
+      "listName": "SIMULATION ONLY",
+      "name": "Northstar Example Trading LLC",
+      "aliases": ["North Star Example Trading"],
+      "identifiers": ["SIM-ID-77"],
+      "countries": ["Exampleland"],
+      "programs": ["SIMULATED_RESTRICTION"],
+      "evidenceUrl": "fixture://screening/SIM-LIST-001",
+      "sourceScore": 91,
+      "sourceScoreScale": "SYNTHETIC_SOURCE_SCALE_NOT_COMPARABLE"
+    }
+  ]
+}
