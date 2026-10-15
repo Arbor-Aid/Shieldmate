@@ -1,0 +1,32 @@
+{
+  "fixtureType": "SYNTHETIC_LOCAL_TEST_DATA",
+  "manualConnectivityEvidence": {
+    "census": "Owner reported HTTP 200 for authenticated 2023 Michigan County Business Patterns query.",
+    "comtrade": "Owner reported HTTP 200 for a 2023 United States-to-Thailand export query using the primary subscription key."
+  },
+  "census": [
+    ["NAME", "NAICS2017_LABEL", "ESTAB", "EMP", "NAICS2017", "LFO", "EMPSZES", "state", "county"],
+    ["SIMULATION Washtenaw County, Michigan", "SIMULATION Machinery Manufacturing", "321", "6543", "333", "001", "001", "26", "161"]
+  ],
+  "comtrade": {
+    "data": [
+      {
+        "period": 2023,
+        "reporterCode": 842,
+        "reporterDesc": "United States of America",
+        "partnerCode": 764,
+        "partnerDesc": "Thailand",
+        "flowCode": "X",
+        "flowDesc": "Export",
+        "classificationCode": "H6",
+        "cmdCode": "TOTAL",
+        "cmdDesc": "All Commodities",
+        "primaryValue": 123456,
+        "netWgt": 1000,
+        "qty": 10,
+        "qtyUnitCode": 8,
+        "aggregateLevel": 0
+      }
+    ]
+  }
+}
