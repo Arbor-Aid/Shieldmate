@@ -43,7 +43,7 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual(packet["approvalStatus"], "PENDING_REVIEW")
         self.assertFalse(packet["executionAuthorized"])
         draft = create_email_draft(
-            category="Bid clarification", sender_mailbox="2marines@2marines.us",
+            category="Bid clarification", sender_mailbox="simulation-sender@example.invalid",
             sender_legal_entity="2Marines", represented_entity="ShieldMate LLC",
             recipient="simulation@example.invalid", subject="SIMULATION", body="SIMULATION", linked_record="SAM:SIM-1",
             sender_identity_verified=True,

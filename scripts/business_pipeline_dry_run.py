@@ -136,7 +136,7 @@ def main() -> int:
     tracker = "https://chatgpt.com/space/page_99ef1fd4143c819196f5bdf34865a1ee"
     email_draft = create_email_draft(
         category="Bid clarification",
-        sender_mailbox="2marines@2marines.us",
+        sender_mailbox="simulation-sender@example.invalid",
         sender_legal_entity="2Marines",
         represented_entity="ShieldMate LLC",
         recipient="simulation@example.invalid",
