@@ -4,6 +4,7 @@ import { recordAudit } from "@/lib/audit";
 
 export type AssignRoleInput = {
   uid: string;
+  orgId?: string;
   roles?: string[];
   orgRoles?: Record<string, string[]>;
 };

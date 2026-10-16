@@ -1,4 +1,4 @@
-﻿from fastapi import FastAPI, Request, Header
+from fastapi import FastAPI, Request, Header
 from typing import Any, Dict, Optional, List
 from mcp.common.utils import now_iso, new_correlation_id
 from mcp.common.auth import verify_firebase_token, enforce_org_match, require_approver
@@ -76,8 +76,9 @@ async def risk_policy(payload: Dict[str, Any], request: Request, authorization: 
 @app.post("/risk/kill-switch")
 async def kill_switch(payload: Dict[str, Any], request: Request, authorization: Optional[str] = Header(default=None), x_correlation_id: Optional[str] = Header(default=None)):
     correlationId = x_correlation_id or new_correlation_id()
-    claims = verify_firebase_token(authorization); require_approver(claims)
+    claims = verify_firebase_token(authorization)
     orgId = payload.get("orgId"); enforce_org_match(claims, orgId)
+    require_approver(claims, orgId)
     action = payload.get("action") or "pause"
     _KILL_SWITCH[orgId] = (action == "pause")
     _audit(request, claims, orgId, "kill_switch", "treasury_policy", orgId, action, correlationId)

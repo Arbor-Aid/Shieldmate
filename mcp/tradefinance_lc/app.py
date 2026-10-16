@@ -1,4 +1,4 @@
-﻿from fastapi import FastAPI, Request, Header
+from fastapi import FastAPI, Request, Header
 from typing import Any, Dict, Optional, List
 from mcp.common.utils import now_iso, new_correlation_id
 from mcp.common.auth import verify_firebase_token, enforce_org_match, require_approver
@@ -107,7 +107,7 @@ async def lc_presentment_pack(payload: Dict[str, Any], request: Request, authori
     lcId = payload.get("lcId") or correlationId
 
     # Approval-gated: require approver claim
-    require_approver(claims)
+    require_approver(claims, orgId)
 
     _audit(request, claims, orgId, "lc_presentment_pack", "lc_case", lcId, "approved_packaged", correlationId)
 

@@ -237,6 +237,6 @@ class _SessionData {
 Future<_SessionData> _loadSession(User user) async {
   final profileService = UserProfileService();
   final profile = await profileService.fetchProfile(user.uid);
-  final role = await profileService.resolveRole(user, profile: profile);
+  final role = await profileService.resolveRole(user);
   return _SessionData(role: role, profile: profile);
 }

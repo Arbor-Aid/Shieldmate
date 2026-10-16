@@ -16,7 +16,7 @@ Use `ARCHITECTURE.md` as the authoritative technical architecture for the curren
 Updated: 2026-04-13 21:32:45
 
 Authoritative repo root:
-D:\shieldmatessd\Shieldmate_RECLONE
+D:\2marines\Shieldmate
 
 Authoritative branch:
 ui-rebuild-flutter-gen-ui

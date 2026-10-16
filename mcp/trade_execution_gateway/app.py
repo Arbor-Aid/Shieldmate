@@ -72,8 +72,9 @@ async def trade_propose(payload: Dict[str, Any], request: Request, authorization
 @app.post("/trade/approve")
 async def trade_approve(payload: Dict[str, Any], request: Request, authorization: Optional[str] = Header(default=None), x_correlation_id: Optional[str] = Header(default=None)):
     correlationId = x_correlation_id or new_correlation_id()
-    claims = verify_firebase_token(authorization); require_approver(claims)
+    claims = verify_firebase_token(authorization)
     orgId = payload.get("orgId"); enforce_org_match(claims, orgId)
+    require_approver(claims, orgId)
     orderId = payload.get("orderId") or ""
 
     _audit(request, claims, orgId, "trade_approve", "trade_order", orderId, "approved", correlationId)
@@ -89,8 +90,9 @@ async def trade_approve(payload: Dict[str, Any], request: Request, authorization
 @app.post("/trade/execute")
 async def trade_execute(payload: Dict[str, Any], request: Request, authorization: Optional[str] = Header(default=None), x_correlation_id: Optional[str] = Header(default=None)):
     correlationId = x_correlation_id or new_correlation_id()
-    claims = verify_firebase_token(authorization); require_approver(claims)
+    claims = verify_firebase_token(authorization)
     orgId = payload.get("orgId"); enforce_org_match(claims, orgId)
+    require_approver(claims, orgId)
     orderId = payload.get("orderId") or ""
 
     if _KILL_SWITCH.get(orgId, False):
