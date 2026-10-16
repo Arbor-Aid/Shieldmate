@@ -1,0 +1,1 @@
+Return health/status readiness summary for information-retrieval-ai in compact JSON.

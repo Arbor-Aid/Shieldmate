@@ -1,0 +1,7 @@
+{
+  "service": "cto-agent",
+  "env": {
+    "PORT": "8080",
+    "MCP_SERVICE_NAME": "cto-agent"
+  }
+}

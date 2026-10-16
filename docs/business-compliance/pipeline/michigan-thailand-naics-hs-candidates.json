@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "status": "RESEARCH_GUIDANCE_ONLY",
+  "assessmentDate": "2026-10-16",
+  "scope": {
+    "origin": "Michigan statewide",
+    "initialCounty": "Washtenaw County",
+    "partnerCountry": "Thailand",
+    "industryFamily": "Machinery Manufacturing",
+    "aggregateNaics": "333"
+  },
+  "versions": {
+    "naics": "2022 NAICS",
+    "hs": "HS 2022 six-digit headings represented by the 2026 Schedule B export concordance",
+    "scheduleB": "2026 Schedule B"
+  },
+  "sources": [
+    {
+      "name": "U.S. Census Bureau 2022 NAICS Machinery Manufacturing",
+      "url": "https://www.census.gov/naics/?chart=2022&details=333&input=333"
+    },
+    {
+      "name": "U.S. Census Bureau 2026 Schedule B export concordance",
+      "url": "https://www.census.gov/foreign-trade/schedules/b/2026/exp-code.txt"
+    },
+    {
+      "name": "U.S. Census Bureau 2026 Schedule B record layout",
+      "url": "https://www.census.gov/foreign-trade/schedules/b/2026/exp-stru.txt"
+    }
+  ],
+  "mappings": [
+    {
+      "naicsCode": "333120",
+      "naicsVersion": "2022",
+      "naicsTitle": "Construction Machinery Manufacturing",
+      "hsCode": "842641",
+      "hsVersion": "HS 2022",
+      "mappingSource": "2026 Schedule B export concordance",
+      "evidenceReference": "Schedule B 8426410010 and 8426410090",
+      "evidenceUrl": "https://www.census.gov/foreign-trade/schedules/b/2026/exp-code.txt",
+      "confidence": "MEDIUM_CANDIDATE_ONLY",
+      "ambiguityNote": "The HS heading also contains a Schedule B line assigned to NAICS 333924; product-specific facts decide the correct classification.",
+      "reviewStatus": "REQUIRES_TRADE_CUSTOMS_SPECIALIST",
+      "disclaimer": "Research guidance only; not a customs classification or customs ruling."
+    },
+    {
+      "naicsCode": "333924",
+      "naicsVersion": "2022",
+      "naicsTitle": "Industrial Truck, Tractor, Trailer, and Stacker Machinery Manufacturing",
+      "hsCode": "842641",
+      "hsVersion": "HS 2022",
+      "mappingSource": "2026 Schedule B export concordance",
+      "evidenceReference": "Schedule B 8426410005",
+      "evidenceUrl": "https://www.census.gov/foreign-trade/schedules/b/2026/exp-code.txt",
+      "confidence": "MEDIUM_CANDIDATE_ONLY",
+      "ambiguityNote": "The HS heading also contains Schedule B lines assigned to NAICS 333120.",
+      "reviewStatus": "REQUIRES_TRADE_CUSTOMS_SPECIALIST",
+      "disclaimer": "Research guidance only; not a customs classification or customs ruling."
+    },
+    {
+      "naicsCode": "333120",
+      "naicsVersion": "2022",
+      "naicsTitle": "Construction Machinery Manufacturing",
+      "hsCode": "843049",
+      "hsVersion": "HS 2022",
+      "mappingSource": "2026 Schedule B export concordance",
+      "evidenceReference": "Schedule B 8430498030 and 8430498040",
+      "evidenceUrl": "https://www.census.gov/foreign-trade/schedules/b/2026/exp-code.txt",
+      "confidence": "MEDIUM_CANDIDATE_ONLY",
+      "ambiguityNote": "The HS heading spans water-well and other boring machinery and also maps to NAICS 333131 and 333132.",
+      "reviewStatus": "REQUIRES_TRADE_CUSTOMS_SPECIALIST",
+      "disclaimer": "Research guidance only; not a customs classification or customs ruling."
+    },
+    {
+      "naicsCode": "333131",
+      "naicsVersion": "2022",
+      "naicsTitle": "Mining Machinery and Equipment Manufacturing",
+      "hsCode": "843049",
+      "hsVersion": "HS 2022",
+      "mappingSource": "2026 Schedule B export concordance",
+      "evidenceReference": "Schedule B 8430498050",
+      "evidenceUrl": "https://www.census.gov/foreign-trade/schedules/b/2026/exp-code.txt",
+      "confidence": "MEDIUM_CANDIDATE_ONLY",
+      "ambiguityNote": "The broad NESOI line shares its HS heading with construction and oil/gas drilling machinery lines.",
+      "reviewStatus": "REQUIRES_TRADE_CUSTOMS_SPECIALIST",
+      "disclaimer": "Research guidance only; not a customs classification or customs ruling."
+    },
+    {
+      "naicsCode": "333132",
+      "naicsVersion": "2022",
+      "naicsTitle": "Oil and Gas Field Machinery and Equipment Manufacturing",
+      "hsCode": "843049",
+      "hsVersion": "HS 2022",
+      "mappingSource": "2026 Schedule B export concordance",
+      "evidenceReference": "Schedule B 8430498010 and 8430498020",
+      "evidenceUrl": "https://www.census.gov/foreign-trade/schedules/b/2026/exp-code.txt",
+      "confidence": "MEDIUM_CANDIDATE_ONLY",
+      "ambiguityNote": "The heading is shared across several boring and sinking machinery industries.",
+      "reviewStatus": "REQUIRES_TRADE_CUSTOMS_SPECIALIST",
+      "disclaimer": "Research guidance only; not a customs classification or customs ruling."
+    },
+    {
+      "naicsCode": "333120",
+      "naicsVersion": "2022",
+      "naicsTitle": "Construction Machinery Manufacturing",
+      "hsCode": "843149",
+      "hsVersion": "HS 2022",
+      "mappingSource": "2026 Schedule B export concordance",
+      "evidenceReference": "Schedule B 8431491010, 8431491090, and 8431499005",
+      "evidenceUrl": "https://www.census.gov/foreign-trade/schedules/b/2026/exp-code.txt",
+      "confidence": "MEDIUM_CANDIDATE_ONLY",
+      "ambiguityNote": "Parts classifications depend on the machine and principal-use facts; this heading also maps to other NAICS industries.",
+      "reviewStatus": "REQUIRES_TRADE_CUSTOMS_SPECIALIST",
+      "disclaimer": "Research guidance only; not a customs classification or customs ruling."
+    },
+    {
+      "naicsCode": "333131",
+      "naicsVersion": "2022",
+      "naicsTitle": "Mining Machinery and Equipment Manufacturing",
+      "hsCode": "843149",
+      "hsVersion": "HS 2022",
+      "mappingSource": "2026 Schedule B export concordance",
+      "evidenceReference": "Schedule B 8431499027",
+      "evidenceUrl": "https://www.census.gov/foreign-trade/schedules/b/2026/exp-code.txt",
+      "confidence": "MEDIUM_CANDIDATE_ONLY",
+      "ambiguityNote": "The cited line is specific to coal/rock cutter and tunneling machinery parts, while the HS heading is broader.",
+      "reviewStatus": "REQUIRES_TRADE_CUSTOMS_SPECIALIST",
+      "disclaimer": "Research guidance only; not a customs classification or customs ruling."
+    },
+    {
+      "naicsCode": "333924",
+      "naicsVersion": "2022",
+      "naicsTitle": "Industrial Truck, Tractor, Trailer, and Stacker Machinery Manufacturing",
+      "hsCode": "843149",
+      "hsVersion": "HS 2022",
+      "mappingSource": "2026 Schedule B export concordance",
+      "evidenceReference": "Schedule B 8431491060",
+      "evidenceUrl": "https://www.census.gov/foreign-trade/schedules/b/2026/exp-code.txt",
+      "confidence": "MEDIUM_CANDIDATE_ONLY",
+      "ambiguityNote": "The cited parts line shares a broad HS heading with construction and mining machinery parts.",
+      "reviewStatus": "REQUIRES_TRADE_CUSTOMS_SPECIALIST",
+      "disclaimer": "Research guidance only; not a customs classification or customs ruling."
+    },
+    {
+      "naicsCode": "333132",
+      "naicsVersion": "2022",
+      "naicsTitle": "Oil and Gas Field Machinery and Equipment Manufacturing",
+      "hsCode": "843139",
+      "hsVersion": "HS 2022",
+      "mappingSource": "2026 Schedule B export concordance",
+      "evidenceReference": "Schedule B 8431390050",
+      "evidenceUrl": "https://www.census.gov/foreign-trade/schedules/b/2026/exp-code.txt",
+      "confidence": "MEDIUM_CANDIDATE_ONLY",
+      "ambiguityNote": "The heading includes multiple machinery-parts uses and also maps to NAICS 333120 and 333922.",
+      "reviewStatus": "REQUIRES_TRADE_CUSTOMS_SPECIALIST",
+      "disclaimer": "Research guidance only; not a customs classification or customs ruling."
+    },
+    {
+      "naicsCode": "333120",
+      "naicsVersion": "2022",
+      "naicsTitle": "Construction Machinery Manufacturing",
+      "hsCode": "843139",
+      "hsVersion": "HS 2022",
+      "mappingSource": "2026 Schedule B export concordance",
+      "evidenceReference": "Schedule B 8431390090",
+      "evidenceUrl": "https://www.census.gov/foreign-trade/schedules/b/2026/exp-code.txt",
+      "confidence": "MEDIUM_CANDIDATE_ONLY",
+      "ambiguityNote": "The NESOI parts line cannot be applied without the underlying machine and principal-use facts.",
+      "reviewStatus": "REQUIRES_TRADE_CUSTOMS_SPECIALIST",
+      "disclaimer": "Research guidance only; not a customs classification or customs ruling."
+    }
+  ],
+  "disclaimer": "This many-to-many concordance is research guidance only. It is not a customs classification, tariff determination, origin decision, eligibility finding, or customs ruling. A qualified trade/customs specialist must classify a specific product against current exporting and importing schedules and facts."
+}

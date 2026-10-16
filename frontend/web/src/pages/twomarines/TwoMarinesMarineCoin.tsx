@@ -69,7 +69,7 @@ export default function TwoMarinesMarineCoin() {
               </div>
               <Button asChild>
                 <a
-                  href="https://marinecoin.2marines.us"
+                  href="https://marinecoin.2marines.us/marinecoin"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

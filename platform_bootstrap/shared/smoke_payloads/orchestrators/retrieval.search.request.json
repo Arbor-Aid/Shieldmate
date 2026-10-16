@@ -1,0 +1,9 @@
+{
+  "toolId": "retrieval.search",
+  "tool": "retrieval.search",
+  "input": {
+    "query": "Roadmap Notes planning",
+    "source": "google_drive",
+    "limit": 5
+  }
+}

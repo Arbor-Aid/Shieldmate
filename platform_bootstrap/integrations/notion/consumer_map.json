@@ -1,0 +1,12 @@
+{
+  "consumers": [
+    "document-manager",
+    "information-retrieval-ai",
+    "content-generation-ai",
+    "ai-training-coordinator",
+    "training_to_sop",
+    "mcp-analytics",
+    "project-manager-agent"
+  ],
+  "notes": "Readiness mapping for future live integration wiring."
+}

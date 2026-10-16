@@ -1,0 +1,1 @@
+Return health/status readiness summary for ai-tax-compliance-agent in compact JSON.

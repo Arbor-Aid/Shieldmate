@@ -1,0 +1,14 @@
+{
+  "toolId": "coder.analyze",
+  "tool": "coder.analyze",
+  "input": {
+    "collector": "network",
+    "records": [
+      {
+        "interface": "Ethernet0",
+        "ipv4": "10.0.0.12",
+        "gateway": "10.0.0.1"
+      }
+    ]
+  }
+}

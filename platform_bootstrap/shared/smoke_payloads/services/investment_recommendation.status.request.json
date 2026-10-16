@@ -1,0 +1,9 @@
+{
+  "toolId": "investment_recommendation.status",
+  "tool": "investment_recommendation.status",
+  "input": {
+    "smoke": true,
+    "service": "investment_recommendation",
+    "source": "platform_bootstrap"
+  }
+}

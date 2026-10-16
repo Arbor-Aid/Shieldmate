@@ -1,0 +1,9 @@
+{
+  "toolId": "content-generation-ai.status",
+  "tool": "content-generation-ai.status",
+  "input": {
+    "smoke": true,
+    "service": "content-generation-ai",
+    "source": "platform_bootstrap"
+  }
+}

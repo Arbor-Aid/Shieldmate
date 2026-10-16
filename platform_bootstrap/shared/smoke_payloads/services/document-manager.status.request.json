@@ -1,0 +1,9 @@
+{
+  "toolId": "document-manager.status",
+  "tool": "document-manager.status",
+  "input": {
+    "smoke": true,
+    "service": "document-manager",
+    "source": "platform_bootstrap"
+  }
+}

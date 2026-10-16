@@ -1,0 +1,7 @@
+{
+  "service": "document-manager",
+  "env": {
+    "PORT": "8080",
+    "MCP_SERVICE_NAME": "document-manager"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GoogleDriveRawItem",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "mimeType"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "mimeType": {
+      "type": "string"
+    },
+    "modifiedTime": {
+      "type": "string"
+    },
+    "owners": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

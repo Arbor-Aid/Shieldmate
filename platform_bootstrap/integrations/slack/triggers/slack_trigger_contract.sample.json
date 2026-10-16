@@ -1,0 +1,7 @@
+{
+  "source": "slack",
+  "event_type": "app_mention",
+  "channel": "#mcp-document-manager",
+  "canonical_target_service": "document-manager",
+  "notes": "Slack is trigger/debug alias layer; gateway remains runtime ingress."
+}

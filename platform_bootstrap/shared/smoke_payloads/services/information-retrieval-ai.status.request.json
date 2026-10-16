@@ -1,0 +1,9 @@
+{
+  "toolId": "information-retrieval-ai.status",
+  "tool": "information-retrieval-ai.status",
+  "input": {
+    "smoke": true,
+    "service": "information-retrieval-ai",
+    "source": "platform_bootstrap"
+  }
+}

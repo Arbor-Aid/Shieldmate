@@ -8,6 +8,7 @@ export const isPublicRoute = (pathname: string) => {
     "/info",
     "/shieldmate",
     "/shop",
+    "/store",
     "/partnerships",
     "/brand",
     "/socials",

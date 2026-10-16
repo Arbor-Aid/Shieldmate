@@ -1,0 +1,7 @@
+{
+  "service": "ai-payroll-manager",
+  "env": {
+    "PORT": "8080",
+    "MCP_SERVICE_NAME": "ai-payroll-manager"
+  }
+}

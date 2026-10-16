@@ -1,0 +1,7 @@
+{
+  "service": "tradefinance_lc",
+  "env": {
+    "PORT": "8080",
+    "MCP_SERVICE_NAME": "tradefinance_lc"
+  }
+}

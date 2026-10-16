@@ -4,7 +4,7 @@ const footerLinks = [
   { label: "Info", href: "/info" },
   { label: "ShieldMate", href: "/shieldmate" },
   { label: "MarineCoin", href: "/marinecoin" },
-  { label: "Shop", href: "/shop" },
+  { label: "Shop", href: "/store", reloadDocument: true },
   { label: "Partnerships", href: "/partnerships" },
   { label: "Brand Kit", href: "/brand" },
   { label: "Socials", href: "/socials" },
@@ -26,7 +26,9 @@ export function TwoMarinesFooter() {
           <ul className="mt-3 grid grid-cols-2 gap-2 text-sm text-muted-foreground">
             {footerLinks.map((item) => (
               <li key={item.href}>
-                <Link to={item.href}>{item.label}</Link>
+                <Link to={item.href} reloadDocument={item.reloadDocument}>
+                  {item.label}
+                </Link>
               </li>
             ))}
           </ul>

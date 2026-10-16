@@ -1,0 +1,6 @@
+﻿{
+  "orgId": "dev-org",
+  "allowed": ["apparel", "books", "electronics_accessories"],
+  "conditional": ["supplements", "batteries"],
+  "blocked": ["weapons", "drugs", "controlled_substances"]
+}

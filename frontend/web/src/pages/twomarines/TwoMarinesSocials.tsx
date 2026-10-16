@@ -1,16 +1,16 @@
 import { TwoMarinesLayout } from "@/components/layout/TwoMarinesLayout";
 import { Card, CardContent } from "@/components/ui/card";
-import { Instagram, Linkedin, Twitter, Youtube, Globe } from "lucide-react";
+import { Instagram, Linkedin, Music2, Youtube, Globe } from "lucide-react";
 
 const socialLinks = [
   {
     label: "Website",
-    href: "https://www.2marines.us",
+    href: "https://2marines.us",
     icon: Globe,
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/company/2marines",
+    href: "https://www.linkedin.com/company/2marines/",
     icon: Linkedin,
   },
   {
@@ -20,13 +20,13 @@ const socialLinks = [
   },
   {
     label: "Instagram",
-    href: "https://www.instagram.com/2marines",
+    href: "https://www.instagram.com/weldingking87/",
     icon: Instagram,
   },
   {
-    label: "Twitter",
-    href: "https://x.com/2marines",
-    icon: Twitter,
+    label: "TikTok",
+    href: "https://www.tiktok.com/@2marines87",
+    icon: Music2,
   },
 ];
 

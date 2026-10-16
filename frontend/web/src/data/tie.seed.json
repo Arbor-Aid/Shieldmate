@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "items": [
+    {
+      "id": "tie-program",
+      "slug": "tie-program",
+      "name": "TIE Program",
+      "summary": "Triage, Intake, and Engagement (TIE) coordinates veteran requests into verified partner workflows with clear handoffs.",
+      "steps": [
+        "Submit intake request with service and need details",
+        "Eligibility screening and document verification",
+        "Partner match with referral package",
+        "Warm handoff and follow-up confirmation"
+      ],
+      "eligibility": [
+        "Veterans and immediate family members",
+        "Partners supporting veteran services",
+        "Time-sensitive housing or benefits needs"
+      ],
+      "partner_roles": [
+        "Housing placement partners",
+        "Employment and training partners",
+        "Legal and benefits partners",
+        "Case management teams"
+      ],
+      "last_updated": "2026-01-13"
+    }
+  ]
+}

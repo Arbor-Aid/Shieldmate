@@ -1,0 +1,9 @@
+{
+  "toolId": "ai-ux-analyst.status",
+  "tool": "ai-ux-analyst.status",
+  "input": {
+    "smoke": true,
+    "service": "ai-ux-analyst",
+    "source": "platform_bootstrap"
+  }
+}

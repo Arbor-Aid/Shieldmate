@@ -1,0 +1,15 @@
+{
+  "toolId": "qa.evaluate",
+  "tool": "qa.evaluate",
+  "input": {
+    "doc_id": "doc-smoke-activation-006",
+    "category": "engineering",
+    "actions": {
+      "mode": "qa-smoke"
+    },
+    "source_record": {
+      "source": "notion",
+      "record_id": "notion-page-001"
+    }
+  }
+}

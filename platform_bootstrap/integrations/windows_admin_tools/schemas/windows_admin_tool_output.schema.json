@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WindowsAdminToolOutput",
+  "type": "object",
+  "required": [
+    "source",
+    "collector",
+    "collected_at",
+    "host",
+    "records"
+  ],
+  "properties": {
+    "source": {
+      "const": "windows_admin_tools"
+    },
+    "collector": {
+      "type": "string",
+      "enum": [
+        "network",
+        "services",
+        "firewall",
+        "ports",
+        "event_logs",
+        "scheduled_tasks",
+        "storage",
+        "users_groups"
+      ]
+    },
+    "collected_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "host": {
+      "type": "string"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

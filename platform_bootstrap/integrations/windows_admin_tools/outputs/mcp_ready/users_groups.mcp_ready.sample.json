@@ -1,0 +1,9 @@
+{
+  "toolId": "mcp-analytics.status",
+  "input": {
+    "source": "windows_admin_tools",
+    "collector": "users_groups",
+    "sample_path": "platform_bootstrap/integrations/windows_admin_tools/outputs/normalized_json/users_groups.normalized.sample.json",
+    "mode": "readiness_smoke"
+  }
+}

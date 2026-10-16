@@ -1,0 +1,7 @@
+{
+  "service": "investment_recommendation",
+  "env": {
+    "PORT": "8080",
+    "MCP_SERVICE_NAME": "investment_recommendation"
+  }
+}

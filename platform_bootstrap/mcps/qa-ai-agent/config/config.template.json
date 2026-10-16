@@ -1,0 +1,7 @@
+{
+  "service": "qa-ai-agent",
+  "env": {
+    "PORT": "8080",
+    "MCP_SERVICE_NAME": "qa-ai-agent"
+  }
+}

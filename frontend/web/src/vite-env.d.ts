@@ -1,6 +1,11 @@
 
 /// <reference types="vite/client" />
 
+declare module "*.seed.json" {
+  const value: any;
+  export default value;
+}
+
 declare global {
   interface Window {
     webkitSpeechRecognition: any;

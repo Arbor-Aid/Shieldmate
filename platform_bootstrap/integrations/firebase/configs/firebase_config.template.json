@@ -1,0 +1,6 @@
+{
+  "project_id": "<gcp-project-id>",
+  "firestore_database": "(default)",
+  "service_account_source": "workload_identity_or_secret_manager",
+  "notes": "Template only; no secrets committed."
+}

@@ -1,0 +1,7 @@
+{
+  "service": "personalized-donation-ai",
+  "env": {
+    "PORT": "8080",
+    "MCP_SERVICE_NAME": "personalized-donation-ai"
+  }
+}

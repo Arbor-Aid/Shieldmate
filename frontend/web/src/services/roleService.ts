@@ -1,153 +1,198 @@
-
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
-import { auth, db } from "@/lib/firebase";
+import { auth } from "@/lib/firebase";
 import type { User } from "firebase/auth";
 
 export type UserRole =
   | "super_admin"
   | "org_admin"
   | "staff"
+  | "case_worker"
   | "client"
   // legacy roles
   | "admin"
   | "organization";
 
-export interface UserRoleData {
-  uid: string;
-  role: UserRole;
-  email?: string;
-  displayName?: string;
-  createdAt?: any;
-  updatedAt?: any;
-}
+const knownRoles: readonly UserRole[] = [
+  "super_admin",
+  "org_admin",
+  "staff",
+  "case_worker",
+  "client",
+  "admin",
+  "organization",
+];
 
 export interface RoleClaims {
   global?: UserRole[];
   org?: Record<string, UserRole[]>;
+  activeOrgId?: string;
 }
 
+function isUserRole(value: unknown): value is UserRole {
+  return typeof value === "string" &&
+    (knownRoles as readonly string[]).includes(value);
+}
 
-/**
- * Read custom role claims from the current user token.
- * Format:
- *  role: string -> single role claim
- *  org: string  -> single org claim
- */
-export async function getRoleClaims(user?: User | null): Promise<RoleClaims | null> {
-  const current = user ?? auth.currentUser;
-  if (!current) return null;
-  const token = await current.getIdTokenResult();
-  const role = (token.claims?.role as UserRole | undefined) ?? undefined;
-  const org = (token.claims?.org as string | undefined) ?? undefined;
-  const globalRoles = role === "super_admin" ? [role] : [];
-  const orgRoles = org && role ? { [org]: [role] } : {};
+export function doesEffectiveRoleSatisfy(
+  userRole: UserRole | null | undefined,
+  requiredRole: UserRole
+): boolean {
+  if (!userRole) return false;
+  if (userRole === requiredRole) return true;
+  if (requiredRole === "admin" && userRole === "super_admin") return true;
+  if (
+    requiredRole === "organization" &&
+    (userRole === "org_admin" ||
+      userRole === "staff" ||
+      userRole === "case_worker")
+  ) {
+    return true;
+  }
+  if (
+    (requiredRole === "org_admin" ||
+      requiredRole === "staff" ||
+      requiredRole === "case_worker") &&
+    userRole === "organization"
+  ) {
+    return true;
+  }
+  return false;
+}
+
+export function doesEffectiveRoleSatisfyAny(
+  userRole: UserRole | null | undefined,
+  requiredRoles: UserRole[]
+): boolean {
+  return requiredRoles.some((role) =>
+    doesEffectiveRoleSatisfy(userRole, role)
+  );
+}
+
+export function parseRoleClaims(
+  claims: Record<string, unknown>
+): RoleClaims {
+  const canonicalRoles = Array.isArray(claims.roles)
+    ? claims.roles.filter(isUserRole)
+    : [];
+
+  const activeOrgId =
+    typeof claims.orgId === "string" && claims.orgId.length > 0
+      ? claims.orgId
+      : typeof claims.org === "string" && claims.org.length > 0
+        ? claims.org
+        : undefined;
+
+  const orgRoleMap: Record<string, UserRole[]> = {};
+
+  const addOrgRoles = (orgId: string, roles: UserRole[]) => {
+    if (!orgId) return;
+
+    const scopedRoles = roles.filter((role) => role !== "super_admin");
+    if (scopedRoles.length === 0) return;
+
+    orgRoleMap[orgId] = Array.from(
+      new Set([...(orgRoleMap[orgId] ?? []), ...scopedRoles])
+    );
+  };
+
+  if (
+    claims.orgRoles &&
+    typeof claims.orgRoles === "object" &&
+    !Array.isArray(claims.orgRoles)
+  ) {
+    Object.entries(
+      claims.orgRoles as Record<string, unknown>
+    ).forEach(([orgId, value]) => {
+      if (!Array.isArray(value)) return;
+      addOrgRoles(orgId, value.filter(isUserRole));
+    });
+  }
+
+  if (activeOrgId) {
+    addOrgRoles(
+      activeOrgId,
+      canonicalRoles.filter((role) => role !== "super_admin")
+    );
+
+    if (isUserRole(claims.role) && claims.role !== "super_admin") {
+      addOrgRoles(activeOrgId, [claims.role]);
+    }
+  }
+
   return {
-    global: globalRoles.filter(Boolean) as UserRole[],
-    org: Object.fromEntries(
-      Object.entries(orgRoles).map(([orgId, roles]) => [orgId, (roles || []).filter(Boolean) as UserRole[]]),
-    ),
+    global: canonicalRoles.filter((role) => role === "super_admin"),
+    org: orgRoleMap,
+    activeOrgId,
   };
 }
 
-export function hasRoleClaim(claims: RoleClaims | null, role: UserRole, orgId?: string): boolean {
+export async function getRoleClaims(
+  user?: User | null
+): Promise<RoleClaims | null> {
+  const current = user ?? auth.currentUser;
+  if (!current) return null;
+
+  const token = await current.getIdTokenResult();
+  return parseRoleClaims(
+    (token.claims ?? {}) as Record<string, unknown>
+  );
+}
+
+export function hasRoleClaim(
+  claims: RoleClaims | null,
+  role: UserRole,
+  orgId?: string
+): boolean {
   if (!claims) return false;
   if (orgId && claims.org?.[orgId]?.includes(role)) return true;
   return claims.global?.includes(role) ?? false;
 }
 
-/**
- * Fetch user role from Firestore
- */
-export async function getUserRole(userId: string): Promise<UserRole | null> {
-  try {
-    const userDocRef = doc(db, "users", userId);
-    const userDoc = await getDoc(userDocRef);
-    
-    if (userDoc.exists() && userDoc.data()?.role) {
-      return userDoc.data().role as UserRole;
-    }
-    
-    // Default to client if no role is set
-    return "client";
-  } catch (error) {
-    console.error("Error fetching user role:", error);
-    return null;
+export function resolveEffectiveRoleFromClaims(
+  claims: RoleClaims | null,
+  orgId?: string
+): UserRole | null {
+  if (!claims) return null;
+
+  if (claims.global?.includes("super_admin")) {
+    return "super_admin";
   }
-}
 
-/**
- * Set or update a user's role
- */
-export async function setUserRole(userId: string, role: UserRole): Promise<boolean> {
-  try {
-    const userDocRef = doc(db, "users", userId);
-    const userDoc = await getDoc(userDocRef);
-    
-    if (userDoc.exists()) {
-      await updateDoc(userDocRef, { 
-        role,
-        updatedAt: new Date()
-      });
-    } else {
-      await setDoc(userDocRef, {
-        uid: userId,
-        role,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      });
-    }
-    
-    return true;
-  } catch (error) {
-    console.error("Error setting user role:", error);
-    return false;
+  const orgRoleMap = claims.org ?? {};
+  let selectedOrgId = orgId ?? claims.activeOrgId;
+
+  if (!selectedOrgId) {
+    const orgIds = Object.keys(orgRoleMap);
+    if (orgIds.length !== 1) return null;
+    selectedOrgId = orgIds[0];
   }
+
+  const roles = orgRoleMap[selectedOrgId] ?? [];
+  const preferredRole =
+    roles.find((role) => role === "org_admin") ??
+    roles.find((role) => role === "staff") ??
+    roles.find((role) => role === "case_worker") ??
+    roles.find((role) => role === "organization") ??
+    roles.find((role) => role === "admin") ??
+    roles.find((role) => role === "client");
+
+  return preferredRole ? normalizeRole(preferredRole) : null;
 }
 
-/**
- * Check if user has a specific role
- */
-export async function hasRole(userId: string, role: UserRole): Promise<boolean> {
-  const userRole = await getUserRole(userId);
-  return userRole === role;
-}
-
-/**
- * Check if user has admin role
- */
-export async function isAdmin(userId: string): Promise<boolean> {
-  return await hasRole(userId, "admin");
-}
-
-/**
- * Check if user has organization role
- */
-export async function isOrganization(userId: string): Promise<boolean> {
-  return await hasRole(userId, "organization");
-}
-
-/**
- * Resolve a user's role with claims first, falling back to Firestore.
- */
-export async function resolveEffectiveRole(user?: User | null): Promise<UserRole | null> {
+export async function resolveEffectiveRole(
+  user?: User | null,
+  orgId?: string
+): Promise<UserRole | null> {
   const claims = await getRoleClaims(user);
-  if (claims?.global?.length) {
-    const rawRole = claims.global[0] as UserRole;
-    return normalizeRole(rawRole);
-  }
-
-  const orgRoles = claims?.org ?? {};
-  const firstOrg = Object.keys(orgRoles)[0];
-  if (firstOrg && orgRoles[firstOrg]?.length) {
-    const rawRole = orgRoles[firstOrg][0] as UserRole;
-    return normalizeRole(rawRole);
-  }
-
-  return null;
+  return resolveEffectiveRoleFromClaims(claims, orgId);
 }
 
 function normalizeRole(role: UserRole): UserRole {
-  if (role === "super_admin") return "admin";
-  if (role === "org_admin" || role === "staff") return "organization";
+  if (
+    role === "org_admin" ||
+    role === "staff" ||
+    role === "case_worker"
+  ) {
+    return "organization";
+  }
   return role;
 }

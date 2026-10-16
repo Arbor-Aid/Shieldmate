@@ -1,0 +1,9 @@
+{
+  "toolId": "tradeops.status",
+  "tool": "tradeops.status",
+  "input": {
+    "smoke": true,
+    "service": "tradeops",
+    "source": "platform_bootstrap"
+  }
+}

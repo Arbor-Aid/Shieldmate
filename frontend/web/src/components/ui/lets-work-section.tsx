@@ -29,10 +29,10 @@ export function LetsWorkSection({ fullHeight = false }: LetsWorkSectionProps) {
             Schedule a demo
           </Button>
           <a
-            href="mailto:hello@2marines.us"
+            href="mailto:info@2marines.us"
             className="text-sm font-medium underline underline-offset-4"
           >
-            hello@2marines.us
+            info@2marines.us
           </a>
         </div>
       </div>

@@ -1,0 +1,51 @@
+[
+  {
+    "service": "investment_recommendation",
+    "runtime_state": "placeholder_main_active",
+    "app_py_routes_mounted": false,
+    "decision": "keep_placeholder_active_for_low_risk_bootstrap_pass",
+    "note": "Domain routes remain in app.py and are documented as inactive for current entrypoint."
+  },
+  {
+    "service": "project-manager-agent",
+    "runtime_state": "placeholder_main_active",
+    "app_py_routes_mounted": false,
+    "decision": "keep_placeholder_active_for_low_risk_bootstrap_pass",
+    "note": "Domain routes remain in app.py and are documented as inactive for current entrypoint."
+  },
+  {
+    "service": "trade_execution_gateway",
+    "runtime_state": "placeholder_main_active",
+    "app_py_routes_mounted": false,
+    "decision": "keep_placeholder_active_for_low_risk_bootstrap_pass",
+    "note": "Domain routes remain in app.py and are documented as inactive for current entrypoint."
+  },
+  {
+    "service": "tradefinance_lc",
+    "runtime_state": "placeholder_main_active",
+    "app_py_routes_mounted": false,
+    "decision": "keep_placeholder_active_for_low_risk_bootstrap_pass",
+    "note": "Domain routes remain in app.py and are documented as inactive for current entrypoint."
+  },
+  {
+    "service": "tradeops",
+    "runtime_state": "placeholder_main_active",
+    "app_py_routes_mounted": false,
+    "decision": "keep_placeholder_active_for_low_risk_bootstrap_pass",
+    "note": "Domain routes remain in app.py and are documented as inactive for current entrypoint."
+  },
+  {
+    "service": "training_to_sop",
+    "runtime_state": "placeholder_main_active",
+    "app_py_routes_mounted": false,
+    "decision": "keep_placeholder_active_for_low_risk_bootstrap_pass",
+    "note": "Domain routes remain in app.py and are documented as inactive for current entrypoint."
+  },
+  {
+    "service": "treasury",
+    "runtime_state": "placeholder_main_active",
+    "app_py_routes_mounted": false,
+    "decision": "keep_placeholder_active_for_low_risk_bootstrap_pass",
+    "note": "Domain routes remain in app.py and are documented as inactive for current entrypoint."
+  }
+]

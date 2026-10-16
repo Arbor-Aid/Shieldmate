@@ -1,0 +1,9 @@
+{
+  "toolId": "designer-ai-agent.status",
+  "tool": "designer-ai-agent.status",
+  "input": {
+    "smoke": true,
+    "service": "designer-ai-agent",
+    "source": "platform_bootstrap"
+  }
+}
