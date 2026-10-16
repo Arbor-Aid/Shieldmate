@@ -95,6 +95,9 @@ No existing SAM entity registration record, federal opportunity record, federal 
 - `training/compliance-training-matrix.md` — role-based training and evidence requirements.
 - `pipeline/contract-to-trade-pipeline.md` — record flow, state model, MCP mapping, and automation limits.
 
+- `pipeline/michigan-thailand-pilot.md` - research-only Michigan/Washtenaw-to-Thailand machinery pilot scope.
+- `pipeline/michigan-thailand-naics-hs-candidates.json` - official-source candidate concordance with specialist-review controls.
+- `pipeline/michigan-thailand-freight-corridor.md` - bounded BTS NTAD/USACE corridor and port assessment.
 - `integrations/ecosystem-tracker-connection.md` - verified master tracker, daily tracker, and repository-access boundary.
 - `integrations/tracker-source-manifest.json` - non-secret source identity and tab manifest.
 - `integrations/daily-tracker-mapping.md` - controlled mapping between compliance records, workbook tabs, and the daily tracker.
