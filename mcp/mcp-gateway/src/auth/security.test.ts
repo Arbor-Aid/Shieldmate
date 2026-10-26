@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import { authorizeClaimsForOrg } from './requireRole';
-import { verifyFirebaseToken } from './verifyFirebaseToken';
+import { verifyFirebaseToken, type VerifiedTokenClaims } from './verifyFirebaseToken';
 
 const ALLOWED_ROLES = ['org_admin', 'staff', 'case_worker'];
 
@@ -17,6 +17,11 @@ test('rejects the development token without invoking Firebase verification', asy
     /Development tokens are not accepted/
   );
   assert.equal(verifierCalled, false);
+});
+
+test('rejects missing and empty bearer tokens', async () => {
+  await assert.rejects(verifyFirebaseToken(undefined), /Missing Authorization header/);
+  await assert.rejects(verifyFirebaseToken('Bearer   '), /Missing Firebase ID token/);
 });
 
 test('keeps canonical global roles separate from organization role maps', async () => {
@@ -98,6 +103,36 @@ test('allows an explicit canonical global super_admin for a requested organizati
   );
 
   assert.equal(authorization.org, 'org-any');
+});
+
+test('does not promote scoped or legacy super_admin to global authority', () => {
+  assert.throws(
+    () => authorizeClaimsForOrg(
+      { uid: 'scoped-admin', orgRoles: { 'org-a': ['super_admin'] } },
+      ['super_admin'],
+      'org-a'
+    ),
+    /Missing role claim for organization/
+  );
+  assert.throws(
+    () => authorizeClaimsForOrg(
+      { uid: 'legacy-admin', orgId: 'org-a', role: 'super_admin' },
+      ['super_admin'],
+      'org-a'
+    ),
+    /Missing role claim for organization/
+  );
+});
+
+test('does not treat an admin boolean as authority', () => {
+  assert.throws(
+    () => authorizeClaimsForOrg(
+      { uid: 'boolean-admin', orgId: 'org-a', admin: true } as VerifiedTokenClaims & { admin: boolean },
+      ALLOWED_ROLES,
+      'org-a'
+    ),
+    /Missing role claim for organization/
+  );
 });
 
 test('rejects malformed or unauthorized role claims', () => {

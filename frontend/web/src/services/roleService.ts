@@ -47,14 +47,6 @@ export function doesEffectiveRoleSatisfy(
   ) {
     return true;
   }
-  if (
-    (requiredRole === "org_admin" ||
-      requiredRole === "staff" ||
-      requiredRole === "case_worker") &&
-    userRole === "organization"
-  ) {
-    return true;
-  }
   return false;
 }
 
@@ -175,7 +167,10 @@ export function resolveEffectiveRoleFromClaims(
     roles.find((role) => role === "admin") ??
     roles.find((role) => role === "client");
 
-  return preferredRole ? normalizeRole(preferredRole) : null;
+  if (preferredRole === "admin") {
+    return "organization";
+  }
+  return preferredRole ?? null;
 }
 
 export async function resolveEffectiveRole(
@@ -184,15 +179,4 @@ export async function resolveEffectiveRole(
 ): Promise<UserRole | null> {
   const claims = await getRoleClaims(user);
   return resolveEffectiveRoleFromClaims(claims, orgId);
-}
-
-function normalizeRole(role: UserRole): UserRole {
-  if (
-    role === "org_admin" ||
-    role === "staff" ||
-    role === "case_worker"
-  ) {
-    return "organization";
-  }
-  return role;
 }

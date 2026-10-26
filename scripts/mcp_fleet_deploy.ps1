@@ -244,8 +244,18 @@ try {
 
   $IndexPath = Join-Path $RepoRoot "ops\\mcp_service_index.json"
   if (-not (Test-Path $IndexPath)) { throw "Missing service index: $IndexPath" }
-  $services = Get-Content -Raw $IndexPath | ConvertFrom-Json
-  $services = @($services)
+  $ContractPath = Join-Path $RepoRoot "ops\\mcp_fleet_contract.json"
+  if (-not (Test-Path $ContractPath)) { throw "Missing fleet contract: $ContractPath" }
+  $contract = Get-Content -Raw $ContractPath | ConvertFrom-Json
+  $canonServices = @($contract.services | Where-Object { $_.status -eq "canon" })
+  $parkedServices = @($contract.services | Where-Object { $_.status -eq "parked" })
+  if ($canonServices.Count -ne $contract.canonTargetCount -or $parkedServices.Count -ne 6) {
+    throw "Fleet contract classification mismatch: expected $($contract.canonTargetCount) Canon and 6 parked."
+  }
+  $canonIds = @($canonServices | ForEach-Object { $_.serviceId })
+  $operationalServices = Get-Content -Raw $IndexPath | ConvertFrom-Json
+  $operationalServices = @($operationalServices)
+  $services = @($operationalServices | Where-Object { $canonIds -contains $_.slug })
   if (-not $services -or $services.Count -eq 0) { throw "Service index is empty: $IndexPath" }
   if ($services[0].image -and ($services[0].image -match ":([^:/]+)$")) {
     $Tag = $Matches[1]

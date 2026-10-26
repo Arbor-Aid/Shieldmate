@@ -1,6 +1,7 @@
 import sys
 import types
 import unittest
+from unittest.mock import patch
 
 firebase_admin = types.ModuleType("firebase_admin")
 firebase_auth = types.ModuleType("firebase_admin.auth")
@@ -19,9 +20,25 @@ from runpy import run_path
 auth_module = run_path(str(Path(__file__).resolve().parents[1] / "auth.py"))
 enforce_org_match = auth_module["enforce_org_match"]
 require_approver = auth_module["require_approver"]
+verify_firebase_token = auth_module["verify_firebase_token"]
 
 
 class ClaimsAuthorizationTests(unittest.TestCase):
+    def test_development_token_is_never_accepted_in_production(self):
+        with patch.dict(
+            "os.environ",
+            {"ALLOW_DEV_NOAUTH": "true", "ENVIRONMENT": "production"},
+            clear=True,
+        ):
+            claims = verify_firebase_token("Bearer dev")
+        self.assertNotEqual(claims.get("uid"), "dev")
+
+    def test_development_token_can_be_enabled_only_outside_production(self):
+        with patch.dict("os.environ", {"ALLOW_DEV_NOAUTH": "true"}, clear=True):
+            claims = verify_firebase_token("Bearer dev")
+        self.assertEqual(claims["uid"], "dev")
+        self.assertEqual(claims["roles"], ["super_admin"])
+
     def test_requested_org_admin_is_allowed(self):
         claims = {"orgRoles": {"org-a": ["org_admin"]}}
         enforce_org_match(claims, "org-a")

@@ -3,6 +3,7 @@ jest.mock("@/lib/firebase", () => ({
 }));
 
 import {
+  doesEffectiveRoleSatisfy,
   parseRoleClaims,
   resolveEffectiveRoleFromClaims,
 } from "@/services/roleService";
@@ -53,9 +54,7 @@ describe("roleService claims alignment", () => {
     });
 
     expect(resolveEffectiveRoleFromClaims(claims)).toBeNull();
-    expect(resolveEffectiveRoleFromClaims(claims, "org-a")).toBe(
-      "organization"
-    );
+    expect(resolveEffectiveRoleFromClaims(claims, "org-a")).toBe("org_admin");
   });
 
   it("supports case_worker as an organization-scoped role", () => {
@@ -66,6 +65,24 @@ describe("roleService claims alignment", () => {
       },
     });
 
+    expect(resolveEffectiveRoleFromClaims(claims)).toBe("case_worker");
+  });
+
+  it("does not let legacy organization satisfy privileged org roles", () => {
+    expect(doesEffectiveRoleSatisfy("organization", "org_admin")).toBe(false);
+    expect(doesEffectiveRoleSatisfy("organization", "staff")).toBe(false);
+    expect(doesEffectiveRoleSatisfy("organization", "case_worker")).toBe(false);
+  });
+
+  it("keeps canonical org roles compatible with generic organization UI", () => {
+    expect(doesEffectiveRoleSatisfy("org_admin", "organization")).toBe(true);
+    expect(doesEffectiveRoleSatisfy("staff", "organization")).toBe(true);
+    expect(doesEffectiveRoleSatisfy("case_worker", "organization")).toBe(true);
+  });
+
+  it("downgrades a scoped legacy admin to organization presentation", () => {
+    const claims = parseRoleClaims({ org: "org-a", role: "admin" });
     expect(resolveEffectiveRoleFromClaims(claims)).toBe("organization");
+    expect(doesEffectiveRoleSatisfy("organization", "admin")).toBe(false);
   });
 });

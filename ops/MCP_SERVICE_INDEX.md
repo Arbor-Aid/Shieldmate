@@ -1,7 +1,8 @@
 # MCP Service Index
 
 ## Scope
-- Authoritative MCP services: **34**
+- Operational deployment-index entries: **34**
+- Fleet classification authority: `ops/mcp_fleet_contract.json` (**28 Canon + 6 parked**)
 - Inclusion rule: folders under `mcp/` excluding `common` and `mcp-gateway`
 - Inventory source files:
   - `mcp_services.csv`
@@ -18,6 +19,11 @@
   - `platform_bootstrap/shared/smoke_payloads/mass_smoke_plan.json`
 - Route metadata note: `/health` and `/execute` are required; `/meta` is optional and represented as `meta_path: null` unless explicitly implemented.
 
+The operational index is not a Canon-membership list. `mcp-gateway` is Canon-protected
+but excluded from this service index as infrastructure. `document-manager` remains in
+the operational index and on disk, but is absent from the fleet contract; its authority
+status is unresolved/operational-only and the contract-filtered deploy script skips it.
+
 ## State model
 - `registered`: appears in inventory and, when needed, in gateway registry mappings.
 - `reachable`: serves `GET /health` and `POST /execute` on FastAPI `main.py` with `PORT` fallback `8080`.
@@ -25,7 +31,7 @@
 - Connectivity registration note: each service has a minimal `<service>.status` tool route in gateway for bulk smoke checks.
 - `bootstrapped`: service has a machine-readable bootstrap package and deterministic smoke payload references.
 
-## Current fleet posture
+## Historical operational posture (34-entry index)
 - Registered: 34/34
 - Reachable contract: 34/34
 - Bootstrapped package coverage: 34/34
@@ -58,7 +64,7 @@
 - `training_to_sop`
 - `treasury`
 
-## Authoritative service slugs
+## Operational index slugs
 - ai-budget-planner
 - ai-expense-manager
 - ai-financial-analyst

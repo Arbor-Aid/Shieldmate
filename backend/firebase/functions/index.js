@@ -1,133 +1,57 @@
 import * as functions from "firebase-functions";
-import admin from "firebase-admin";
+import { getApps, initializeApp } from "firebase-admin/app";
+import { getAuth } from "firebase-admin/auth";
+import { FieldValue, getFirestore } from "firebase-admin/firestore";
+import { assertAuthorizedAssignment, buildCustomClaims } from "./claims-policy.js";
 
-if (admin.apps.length === 0) {
-  admin.initializeApp();
+if (getApps().length === 0) {
+  initializeApp();
 }
 
-const allowedRoles = ["super_admin", "org_admin", "staff", "case_worker", "client"];
+const auth = getAuth();
+const firestore = getFirestore();
 
-const normalizeClaimRoles = (claims = {}) => {
-  const roleSet = new Set();
-  if (Array.isArray(claims.roles)) {
-    claims.roles.forEach((role) => {
-      if (typeof role === "string" && role.length > 0) {
-        roleSet.add(role);
-      }
-    });
-  }
-  if (typeof claims.role === "string" && claims.role.length > 0) {
-    roleSet.add(claims.role);
-  }
-  return Array.from(roleSet);
-};
-
-const resolveClaimOrgId = (orgId, orgRoles = {}) => {
-  const orgIds = Object.keys(orgRoles).filter((value) => value.length > 0);
-
-  if (typeof orgId === "string" && orgId.length > 0) {
-    if (orgIds.length > 0 && !orgIds.includes(orgId)) {
-      throw new functions.https.HttpsError(
-        "invalid-argument",
-        "orgId must identify one of the supplied orgRoles memberships.",
-      );
-    }
-    return orgId;
-  }
-
-  if (orgIds.length > 1) {
-    throw new functions.https.HttpsError(
-      "invalid-argument",
-      "orgId is required when assigning roles for multiple organizations.",
-    );
-  }
-
-  return orgIds[0];
-};
-
-export const setUserClaims = functions.https.onCall(async (data, context) => {
-  if (!context.auth) {
+export const setUserClaims = functions.https.onCall(async (request) => {
+  const { auth: callerAuth, data } = request;
+  if (!callerAuth) {
     throw new functions.https.HttpsError("unauthenticated", "Authentication required.");
   }
 
-  const callerClaims = context.auth.token || {};
-  const callerRoles = normalizeClaimRoles(callerClaims);
-  if (!callerRoles.includes("super_admin")) {
-    throw new functions.https.HttpsError("permission-denied", "Only super_admin may issue roles.");
+  let assignment;
+  try {
+    assignment = buildCustomClaims(data || {});
+  } catch (error) {
+    throw new functions.https.HttpsError("invalid-argument", error.message);
+  }
+  const { uid, claims, organizationIds } = assignment;
+  try {
+    assertAuthorizedAssignment(callerAuth.token || {}, callerAuth.uid, uid);
+  } catch (error) {
+    throw new functions.https.HttpsError("permission-denied", error.message);
   }
 
-  const { uid, orgId, roles = [], orgRoles = {} } = data || {};
-  if (!uid) {
-    throw new functions.https.HttpsError("invalid-argument", "uid is required.");
-  }
-  if (uid === context.auth.uid) {
-    throw new functions.https.HttpsError("permission-denied", "Self-escalation is not allowed.");
-  }
-
-  const validateRoles = (list) => {
-    if (!Array.isArray(list)) return [];
-    list.forEach((r) => {
-      if (!allowedRoles.includes(r)) {
-        throw new functions.https.HttpsError("invalid-argument", `Invalid role: ${r}`);
-      }
-    });
-    return list;
-  };
-
-  const safeRoles = validateRoles(roles);
-  const safeOrgRoles = {};
-
-  Object.entries(orgRoles || {}).forEach(([candidateOrgId, roleList]) => {
-    if (!candidateOrgId) {
-      throw new functions.https.HttpsError("invalid-argument", "Organization IDs cannot be empty.");
-    }
-
-    const candidateRoles = validateRoles(roleList);
-    if (candidateRoles.includes("super_admin")) {
+  if (organizationIds.length > 0) {
+    const refs = organizationIds.map((orgId) => firestore.collection("organizations").doc(orgId));
+    const snapshots = await firestore.getAll(...refs);
+    const missingOrg = snapshots.find((snapshot) => !snapshot.exists);
+    if (missingOrg) {
       throw new functions.https.HttpsError(
         "invalid-argument",
-        "super_admin is a global role and cannot appear in orgRoles.",
+        `Unknown organization: ${missingOrg.id}`,
       );
     }
-
-    safeOrgRoles[candidateOrgId] = candidateRoles;
-  });
-
-  const resolvedOrgId = resolveClaimOrgId(orgId, safeOrgRoles);
-  if (safeRoles.some((role) => role !== "super_admin") && !resolvedOrgId) {
-    throw new functions.https.HttpsError(
-      "invalid-argument",
-      "orgId is required for organization-scoped roles.",
-    );
   }
 
-  const legacyRole =
-    safeRoles.find((role) => role.length > 0) ||
-    (resolvedOrgId
-      ? safeOrgRoles[resolvedOrgId]?.find((role) => role.length > 0)
-      : undefined);
-  const claims = {
-    roles: safeRoles,
-    orgRoles: safeOrgRoles,
-  };
-  if (resolvedOrgId) {
-    claims.orgId = resolvedOrgId;
-    claims.org = resolvedOrgId;
-  }
-  if (legacyRole) {
-    claims.role = legacyRole;
-  }
+  await auth.setCustomUserClaims(uid, claims);
 
-  await admin.auth().setCustomUserClaims(uid, claims);
-
-  await admin.firestore().collection("audits").add({
-    uid: context.auth.uid,
+  await firestore.collection("audits").add({
+    uid: callerAuth.uid,
     targetUid: uid,
     action: "set_user_claims",
     category: "auth",
-    orgId: resolvedOrgId || null,
+    orgId: claims.orgId || null,
     claims,
-    timestamp: admin.firestore.FieldValue.serverTimestamp(),
+    timestamp: FieldValue.serverTimestamp(),
     retentionDays: 365,
   });
 
@@ -145,7 +69,7 @@ const buildUiuxHandler = (kind) =>
     const authHeader = req.headers.authorization;
     if (authHeader && authHeader.startsWith("Bearer ")) {
       try {
-        decoded = await admin.auth().verifyIdToken(authHeader.slice(7), true);
+        decoded = await auth.verifyIdToken(authHeader.slice(7), true);
       } catch {
         res.status(401).json({ error: "Unauthorized" });
         return;
@@ -176,13 +100,13 @@ const buildUiuxHandler = (kind) =>
     const actorRole = decodedRoles[0] || decoded?.role || null;
     const actorOrg = decoded?.orgId || decoded?.org || null;
 
-    await admin.firestore().collection(kind === "audit" ? "ux_audits" : "ux_events").add({
+    await firestore.collection(kind === "audit" ? "ux_audits" : "ux_events").add({
       ...payload,
       source: "shieldmate-ui",
       actorUid: decoded ? decoded.uid : null,
       actorRole,
       actorOrg,
-      receivedAt: admin.firestore.FieldValue.serverTimestamp(),
+      receivedAt: FieldValue.serverTimestamp(),
     });
 
     res.status(200).json({ ok: true, stored: true });

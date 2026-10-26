@@ -39,7 +39,9 @@ class AppRoleMapper {
     switch ((value ?? '').trim()) {
       case 'super_admin':
       case 'admin':
-        return AppRole.admin;
+        // Profile fields are presentation data, not trusted authorization.
+        // Privileged navigation is resolved from verified ID-token claims.
+        return AppRole.client;
       case 'org_admin':
       case 'staff':
       case 'case_worker':
@@ -55,7 +57,7 @@ class AppRoleMapper {
   static String toStringValue(AppRole role) {
     switch (role) {
       case AppRole.admin:
-        return 'admin';
+        return 'client';
       case AppRole.partner:
         return 'organization';
       case AppRole.client:

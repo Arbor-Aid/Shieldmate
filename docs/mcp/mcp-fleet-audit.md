@@ -6,6 +6,28 @@ Canonical repo root: `D:\2marines\Shieldmate`
 
 ## Result
 
+### Phase 6L authority reconciliation (2026-10-26)
+
+`ops/mcp_fleet_contract.json` is the machine-readable classification authority. Its
+membership remains **28 Canon + 6 parked**. The 34-entry deployment index is retained as
+operational history/inventory and is not evidence of Canon membership.
+
+- `mcp-gateway`: Canon-protected; intentionally absent from the deployment index because
+  that index excludes the infrastructure gateway.
+- `document-manager`: preserved on disk and in the operational index; absent from the
+  contract, so its authority remains unresolved/operational-only.
+- `project-manager-agent`: Canon; service existence was previously observed in Cloud Run.
+  The contract records that observation without claiming verified health or behavior.
+- `mcp-analytic` and `mcp-google-ad`: deferred live-cloud legacy-review candidates. They
+  are not silently mapped into, or added to, the Canon contract.
+- `scripts/mcp_fleet_deploy.ps1`: now intersects the operational index with Canon service
+  IDs from the contract. This yields 27 indexed deployable Canon services; `mcp-gateway`
+  remains separately protected and is not auto-added to deployable counts.
+
+No folders were deleted, renamed, parked, or created by this reconciliation.
+
+### Historical 2026-06-01 snapshot
+
 Canon 28 remains unresolved. The local repo currently preserves a **34-service working MCP inventory**. The Google Sheet currently documents **23 Cloud Run endpoints**, so the Sheet is incomplete and missing 11 services compared with local CSV.
 
 Local 34-service inventory evidence:

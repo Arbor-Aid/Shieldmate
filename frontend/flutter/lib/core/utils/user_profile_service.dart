@@ -15,10 +15,6 @@ Iterable<String> _stringRoles(dynamic value) sync* {
 AppRole _highestRole(Iterable<String> roles) {
   final normalized = roles.map((role) => role.trim().toLowerCase()).toSet();
 
-  if (normalized.contains('super_admin') || normalized.contains('admin')) {
-    return AppRole.admin;
-  }
-
   if (normalized.any(
     {
       'org_admin',
@@ -26,6 +22,7 @@ AppRole _highestRole(Iterable<String> roles) {
       'case_worker',
       'organization',
       'partner',
+      'admin',
     }.contains,
   )) {
     return AppRole.partner;

@@ -49,6 +49,25 @@ void main() {
     );
   });
 
+  test('legacy admin is scoped presentation, not global admin', () {
+    expect(
+      resolveAppRoleFromClaims({
+        'org': 'org-a',
+        'role': 'admin',
+      }),
+      AppRole.partner,
+    );
+  });
+
+  test('admin boolean is never authority', () {
+    expect(resolveAppRoleFromClaims({'admin': true}), AppRole.client);
+  });
+
+  test('profile role strings cannot grant administrative app role', () {
+    expect(AppRoleMapper.fromString('admin'), AppRole.client);
+    expect(AppRoleMapper.fromString('super_admin'), AppRole.client);
+  });
+
   test('missing token claims fail closed to client', () {
     expect(resolveAppRoleFromClaims(null), AppRole.client);
   });
