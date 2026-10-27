@@ -13,14 +13,16 @@ workflows:
         BUNDLE_ID: com.2marines.2marinesOnline
         APP_STORE_CONNECT_KEY_ID: Q77LUSGPN7
       ios_signing:
-        distribution_type: app_store
-        bundle_identifier: com.2marines.2marinesOnline
+        provisioning_profiles:
+          - shieldmate_app_store
+        certificates:
+          - 2Marines ShieldMate Distribution
     scripts:
       - name: Flutter pub get
         script: |
           flutter pub get
       - name: Apply iOS signing profiles
-        script: xcode-project use-profiles --project ios/Runner.xcodeproj
+        script: xcode-project use-profiles --project ios/Runner.xcodeproj --code-signing-setup-verbose-logging
       - name: Build IPA
         script: |
           flutter build ipa --release --build-number=$CM_BUILD_NUMBER
