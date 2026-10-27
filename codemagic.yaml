@@ -25,7 +25,8 @@ workflows:
         script: xcode-project use-profiles --project ios/Runner.xcodeproj --code-signing-setup-verbose-logging
       - name: Build IPA
         script: |
-          flutter build ipa --release --build-number=$CM_BUILD_NUMBER
+          flutter build ipa --release --build-number=$CM_BUILD_NUMBER --export-options-plist=/Users/builder/export_options.plist
+          test -f build/ios/ipa/*.ipa || { echo "ERROR: IPA export missing"; exit 1; }
     artifacts:
       - frontend/flutter/build/ios/ipa/*.ipa
       - frontend/flutter/build/ios/ipa/*.dSYM.zip
