@@ -1,6 +1,8 @@
 workflows:
   ios_testflight:
     name: iOS First Signed Build
+    integrations:
+      app_store_connect: '2Marines Apple Signing'
     working_directory: frontend/flutter
     instance_type: mac_mini_m1
     max_build_duration: 120
@@ -18,7 +20,7 @@ workflows:
         script: |
           flutter pub get
       - name: Apply iOS signing profiles
-        script: xcode-project use-profiles
+        script: xcode-project use-profiles --project ios/Runner.xcodeproj
       - name: Build IPA
         script: |
           flutter build ipa --release --build-number=$CM_BUILD_NUMBER
