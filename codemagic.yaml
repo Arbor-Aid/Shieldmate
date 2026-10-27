@@ -27,6 +27,14 @@ workflows:
         script: |
           flutter build ipa --release --build-number=$CM_BUILD_NUMBER --export-options-plist=/Users/builder/export_options.plist
           test -f build/ios/ipa/*.ipa || { echo "ERROR: IPA export missing"; exit 1; }
+      - name: Verify IPA artifact location
+        script: |
+          echo "Working directory: $(pwd)"
+          echo "CM_BUILD_DIR: $CM_BUILD_DIR"
+          find "$CM_BUILD_DIR" -type f -name '*.ipa' -print
+          find "$CM_BUILD_DIR" -type f -name '*.dSYM.zip' -print
     artifacts:
-      - frontend/flutter/build/ios/ipa/*.ipa
-      - frontend/flutter/build/ios/ipa/*.dSYM.zip
+      - $CM_BUILD_DIR/frontend/flutter/build/ios/ipa/*.ipa
+      - $CM_BUILD_DIR/frontend/flutter/build/ios/ipa/*.dSYM.zip
+      - $CM_BUILD_DIR/build/ios/ipa/*.ipa
+      - $CM_BUILD_DIR/build/ios/ipa/*.dSYM.zip
