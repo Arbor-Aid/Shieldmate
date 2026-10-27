@@ -16,15 +16,11 @@ workflows:
       - name: Flutter pub get
         script: |
           flutter pub get
+      - name: Apply iOS signing profiles
+        script: xcode-project use-profiles
       - name: Build IPA
         script: |
           flutter build ipa --release --build-number=$CM_BUILD_NUMBER
     artifacts:
       - build/ios/ipa/*.ipa
       - build/ios/ipa/*.dSYM.zip
-    publishing:
-      app_store_connect:
-        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
-        key_id: $APP_STORE_CONNECT_KEY_ID
-        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
-        submit_to_testflight: true
