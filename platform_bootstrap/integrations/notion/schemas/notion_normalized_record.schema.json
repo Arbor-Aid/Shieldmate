@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NotionNormalizedRecord",
+  "type": "object",
+  "required": [
+    "source",
+    "record_id",
+    "title",
+    "ingested_at"
+  ],
+  "properties": {
+    "source": {
+      "const": "notion"
+    },
+    "record_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "ingested_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "metadata": {
+      "type": "object"
+    }
+  }
+}

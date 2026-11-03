@@ -1,0 +1,10 @@
+{
+  "org_id": "org-demo-001",
+  "org_name": "ShieldMate Demo Org",
+  "industry": "public_safety",
+  "compliance_tags": [
+    "rbac",
+    "audit",
+    "pii_guardrails"
+  ]
+}

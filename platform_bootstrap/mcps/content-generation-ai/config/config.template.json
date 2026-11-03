@@ -1,0 +1,7 @@
+{
+  "service": "content-generation-ai",
+  "env": {
+    "PORT": "8080",
+    "MCP_SERVICE_NAME": "content-generation-ai"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "service": "org-scrubber-mcp",
+  "env": {
+    "PORT": "8080",
+    "MCP_SERVICE_NAME": "org-scrubber-mcp"
+  }
+}

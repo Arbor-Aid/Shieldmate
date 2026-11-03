@@ -1,0 +1,72 @@
+{
+  "service_name": "ai-financial-analyst",
+  "role_category": "Specialized MCP service connected for standardized routing and smoke tests.",
+  "learning_pipeline_role": "integration_support",
+  "primary_tools": [
+    "ai-financial-analyst.status"
+  ],
+  "expected_inputs": {
+    "execute_envelope": {
+      "toolId": "string",
+      "tool": "string (compat)",
+      "input": "object"
+    },
+    "service_specific": [
+      "status check payload for smoke validation",
+      "service-specific domain payloads where implemented"
+    ]
+  },
+  "expected_outputs": {
+    "success_envelope": [
+      "ok",
+      "status",
+      "service",
+      "tool"
+    ],
+    "error_envelope": [
+      "ok",
+      "status",
+      "service",
+      "error",
+      "detail"
+    ]
+  },
+  "upstream_callers": [
+    "mcp-gateway"
+  ],
+  "downstream_dependencies": [
+    "none_required_for_placeholder"
+  ],
+  "external_systems": {
+    "firebase_firestore": "planned",
+    "google_drive": "planned",
+    "notion": "planned",
+    "slack": "planned",
+    "windows_admin_tools": "planned",
+    "local_scripts": "planned"
+  },
+  "shared_dataset_readiness": {
+    "google_ads": "planned",
+    "geography": "planned",
+    "demographics": "planned",
+    "org_profiles": "planned",
+    "taxonomies": "planned"
+  },
+  "frontend_exposure_status": "backend_internal_only",
+  "slack_aliases": [
+    "#mcp-ai-financial-analyst"
+  ],
+  "smoke_test_payload_path": "platform_bootstrap/shared/smoke_payloads/services/ai-financial-analyst.status.request.json",
+  "seed_data_path": "platform_bootstrap/mcps/ai-financial-analyst/seed_data",
+  "config_path": "platform_bootstrap/mcps/ai-financial-analyst/config",
+  "bootstrap_status": "bootstrapped",
+  "transitional_runtime_note": "",
+  "notes": "Connected through gateway with minimal smoke-test tool route ai-financial-analyst.status.",
+  "activation_level": "tier3_placeholder",
+  "live_behavior_present": false,
+  "consumes_bootstrap_data": false,
+  "writes_structured_records": false,
+  "frontend_safe_output": false,
+  "slack_trigger_ready": false,
+  "runtime_mode": "bootstrapped"
+}

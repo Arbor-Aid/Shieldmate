@@ -1,0 +1,9 @@
+{
+  "workspace_domain": "<optional>",
+  "drive_scopes": [
+    "https://www.googleapis.com/auth/drive.readonly"
+  ],
+  "service_account_source": "workload_identity_or_secret_manager",
+  "root_folder_id": "<optional>",
+  "notes": "Readiness template only; no live credentials."
+}

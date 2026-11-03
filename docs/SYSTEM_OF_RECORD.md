@@ -1,4 +1,4 @@
-# ShieldMate System of Record and Slack Control-Plane (v1.1)
+﻿# ShieldMate System of Record and Slack Control-Plane (v1.1)
 
 This document defines authoritative ownership, change control, and Slack's role
 in ShieldMate operations. It is production-grade and aligned to claims-only RBAC
@@ -99,3 +99,62 @@ flowchart LR
 - Authorization must use Firebase ID token claims (`role`, `org`).
 - No email-based auth or Firestore-only roles.
 - After claim updates, users must refresh token or re-login.
+
+---
+
+## 2026-04-13 Multi-Node Authority Snapshot
+
+Updated: 2026-06-01 15:16:28
+
+Authoritative repo root:
+D:\2marines\Shieldmate
+
+Authoritative branch:
+ui-rebuild-flutter-gen-ui
+
+System node roles:
+- THE-BOT: primary Windows control, build, and backend node
+- HONEY: Raspberry Pi Kali monitoring and security node
+- LAPTOP: dev, control, and review node
+
+Operating policy:
+- Laptop and THE-BOT stay aligned to canon during bring-up
+- MCP updates must land on canon before endpoint activation
+- Claims and auth schema remain unified end-to-end
+- Do not delete folders; park legacy only after confirmation
+<!-- MSI_CANON_TRANSITION_START -->
+## 2026-05-22 MSI Canon Transition
+
+Active Windows development machine:
+- MSI: active ShieldMate development workstation
+
+Active MSI canon root:
+D:\2marines\Shieldmate
+
+Legacy / parked machine:
+- Old Dell laptop: legacy/parked after MSI onboarding. Preserve historical state; do not delete legacy paths without explicit authority.
+
+Operating policy:
+- MSI is the active development node for Launch Validation Phase.
+- MCP updates must land on canon before endpoint activation.
+- MCP Gateway remains the RBAC ingress.
+- Slack remains notification and intake only, never system of record.
+- Firebase claims, RBAC, and App Check guardrails remain unchanged.
+- Existing Shopify/shop work is preserved.
+<!-- MSI_CANON_TRANSITION_END -->
+
+---
+
+## 2 Marines Hosting and Shopify Authority
+
+- `2marines.us` public hub is separate from the ShieldMate/TIE React app.
+- Shopify is a route-level handoff for `/shop` and `/store`, not a full-site replacement.
+- Firebase Hosting target `marines-ai-agent` serves the domain, but the Hosting public directory must be confirmed before deploy.
+- `frontend/web/dist` must not be deployed as the `2marines.us` public hub unless the explicit approved task is full public-hub replacement.
+- The production public hub artifact is not confirmed by repo `public/index.html` until proven by review and preview QA.
+- On 2026-06-02, Firebase Console rollback for Hosting site `marines-ai-agent` completed successfully from release `162edb` to release `d0d363`.
+- Joshua visually confirmed `https://www.2marines.us`, `https://2marines.us`, `https://www.2marines.us/shieldmate`, `https://shieldmate.2marines.us`, and `https://marinecoin.2marines.us` restored after rollback.
+- The rollback restores live public surfaces only; it does not prove repo `public/index.html` is the true public hub artifact or authorize a new deploy.
+- MCP Fleet Authority remains Canon 28 vs documented 34 unresolved.
+- Claims schema remains `roles[]`, `orgRoles{}`, and `orgId` with legacy `role`/`org` compatibility; do not loosen claims, RBAC, Firebase rules, App Check, gateway validation, `mcp/common`, or frontend auth behavior.
+

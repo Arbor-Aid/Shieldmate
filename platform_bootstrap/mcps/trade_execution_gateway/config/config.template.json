@@ -1,0 +1,7 @@
+{
+  "service": "trade_execution_gateway",
+  "env": {
+    "PORT": "8080",
+    "MCP_SERVICE_NAME": "trade_execution_gateway"
+  }
+}

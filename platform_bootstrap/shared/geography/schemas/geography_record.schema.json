@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GeographyRecord",
+  "type": "object",
+  "required": [
+    "country",
+    "state",
+    "county",
+    "city",
+    "zipcode"
+  ],
+  "properties": {
+    "country": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "county": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "zipcode": {
+      "type": "string"
+    }
+  }
+}

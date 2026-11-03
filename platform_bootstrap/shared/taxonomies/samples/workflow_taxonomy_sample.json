@@ -1,0 +1,6 @@
+{
+  "taxonomy": "workflow_category",
+  "code": "engineering",
+  "label": "Engineering",
+  "description": "Engineering workflow lane used by document-manager routing"
+}

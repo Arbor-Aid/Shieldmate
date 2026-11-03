@@ -1,0 +1,9 @@
+{
+  "toolId": "ai-training-coordinator.status",
+  "tool": "ai-training-coordinator.status",
+  "input": {
+    "smoke": true,
+    "service": "ai-training-coordinator",
+    "source": "platform_bootstrap"
+  }
+}

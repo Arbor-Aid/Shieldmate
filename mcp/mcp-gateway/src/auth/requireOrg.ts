@@ -6,14 +6,19 @@ export async function requireOrg(
   claims?: VerifiedTokenClaims
 ): Promise<VerifiedTokenClaims> {
   const resolvedClaims = claims ?? (await verifyFirebaseToken(authHeader));
-  if (!resolvedClaims.role) {
+  if (!(resolvedClaims.roles?.length) && !resolvedClaims.role) {
     throw new Error('Missing role claim');
   }
-  if (!resolvedClaims.org) {
+  const orgClaim = resolvedClaims.orgId ?? resolvedClaims.org;
+  if (!orgClaim) {
     throw new Error('Missing org claim');
   }
-  if (expectedOrg && resolvedClaims.org !== expectedOrg) {
+  if (expectedOrg && orgClaim !== expectedOrg) {
     throw new Error('Org mismatch');
   }
-  return resolvedClaims;
+  return {
+    ...resolvedClaims,
+    orgId: orgClaim,
+    org: orgClaim,
+  };
 }

@@ -1,0 +1,13 @@
+{
+  "source": "windows_admin_tools",
+  "collector": "event_logs",
+  "collected_at": "2026-04-06T12:10:00Z",
+  "host": "win-dev-host",
+  "records": [
+    {
+      "id": 4624,
+      "level": "Information",
+      "message": "An account was successfully logged on."
+    }
+  ]
+}

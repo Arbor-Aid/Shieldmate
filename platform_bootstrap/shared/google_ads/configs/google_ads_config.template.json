@@ -1,0 +1,8 @@
+{
+  "developer_token": "<set-via-secret-manager-or-env>",
+  "login_customer_id": "<optional>",
+  "refresh_token": "<set-via-secret-manager-or-env>",
+  "client_id": "<set-via-secret-manager-or-env>",
+  "client_secret": "<set-via-secret-manager-or-env>",
+  "notes": "Template only. Do not commit live credentials."
+}

@@ -1,0 +1,9 @@
+{
+  "toolId": "data-scrubbing-ai.status",
+  "tool": "data-scrubbing-ai.status",
+  "input": {
+    "smoke": true,
+    "service": "data-scrubbing-ai",
+    "source": "platform_bootstrap"
+  }
+}

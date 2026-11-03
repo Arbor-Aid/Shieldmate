@@ -11,9 +11,17 @@ service cloud.firestore {
     }
 
     function hasGlobalRole(role) {
-      return isAuthenticated()
-        && request.auth.token.role is string
-        && request.auth.token.role == role;
+      return isAuthenticated() && (
+        (
+          request.auth.token.roles is list
+          && request.auth.token.roles.hasAny([role])
+        )
+        ||
+        (
+          request.auth.token.role is string
+          && request.auth.token.role == role
+        )
+      );
     }
 
     function isSuperAdmin() {
@@ -26,11 +34,28 @@ service cloud.firestore {
     }
 
     function hasOrgRole(orgId, role) {
-      return isAuthenticated()
-        && request.auth.token.org is string
-        && request.auth.token.org == orgId
-        && request.auth.token.role is string
-        && request.auth.token.role == role;
+      return isAuthenticated() && (
+        (
+          request.auth.token.orgId is string
+          && request.auth.token.orgId == orgId
+          && request.auth.token.roles is list
+          && request.auth.token.roles.hasAny([role])
+        )
+        ||
+        (
+          request.auth.token.orgRoles is map
+          && orgId in request.auth.token.orgRoles
+          && request.auth.token.orgRoles[orgId] is list
+          && request.auth.token.orgRoles[orgId].hasAny([role])
+        )
+        ||
+        (
+          request.auth.token.org is string
+          && request.auth.token.org == orgId
+          && request.auth.token.role is string
+          && request.auth.token.role == role
+        )
+      );
     }
 
     function canManageOrg(orgId) {

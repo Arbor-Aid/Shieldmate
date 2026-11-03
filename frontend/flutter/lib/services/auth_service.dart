@@ -30,6 +30,9 @@ class AuthService {
   final SessionManager _sessionManager;
 
   Future<AuthResult?> signInWithGoogle() async {
+    if (kIsWeb) {
+      return _signInWithGoogleOnWeb();
+    }
     if (_supportsGoogleSignIn) {
       return _signInWithGoogleFlow();
     }
@@ -115,6 +118,14 @@ class AuthService {
       }
       rethrow;
     }
+  }
+
+  Future<AuthResult?> _signInWithGoogleOnWeb() async {
+    final credential = await _firebaseAuth.signInWithPopup(GoogleAuthProvider());
+    final user = credential.user;
+    final token = await user?.getIdToken();
+    await _sessionManager.persistIdToken(token);
+    return AuthResult(user: user, idToken: token);
   }
 
   Future<AuthResult?> _signInAnonymously() async {

@@ -1,0 +1,9 @@
+{
+  "toolId": "coder-agent.status",
+  "tool": "coder-agent.status",
+  "input": {
+    "smoke": true,
+    "service": "coder-agent",
+    "source": "platform_bootstrap"
+  }
+}

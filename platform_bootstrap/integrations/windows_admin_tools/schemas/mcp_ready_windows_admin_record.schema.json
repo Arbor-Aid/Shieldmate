@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "McpReadyWindowsAdminRecord",
+  "type": "object",
+  "required": [
+    "toolId",
+    "input"
+  ],
+  "properties": {
+    "toolId": {
+      "type": "string"
+    },
+    "input": {
+      "type": "object",
+      "required": [
+        "source",
+        "collector",
+        "sample_path"
+      ],
+      "properties": {
+        "source": {
+          "const": "windows_admin_tools"
+        },
+        "collector": {
+          "type": "string"
+        },
+        "sample_path": {
+          "type": "string"
+        },
+        "mode": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "toolId": "cto-agent.status",
+  "tool": "cto-agent.status",
+  "input": {
+    "smoke": true,
+    "service": "cto-agent",
+    "source": "platform_bootstrap"
+  }
+}

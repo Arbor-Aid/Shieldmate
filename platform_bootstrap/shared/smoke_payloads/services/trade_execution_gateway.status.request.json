@@ -1,0 +1,9 @@
+{
+  "toolId": "trade_execution_gateway.status",
+  "tool": "trade_execution_gateway.status",
+  "input": {
+    "smoke": true,
+    "service": "trade_execution_gateway",
+    "source": "platform_bootstrap"
+  }
+}
