@@ -11,17 +11,9 @@ service cloud.firestore {
     }
 
     function hasGlobalRole(role) {
-      return isAuthenticated() && (
-        (
-          request.auth.token.roles is list
-          && request.auth.token.roles.hasAny([role])
-        )
-        ||
-        (
-          request.auth.token.role is string
-          && request.auth.token.role == role
-        )
-      );
+      return isAuthenticated()
+        && request.auth.token.roles is list
+        && request.auth.token.roles.hasAny([role]);
     }
 
     function isSuperAdmin() {
@@ -124,6 +116,9 @@ service cloud.firestore {
         && request.resource.data.status == "DRAFT"
         && request.resource.data.requestedBy == request.auth.uid
         && request.resource.data.orgId is string
+        && request.resource.data.keys().hasOnly([
+          "orgId", "type", "status", "requestedBy", "payload", "createdAt", "updatedAt"
+        ])
         && canManageApprovals(request.resource.data.orgId);
 
       allow update: if hasAppCheck()
@@ -137,18 +132,29 @@ service cloud.firestore {
           (resource.data.status == "DRAFT"
             && request.resource.data.status in ["DRAFT", "PENDING"]
             && request.auth.uid == resource.data.requestedBy
-            && canManageApprovals(resource.data.orgId))
+            && canManageApprovals(resource.data.orgId)
+            && request.resource.data.diff(resource.data).affectedKeys()
+              .hasOnly(["status", "payload", "updatedAt"]))
           ||
           // PENDING -> APPROVED/REJECTED by org_admin/super_admin
           (resource.data.status == "PENDING"
             && request.resource.data.status in ["APPROVED", "REJECTED"]
             && canManageApprovals(resource.data.orgId)
-            && request.resource.data.approvedBy == request.auth.uid)
+            && request.resource.data.approvedBy == request.auth.uid
+            && request.resource.data.diff(resource.data).affectedKeys()
+              .hasOnly(["status", "approvedBy", "updatedAt"]))
           ||
           // EXECUTION metadata updates after APPROVED/EXECUTED
-          (resource.data.status in ["APPROVED", "EXECUTED"]
-            && request.resource.data.status in ["APPROVED", "EXECUTED"]
-            && canManageApprovals(resource.data.orgId))
+          ((
+              (resource.data.status == "APPROVED"
+                && request.resource.data.status in ["APPROVED", "EXECUTED"])
+              ||
+              (resource.data.status == "EXECUTED"
+                && request.resource.data.status == "EXECUTED")
+            )
+            && canManageApprovals(resource.data.orgId)
+            && request.resource.data.diff(resource.data).affectedKeys()
+              .hasOnly(["status", "execution", "executedAt", "updatedAt"]))
         );
 
       allow delete: if false;

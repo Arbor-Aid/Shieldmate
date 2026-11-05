@@ -7,6 +7,19 @@ from firebase_admin import auth as fb_auth, credentials
 _app_inited = False
 
 
+def _is_production_environment() -> bool:
+    production_names = {"prod", "production"}
+    configured_environment = next(
+        (
+            os.getenv(name, "").strip().lower()
+            for name in ("ENVIRONMENT", "APP_ENV", "FLASK_ENV", "NODE_ENV")
+            if os.getenv(name, "").strip()
+        ),
+        "",
+    )
+    return configured_environment in production_names or bool(os.getenv("K_SERVICE", "").strip())
+
+
 def _init_firebase_admin():
     global _app_inited
     if _app_inited:
@@ -27,7 +40,10 @@ def verify_firebase_token(authorization_header: str) -> Dict[str, Any]:
         raise PermissionError("Missing Authorization Bearer token.")
 
     token = authorization_header.split(" ", 1)[1].strip()
-    allow_dev = os.getenv("ALLOW_DEV_NOAUTH", "false").lower() == "true"
+    allow_dev = (
+        os.getenv("ALLOW_DEV_NOAUTH", "false").lower() == "true"
+        and not _is_production_environment()
+    )
 
     if allow_dev and token == "dev":
         return {

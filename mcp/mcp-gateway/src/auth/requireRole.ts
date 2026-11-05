@@ -57,11 +57,13 @@ export function authorizeClaimsForOrg(
     return { claims, org: effectiveOrg };
   }
 
-  const effectiveRoles = new Set<string>(stringRoles(orgRoles[effectiveOrg]));
+  const effectiveRoles = new Set<string>(
+    stringRoles(orgRoles[effectiveOrg]).filter((role) => role !== SUPER_ADMIN)
+  );
   if (explicitOrg === effectiveOrg) {
     canonicalRoles.forEach((role) => effectiveRoles.add(role));
     const legacyRole = nonEmptyString(claims.role);
-    if (legacyRole) {
+    if (legacyRole && legacyRole !== SUPER_ADMIN) {
       effectiveRoles.add(legacyRole);
     }
   }

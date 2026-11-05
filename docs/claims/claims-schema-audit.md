@@ -25,30 +25,28 @@ type CustomClaims = {
 };
 ```
 
-`roles`, `orgRoles`, and `orgId` are the canonical fields. `role` and `org` are compatibility fields still written by the admin paths and accepted by rules/gateway/frontend.
+`roles`, `orgRoles`, and `orgId` are the canonical fields. `role` and `org` are organization-scoped compatibility fields. Only `super_admin` in canonical `roles` grants global authority.
 
 ## Usage Inventory
 
 | Area | File paths and symbols | Schema behavior | Result |
 | --- | --- | --- | --- |
-| Firestore rules | `firestore.rules`: `hasGlobalRole`, `hasOrgRole` | Reads canonical `roles`, `orgRoles`, `orgId` and legacy `role`, `org`. Requires App Check for protected reads/writes and denies by default. | Aligned; do not loosen. |
-| Callable/admin claims writer | `backend/firebase/functions/index.ts`: `setUserClaims`; `backend/firebase/rbac-admin.ts`: `assignCustomClaims` | Validates allowed roles, writes `roles`, `orgRoles`, resolved `orgId`, and legacy `role`/`org`. Prevents self-escalation in callable path. | Canonical source. |
-| Root Firebase functions | `functions/index.js` | Current root functions file is not a claims writer. | No schema action. |
+| Firestore rules | `firestore.rules`: `hasGlobalRole`, `hasOrgRole` | Uses canonical `roles` for global authority; legacy `role`/`org` is accepted only for matching organization scope. Requires App Check and denies by default. Approval decisions have restricted mutable fields. | Aligned; do not loosen. |
+| Callable/admin claims writer | `backend/firebase/functions/index.ts` and runtime `index.js`: `setUserClaims`; `backend/firebase/rbac-admin.ts`: `assignCustomClaims` | Callable requires canonical global `super_admin`, rejects self-escalation, validates role shape and organization existence, and rejects nested `super_admin`. | Canonical tracked implementation. |
+| Firebase deployment entrypoints | Root `firebase.json` and `backend/firebase/firebase.json` | The root full-stack config and nested functions-only config both resolve to `backend/firebase/functions`. Its ESM package executes `index.js`, which exports the hardened `setUserClaims` handler and imports `claims-policy.js`. `index.ts` is maintained source/reference but is not compiled by the deployment package. | Canonical local deployment path aligned; live artifact revision still requires deployment evidence. |
 | Active MCP gateway | `mcp/mcp-gateway/src/auth/verifyFirebaseToken.ts`; `requireRole.ts`; `requireOrg.ts` | Normalizes `roles`, `orgRoles`, `orgId`, `role`, and `org`; `requireRole` accepts merged role set; `requireOrg` fails closed on missing org. | Aligned for production tokens. |
-| Active MCP common Python auth | `mcp/common/auth.py`: `verify_firebase_token`, `_extract_org_id`, `_extract_roles`, `enforce_org_match`, `require_approver` | Extracts canonical and legacy org/role fields. Dev noauth returns `roles: ["super_admin"]` plus `admin: True`; `require_approver` still accepts `admin` bool. | Mostly aligned; `admin` bool is compatibility/dev-only risk to remove later. |
+| Active MCP common Python auth | `mcp/common/auth.py`: `verify_firebase_token`, `_extract_org_id`, `_extract_roles`, `enforce_org_match`, `require_approver` | Enforces org scope, ignores `admin: true`, and refuses the explicit development-token bypass in production/Cloud Run environments. | Aligned. |
 | Root gateway placeholders | `gateway/auth/verifyFirebaseToken.ts`; `requireRole.ts`; `requireOrg.ts` | Placeholder verifier throws; types and guards only model `role` and `org`. | Divergent and likely inactive placeholder. Do not use for production. |
-| React frontend | `frontend/web/src/services/roleService.ts`: `getRoleClaims`, `resolveEffectiveRole`; `frontend/web/src/components/RoleCheck.tsx` | Reads `roles`, `orgRoles`, `orgId`, legacy `role`/`org`; maps `super_admin` to legacy UI `admin`, and `org_admin`/`staff` to legacy UI `organization`. | Aligned with compatibility mapping. |
+| React frontend | `frontend/web/src/services/roleService.ts`: `getRoleClaims`, `resolveEffectiveRole`; `frontend/web/src/components/RoleCheck.tsx` | Preserves canonical org roles; canonical org roles satisfy generic organization UI, but legacy `organization` cannot satisfy a specific privileged role and scoped legacy `admin` cannot grant global admin UI. | Aligned with fail-closed compatibility mapping. |
 | React RBAC admin client | `frontend/web/src/services/rbacAdminClient.ts` | Sends `uid`, `roles`, and `orgRoles` to callable. | Aligned. |
-| Flutter frontend | `frontend/flutter/lib/core/utils/user_profile.dart`; `frontend/flutter/lib/core/utils/user_profile_service.dart` | Reads `roles`, `orgRoles`, and legacy `role`; maps canonical roles to `AppRole.admin`, `AppRole.partner`, or `AppRole.client`. | Aligned for read-side compatibility. |
-| Tests/fixtures | `frontend/web/src/hooks/__tests__/useMcpClient.test.tsx`; `frontend/flutter/test` | No dedicated claims schema fixtures found. | Add focused schema fixtures when behavior changes. |
+| Flutter frontend | `frontend/flutter/lib/core/utils/user_profile.dart`; `frontend/flutter/lib/core/utils/user_profile_service.dart` | Verified canonical `roles: ["super_admin"]` drives admin UI. Scoped legacy `admin` is partner presentation; user profile role strings cannot grant administrative app role. | Aligned for read-side compatibility. |
+| Tests/fixtures | Gateway, MCP common, web role-service, Flutter role resolver, and callable policy tests | Covers global/scoped authority, cross-org rejection, legacy inputs, nested `super_admin`, admin booleans, ambiguous orgs, and self-escalation policy. | Focused regression coverage added. |
 
 ## Divergent Schema Findings
 
 | Finding | Evidence | Risk | Proposed minimal alignment diff |
 | --- | --- | --- | --- |
-| `docs/FIRESTORE_SCHEMA.md` omits `case_worker`, `orgId`, and legacy `role`/`org` compatibility from its claims summary. | `docs/FIRESTORE_SCHEMA.md`; `backend/firebase/functions/index.ts`; `backend/firebase/rbac-admin.ts` | Documentation drift can cause future writers to omit fields that rules/frontend expect. | Update the schema doc to include allowed `case_worker`, canonical `orgId`, and temporary legacy bridge fields. |
 | Root gateway auth placeholders only know `role`/`org`. | `gateway/auth/verifyFirebaseToken.ts`; `gateway/auth/requireRole.ts`; `gateway/auth/requireOrg.ts` | If this placeholder layer is wired into production later, canonical `roles`/`orgRoles` could fail authorization. | Either park this root gateway as inactive or align its types/guards with `mcp/mcp-gateway/src/auth/*` before use. |
-| Python MCP common still treats `admin` bool as approver authority. | `mcp/common/auth.py`: `require_approver` | A noncanonical field could become an accidental bypass if production tokens ever include it. | Remove `admin` bool from production approver checks after confirming no deployed service relies on it; keep dev bypass controlled by `ALLOW_DEV_NOAUTH=true`. |
 | Web and Flutter UI still expose legacy role names. | `frontend/web/src/services/roleService.ts`; `frontend/web/src/components/RoleCheck.tsx`; `frontend/flutter/lib/core/utils/user_profile.dart` | UI naming can obscure canonical roles and lead to role comparisons outside the compatibility layer. | Keep mapping centralized; do not add new direct comparisons to `admin`/`organization` outside existing adapters. |
 
 ## Guardrails

@@ -260,12 +260,18 @@
       "serviceId": "project-manager-agent",
       "displayName": "Project Manager Agent",
       "bucket": "Product",
-      "deployed": false,
+      "deployed": true,
       "url": "",
       "healthPath": "/healthz",
       "runtime": "fastapi",
       "status": "canon",
-      "ownerModule": "legacy-rehydrated"
+      "ownerModule": "legacy-rehydrated",
+      "deploymentObservation": {
+        "serviceExists": true,
+        "observedAt": "2026-10-26",
+        "health": "not_verified",
+        "note": "Cloud Run service existence was previously observed; URL, health, and behavior were not re-inventoried in Phase 6L."
+      }
     },
     {
       "serviceId": "qa-ai-agent",
