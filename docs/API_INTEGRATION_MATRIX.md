@@ -58,6 +58,8 @@ These are candidate integrations, **not** claims of live endpoints, installed ke
 
 ### Registration and readiness rules
 
+November 3 operational update: see [Departmental Integration Status](DEPARTMENTAL_INTEGRATION_STATUS.md) for prior authenticated provider tests, the bounded four-provider run and separate delivery/ingestion limitations. The November 2 candidate inventory remains a historical vendor evaluation; it must not be interpreted as either current connectivity proof or a denial of subsequent test evidence.
+
 - Track API **provider, account owner, entitlement, environment, cost, rate limit, data license, allowed use, key location reference, access scope, test date, and status** in the operational registry. Record a secret reference only, never a secret value.
 - Reuse existing `tradeops`, `treasury`, `investment_recommendation`, `information-retrieval-ai`, and `trade_execution_gateway` as **audit candidates**, not assumed working implementations. Validate contracts before reuse.
 - Keep external data source integrations in the API matrix; do not increase the MCP service count merely by listing a provider.
