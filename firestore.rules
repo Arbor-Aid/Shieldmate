@@ -26,7 +26,16 @@ service cloud.firestore {
     }
 
     function hasOrgRole(orgId, role) {
-      return isAuthenticated() && (
+      return isAuthenticated()
+        && (
+          !("orgRoles" in request.auth.token)
+          || (
+            request.auth.token.orgRoles is map
+            && (!(orgId in request.auth.token.orgRoles)
+              || request.auth.token.orgRoles[orgId] is list)
+          )
+        )
+        && (
         (
           request.auth.token.orgId is string
           && request.auth.token.orgId == orgId
