@@ -1,93 +1,144 @@
 import os
-from typing import Dict, Any
+from typing import Any, Dict
+
 import firebase_admin
 from firebase_admin import auth as fb_auth, credentials
 
 _app_inited = False
 
+
 def _init_firebase_admin():
     global _app_inited
     if _app_inited:
         return
-    # If running in Cloud Run with default creds, firebase_admin.initialize_app() can work.
-    # If you need explicit service account JSON, wire it via Secret Manager + env file path later.
     try:
         firebase_admin.initialize_app()
         _app_inited = True
-        return
     except Exception:
-        # Allow falling through to dev/noauth.
         return
+
 
 def verify_firebase_token(authorization_header: str) -> Dict[str, Any]:
     """
     Requires: Authorization: Bearer <id_token>
-    DEV fallback ONLY if ALLOW_DEV_NOAUTH=true and token == 'dev'
+    DEV fallback ONLY if ALLOW_DEV_NOAUTH=true and token == "dev".
     """
     if not authorization_header or not authorization_header.lower().startswith("bearer "):
         raise PermissionError("Missing Authorization Bearer token.")
-    token = authorization_header.split(" ", 1)[1].strip()
 
+    token = authorization_header.split(" ", 1)[1].strip()
     allow_dev = os.getenv("ALLOW_DEV_NOAUTH", "false").lower() == "true"
+
     if allow_dev and token == "dev":
         return {
             "uid": "dev",
             "email": "dev@local",
             "orgId": "dev-org",
             "roles": ["super_admin"],
-            "admin": True,
         }
 
     _init_firebase_admin()
-    decoded = fb_auth.verify_id_token(token)
-    # Normalize common claim names
-    claims = dict(decoded)
-    # Custom claims expected: orgId, roles[], admin bool
-    return claims
+    return dict(fb_auth.verify_id_token(token))
 
-def _extract_org_id(claims: Dict[str, Any]):
+
+def _explicit_org_id(claims: Dict[str, Any]):
     for key in ("orgId", "org_id", "org"):
         value = claims.get(key)
         if isinstance(value, str) and value:
             return value
-    org_roles = claims.get("orgRoles")
-    if isinstance(org_roles, dict):
-        for key in org_roles.keys():
-            if isinstance(key, str) and key:
-                return key
     return None
 
-def _extract_roles(claims: Dict[str, Any]):
-    role_set = set()
+
+def _extract_org_id(claims: Dict[str, Any]):
+    explicit_org_id = _explicit_org_id(claims)
+    if explicit_org_id:
+        return explicit_org_id
+
+    org_roles = claims.get("orgRoles")
+    if not isinstance(org_roles, dict):
+        return None
+
+    valid_orgs = [
+        org_id
+        for org_id, roles in org_roles.items()
+        if isinstance(org_id, str)
+        and org_id
+        and isinstance(roles, list)
+        and any(isinstance(role, str) and role and role != "super_admin" for role in roles)
+    ]
+    return valid_orgs[0] if len(valid_orgs) == 1 else None
+
+
+def _has_global_super_admin(claims: Dict[str, Any]) -> bool:
     roles = claims.get("roles")
-    if isinstance(roles, list):
-        for role in roles:
-            if isinstance(role, str) and role:
-                role_set.add(role)
-    legacy_role = claims.get("role")
-    if isinstance(legacy_role, str) and legacy_role:
-        role_set.add(legacy_role)
+    return isinstance(roles, list) and any(
+        isinstance(role, str) and role.lower() == "super_admin"
+        for role in roles
+    )
+
+
+def _extract_roles(claims: Dict[str, Any], payload_org_id: str = None):
+    role_set = set()
+
+    if _has_global_super_admin(claims):
+        role_set.add("super_admin")
+
+    if not payload_org_id:
+        return list(role_set)
+
+    explicit_org_id = _explicit_org_id(claims)
+    if explicit_org_id == payload_org_id:
+        roles = claims.get("roles")
+        if isinstance(roles, list):
+            for role in roles:
+                if isinstance(role, str) and role and role.lower() != "super_admin":
+                    role_set.add(role)
+
+        legacy_role = claims.get("role")
+        if isinstance(legacy_role, str) and legacy_role:
+            role_set.add(legacy_role)
+
     org_roles = claims.get("orgRoles")
     if isinstance(org_roles, dict):
-        for role_list in org_roles.values():
-            if isinstance(role_list, list):
-                for role in role_list:
-                    if isinstance(role, str) and role:
-                        role_set.add(role)
+        scoped_roles = org_roles.get(payload_org_id)
+        if isinstance(scoped_roles, list):
+            for role in scoped_roles:
+                if isinstance(role, str) and role and role.lower() != "super_admin":
+                    role_set.add(role)
+
     return list(role_set)
 
+
 def enforce_org_match(claims: Dict[str, Any], payload_org_id: str):
-    token_org = _extract_org_id(claims)
     if not payload_org_id:
         raise PermissionError("Payload orgId required.")
-    if not token_org or token_org != payload_org_id:
-        raise PermissionError("orgId mismatch.")
 
-def require_approver(claims: Dict[str, Any]):
-    roles = _extract_roles(claims)
-    admin = bool(claims.get("admin"))
-    normalized_roles = [r.lower() for r in roles]
-    # Approver rule: claims-based only.
-    ok = admin or ("super_admin" in normalized_roles) or ("org_admin" in normalized_roles)
-    if not ok:
+    if _has_global_super_admin(claims):
+        return
+
+    if _explicit_org_id(claims) == payload_org_id:
+        return
+
+    org_roles = claims.get("orgRoles")
+    scoped_roles = org_roles.get(payload_org_id) if isinstance(org_roles, dict) else None
+    if isinstance(scoped_roles, list) and any(
+        isinstance(role, str) and role and role.lower() != "super_admin"
+        for role in scoped_roles
+    ):
+        return
+
+    raise PermissionError("orgId mismatch.")
+
+
+def require_approver(claims: Dict[str, Any], payload_org_id: str):
+    if not payload_org_id:
+        raise PermissionError("Payload orgId required.")
+
+    normalized_roles = {
+        role.lower()
+        for role in _extract_roles(claims, payload_org_id)
+        if isinstance(role, str)
+    }
+
+    if "super_admin" not in normalized_roles and "org_admin" not in normalized_roles:
         raise PermissionError("Approver role required.")

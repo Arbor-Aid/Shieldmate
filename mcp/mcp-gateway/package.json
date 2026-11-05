@@ -6,6 +6,7 @@
   "main": "dist/server.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test dist/auth/security.test.js",
     "start": "node dist/server.js"
   },
   "dependencies": {

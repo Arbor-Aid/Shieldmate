@@ -22,15 +22,27 @@ const normalizeClaimRoles = (claims = {}) => {
   return Array.from(roleSet);
 };
 
-const resolveClaimOrgId = (orgId, orgRoles) => {
+const resolveClaimOrgId = (orgId, orgRoles = {}) => {
+  const orgIds = Object.keys(orgRoles).filter((value) => value.length > 0);
+
   if (typeof orgId === "string" && orgId.length > 0) {
+    if (orgIds.length > 0 && !orgIds.includes(orgId)) {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "orgId must identify one of the supplied orgRoles memberships.",
+      );
+    }
     return orgId;
   }
-  if (orgRoles && typeof orgRoles === "object") {
-    const firstOrg = Object.keys(orgRoles).find((value) => value.length > 0);
-    return firstOrg;
+
+  if (orgIds.length > 1) {
+    throw new functions.https.HttpsError(
+      "invalid-argument",
+      "orgId is required when assigning roles for multiple organizations.",
+    );
   }
-  return undefined;
+
+  return orgIds[0];
 };
 
 export const setUserClaims = functions.https.onCall(async (data, context) => {
@@ -64,12 +76,36 @@ export const setUserClaims = functions.https.onCall(async (data, context) => {
 
   const safeRoles = validateRoles(roles);
   const safeOrgRoles = {};
-  Object.entries(orgRoles || {}).forEach(([orgId, roleList]) => {
-    safeOrgRoles[orgId] = validateRoles(roleList);
+
+  Object.entries(orgRoles || {}).forEach(([candidateOrgId, roleList]) => {
+    if (!candidateOrgId) {
+      throw new functions.https.HttpsError("invalid-argument", "Organization IDs cannot be empty.");
+    }
+
+    const candidateRoles = validateRoles(roleList);
+    if (candidateRoles.includes("super_admin")) {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "super_admin is a global role and cannot appear in orgRoles.",
+      );
+    }
+
+    safeOrgRoles[candidateOrgId] = candidateRoles;
   });
 
   const resolvedOrgId = resolveClaimOrgId(orgId, safeOrgRoles);
-  const legacyRole = safeRoles.find((role) => role.length > 0);
+  if (safeRoles.some((role) => role !== "super_admin") && !resolvedOrgId) {
+    throw new functions.https.HttpsError(
+      "invalid-argument",
+      "orgId is required for organization-scoped roles.",
+    );
+  }
+
+  const legacyRole =
+    safeRoles.find((role) => role.length > 0) ||
+    (resolvedOrgId
+      ? safeOrgRoles[resolvedOrgId]?.find((role) => role.length > 0)
+      : undefined);
   const claims = {
     roles: safeRoles,
     orgRoles: safeOrgRoles,

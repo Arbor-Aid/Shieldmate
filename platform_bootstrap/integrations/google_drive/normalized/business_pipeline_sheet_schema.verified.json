@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-10-14T21:49:55.736Z",
+  "verifiedBy": "connected_google_owner_account_read_only",
+  "spreadsheetId": "1EaJHJ9bDZS_jRA4KRe6mTcI6DmkQJ-wpcSTYXIGb_us",
+  "title": "2Marines Ecosystem | Grants & Contracts Pipeline | October 2026",
+  "locale": "en_US",
+  "timeZone": "America/New_York",
+  "mutationPerformed": false,
+  "protectedRanges": {
+    "status": "unverified_connector_capability",
+    "writeGate": "REQUIRES_OWNER_APPROVAL"
+  },
+  "sheets": [
+    {
+      "title": "Possible Fit",
+      "sheetId": 9101,
+      "rowCount": 300,
+      "columnCount": 20,
+      "frozenRowCount": 1,
+      "headers": ["Opportunity ID", "Source", "Notice / Award ID", "Title", "Agency / Buyer", "NAICS / PSC", "Place of Performance", "Posted / Verified Date", "Response Deadline", "Opportunity URL", "Lead Entity", "Partner Candidate", "Fit Rationale", "Eligibility Gate", "Domestic-Origin / Trade Flag", "Source Confidence", "Review Owner", "Review Status", "Next Action", "Last Checked"],
+      "dataRowCount": 0,
+      "existingRowIds": [],
+      "formulaCellsObservedInA1T10": [],
+      "validationCellsObservedInA1T10": [],
+      "conditionalFormatRules": 0
+    },
+    {
+      "title": "Screening Review",
+      "sheetId": 9102,
+      "rowCount": 300,
+      "columnCount": 20,
+      "frozenRowCount": 1,
+      "headers": ["Screening Case ID", "Linked Opportunity / Transaction", "Party Role", "Entity / Party Reference (minimum data)", "Official Source / List", "Source Version / Retrieved UTC", "Candidate Match Reference", "Match Evidence URL", "Match Type / Identifiers", "Ownership / Control Review", "Destination / End-use Review", "Potential Restriction", "Review Status", "Assigned Reviewer", "Reviewer Decision", "Decision Rationale / Evidence", "Approver", "Approval Timestamp", "Rescreen Due", "Execution Hold"],
+      "dataRowCount": 0,
+      "existingRowIds": [],
+      "formulaCellsObservedInA1T10": [],
+      "validationCellsObservedInA1T10": [],
+      "conditionalFormatRules": 0
+    },
+    {
+      "title": "Jarvis Approval Queue",
+      "sheetId": 9103,
+      "rowCount": 300,
+      "columnCount": 19,
+      "frozenRowCount": 1,
+      "headers": ["Approval ID", "Source Record / Link", "Organization", "Approval Type", "Summary", "Risk / Compliance Flags", "Evidence Location", "Prepared By", "Recommended Action (not approval)", "Approval Owner", "Approval Status", "Decision", "Decision Timestamp", "Deadline", "Next Action", "Draft Email Link", "External Send Status", "Daily Tracker Link", "Last Updated"],
+      "dataRowCount": 0,
+      "existingRowIds": [],
+      "formulaCellsObservedInA1S10": [],
+      "validationCellsObservedInA1S10": [],
+      "conditionalFormatRules": 0
+    }
+  ]
+}

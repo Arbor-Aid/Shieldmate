@@ -3,6 +3,98 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'user_profile.dart';
 
+Iterable<String> _stringRoles(dynamic value) sync* {
+  if (value is! List) return;
+
+  for (final role in value.whereType<String>()) {
+    final normalized = role.trim().toLowerCase();
+    if (normalized.isNotEmpty) yield normalized;
+  }
+}
+
+AppRole _highestRole(Iterable<String> roles) {
+  final normalized = roles.map((role) => role.trim().toLowerCase()).toSet();
+
+  if (normalized.contains('super_admin') || normalized.contains('admin')) {
+    return AppRole.admin;
+  }
+
+  if (normalized.any(
+    {
+      'org_admin',
+      'staff',
+      'case_worker',
+      'organization',
+      'partner',
+    }.contains,
+  )) {
+    return AppRole.partner;
+  }
+
+  return AppRole.client;
+}
+
+AppRole resolveAppRoleFromClaims(Map<String, dynamic>? claims) {
+  if (claims == null) return AppRole.client;
+
+  final canonicalRoles = _stringRoles(claims['roles']).toList();
+  if (canonicalRoles.contains('super_admin')) {
+    return AppRole.admin;
+  }
+
+  final activeOrgId =
+      (claims['orgId'] is String && (claims['orgId'] as String).isNotEmpty)
+          ? claims['orgId'] as String
+          : (claims['org'] is String && (claims['org'] as String).isNotEmpty)
+              ? claims['org'] as String
+              : null;
+
+  final scopedRoles = <String>[];
+  if (activeOrgId != null) {
+    scopedRoles.addAll(
+      canonicalRoles.where((role) => role != 'super_admin'),
+    );
+  }
+
+  final rawOrgRoles = claims['orgRoles'];
+  if (rawOrgRoles is Map) {
+    if (activeOrgId != null) {
+      scopedRoles.addAll(
+        _stringRoles(rawOrgRoles[activeOrgId])
+            .where((role) => role != 'super_admin'),
+      );
+    } else {
+      final memberships = <List<String>>[];
+
+      for (final entry in rawOrgRoles.entries) {
+        if (entry.key is! String || (entry.key as String).isEmpty) continue;
+
+        final roles = _stringRoles(entry.value)
+            .where((role) => role != 'super_admin')
+            .toList();
+
+        if (roles.isNotEmpty) memberships.add(roles);
+      }
+
+      if (memberships.length != 1) {
+        return AppRole.client;
+      }
+
+      scopedRoles.addAll(memberships.single);
+    }
+  }
+
+  if (activeOrgId != null && claims['role'] is String) {
+    final legacyRole = (claims['role'] as String).trim().toLowerCase();
+
+    if (legacyRole.isNotEmpty && legacyRole != 'super_admin') {
+      scopedRoles.add(legacyRole);
+    }
+  }
+
+  return _highestRole(scopedRoles);
+}
+
 class UserProfileService {
   UserProfileService({
     FirebaseFirestore? firestore,
@@ -19,7 +111,9 @@ class UserProfileService {
     return UserProfile.fromDocument(doc);
   }
 
-  Future<UserProfile> ensureProfile({AppRole defaultRole = AppRole.client}) async {
+  Future<UserProfile> ensureProfile({
+    AppRole defaultRole = AppRole.client,
+  }) async {
     final user = _auth.currentUser;
     if (user == null) {
       throw StateError('No authenticated user.');
@@ -78,47 +172,12 @@ class UserProfileService {
     }
   }
 
-  Future<AppRole> resolveRole(User user, {UserProfile? profile}) async {
+  Future<AppRole> resolveRole(User user) async {
     try {
       final token = await user.getIdTokenResult();
-      final claims = token.claims;
-      String? claimRole;
-      if (claims != null) {
-        final rolesClaim = claims['roles'];
-        if (rolesClaim is List) {
-          final firstRole = rolesClaim.whereType<String>().cast<String?>().firstWhere(
-                (value) => value != null && value.isNotEmpty,
-                orElse: () => null,
-              );
-          claimRole = firstRole;
-        }
-        if ((claimRole == null || claimRole.isEmpty) && claims['orgRoles'] is Map) {
-          final orgRoles = claims['orgRoles'] as Map<dynamic, dynamic>;
-          for (final value in orgRoles.values) {
-            if (value is List) {
-              final firstRole = value.whereType<String>().cast<String?>().firstWhere(
-                    (role) => role != null && role.isNotEmpty,
-                    orElse: () => null,
-                  );
-              if (firstRole != null && firstRole.isNotEmpty) {
-                claimRole = firstRole;
-                break;
-              }
-            }
-          }
-        }
-        claimRole ??= claims['role'] as String?;
-      }
-      if (claimRole != null && claimRole.isNotEmpty) {
-        return AppRoleMapper.fromString(claimRole);
-      }
+      return resolveAppRoleFromClaims(token.claims);
     } on Exception {
-      // Ignore token errors; fall back to profile role.
+      return AppRole.client;
     }
-
-    if (profile != null) {
-      return profile.role;
-    }
-    return AppRole.client;
   }
 }

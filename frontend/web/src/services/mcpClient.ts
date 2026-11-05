@@ -1,5 +1,6 @@
 import { getAppCheckToken } from "@/lib/firebase";
 import { recordAudit } from "@/lib/audit";
+import { readRuntimeEnv } from "@/config/runtimeMode";
 
 type TokenResolver = (forceRefresh?: boolean) => Promise<string>;
 type AppCheckResolver = () => Promise<string | null>;
@@ -20,15 +21,8 @@ export interface McpRequest {
 
 const DEFAULT_TIMEOUT_MS = 20000;
 
-const readEnv = (key: string): string | undefined => {
-  if (typeof import.meta !== "undefined" && (import.meta as any).env?.[key]) {
-    return (import.meta as any).env[key];
-  }
-  return typeof process !== "undefined" ? process.env?.[key] : undefined;
-};
-
 const normalizeEndpoint = (value?: string) => {
-  const raw = value || readEnv("VITE_MCP_ENDPOINT") || readEnv("VITE_MCP_ENDPOINT_PROD");
+  const raw = value || readRuntimeEnv("VITE_MCP_ENDPOINT") || readRuntimeEnv("VITE_MCP_ENDPOINT_PROD");
   if (!raw) {
     throw new Error("MCP endpoint is not configured. Set VITE_MCP_ENDPOINT.");
   }

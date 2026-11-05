@@ -10,11 +10,20 @@ export type VerifiedTokenClaims = {
   email?: string;
 };
 
+type DecodedFirebaseToken = {
+  uid: string;
+  email?: string;
+  roles?: unknown;
+  role?: unknown;
+  orgId?: unknown;
+  org?: unknown;
+  orgRoles?: unknown;
+};
+
+export type FirebaseTokenVerifier = (token: string) => Promise<DecodedFirebaseToken>;
+
 let appInitialized = false;
-const DEV_BYPASS_TOKEN = 'dev-token';
-const DEV_BYPASS_ROLE = 'admin';
-const DEV_BYPASS_ORG_ID = process.env.DEV_BYPASS_ORG_ID || 'dev-org';
-const DEV_BYPASS_UID = process.env.DEV_BYPASS_UID || 'dev-admin';
+const REJECTED_DEVELOPMENT_TOKEN = 'dev-token';
 
 function initAdmin() {
   if (appInitialized) return;
@@ -22,39 +31,22 @@ function initAdmin() {
   appInitialized = true;
 }
 
-export async function verifyFirebaseToken(authHeader?: string): Promise<VerifiedTokenClaims> {
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    throw new Error('Missing Authorization header');
-  }
-  const token = authHeader.slice('Bearer '.length);
-  if (token === DEV_BYPASS_TOKEN) {
-    return {
-      uid: DEV_BYPASS_UID,
-      roles: [DEV_BYPASS_ROLE],
-      orgRoles: {
-        [DEV_BYPASS_ORG_ID]: [DEV_BYPASS_ROLE],
-      },
-      orgId: DEV_BYPASS_ORG_ID,
-      role: DEV_BYPASS_ROLE,
-      org: DEV_BYPASS_ORG_ID,
-      email: `${DEV_BYPASS_UID}@local.dev`,
-    };
-  }
+const verifyWithFirebase: FirebaseTokenVerifier = async (token) => {
   initAdmin();
-  const decoded = await admin.auth().verifyIdToken(token, true);
-  const decodedAny = decoded as admin.auth.DecodedIdToken & {
-    roles?: unknown;
-    role?: unknown;
-    orgId?: unknown;
-    org?: unknown;
-    orgRoles?: unknown;
-  };
-  const rolesFromToken = Array.isArray(decodedAny.roles)
-    ? decodedAny.roles.filter((role): role is string => typeof role === 'string' && role.length > 0)
+  return admin.auth().verifyIdToken(token, true) as Promise<DecodedFirebaseToken>;
+};
+
+export function normalizeFirebaseClaims(decoded: DecodedFirebaseToken): VerifiedTokenClaims {
+  if (typeof decoded.uid !== 'string' || decoded.uid.length === 0) {
+    throw new Error('Invalid Firebase token claims');
+  }
+
+  const rolesFromToken = Array.isArray(decoded.roles)
+    ? decoded.roles.filter((role): role is string => typeof role === 'string' && role.length > 0)
     : [];
   const orgRolesFromToken =
-    decodedAny.orgRoles && typeof decodedAny.orgRoles === 'object'
-      ? Object.entries(decodedAny.orgRoles as Record<string, unknown>).reduce<Record<string, string[]>>(
+    decoded.orgRoles && typeof decoded.orgRoles === 'object' && !Array.isArray(decoded.orgRoles)
+      ? Object.entries(decoded.orgRoles as Record<string, unknown>).reduce<Record<string, string[]>>(
           (acc, [orgKey, roleList]) => {
             if (!orgKey || !Array.isArray(roleList)) {
               return acc;
@@ -63,35 +55,47 @@ export async function verifyFirebaseToken(authHeader?: string): Promise<Verified
               (role): role is string => typeof role === 'string' && role.length > 0
             );
             if (filteredRoles.length > 0) {
-              acc[orgKey] = filteredRoles;
+              acc[orgKey] = Array.from(new Set(filteredRoles));
             }
             return acc;
           },
           {}
         )
       : {};
-  const orgScopedRoles = Object.values(orgRolesFromToken).flat();
   const legacyRole =
-    typeof decodedAny.role === 'string' && decodedAny.role.length > 0 ? decodedAny.role : undefined;
-  const mergedRoles = legacyRole
-    ? Array.from(new Set([...rolesFromToken, ...orgScopedRoles, legacyRole]))
-    : Array.from(new Set([...rolesFromToken, ...orgScopedRoles]));
+    typeof decoded.role === 'string' && decoded.role.length > 0 ? decoded.role : undefined;
   const orgId =
-    typeof decodedAny.orgId === 'string' && decodedAny.orgId.length > 0
-      ? decodedAny.orgId
-      : typeof decodedAny.org === 'string' && decodedAny.org.length > 0
-        ? decodedAny.org
-        : Object.keys(orgRolesFromToken)[0]
-          ? Object.keys(orgRolesFromToken)[0]
+    typeof decoded.orgId === 'string' && decoded.orgId.length > 0
+      ? decoded.orgId
+      : typeof decoded.org === 'string' && decoded.org.length > 0
+        ? decoded.org
         : undefined;
 
   return {
     uid: decoded.uid,
-    roles: mergedRoles,
+    roles: Array.from(new Set(rolesFromToken)),
     orgRoles: orgRolesFromToken,
     orgId,
-    role: legacyRole ?? mergedRoles[0],
+    role: legacyRole,
     org: orgId,
-    email: decoded.email,
+    email: typeof decoded.email === 'string' ? decoded.email : undefined,
   };
+}
+
+export async function verifyFirebaseToken(
+  authHeader?: string,
+  verifier: FirebaseTokenVerifier = verifyWithFirebase
+): Promise<VerifiedTokenClaims> {
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    throw new Error('Missing Authorization header');
+  }
+  const token = authHeader.slice('Bearer '.length).trim();
+  if (!token) {
+    throw new Error('Missing Firebase ID token');
+  }
+  if (token === REJECTED_DEVELOPMENT_TOKEN) {
+    throw new Error('Development tokens are not accepted');
+  }
+
+  return normalizeFirebaseClaims(await verifier(token));
 }
