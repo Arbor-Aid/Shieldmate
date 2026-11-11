@@ -1,16 +1,33 @@
 # Canva Bulk Create Guide
 
-Use these files to generate draft creative from the 15 Days / 3 Lanes / 1 Mission campaign calendar.
+Use these files to generate draft creative from the 15-day, 3-brand, 3-time campaign calendar.
 
 This is a design-production guide only. Do not publish directly from Canva unless Joshua explicitly approves it.
 
-## Upload Files
+## Active Upload Files
 
-| Brand | CSV |
-| --- | --- |
-| 2 Marines | `canva-2marines-posts.csv` |
-| Marine Coins | `canva-marinecoin-posts.csv` |
-| ShieldMate | `canva-shieldmate-posts.csv` |
+Canva design size is chosen first. Use the split files in:
+
+```text
+docs/marketing/canva_uploads/by_time_and_size/
+```
+
+Pick the matching brand, time window, and size CSV before using Bulk Create.
+
+Warning: Do not use archived mixed files for Canva production. Use only the `by_time_and_size` folder for the 135-row campaign.
+
+Example:
+
+1. Open a 1080 x 1080 Canva design.
+2. Use `canva-2marines-morning-square-1080x1080.csv`.
+3. Bulk Create the square Morning 2Marines posts.
+4. Review every generated design.
+5. Repeat for vertical and landscape.
+6. Repeat for Morning, Afternoon, and Evening.
+7. Repeat for each brand.
+8. Do not publish directly from Canva.
+
+Use this folder when Joshua needs production-ready Canva upload batches by business, time window, and design size.
 
 ## Before You Start
 
@@ -73,32 +90,26 @@ Platform size mapping:
 | YouTube Short | 1080 x 1920 |
 | TikTok Vertical Video | 1080 x 1920 |
 
-Recommended platform/format-first production workflow:
+Recommended design-size-first production workflow:
 
-1. Use the uploaded CSV as the source of truth for each row's `platform` and `format`.
-2. Generate the correct Canva design size for each row based on the platform size mapping.
-3. Group outputs by brand so 2Marines, MarineCoin, and ShieldMate stay easy to review.
+1. Choose the Canva design size first.
+2. Open the matching template for the brand and size.
+3. Upload the matching CSV from `by_time_and_size`.
 4. Use `asset_name` as the export naming base.
 5. Review every generated design for size, crop, text fit, link accuracy, brand fit, and compliance.
 6. Do not publish directly from Canva.
 7. Export approved graphics for manual Meta draft staging.
 
-Fallback square-first workflow:
+Archived mixed files:
 
-Use this only if Canva cannot reliably generate mixed sizes from the uploaded CSV and platform/format fields.
-
-1. Build one 2Marines square template, one MarineCoin square template, and one ShieldMate square template.
-2. Use Bulk Create with each lane's CSV to generate square drafts.
-3. Review generated square designs.
-4. After approval, use Canva resize or copy to create vertical and landscape variants.
-5. Verify sizing manually before export.
+The `archive_old_mixed` folder is retained only for historical reference. Do not rely on a mixed-size CSV to create correctly sized Canva designs.
 
 ## Canva AI Starter Prompts
 
-Multi-format CSV generation prompt:
+Split-file Canva generation prompt:
 
 ```text
-Use the uploaded campaign CSV as the source of truth. For each row, read the platform and format fields and create the correct Canva design size for that row. Use Instagram Square as 1080 x 1080, Instagram Story as 1080 x 1920, Facebook Link Post as 1200 x 628, Facebook Square/feed as 1080 x 1080, LinkedIn Single Image as 1080 x 1080, LinkedIn Carousel as 1080 x 1080 per slide, YouTube Short as 1080 x 1920, and TikTok Vertical Video as 1080 x 1920. Group outputs by brand: 2Marines, MarineCoin, and ShieldMate. Use asset_name as the export naming base. Use each row's headline, body, CTA, final_url, visual_source, asset_status, needed_asset_notes, alt_text, and compliance_notes. Do not publish, schedule, post, boost, launch, or spend anything.
+Use the uploaded split CSV as the source of truth for this Canva design. The Canva design size has already been chosen before upload, so keep every generated design in this template size. Use each row's platform and format fields as labels and review checks, not as automatic resize instructions. Group output pages by day order. Use asset_name as the export naming base. Use each row's headline, body, CTA, final_url, visual_source, asset_status, needed_asset_notes, alt_text, and compliance_notes. Do not publish, schedule, post, boost, launch, or spend anything.
 
 MarineCoin restrictions: no investment, no ROI, no profit, no financial return, no token appreciation, no asset appreciation, no securities framing, no yield, no trading, no token-gain, and no guaranteed-return language or imagery. Keep MarineCoin focused on support, participation, mission commerce, and community impact.
 
