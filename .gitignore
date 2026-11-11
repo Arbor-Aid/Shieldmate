@@ -1,4 +1,5 @@
-﻿# General
+﻿```gitignore
+# General
 *.log
 logs/
 *.tmp
@@ -29,11 +30,15 @@ lerna-debug.log*
 *.tsbuildinfo
 
 # Environment
+.env
+.env.bak
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+.env.shieldmate
 *.env.backup
+.env.*.local
 
 # Firebase
 .firebase/
@@ -78,14 +83,12 @@ build/ios/
 build/android/
 flutter_export_environment.sh
 
-# Misc
-Thumbs.db
-
+# Local Flutter SDK / vendored SDK folders
 .flutter/
 /flutter/
 
-.env
-.env.bak
+# Misc
+Thumbs.db
 nuget.exe
 shieldmate_cleanup.ps1
 src/mocks/
@@ -96,21 +99,19 @@ firestore.rules.prod.txt
 firestore.indexes.prod.json
 mcp_test.json
 
-# --- rebuild_option1 additions ---
+# Generated script output
 scripts/out/
-.env.*.local
 
-# Generated / transient
-scripts/out/
+# Python / virtual environments
 .venv/
 .venv-*/
 .venv_broken_*/
+__pycache__/
+*.pyc
+
+# Generated / transient output
 output/
 *.bak
 *.bak2
 *.bak3
-__pycache__/
-*.pyc
-
-# Local experiments (ignore until we decide to ship it)
-mobile/
+```
