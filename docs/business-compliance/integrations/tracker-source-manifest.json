@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "verified_date": "2026-10-14",
+  "master_source": {
+    "type": "google_sheet",
+    "id": "1EaJHJ9bDZS_jRA4KRe6mTcI6DmkQJ-wpcSTYXIGb_us",
+    "title": "2Marines Ecosystem | Grants & Contracts Pipeline | October 2026",
+    "url": "https://docs.google.com/spreadsheets/d/1EaJHJ9bDZS_jRA4KRe6mTcI6DmkQJ-wpcSTYXIGb_us/edit",
+    "owner_account_verified": true,
+    "access_verified": "connected_owner_account_metadata_and_bounded_reads",
+    "write_performed": false,
+    "tabs": [
+      { "id": 200, "name": "Start Here" },
+      { "id": 201, "name": "Organizations" },
+      { "id": 202, "name": "Grants Pipeline" },
+      { "id": 203, "name": "Applicant Routes" },
+      { "id": 204, "name": "Collaborative Projects" },
+      { "id": 205, "name": "Contracts" },
+      { "id": 206, "name": "Next Actions" },
+      { "id": 207, "name": "Excluded or Blocked" },
+      { "id": 208, "name": "Funding Update Log" },
+      { "id": 9001, "name": "Flow Dashboard" },
+      { "id": 9002, "name": "Refresh Data" },
+      { "id": 9003, "name": "Source Registry" },
+      { "id": 9004, "name": "Discovery Inbox" },
+      { "id": 9005, "name": "Automation Setup" },
+      { "id": 9101, "name": "Possible Fit" },
+      { "id": 9102, "name": "Screening Review" },
+      { "id": 9103, "name": "Jarvis Approval Queue" }
+    ]
+  },
+  "daily_tracker": {
+    "type": "chatgpt_page",
+    "id": "page_99ef1fd4143c819196f5bdf34865a1ee",
+    "title": "Project tracker",
+    "url": "https://chatgpt.com/space/page_99ef1fd4143c819196f5bdf34865a1ee",
+    "relationship": "daily_summary_and_action_surface_linked_from_master_workbook",
+    "schedule_observed": "daily around 06:00 America/New_York",
+    "automation_changed": false
+  },
+  "repository_runtime": {
+    "status": "not_configured_for_direct_google_sheets_access",
+    "readiness_evidence": [
+      "platform_bootstrap/integrations/google_drive/configs/google_drive_config.template.json",
+      "platform_bootstrap/integrations/google_drive/consumer_map.json",
+      "ops/MCP_DEPLOY_RUNBOOK.md",
+      "docs/MCP_ENV_VARS.md"
+    ]
+  },
+  "snapshot": {
+    "created": false,
+    "policy": "read_only_dated_export_only_when_connected_access_is_unavailable_and_data_controls_are_approved"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "toolId": "reporting.aggregate",
+  "tool": "reporting.aggregate",
+  "input": {
+    "analytics_outputs": [
+      {
+        "status": "processed",
+        "analytics_summary": {
+          "category": "engineering",
+          "source": "google_drive"
+        }
+      }
+    ],
+    "project_updates": [
+      {
+        "status": "processed",
+        "project_state_update": {
+          "project_id": "project-smoke-001",
+          "status": "in_progress"
+        }
+      }
+    ],
+    "training_syncs": [
+      {
+        "status": "processed",
+        "training_sync_result": {
+          "training_event_id": "training-smoke-001"
+        }
+      }
+    ],
+    "validation_results": [
+      {
+        "status": "processed",
+        "validation_result": {
+          "rejected": false
+        }
+      }
+    ]
+  }
+}

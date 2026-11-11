@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DemographicRecord",
+  "type": "object",
+  "required": [
+    "region_id",
+    "population_total",
+    "source"
+  ],
+  "properties": {
+    "region_id": {
+      "type": "string"
+    },
+    "population_total": {
+      "type": "integer"
+    },
+    "median_income_usd": {
+      "type": "number"
+    },
+    "source": {
+      "type": "string"
+    }
+  }
+}

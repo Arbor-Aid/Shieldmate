@@ -1,0 +1,140 @@
+{
+  "channels": [
+    {
+      "slack_channel": "#mcp-ai-budget-planner",
+      "canonical_mcp_service": "ai-budget-planner"
+    },
+    {
+      "slack_channel": "#mcp-ai-expense-manager",
+      "canonical_mcp_service": "ai-expense-manager"
+    },
+    {
+      "slack_channel": "#mcp-ai-financial-analyst",
+      "canonical_mcp_service": "ai-financial-analyst"
+    },
+    {
+      "slack_channel": "#mcp-ai-financial-reporting-specialist",
+      "canonical_mcp_service": "ai-financial-reporting-specialist"
+    },
+    {
+      "slack_channel": "#mcp-ai-invoice-processor",
+      "canonical_mcp_service": "ai-invoice-processor"
+    },
+    {
+      "slack_channel": "#mcp-ai-payroll-manager",
+      "canonical_mcp_service": "ai-payroll-manager"
+    },
+    {
+      "slack_channel": "#mcp-ai-tax-compliance-agent",
+      "canonical_mcp_service": "ai-tax-compliance-agent"
+    },
+    {
+      "slack_channel": "#mcp-ai-training-coordinator",
+      "canonical_mcp_service": "ai-training-coordinator"
+    },
+    {
+      "slack_channel": "#mcp-ai-ux-analyst",
+      "canonical_mcp_service": "ai-ux-analyst"
+    },
+    {
+      "slack_channel": "#mcp-amazon-drop-shipping-ai",
+      "canonical_mcp_service": "amazon-drop-shipping-ai"
+    },
+    {
+      "slack_channel": "#mcp-coder-agent",
+      "canonical_mcp_service": "coder-agent"
+    },
+    {
+      "slack_channel": "#mcp-content-generation-ai",
+      "canonical_mcp_service": "content-generation-ai"
+    },
+    {
+      "slack_channel": "#mcp-cto-agent",
+      "canonical_mcp_service": "cto-agent"
+    },
+    {
+      "slack_channel": "#mcp-data-scrubbing-ai",
+      "canonical_mcp_service": "data-scrubbing-ai"
+    },
+    {
+      "slack_channel": "#mcp-designer-ai-agent",
+      "canonical_mcp_service": "designer-ai-agent"
+    },
+    {
+      "slack_channel": "#mcp-document-manager",
+      "canonical_mcp_service": "document-manager"
+    },
+    {
+      "slack_channel": "#mcp-email-campaign-optimizer-ai",
+      "canonical_mcp_service": "email-campaign-optimizer-ai"
+    },
+    {
+      "slack_channel": "#mcp-fundraising-chatbot-ai",
+      "canonical_mcp_service": "fundraising-chatbot-ai"
+    },
+    {
+      "slack_channel": "#mcp-hr-ai-agent",
+      "canonical_mcp_service": "hr-ai-agent"
+    },
+    {
+      "slack_channel": "#mcp-information-retrieval-ai",
+      "canonical_mcp_service": "information-retrieval-ai"
+    },
+    {
+      "slack_channel": "#mcp-investment_recommendation",
+      "canonical_mcp_service": "investment_recommendation"
+    },
+    {
+      "slack_channel": "#mcp-mcp-analytics",
+      "canonical_mcp_service": "mcp-analytics"
+    },
+    {
+      "slack_channel": "#mcp-mcp-google-ads",
+      "canonical_mcp_service": "mcp-google-ads"
+    },
+    {
+      "slack_channel": "#mcp-multimodal-ai",
+      "canonical_mcp_service": "multimodal-ai"
+    },
+    {
+      "slack_channel": "#mcp-org-scrubber-mcp",
+      "canonical_mcp_service": "org-scrubber-mcp"
+    },
+    {
+      "slack_channel": "#mcp-personalized-donation-ai",
+      "canonical_mcp_service": "personalized-donation-ai"
+    },
+    {
+      "slack_channel": "#mcp-project-manager-agent",
+      "canonical_mcp_service": "project-manager-agent"
+    },
+    {
+      "slack_channel": "#mcp-qa-ai-agent",
+      "canonical_mcp_service": "qa-ai-agent"
+    },
+    {
+      "slack_channel": "#mcp-reporting-dashboard-ai",
+      "canonical_mcp_service": "reporting-dashboard-ai"
+    },
+    {
+      "slack_channel": "#mcp-trade_execution_gateway",
+      "canonical_mcp_service": "trade_execution_gateway"
+    },
+    {
+      "slack_channel": "#mcp-tradefinance_lc",
+      "canonical_mcp_service": "tradefinance_lc"
+    },
+    {
+      "slack_channel": "#mcp-tradeops",
+      "canonical_mcp_service": "tradeops"
+    },
+    {
+      "slack_channel": "#mcp-training_to_sop",
+      "canonical_mcp_service": "training_to_sop"
+    },
+    {
+      "slack_channel": "#mcp-treasury",
+      "canonical_mcp_service": "treasury"
+    }
+  ]
+}

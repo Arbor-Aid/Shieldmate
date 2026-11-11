@@ -1,0 +1,1 @@
+Return health/status readiness summary for amazon-drop-shipping-ai in compact JSON.

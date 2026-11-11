@@ -4,13 +4,19 @@ import ProtectedRoute from './components/ProtectedRoute';
 import RoleCheck from './components/RoleCheck';
 
 const Public = React.lazy(() => import('./pages/Public'));
+const ProgramsIndex = React.lazy(() => import('./pages/programs/index'));
+const ProgramDetail = React.lazy(() => import('./pages/programs/ProgramDetail'));
+const TieProgram = React.lazy(() => import('./pages/tie/index'));
+const PartnersIndex = React.lazy(() => import('./pages/partners/index'));
+const PartnerDetail = React.lazy(() => import('./pages/partners/PartnerDetail'));
+const SiteContactPublic = React.lazy(() => import('./pages/contact/index'));
 const ShieldmateFeatures = React.lazy(() => import('./pages/ShieldmateFeatures'));
 const ShieldmatePricing = React.lazy(() => import('./pages/ShieldmatePricing'));
 const ShieldmateAbout = React.lazy(() => import('./pages/ShieldmateAbout'));
 const ShieldmateContact = React.lazy(() => import('./pages/ShieldmateContact'));
 const TwoMarinesInfo = React.lazy(() => import('./pages/twomarines/TwoMarinesInfo'));
 const TwoMarinesShieldMate = React.lazy(() => import('./pages/twomarines/TwoMarinesShieldMate'));
-const TwoMarinesShop = React.lazy(() => import('./pages/twomarines/TwoMarinesShop'));
+const StoreRedirect = React.lazy(() => import('./pages/twomarines/StoreRedirect'));
 const TwoMarinesPartnerships = React.lazy(() => import('./pages/twomarines/TwoMarinesPartnerships'));
 const TwoMarinesBrand = React.lazy(() => import('./pages/twomarines/TwoMarinesBrand'));
 const TwoMarinesSocials = React.lazy(() => import('./pages/twomarines/TwoMarinesSocials'));
@@ -75,14 +81,21 @@ function App() {
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
         <Route path="/" element={<Public />} />
+        <Route path="/programs" element={<ProgramsIndex />} />
+        <Route path="/programs/:programSlug" element={<ProgramDetail />} />
+        <Route path="/tie" element={<TieProgram />} />
+        <Route path="/partners" element={<PartnersIndex />} />
+        <Route path="/partners/:orgSlug" element={<PartnerDetail />} />
+        <Route path="/contact" element={<SiteContactPublic />} />
         <Route path="/info" element={<TwoMarinesInfo />} />
         <Route path="/shieldmate" element={<TwoMarinesShieldMate />} />
         <Route path="/features" element={<ShieldmateFeatures />} />
         <Route path="/pricing" element={<ShieldmatePricing />} />
         <Route path="/about" element={<ShieldmateAbout />} />
-        <Route path="/contact" element={<ShieldmateContact />} />
+        <Route path="/public" element={<Public />} />
         <Route path="/marinecoin" element={<MarineCoinRoute />} />
-        <Route path="/shop" element={<TwoMarinesShop />} />
+        <Route path="/shop" element={<StoreRedirect />} />
+        <Route path="/store" element={<StoreRedirect />} />
         <Route path="/partnerships" element={<TwoMarinesPartnerships />} />
         <Route path="/brand" element={<TwoMarinesBrand />} />
         <Route path="/socials" element={<TwoMarinesSocials />} />

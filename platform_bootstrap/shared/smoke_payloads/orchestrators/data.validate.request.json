@@ -1,0 +1,17 @@
+{
+  "toolId": "data.validate",
+  "tool": "data.validate",
+  "input": {
+    "doc_id": "doc-smoke-activation-004",
+    "category": "governance",
+    "source": "google_drive",
+    "source_record": {
+      "source": "google_drive",
+      "record_id": "drive-file-001",
+      "title": "Roadmap Notes"
+    },
+    "actions": {
+      "check": "schema"
+    }
+  }
+}

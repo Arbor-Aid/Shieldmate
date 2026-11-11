@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ai-invoice-processorExecuteInput",
+  "type": "object",
+  "required": [
+    "toolId",
+    "input"
+  ],
+  "properties": {
+    "toolId": {
+      "type": "string"
+    },
+    "tool": {
+      "type": "string"
+    },
+    "input": {
+      "type": "object"
+    }
+  }
+}

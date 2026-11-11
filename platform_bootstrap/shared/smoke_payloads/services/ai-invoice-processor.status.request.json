@@ -1,0 +1,9 @@
+{
+  "toolId": "ai-invoice-processor.status",
+  "tool": "ai-invoice-processor.status",
+  "input": {
+    "smoke": true,
+    "service": "ai-invoice-processor",
+    "source": "platform_bootstrap"
+  }
+}

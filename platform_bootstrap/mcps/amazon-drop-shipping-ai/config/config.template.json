@@ -1,0 +1,7 @@
+{
+  "service": "amazon-drop-shipping-ai",
+  "env": {
+    "PORT": "8080",
+    "MCP_SERVICE_NAME": "amazon-drop-shipping-ai"
+  }
+}

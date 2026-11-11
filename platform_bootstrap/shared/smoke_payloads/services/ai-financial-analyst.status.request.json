@@ -1,0 +1,9 @@
+{
+  "toolId": "ai-financial-analyst.status",
+  "tool": "ai-financial-analyst.status",
+  "input": {
+    "smoke": true,
+    "service": "ai-financial-analyst",
+    "source": "platform_bootstrap"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "toolId": "project-manager-agent.status",
+  "tool": "project-manager-agent.status",
+  "input": {
+    "smoke": true,
+    "service": "project-manager-agent",
+    "source": "platform_bootstrap"
+  }
+}

@@ -1,7 +1,7 @@
 
 import { db } from "@/lib/firebase";
 import { collection, query, where, getDocs, limit, addDoc } from "firebase/firestore";
-import { UserRole } from "./roleService";
+import { doesEffectiveRoleSatisfy, UserRole } from "./roleService";
 import { checkMessageSentiment } from "./sentimentAnalysisService";
 
 // Types for OpenAI requests
@@ -29,35 +29,34 @@ interface OpenAIResponse {
 
 // Generate role-specific system prompts
 export const getRoleSpecificPrompt = async (role: UserRole, userId: string): Promise<string> => {
-  switch (role) {
-    case "client":
-      return "You are a helpful assistant for veterans seeking support services. Answer questions about housing, employment, benefits, and mental health resources available through 2Marines. Keep responses brief, supportive, and focused on connecting veterans with the right resources. If the user mentions scheduling an appointment or meeting, offer to help them set up a meeting with a case manager by asking about purpose, date, time, and location preferences.";
-    
-    case "organization": {
-      // Fetch organization data for context
-      let orgData = "You are assisting an organization partner of 2Marines.";
-      try {
-        const orgRef = collection(db, "organizations");
-        const q = query(orgRef, where("memberIds", "array-contains", userId), limit(1));
-        const snapshot = await getDocs(q);
-        
-        if (!snapshot.empty) {
-          const org = snapshot.docs[0].data();
-          orgData = `You are assisting ${org.name}, an organization partner of 2Marines that provides ${org.services?.join(", ") || "support services"}.`;
-        }
-      } catch (error) {
-        console.error("Error fetching organization context:", error);
-      }
-      
-      return `${orgData} Provide guidance on case management, referral processes, and best practices for supporting veterans. Focus on practical advice that helps organizations effectively serve their clients. Remind users about checking appointment requests in the Appointments tab when appropriate.`;
-    }
-    
-    case "admin":
-      return "You are assisting a 2Marines administrator. Help with generating reports, analyzing data trends, and providing insights about organization performance and client needs. Focus on actionable information that helps improve service delivery and organization management. Provide information about all system functions including appointment scheduling.";
-    
-    default:
-      return "You are a helpful assistant for the 2Marines Autonomous Support Platform. Answer questions clearly and concisely.";
+  if (doesEffectiveRoleSatisfy(role, "client")) {
+    return "You are a helpful assistant for veterans seeking support services. Answer questions about housing, employment, benefits, and mental health resources available through 2Marines. Keep responses brief, supportive, and focused on connecting veterans with the right resources. If the user mentions scheduling an appointment or meeting, offer to help them set up a meeting with a case manager by asking about purpose, date, time, and location preferences.";
   }
+
+  if (doesEffectiveRoleSatisfy(role, "organization")) {
+    // Fetch organization data for context
+    let orgData = "You are assisting an organization partner of 2Marines.";
+    try {
+      const orgRef = collection(db, "organizations");
+      const q = query(orgRef, where("memberIds", "array-contains", userId), limit(1));
+      const snapshot = await getDocs(q);
+
+      if (!snapshot.empty) {
+        const org = snapshot.docs[0].data();
+        orgData = `You are assisting ${org.name}, an organization partner of 2Marines that provides ${org.services?.join(", ") || "support services"}.`;
+      }
+    } catch (error) {
+      console.error("Error fetching organization context:", error);
+    }
+
+    return `${orgData} Provide guidance on case management, referral processes, and best practices for supporting veterans. Focus on practical advice that helps organizations effectively serve their clients. Remind users about checking appointment requests in the Appointments tab when appropriate.`;
+  }
+
+  if (doesEffectiveRoleSatisfy(role, "admin")) {
+    return "You are assisting a 2Marines administrator. Help with generating reports, analyzing data trends, and providing insights about organization performance and client needs. Focus on actionable information that helps improve service delivery and organization management. Provide information about all system functions including appointment scheduling.";
+  }
+
+  return "You are a helpful assistant for the 2Marines Autonomous Support Platform. Answer questions clearly and concisely.";
 };
 
 // Get recent context data from Firestore based on user role
@@ -65,7 +64,7 @@ export const getContextData = async (role: UserRole, userId: string): Promise<st
   let contextData = "";
   
   try {
-    if (role === "client") {
+    if (doesEffectiveRoleSatisfy(role, "client")) {
       // Get client's active referrals and services
       const referralsRef = collection(db, "referrals");
       const q = query(referralsRef, where("clientId", "==", userId), limit(5));
@@ -92,7 +91,7 @@ export const getContextData = async (role: UserRole, userId: string): Promise<st
         });
       }
     } 
-    else if (role === "organization") {
+    else if (doesEffectiveRoleSatisfy(role, "organization")) {
       // Get organization's recent clients
       const clientsRef = collection(db, "clients");
       const orgRef = collection(db, "organizations");
@@ -126,7 +125,7 @@ export const getContextData = async (role: UserRole, userId: string): Promise<st
         }
       }
     }
-    else if (role === "admin") {
+    else if (doesEffectiveRoleSatisfy(role, "admin")) {
       // Get some high-level stats
       const orgsRef = collection(db, "organizations");
       const orgsSnapshot = await getDocs(orgsRef);

@@ -1,0 +1,1 @@
+Return health/status readiness summary for fundraising-chatbot-ai in compact JSON.

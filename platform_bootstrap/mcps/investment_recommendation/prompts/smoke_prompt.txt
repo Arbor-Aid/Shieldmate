@@ -1,0 +1,1 @@
+Return health/status readiness summary for investment_recommendation in compact JSON.

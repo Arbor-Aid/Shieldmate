@@ -16,7 +16,7 @@ export default function MarineCoinPrivacy() {
             personnel using claims-based RBAC.
           </p>
           <p>
-            Contact hello@2marines.us for privacy requests or data corrections.
+            Contact info@2marines.us for privacy requests or data corrections.
           </p>
         </div>
       </section>

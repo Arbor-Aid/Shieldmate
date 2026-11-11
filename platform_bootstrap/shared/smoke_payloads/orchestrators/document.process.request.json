@@ -1,0 +1,34 @@
+{
+  "toolId": "document.process",
+  "tool": "document.process",
+  "traceId": "trace-smoke-document-001",
+  "meta": {
+    "source": "bootstrap_smoke",
+    "suite": "activation-tier1"
+  },
+  "input": {
+    "doc_id": "doc-smoke-activation-001",
+    "category": "engineering",
+    "actions": {
+      "mode": "smoke",
+      "review": true,
+      "owner": "ops-bot"
+    },
+    "repo_path": "platform_bootstrap",
+    "mcp_owner": "document-manager",
+    "file_path": "platform_bootstrap/shared/templates/doc_template.md",
+    "source": "google_drive",
+    "source_record": {
+      "source": "google_drive",
+      "record_id": "drive-file-001",
+      "title": "Roadmap Notes",
+      "content_type": "gdoc",
+      "metadata": {
+        "owner": "owner@example.com",
+        "tags": [
+          "planning"
+        ]
+      }
+    }
+  }
+}

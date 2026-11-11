@@ -1,0 +1,234 @@
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: "Inter", "Poppins", "Segoe UI", "Helvetica", "Arial", sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+.site-shell {
+  min-height: 100vh;
+  background: hsl(var(--background));
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: hsl(var(--card) / 0.92);
+  border-bottom: 1px solid hsl(var(--accent) / 0.2);
+  backdrop-filter: blur(12px);
+}
+
+.site-header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+}
+
+.site-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: hsl(var(--primary));
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.site-nav a {
+  text-decoration: none;
+  color: hsl(var(--muted-foreground));
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  color: hsl(var(--secondary));
+}
+
+.site-nav a[aria-current="page"] {
+  color: hsl(var(--primary));
+}
+
+.site-main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.site-hero {
+  border-radius: var(--radius);
+  background: var(--gradient-hero);
+  color: hsl(var(--card));
+  padding: clamp(2rem, 4vw, 4rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 24px 60px hsl(var(--foreground) / 0.18);
+}
+
+.site-hero .eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.72rem;
+  color: hsl(var(--accent));
+}
+
+.site-hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
+.site-hero p {
+  margin: 0;
+  max-width: 42rem;
+  color: hsl(var(--card));
+}
+
+.site-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.site-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.2rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid hsl(var(--card) / 0.4);
+  color: hsl(var(--card));
+  background: hsl(var(--primary) / 0.15);
+}
+
+.site-button.secondary {
+  background: hsl(var(--card));
+  color: hsl(var(--primary));
+  border-color: hsl(var(--card));
+}
+
+.site-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.site-section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.site-section-title {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.site-section-summary {
+  margin: 0;
+  color: hsl(var(--muted-foreground));
+  max-width: 45rem;
+}
+
+.site-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.data-card {
+  border-radius: var(--radius);
+  background: var(--gradient-card);
+  color: hsl(var(--card-foreground));
+  padding: 1.25rem;
+  border: 1px solid hsl(var(--accent) / 0.2);
+  box-shadow: 0 14px 30px hsl(var(--foreground) / 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.data-card h3 {
+  margin: 0;
+}
+
+.data-card p {
+  margin: 0;
+  color: hsl(var(--muted-foreground));
+}
+
+.data-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.data-pill {
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: hsl(var(--primary));
+  background: hsl(var(--secondary) / 0.15);
+}
+
+.data-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.site-footer {
+  border-top: 1px solid hsl(var(--accent) / 0.2);
+  background: hsl(var(--card));
+  color: hsl(var(--muted-foreground));
+}
+
+.site-footer-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 720px) {
+  .site-section-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1.5rem;
+  }
+}

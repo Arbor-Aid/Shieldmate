@@ -1,0 +1,42 @@
+{
+  "collector_to_consumers": {
+    "network": [
+      "coder-agent",
+      "qa-ai-agent",
+      "mcp-analytics"
+    ],
+    "services": [
+      "coder-agent",
+      "qa-ai-agent",
+      "training_to_sop"
+    ],
+    "firewall": [
+      "qa-ai-agent",
+      "tradeops",
+      "mcp-analytics"
+    ],
+    "ports": [
+      "coder-agent",
+      "qa-ai-agent",
+      "document-manager"
+    ],
+    "event_logs": [
+      "qa-ai-agent",
+      "ai-training-coordinator",
+      "mcp-analytics"
+    ],
+    "scheduled_tasks": [
+      "training_to_sop",
+      "qa-ai-agent"
+    ],
+    "storage": [
+      "tradeops",
+      "tradefinance_lc",
+      "mcp-analytics"
+    ],
+    "users_groups": [
+      "qa-ai-agent",
+      "document-manager"
+    ]
+  }
+}

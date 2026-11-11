@@ -1,0 +1,10 @@
+[33m05004d0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mui-rebuild-flutter-gen-ui[m[33m)[m ops: restore MCP fleet folders + deploy full fleet
+[33m4caa34f[m ops: normalize MCP fleet contract + bulk deploy pipeline
+[33mc986d61[m docs: add ops guardrail marker
+[33m2fed0fd[m ops: record MCP bulk deploy report
+[33mefd4095[m fix: handle missing tools in MCP deploy script
+[33mfa7b352[m fix: correct MCP deploy script image tag interpolation
+[33m77a5322[m mcp: add canonical service contract + standardize endpoints and descriptors
+[33mc424222[m web: reconstruct canonical site tree + dataset exports for MCP consumption
+[33mbd0ec4b[m docs: add MCP rebuild plan
+[33mbbe86d5[m docs+ui: add Slack README and finalize responsive UI rebuild

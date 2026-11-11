@@ -1,0 +1,1 @@
+Return health/status readiness summary for data-scrubbing-ai in compact JSON.

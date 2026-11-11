@@ -1,0 +1,17 @@
+{
+  "customer": {
+    "id": "1234567890"
+  },
+  "campaign": {
+    "id": "987654321",
+    "name": "Sample Campaign"
+  },
+  "metrics": {
+    "impressions": 1234,
+    "clicks": 98,
+    "cost_micros": 4300000
+  },
+  "segments": {
+    "date": "2026-04-06"
+  }
+}
