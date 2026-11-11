@@ -80,32 +80,6 @@ function getRequestMeta(req: express.Request, claims?: VerifiedTokenClaims | nul
   };
 }
 
-function resolveEffectiveOrg(
-  claims: VerifiedTokenClaims,
-  untrustedOrgId?: string
-): { ok: true; org: string } | { ok: false; error: string } {
-  const claimOrg = claims.orgId ?? claims.org;
-  const claimOrgSet = new Set<string>();
-  if (claimOrg) {
-    claimOrgSet.add(claimOrg);
-  }
-  Object.keys(claims.orgRoles ?? {}).forEach((orgId) => {
-    if (orgId) {
-      claimOrgSet.add(orgId);
-    }
-  });
-  if (claimOrgSet.size === 0) {
-    return { ok: false, error: 'Missing org claim' };
-  }
-  if (untrustedOrgId) {
-    if (!claimOrgSet.has(untrustedOrgId)) {
-      return { ok: false, error: 'Org mismatch' };
-    }
-    return { ok: true, org: untrustedOrgId };
-  }
-  return { ok: true, org: Array.from(claimOrgSet)[0] };
-}
-
 app.get('/health', (req, res) => {
   logEvent({
     requestId: randomUUID(),
@@ -229,19 +203,8 @@ async function handleExecute(req: express.Request, res: express.Response) {
         traceId,
       });
     }
-    claims = await requireRole(authHeader, ALLOWED_ROLES);
-    const resolvedOrg = resolveEffectiveOrg(claims, untrustedOrgId);
-    if (!resolvedOrg.ok) {
-      status = 403;
-      return res.status(status).json({
-        error: resolvedOrg.error,
-        normalizedToolId: toolId,
-        originalToolFieldPresent: normalizedTool.originalToolFieldPresent,
-        originalToolIdFieldPresent: normalizedTool.originalToolIdFieldPresent,
-        authorizationPresent: Boolean(authHeader),
-        traceId,
-      });
-    }
+    const authorization = await requireRole(authHeader, ALLOWED_ROLES, untrustedOrgId);
+    claims = authorization.claims;
     const target = resolveRegistryTarget(toolId);
     if (!target) {
       status = 404;
@@ -264,7 +227,7 @@ async function handleExecute(req: express.Request, res: express.Response) {
       ...payload,
       toolId,
       tool: toolId,
-      orgId: resolvedOrg.org,
+      orgId: authorization.org,
       traceId,
     };
     const upstream = await proxyPost(target.targetUrl, upstreamPayload, authHeader, traceId);
@@ -339,12 +302,8 @@ app.post('/mcp/tools/:toolId', async (req, res) => {
       status = 400;
       return res.status(status).json({ error: 'toolId is required' });
     }
-    claims = await requireRole(authHeader, ALLOWED_ROLES);
-    const resolvedOrg = resolveEffectiveOrg(claims, untrustedOrgId);
-    if (!resolvedOrg.ok) {
-      status = 403;
-      return res.status(status).json({ error: resolvedOrg.error });
-    }
+    const authorization = await requireRole(authHeader, ALLOWED_ROLES, untrustedOrgId);
+    claims = authorization.claims;
     const target = resolveRegistryTarget(toolId);
     if (!target) {
       status = 404;
@@ -357,7 +316,7 @@ app.post('/mcp/tools/:toolId', async (req, res) => {
     const targetUrl = `${target.baseUrl}/mcp/tools/${toolId}`;
     const upstreamPayload = {
       ...payload,
-      orgId: resolvedOrg.org,
+      orgId: authorization.org,
     };
     const upstream = await proxyPost(targetUrl, upstreamPayload, authHeader, requestId);
     status = upstream.status;
@@ -402,12 +361,8 @@ app.post('/mcp/context', async (req, res) => {
       status = 400;
       return res.status(status).json({ error: 'toolId is required' });
     }
-    claims = await requireRole(authHeader, ALLOWED_ROLES);
-    const resolvedOrg = resolveEffectiveOrg(claims, untrustedOrgId);
-    if (!resolvedOrg.ok) {
-      status = 403;
-      return res.status(status).json({ error: resolvedOrg.error });
-    }
+    const authorization = await requireRole(authHeader, ALLOWED_ROLES, untrustedOrgId);
+    claims = authorization.claims;
     const target = resolveRegistryTarget(toolId);
     if (!target) {
       status = 404;
@@ -420,7 +375,7 @@ app.post('/mcp/context', async (req, res) => {
     const contextUrl = `${target.baseUrl}/context`;
     const upstreamPayload = {
       ...payload,
-      orgId: resolvedOrg.org,
+      orgId: authorization.org,
     };
     const upstream = await proxyPost(contextUrl, upstreamPayload, authHeader, requestId);
     status = upstream.status;

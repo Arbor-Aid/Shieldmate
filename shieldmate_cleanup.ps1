@@ -5,10 +5,10 @@
 $ErrorActionPreference = 'Stop'
 
 # --------- CONFIG (edit if needed) ----------
-$PROJECT_ROOT = "D:\shieldmatessd\shieldmate\frontend\flutter"
+$PROJECT_ROOT = "D:\2marines\Shieldmate\frontend\flutter"
 $ANDROID_SDK  = "D:\Android\Sdk"
 $JAVA_HOME    = "C:\Program Files\Eclipse Adoptium\jdk-21.0.4.7-hotspot"
-$NUGET_EXE    = "D:\shieldmatessd\nuget.exe"   # leave as-is if nuget.exe is here; otherwise point to your nuget.exe
+$NUGET_EXE    = "D:\2marines\Shieldmate\nuget.exe"   # leave as-is if nuget.exe is here; otherwise point to your nuget.exe
 
 # Toggles
 $RUN_FORMAT    = $true

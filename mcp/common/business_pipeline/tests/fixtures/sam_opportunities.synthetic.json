@@ -1,0 +1,32 @@
+{
+  "fixtureType": "SYNTHETIC",
+  "totalRecords": 2,
+  "limit": 2,
+  "offset": 0,
+  "opportunitiesData": [
+    {
+      "_fixture": "SYNTHETIC",
+      "noticeId": "SIM-SAM-001",
+      "title": "SIMULATION Commercial Equipment Supply",
+      "solicitationNumber": "SIM-2026-001",
+      "postedDate": "2026-10-14T09:30:00",
+      "responseDeadLine": "2026-11-02T17:00:00-04:00",
+      "naicsCode": "423830",
+      "classificationCode": "3690",
+      "fullParentPathName": "SIMULATION AGENCY",
+      "type": "Solicitation",
+      "active": "Yes",
+      "uiLink": "https://sam.gov/opp/SIM-SAM-001/view"
+    },
+    {
+      "_fixture": "SYNTHETIC",
+      "noticeId": "SIM-SAM-002",
+      "title": "SIMULATION Thailand-Origin Product with Domestic-Origin Gate",
+      "postedDate": "2026-10-14",
+      "naicsCode": "423830",
+      "type": "Combined Synopsis/Solicitation",
+      "active": "Yes",
+      "uiLink": "https://sam.gov/opp/SIM-SAM-002/view"
+    }
+  ]
+}
