@@ -169,6 +169,58 @@ class UserProfileService {
     }
   }
 
+  Future<UserProfile> completeOnboarding({
+    required String branch,
+    required String yearsOfService,
+    required String highestRank,
+    required String dischargeStatus,
+    required List<String> supportNeeds,
+    String? additionalContext,
+  }) async {
+    final user = _auth.currentUser;
+    if (user == null) {
+      throw StateError('No authenticated user.');
+    }
+    if (branch.isEmpty ||
+        yearsOfService.isEmpty ||
+        highestRank.isEmpty ||
+        dischargeStatus.isEmpty ||
+        supportNeeds.isEmpty) {
+      throw ArgumentError('Onboarding data is incomplete.');
+    }
+
+    final ref = _firestore.collection('users').doc(user.uid);
+    final existing = await ref.get();
+    final existingData = existing.data();
+    await ref.set({
+      'uid': user.uid,
+      'email': user.email,
+      'displayName': user.displayName,
+      if (existingData?['role'] == null) 'role': 'client',
+      'onboardingCompleted': true,
+      'onboarding': {
+        'branch': branch,
+        'yearsOfService': yearsOfService,
+        'highestRank': highestRank,
+        'dischargeStatus': dischargeStatus,
+        'supportNeeds': supportNeeds,
+        if (additionalContext != null && additionalContext.trim().isNotEmpty)
+          'additionalContext': additionalContext.trim(),
+        'completedAt': FieldValue.serverTimestamp(),
+      },
+      if (!existing.exists) 'createdAt': FieldValue.serverTimestamp(),
+      'updatedAt': FieldValue.serverTimestamp(),
+      'lastLogin': FieldValue.serverTimestamp(),
+    }, SetOptions(merge: true));
+
+    final updated = await ref.get();
+    final profile = UserProfile.fromDocument(updated);
+    if (profile == null) {
+      throw StateError('Onboarding profile could not be loaded after saving.');
+    }
+    return profile;
+  }
+
   Future<AppRole> resolveRole(User user) async {
     try {
       final token = await user.getIdTokenResult();

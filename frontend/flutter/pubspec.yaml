@@ -54,6 +54,9 @@ dependencies:
   awesome_notifications: ^0.10.1
   hive: ^2.2.3
   dio: ^5.9.0
+  a2ui_flutter: 0.3.0
+  a2ui_core: 0.7.0
+  json_schema_builder: 0.1.7
 
 dev_dependencies:
   flutter_test:

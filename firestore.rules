@@ -77,8 +77,11 @@ service cloud.firestore {
 
     // Users collection: users manage their own profile; admins can read
     match /users/{userId} {
-      allow read: if hasAppCheck() && (isSameUser(userId) || hasGlobalRole('super_admin'));
-      allow write: if hasAppCheck() && isSameUser(userId);
+      allow read: if
+        isSameUser(userId) ||
+        hasGlobalRole('super_admin');
+      allow write: if
+        isSameUser(userId);
     }
 
     // Organizations collection

@@ -10,6 +10,7 @@ class UserProfile {
     this.displayName,
     this.email,
     this.orgId,
+    this.onboardingCompleted = true,
   });
 
   final String uid;
@@ -18,6 +19,7 @@ class UserProfile {
   final String? displayName;
   final String? email;
   final String? orgId;
+  final bool onboardingCompleted;
 
   static UserProfile? fromDocument(DocumentSnapshot<Map<String, dynamic>> doc) {
     final data = doc.data();
@@ -30,6 +32,8 @@ class UserProfile {
       displayName: data['displayName'] as String?,
       email: data['email'] as String?,
       orgId: data['orgId'] as String?,
+      // Existing profiles predate this explicit marker and remain complete.
+      onboardingCompleted: data['onboardingCompleted'] as bool? ?? true,
     );
   }
 }

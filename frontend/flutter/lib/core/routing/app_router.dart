@@ -12,10 +12,7 @@ import '../../features/documents/screens/outreach_pdf_upload_screen.dart';
 import '../../features/errors/screens/error_screen.dart';
 import '../../features/errors/screens/loading_screen.dart';
 import '../../features/errors/screens/permission_denied_screen.dart';
-import '../../features/onboarding/screens/intake_step1_basic_info.dart';
-import '../../features/onboarding/screens/intake_step2_service_history.dart';
-import '../../features/onboarding/screens/intake_step3_needs_assessment.dart';
-import '../../features/onboarding/screens/onboarding_complete_screen.dart';
+import '../../features/onboarding/screens/onboarding_flow_screen.dart';
 import '../../features/profile/screens/edit_profile_screen.dart';
 import '../../features/profile/screens/profile_screen.dart';
 import 'app_navigation.dart';
@@ -79,21 +76,24 @@ class AppSession {
     );
   }
 
-  factory AppSession.error({required String message, bool permissionDenied = false}) {
+  factory AppSession.error(
+      {required String message, bool permissionDenied = false}) {
     return AppSession._(
       isAuthenticated: false,
       hasProfile: false,
       role: AppRole.client,
       isLoading: false,
-      error: AppSessionError(message: message, permissionDenied: permissionDenied),
+      error:
+          AppSessionError(message: message, permissionDenied: permissionDenied),
     );
   }
 }
 
 class AppRouter {
-  const AppRouter({required this.session});
+  const AppRouter({required this.session, this.onSessionRefresh});
 
   final AppSession session;
+  final Future<void> Function()? onSessionRefresh;
 
   Route<dynamic> onGenerateRoute(RouteSettings settings) {
     final name = settings.name ?? AppRoutes.root;
@@ -135,17 +135,7 @@ class AppRouter {
   }
 
   Route<dynamic> _routeForOnboarding(String name) {
-    switch (name) {
-      case AppRoutes.onboardingStep2:
-        return _page(const IntakeStep2ServiceHistory());
-      case AppRoutes.onboardingStep3:
-        return _page(const IntakeStep3NeedsAssessment());
-      case AppRoutes.onboardingComplete:
-        return _page(const OnboardingCompleteScreen());
-      case AppRoutes.onboardingStep1:
-      default:
-        return _page(const IntakeStep1BasicInfo());
-    }
+    return _page(OnboardingFlowScreen(onCompleted: onSessionRefresh));
   }
 
   Route<dynamic> _routeForAuthenticated(String name) {
@@ -175,7 +165,8 @@ class AppRouter {
           child: OutreachPdfUploadScreen(role: session.role),
         );
       case AppRoutes.profile:
-        return _page(ProfileScreen(role: session.role, profile: session.profile));
+        return _page(
+            ProfileScreen(role: session.role, profile: session.profile));
       case AppRoutes.editProfile:
         return _page(EditProfileScreen(profile: session.profile));
       default:
@@ -194,7 +185,8 @@ class AppRouter {
     }
   }
 
-  Route<dynamic> _guardRole({required Set<AppRole> allowed, required Widget child}) {
+  Route<dynamic> _guardRole(
+      {required Set<AppRole> allowed, required Widget child}) {
     if (!allowed.contains(session.role)) {
       return _page(const PermissionDeniedScreen());
     }

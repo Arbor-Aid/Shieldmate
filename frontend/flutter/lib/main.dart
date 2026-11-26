@@ -46,7 +46,7 @@ Future<void> _initializeAppCheck() async {
       );
     }
     await FirebaseAppCheck.instance.activate(
-      providerWeb: ReCaptchaV3Provider(_webAppCheckSiteKey),
+      providerWeb: ReCaptchaEnterpriseProvider(_webAppCheckSiteKey),
       providerAndroid: kDebugMode
           ? const AndroidDebugProvider()
           : const AndroidPlayIntegrityProvider(),
@@ -127,7 +127,7 @@ class _ShieldmateAppState extends State<ShieldmateApp> {
                   return _buildApp(
                     AppSession.authenticated(
                       role: data.role,
-                      hasProfile: data.profile != null,
+                      hasProfile: data.profile?.onboardingCompleted ?? false,
                       profile: data.profile,
                     ),
                   );
@@ -174,7 +174,7 @@ class _ShieldmateAppState extends State<ShieldmateApp> {
                 return _buildApp(
                   AppSession.authenticated(
                     role: data.role,
-                    hasProfile: data.profile != null,
+                    hasProfile: data.profile?.onboardingCompleted ?? false,
                     profile: data.profile,
                   ),
                 );
@@ -192,9 +192,22 @@ class _ShieldmateAppState extends State<ShieldmateApp> {
       debugShowCheckedModeBanner: false,
       title: 'ShieldMate',
       theme: AppTheme.light(),
-      onGenerateRoute: AppRouter(session: session).onGenerateRoute,
+      darkTheme: AppTheme.dark(),
+      themeMode: ThemeMode.system,
+      onGenerateRoute: AppRouter(
+        session: session,
+        onSessionRefresh: _refreshSession,
+      ).onGenerateRoute,
       initialRoute: AppRoutes.root,
     );
+  }
+
+  Future<void> _refreshSession() async {
+    if (!mounted) return;
+    setState(() {
+      _sessionUid = null;
+      _sessionFuture = null;
+    });
   }
 
   Future<_SessionData> _sessionFor(User user) {
@@ -212,7 +225,9 @@ class _ShieldmateAppState extends State<ShieldmateApp> {
 
   String _sessionAppKey(AppSession session) {
     if (session.isLoading) return 'loading';
-    if (session.error != null) return 'error:${session.error!.permissionDenied}';
+    if (session.error != null) {
+      return 'error:${session.error!.permissionDenied}';
+    }
     if (!session.isAuthenticated) return 'unauthenticated';
     return 'authenticated:${session.role.name}:${session.hasProfile}:${_sessionUid ?? 'unknown'}';
   }

@@ -2,19 +2,29 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   static ThemeData light() {
-    const seed = Color(0xFF1D4ED8);
+    return _build(Brightness.light);
+  }
+
+  static ThemeData dark() {
+    return _build(Brightness.dark);
+  }
+
+  static ThemeData _build(Brightness brightness) {
+    const seed = Color(0xFF2563EB);
+    final isDark = brightness == Brightness.dark;
     final base = ThemeData(
       colorScheme: ColorScheme.fromSeed(
         seedColor: seed,
-        brightness: Brightness.light,
+        brightness: brightness,
       ),
       useMaterial3: true,
     );
 
     return base.copyWith(
-      scaffoldBackgroundColor: const Color(0xFFF8FAFC),
+      scaffoldBackgroundColor:
+          isDark ? const Color(0xFF0F172A) : const Color(0xFFF8FAFC),
       cardTheme: CardThemeData(
-        color: Colors.white,
+        color: isDark ? const Color(0xFF1E293B) : Colors.white,
         elevation: 0,
         margin: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
@@ -28,12 +38,13 @@ class AppTheme {
       textTheme: _textTheme(base.textTheme),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: const Color(0xFFF1F5F9),
+        fillColor: isDark ? const Color(0xFF1E293B) : const Color(0xFFF1F5F9),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppRadii.input),
           borderSide: BorderSide.none,
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -42,6 +53,22 @@ class AppTheme {
             borderRadius: BorderRadius.circular(AppRadii.button),
           ),
           textStyle: const TextStyle(fontWeight: FontWeight.w600),
+        ),
+      ),
+      filledButtonTheme: FilledButtonThemeData(
+        style: FilledButton.styleFrom(
+          minimumSize: const Size(48, 48),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppRadii.button),
+          ),
+          textStyle: const TextStyle(fontWeight: FontWeight.w700),
+        ),
+      ),
+      chipTheme: base.chipTheme.copyWith(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppRadii.chip),
         ),
       ),
       navigationBarTheme: NavigationBarThemeData(
@@ -72,7 +99,13 @@ class AppTheme {
 }
 
 class AppSpacing {
-  static const EdgeInsets pagePadding = EdgeInsets.symmetric(horizontal: 20, vertical: 16);
+  static const double xs = 8;
+  static const double sm = 12;
+  static const double md = 16;
+  static const double lg = 20;
+  static const double xl = 32;
+  static const EdgeInsets pagePadding =
+      EdgeInsets.symmetric(horizontal: 20, vertical: 16);
   static const EdgeInsets sectionPadding = EdgeInsets.symmetric(vertical: 12);
   static const double cardGap = 16;
   static const double itemGap = 12;
@@ -82,4 +115,5 @@ class AppRadii {
   static const double card = 16;
   static const double button = 14;
   static const double input = 14;
+  static const double chip = 12;
 }
