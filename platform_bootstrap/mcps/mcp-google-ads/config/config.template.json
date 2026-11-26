@@ -1,0 +1,7 @@
+{
+  "service": "mcp-google-ads",
+  "env": {
+    "PORT": "8080",
+    "MCP_SERVICE_NAME": "mcp-google-ads"
+  }
+}

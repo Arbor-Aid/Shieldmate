@@ -1,0 +1,1 @@
+Return health/status readiness summary for ai-expense-manager in compact JSON.

@@ -1,0 +1,56 @@
+﻿
+Name                               Mode     Length LastWriteTime        
+----                               ----     ------ -------------        
+.env.2marines                      -a----      437 1/13/2026 3:22:21 AM 
+.env.bak                           -a----      626 1/13/2026 3:22:21 AM 
+.env.marinecoin                    -a----      502 1/13/2026 3:22:21 AM 
+.env.shieldmate                    -a----      440 1/13/2026 8:20:48 AM 
+.firebaserc                        -a----      360 1/13/2026 3:22:21 AM 
+.git                               d--h--          1/14/2026 10:35:16 PM
+.github                            d-----          1/13/2026 3:22:21 AM 
+.gitignore                         -a----     1257 1/13/2026 9:06:51 AM 
+_listing_reclone.txt               -a---- 11763423 1/14/2026 9:19:58 PM 
+_snapshots                         d-----          1/14/2026 10:35:16 PM
+_tree_reclone.txt                  -a----  6038770 1/14/2026 9:19:31 PM 
+ADMIN_RUNBOOK.md                   -a----     2808 1/13/2026 3:22:21 AM 
+AI_GUIDELINES.md                   -a----     2547 1/13/2026 4:31:10 AM 
+ARCHITECTURE.md                    -a----     1897 1/13/2026 4:31:14 AM 
+backend                            d-----          1/13/2026 3:22:21 AM 
+cleanup-duplicates.ps1             -a----     1068 1/13/2026 3:22:21 AM 
+deploy-shieldmate.ps1              -a----     1325 1/13/2026 3:22:21 AM 
+docs                               d-----          1/13/2026 9:12:01 AM 
+firebase.json                      -a----     9032 1/13/2026 3:22:21 AM 
+firestore.indexes.json             -a----      277 1/13/2026 3:22:21 AM 
+firestore.rules                    -a----     6659 1/13/2026 3:22:21 AM 
+flutter                            d-----          1/13/2026 3:52:00 AM 
+frontend                           d-----          1/13/2026 4:29:51 AM 
+gateway                            d-----          1/13/2026 3:22:21 AM 
+git_housekeeping.ps1               -a----     3019 1/13/2026 3:22:21 AM 
+infra                              d-----          1/13/2026 4:29:51 AM 
+MANUAL_VERIFICATION.md             -a----      629 1/13/2026 3:22:21 AM 
+mcp                                d-----          1/13/2026 11:48:39 AM
+mcp_bulk_docker_gcp_deploy_csv.ps1 -a----     9952 1/13/2026 9:34:37 AM 
+mcp_services.csv                   -a----     2278 1/13/2026 12:11:43 PM
+mcp_services_fixed.csv             -a----      159 1/13/2026 10:27:25 AM
+nuget.exe                          -a----  8974384 1/13/2026 3:22:21 AM 
+ops                                d-----          1/13/2026 11:46:52 AM
+ORG_ONBOARDING_SOP.md              -a----     1317 1/13/2026 3:22:21 AM 
+README.md                          -a----     2114 1/13/2026 7:21:57 AM 
+README_ARCHITECTURE.md             -a----     1459 1/13/2026 7:21:24 AM 
+README_COMPLIANCE.md               -a----     1128 1/13/2026 7:21:24 AM 
+README_DEPLOYMENT.md               -a----     1166 1/13/2026 7:21:24 AM 
+README_MCPs.md                     -a----     4302 1/13/2026 12:30:51 PM
+README_SLACK.md                    -a----     1443 1/13/2026 8:20:37 AM 
+rebuild_option1.ps1                -a----    10078 1/14/2026 10:32:45 PM
+RELEASE_v1.0.0.md                  -a----      571 1/13/2026 3:22:21 AM 
+scripts                            d-----          1/13/2026 11:24:00 AM
+shared                             d-----          1/13/2026 3:22:21 AM 
+shieldmate.code-workspace          -a----     4334 1/13/2026 4:31:38 AM 
+shieldmate_cleanup.ps1             -a----     6195 1/13/2026 4:31:30 AM 
+storage.rules                      -a----      327 1/13/2026 3:22:21 AM 
+ting_reclone.txt                   -a----      755 1/14/2026 9:27:43 PM 
+update-deps.ps1                    -a----     2619 1/13/2026 3:22:21 AM 
+WEEK_1_OPS_CHECKLIST.md            -a----      300 1/13/2026 3:22:21 AM 
+
+
+

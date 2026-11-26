@@ -1,0 +1,8 @@
+{
+  "toolId": "information-retrieval-ai.status",
+  "input": {
+    "source": "google_drive",
+    "sample_record_path": "platform_bootstrap/integrations/google_drive/normalized/drive_normalized_sample.json",
+    "mode": "readiness_smoke"
+  }
+}

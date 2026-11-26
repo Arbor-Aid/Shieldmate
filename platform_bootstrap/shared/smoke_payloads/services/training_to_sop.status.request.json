@@ -1,0 +1,9 @@
+{
+  "toolId": "training_to_sop.status",
+  "tool": "training_to_sop.status",
+  "input": {
+    "smoke": true,
+    "service": "training_to_sop",
+    "source": "platform_bootstrap"
+  }
+}

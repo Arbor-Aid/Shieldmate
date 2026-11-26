@@ -6,12 +6,12 @@ import { assignRoles } from "@/services/rbacAdminClient";
 import { addOrgMember } from "@/services/orgAccessService";
 import { recordAudit } from "@/lib/audit";
 
-const availableRoles = ["super_admin", "org_admin", "staff", "client"];
+const globalRoles = ["super_admin"];
 
 const AdminRbac = () => {
   const [uid, setUid] = useState("");
   const [orgId, setOrgId] = useState("");
-  const [roles, setRoles] = useState<string[]>(["client"]);
+  const [roles, setRoles] = useState<string[]>([]);
   const [orgRoles, setOrgRoles] = useState<string[]>([]);
   const [status, setStatus] = useState<string | null>(null);
 
@@ -21,13 +21,51 @@ const AdminRbac = () => {
 
   const handleAssign = async () => {
     setStatus(null);
+
+    const targetUid = uid.trim();
+    const targetOrgId = orgId.trim();
+
+    if (!targetUid) {
+      setStatus("User UID is required.");
+      return;
+    }
+    if (orgRoles.length > 0 && !targetOrgId) {
+      setStatus("Organization ID is required for organization roles.");
+      return;
+    }
+    if (roles.length === 0 && orgRoles.length === 0) {
+      setStatus("Select at least one role.");
+      return;
+    }
+
     try {
-      await assignRoles({ uid, roles, orgRoles: orgId ? { [orgId]: orgRoles } : {} });
-      if (orgId && orgRoles.length) {
-        await addOrgMember(orgId, { uid, orgId, roles: orgRoles as any, status: "active" });
+      await assignRoles({
+        uid: targetUid,
+        orgId: targetOrgId || undefined,
+        roles,
+        orgRoles:
+          targetOrgId && orgRoles.length > 0
+            ? { [targetOrgId]: orgRoles }
+            : {},
+      });
+
+      if (targetOrgId && orgRoles.length > 0) {
+        await addOrgMember(targetOrgId, {
+          uid: targetUid,
+          orgId: targetOrgId,
+          roles: orgRoles as any,
+          status: "active",
+        });
       }
-      setStatus("Updated roles and membership.");
-      recordAudit({ category: "org", action: "admin_assign_roles", uid, orgId, details: { roles, orgRoles } });
+
+      setStatus("Updated claims and organization membership.");
+      recordAudit({
+        category: "org",
+        action: "admin_assign_roles",
+        uid: targetUid,
+        orgId: targetOrgId,
+        details: { roles, orgRoles },
+      });
     } catch (error) {
       setStatus("Failed to update roles.");
       console.error(error);
@@ -54,9 +92,9 @@ const AdminRbac = () => {
                   onChange={(e) => setUid(e.target.value)}
                   placeholder="Firebase UID"
                 />
-                <label className="text-sm font-medium">Global Roles</label>
+                <label className="text-sm font-medium">Global Roles (super_admin only)</label>
                 <div className="flex flex-wrap gap-2">
-                  {availableRoles.map((role) => (
+                  {globalRoles.map((role) => (
                     <button
                       key={role}
                       onClick={() => toggle(role, roles, setRoles)}
@@ -69,7 +107,7 @@ const AdminRbac = () => {
               </div>
 
               <div className="border rounded-lg p-4 space-y-3">
-                <label className="text-sm font-medium">Organization ID (optional)</label>
+                <label className="text-sm font-medium">Organization ID (required for org roles)</label>
                 <input
                   className="w-full border rounded px-3 py-2 bg-background"
                   value={orgId}
@@ -78,7 +116,7 @@ const AdminRbac = () => {
                 />
                 <label className="text-sm font-medium">Org Roles</label>
                 <div className="flex flex-wrap gap-2">
-                  {["org_admin", "staff", "client"].map((role) => (
+                  {["org_admin", "staff", "case_worker", "client"].map((role) => (
                     <button
                       key={role}
                       onClick={() => toggle(role, orgRoles, setOrgRoles)}
@@ -95,7 +133,7 @@ const AdminRbac = () => {
               <button
                 onClick={handleAssign}
                 className="px-4 py-2 rounded bg-primary text-primary-foreground"
-                disabled={!uid}
+                disabled={!uid.trim() || (orgRoles.length > 0 && !orgId.trim()) || (roles.length === 0 && orgRoles.length === 0)}
               >
                 Assign Roles
               </button>

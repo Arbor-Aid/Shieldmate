@@ -1,0 +1,9 @@
+{
+  "toolId": "fundraising-chatbot-ai.status",
+  "tool": "fundraising-chatbot-ai.status",
+  "input": {
+    "smoke": true,
+    "service": "fundraising-chatbot-ai",
+    "source": "platform_bootstrap"
+  }
+}

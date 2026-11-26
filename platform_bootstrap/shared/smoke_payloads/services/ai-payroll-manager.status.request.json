@@ -1,0 +1,9 @@
+{
+  "toolId": "ai-payroll-manager.status",
+  "tool": "ai-payroll-manager.status",
+  "input": {
+    "smoke": true,
+    "service": "ai-payroll-manager",
+    "source": "platform_bootstrap"
+  }
+}

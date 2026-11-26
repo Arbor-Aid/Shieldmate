@@ -1,0 +1,13 @@
+{
+  "source": "google_drive",
+  "record_id": "drive-file-001",
+  "title": "Roadmap Notes",
+  "content_type": "gdoc",
+  "ingested_at": "2026-04-06T12:05:00Z",
+  "metadata": {
+    "owner": "owner@example.com",
+    "tags": [
+      "planning"
+    ]
+  }
+}

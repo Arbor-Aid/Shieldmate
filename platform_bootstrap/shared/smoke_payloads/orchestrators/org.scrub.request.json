@@ -1,0 +1,11 @@
+{
+  "toolId": "org.scrub",
+  "tool": "org.scrub",
+  "input": {
+    "org_id": "org-demo-001",
+    "org_name": "ShieldMate Demo Org",
+    "admin_email": "admin@example.com",
+    "api_token": "should-not-leak",
+    "phone": "+1-555-123-4567"
+  }
+}

@@ -1,61 +1,57 @@
 import * as functions from "firebase-functions";
-import admin from "firebase-admin";
+import { getApps, initializeApp } from "firebase-admin/app";
+import { getAuth } from "firebase-admin/auth";
+import { FieldValue, getFirestore } from "firebase-admin/firestore";
+import { assertAuthorizedAssignment, buildCustomClaims } from "./claims-policy.js";
 
-if (admin.apps.length === 0) {
-  admin.initializeApp();
+if (getApps().length === 0) {
+  initializeApp();
 }
 
-const allowedRoles = ["super_admin", "org_admin", "staff", "client"];
+const auth = getAuth();
+const firestore = getFirestore();
 
-export const setUserClaims = functions.https.onCall(async (data, context) => {
-  if (!context.auth) {
+export const setUserClaims = functions.https.onCall(async (request) => {
+  const { auth: callerAuth, data } = request;
+  if (!callerAuth) {
     throw new functions.https.HttpsError("unauthenticated", "Authentication required.");
   }
 
-  const callerClaims = context.auth.token || {};
-  if (!Array.isArray(callerClaims.roles) || !callerClaims.roles.includes("super_admin")) {
-    throw new functions.https.HttpsError("permission-denied", "Only super_admin may issue roles.");
+  let assignment;
+  try {
+    assignment = buildCustomClaims(data || {});
+  } catch (error) {
+    throw new functions.https.HttpsError("invalid-argument", error.message);
+  }
+  const { uid, claims, organizationIds } = assignment;
+  try {
+    assertAuthorizedAssignment(callerAuth.token || {}, callerAuth.uid, uid);
+  } catch (error) {
+    throw new functions.https.HttpsError("permission-denied", error.message);
   }
 
-  const { uid, roles = [], orgRoles = {} } = data || {};
-  if (!uid) {
-    throw new functions.https.HttpsError("invalid-argument", "uid is required.");
+  if (organizationIds.length > 0) {
+    const refs = organizationIds.map((orgId) => firestore.collection("organizations").doc(orgId));
+    const snapshots = await firestore.getAll(...refs);
+    const missingOrg = snapshots.find((snapshot) => !snapshot.exists);
+    if (missingOrg) {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        `Unknown organization: ${missingOrg.id}`,
+      );
+    }
   }
-  if (uid === context.auth.uid) {
-    throw new functions.https.HttpsError("permission-denied", "Self-escalation is not allowed.");
-  }
 
-  const validateRoles = (list) => {
-    if (!Array.isArray(list)) return [];
-    list.forEach((r) => {
-      if (!allowedRoles.includes(r)) {
-        throw new functions.https.HttpsError("invalid-argument", `Invalid role: ${r}`);
-      }
-    });
-    return list;
-  };
+  await auth.setCustomUserClaims(uid, claims);
 
-  const safeRoles = validateRoles(roles);
-  const safeOrgRoles = {};
-  Object.entries(orgRoles || {}).forEach(([orgId, roleList]) => {
-    safeOrgRoles[orgId] = validateRoles(roleList);
-  });
-
-  const claims = {
-    roles: safeRoles,
-    orgRoles: safeOrgRoles,
-  };
-
-  await admin.auth().setCustomUserClaims(uid, claims);
-
-  await admin.firestore().collection("audits").add({
-    uid: context.auth.uid,
+  await firestore.collection("audits").add({
+    uid: callerAuth.uid,
     targetUid: uid,
     action: "set_user_claims",
     category: "auth",
-    orgId: data.orgId || null,
+    orgId: claims.orgId || null,
     claims,
-    timestamp: admin.firestore.FieldValue.serverTimestamp(),
+    timestamp: FieldValue.serverTimestamp(),
     retentionDays: 365,
   });
 
@@ -73,7 +69,7 @@ const buildUiuxHandler = (kind) =>
     const authHeader = req.headers.authorization;
     if (authHeader && authHeader.startsWith("Bearer ")) {
       try {
-        decoded = await admin.auth().verifyIdToken(authHeader.slice(7), true);
+        decoded = await auth.verifyIdToken(authHeader.slice(7), true);
       } catch {
         res.status(401).json({ error: "Unauthorized" });
         return;
@@ -98,13 +94,19 @@ const buildUiuxHandler = (kind) =>
       return;
     }
 
-    await admin.firestore().collection(kind === "audit" ? "ux_audits" : "ux_events").add({
+    const decodedRoles = Array.isArray(decoded?.roles)
+      ? decoded.roles.filter((role) => typeof role === "string" && role.length > 0)
+      : [];
+    const actorRole = decodedRoles[0] || decoded?.role || null;
+    const actorOrg = decoded?.orgId || decoded?.org || null;
+
+    await firestore.collection(kind === "audit" ? "ux_audits" : "ux_events").add({
       ...payload,
       source: "shieldmate-ui",
       actorUid: decoded ? decoded.uid : null,
-      actorRole: decoded ? decoded.role : null,
-      actorOrg: decoded ? decoded.org : null,
-      receivedAt: admin.firestore.FieldValue.serverTimestamp(),
+      actorRole,
+      actorOrg,
+      receivedAt: FieldValue.serverTimestamp(),
     });
 
     res.status(200).json({ ok: true, stored: true });

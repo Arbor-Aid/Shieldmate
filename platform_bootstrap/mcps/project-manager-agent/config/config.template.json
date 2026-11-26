@@ -1,0 +1,7 @@
+{
+  "service": "project-manager-agent",
+  "env": {
+    "PORT": "8080",
+    "MCP_SERVICE_NAME": "project-manager-agent"
+  }
+}

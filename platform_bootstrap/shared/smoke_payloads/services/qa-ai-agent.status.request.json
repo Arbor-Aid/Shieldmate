@@ -1,0 +1,9 @@
+{
+  "toolId": "qa-ai-agent.status",
+  "tool": "qa-ai-agent.status",
+  "input": {
+    "smoke": true,
+    "service": "qa-ai-agent",
+    "source": "platform_bootstrap"
+  }
+}

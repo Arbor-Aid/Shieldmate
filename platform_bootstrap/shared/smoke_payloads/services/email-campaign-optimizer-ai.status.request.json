@@ -1,0 +1,9 @@
+{
+  "toolId": "email-campaign-optimizer-ai.status",
+  "tool": "email-campaign-optimizer-ai.status",
+  "input": {
+    "smoke": true,
+    "service": "email-campaign-optimizer-ai",
+    "source": "platform_bootstrap"
+  }
+}

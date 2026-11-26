@@ -4,6 +4,7 @@ import { useRoleAuth } from "./useRoleAuth";
 import { useAuth } from "@/hooks/useAuth";
 import { getGuidancePrompts, getContextualSuggestions, needsHumanEscalation, MessageContext } from "@/services/aiGuidanceService";
 import { queryOpenAI } from "@/services/aiAssistantService";
+import { doesEffectiveRoleSatisfy } from "@/services/roleService";
 import { trackEvent } from "@/lib/firebase";
 import { useToast } from "@/hooks/use-toast";
 import { analyzeSentiment } from "@/services/sentimentAnalysisService";
@@ -36,10 +37,13 @@ export function useGuidedAssistant() {
   const { toast } = useToast();
   const [needsEscalation, setNeedsEscalation] = useState(false);
   const [userContext, setUserContext] = useState<string>("");
+  const isClientRole = doesEffectiveRoleSatisfy(userRole, "client");
+  const isOrganizationRole = doesEffectiveRoleSatisfy(userRole, "organization");
+  const isAdminRole = doesEffectiveRoleSatisfy(userRole, "admin");
 
   useEffect(() => {
     const fetchUserProfile = async () => {
-      if (currentUser?.uid && userRole === "client") {
+      if (currentUser?.uid && isClientRole) {
         try {
           const profile = await getUserProfile(currentUser.uid);
           if (profile) {
@@ -59,7 +63,7 @@ export function useGuidedAssistant() {
     };
     
     fetchUserProfile();
-  }, [currentUser, userRole]);
+  }, [currentUser, isClientRole]);
 
   const initialize = useCallback(async () => {
     if (messages.length === 0) {
@@ -70,11 +74,11 @@ export function useGuidedAssistant() {
         
         let welcomeText = "Hello! I'm your 2Marines AI Assistant. How can I help you today?";
         
-        if (userRole === "client") {
+        if (isClientRole) {
           welcomeText = "Welcome! I'm your 2Marines AI Assistant. I can help you find housing, employment, benefits information, and other support services. What can I assist you with today?";
-        } else if (userRole === "organization") {
+        } else if (isOrganizationRole) {
           welcomeText = "Hello! I'm your 2Marines AI Assistant. I can help you manage referrals, find resources for your clients, and connect with other support services. How can I assist you today?";
-        } else if (userRole === "admin") {
+        } else if (isAdminRole) {
           welcomeText = "Welcome, admin! I'm your 2Marines AI Assistant. I can help you with system analytics, user management, and organization oversight. What would you like to know?";
         }
         
@@ -107,7 +111,7 @@ export function useGuidedAssistant() {
         setIsLoading(false);
       }
     }
-  }, [currentUser, messages.length, toast, userRole]);
+  }, [currentUser, messages.length, toast, userRole, isClientRole, isOrganizationRole, isAdminRole]);
 
   useEffect(() => {
     if (messages.length > 0 && !isLoading) {
@@ -240,7 +244,7 @@ export function useGuidedAssistant() {
         systemPrompt += `\n\nUser Information:\n${userContext}`;
       }
       
-      if (userRole === "client") {
+      if (isClientRole) {
         systemPrompt = "You are a supportive assistant for veterans. Provide clear, compassionate guidance about housing, employment, VA benefits, and mental health resources. If the user seems uncertain, suggest specific resources they might need.";
         
         if (userMessage.category === "housing") {
@@ -248,9 +252,9 @@ export function useGuidedAssistant() {
         } else if (userMessage.category === "appointment") {
           systemPrompt += "\n\nThe user wants to schedule an appointment. Help collect relevant information like preferred date, time, purpose of the meeting, and any specific requirements. Guide them through the scheduling process.";
         }
-      } else if (userRole === "organization") {
+      } else if (isOrganizationRole) {
         systemPrompt = "You are an assistant for organizations supporting veterans. Provide information about case management, referral processes, and available resources. Help organizations better serve their veteran clients.";
-      } else if (userRole === "admin") {
+      } else if (isAdminRole) {
         systemPrompt = "You are an assistant for 2Marines administrators. Provide insights about system performance, user activity, and organization management. Help admins make data-driven decisions.";
       }
       
@@ -323,7 +327,7 @@ export function useGuidedAssistant() {
     } finally {
       setIsLoading(false);
     }
-  }, [currentUser, messages, toast, userRole, userContext]);
+  }, [currentUser, messages, toast, userRole, userContext, isClientRole, isOrganizationRole, isAdminRole]);
 
   const selectSuggestion = useCallback((suggestion: string) => {
     sendMessage(suggestion);

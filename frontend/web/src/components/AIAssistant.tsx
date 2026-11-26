@@ -8,6 +8,7 @@ import { useAIAssistant } from "@/hooks/useAIAssistant";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useRoleAuth } from "@/hooks/useRoleAuth";
 import { getContextualSuggestions, getFallbackSuggestions } from "@/services/aiGuidanceService";
+import { doesEffectiveRoleSatisfy } from "@/services/roleService";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import SentimentIndicator from "./chat/SentimentIndicator";
 import { PromptHelper } from "./chat/PromptHelper";
@@ -37,6 +38,8 @@ export default function AIAssistant() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { userRole } = useRoleAuth();
   const { profile } = useUserProfile();
+  const isClientRole = doesEffectiveRoleSatisfy(userRole, "client");
+  const isOrganizationRole = doesEffectiveRoleSatisfy(userRole, "organization");
   
   useEffect(() => {
     if (isOpen && messages.length === 0) {
@@ -100,7 +103,7 @@ export default function AIAssistant() {
   
   // Render quick action buttons based on user role
   const renderQuickActions = () => {
-    if (userRole === "client") {
+    if (isClientRole) {
       return (
         <div className="flex flex-wrap gap-2 mb-4">
           <Button 
@@ -132,7 +135,7 @@ export default function AIAssistant() {
           </Button>
         </div>
       );
-    } else if (userRole === "organization") {
+    } else if (isOrganizationRole) {
       return (
         <div className="flex flex-wrap gap-2 mb-4">
           <Button 
@@ -168,7 +171,7 @@ export default function AIAssistant() {
           <h3 className="font-medium">2Marines AI Assistant</h3>
         </div>
         <div className="flex gap-2">
-          {userRole === 'client' && (
+          {isClientRole && (
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -201,7 +204,7 @@ export default function AIAssistant() {
         </div>
       </div>
       
-      {userRole === "organization" && (
+      {isOrganizationRole && (
         <Tabs 
           defaultValue="chat"
           className="w-full"

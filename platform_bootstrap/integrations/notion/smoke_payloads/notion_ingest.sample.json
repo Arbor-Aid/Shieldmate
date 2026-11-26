@@ -1,0 +1,8 @@
+{
+  "toolId": "information-retrieval-ai.status",
+  "input": {
+    "source": "notion",
+    "sample_record_path": "platform_bootstrap/integrations/notion/normalized/notion_normalized_sample.json",
+    "mode": "readiness_smoke"
+  }
+}

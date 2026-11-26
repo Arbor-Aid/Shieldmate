@@ -1,0 +1,11 @@
+{
+  "id": "drive-file-001",
+  "name": "Roadmap Notes",
+  "mimeType": "application/vnd.google-apps.document",
+  "modifiedTime": "2026-04-06T12:00:00Z",
+  "owners": [
+    {
+      "emailAddress": "owner@example.com"
+    }
+  ]
+}

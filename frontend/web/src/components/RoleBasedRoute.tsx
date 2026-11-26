@@ -4,7 +4,7 @@ import { Navigate, useLocation } from "react-router-dom";
 import { useRoleAuth } from "@/hooks/useRoleAuth";
 import { useToast } from "@/hooks/use-toast";
 import { trackEvent } from "@/lib/firebase";
-import { UserRole } from "@/services/roleService";
+import { doesEffectiveRoleSatisfyAny, UserRole } from "@/services/roleService";
 
 interface RoleBasedRouteProps {
   children: ReactNode;
@@ -20,9 +20,10 @@ const RoleBasedRoute = ({
   const { userRole, loading } = useRoleAuth();
   const { toast } = useToast();
   const location = useLocation();
+  const hasAllowedRole = doesEffectiveRoleSatisfyAny(userRole, allowedRoles);
 
   useEffect(() => {
-    if (!loading && userRole && !allowedRoles.includes(userRole)) {
+    if (!loading && userRole && !hasAllowedRole) {
       toast({
         title: "Access Denied",
         description: `You don't have the necessary permissions to access this area.`,
@@ -35,7 +36,7 @@ const RoleBasedRoute = ({
         requiredRoles: allowedRoles,
       });
     }
-  }, [userRole, loading, allowedRoles, toast, location.pathname]);
+  }, [userRole, loading, hasAllowedRole, allowedRoles, toast, location.pathname]);
 
   if (loading) {
     return (
@@ -46,7 +47,7 @@ const RoleBasedRoute = ({
   }
 
   // User is not authenticated or doesn't have required role
-  if (!userRole || !allowedRoles.includes(userRole)) {
+  if (!userRole || !hasAllowedRole) {
     return <Navigate to={redirectTo} state={{ from: location }} replace />;
   }
 

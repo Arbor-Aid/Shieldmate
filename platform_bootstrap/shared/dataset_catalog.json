@@ -1,0 +1,59 @@
+{
+  "shared_datasets": {
+    "google_ads": {
+      "root": "platform_bootstrap/shared/google_ads",
+      "schemas": [
+        "google_ads_campaign_record.schema.json"
+      ],
+      "consumers": [
+        "mcp-google-ads",
+        "mcp-analytics",
+        "reporting-dashboard-ai"
+      ]
+    },
+    "geography": {
+      "root": "platform_bootstrap/shared/geography",
+      "schemas": [
+        "geography_record.schema.json"
+      ],
+      "consumers": [
+        "mcp-google-ads",
+        "ai-ux-analyst",
+        "personalized-donation-ai"
+      ]
+    },
+    "demographics": {
+      "root": "platform_bootstrap/shared/demographics",
+      "schemas": [
+        "demographic_record.schema.json"
+      ],
+      "consumers": [
+        "mcp-analytics",
+        "ai-ux-analyst",
+        "personalized-donation-ai"
+      ]
+    },
+    "org_profiles": {
+      "root": "platform_bootstrap/shared/org_profiles",
+      "schemas": [
+        "org_profile.schema.json"
+      ],
+      "consumers": [
+        "document-manager",
+        "project-manager-agent",
+        "mcp-analytics"
+      ]
+    },
+    "taxonomies": {
+      "root": "platform_bootstrap/shared/taxonomies",
+      "schemas": [
+        "taxonomy_entry.schema.json"
+      ],
+      "consumers": [
+        "document-manager",
+        "training_to_sop",
+        "ai-training-coordinator"
+      ]
+    }
+  }
+}

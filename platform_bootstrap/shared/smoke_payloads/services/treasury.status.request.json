@@ -1,0 +1,9 @@
+{
+  "toolId": "treasury.status",
+  "tool": "treasury.status",
+  "input": {
+    "smoke": true,
+    "service": "treasury",
+    "source": "platform_bootstrap"
+  }
+}

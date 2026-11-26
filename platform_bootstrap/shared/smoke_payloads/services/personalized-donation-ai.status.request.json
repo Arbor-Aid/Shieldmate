@@ -1,0 +1,9 @@
+{
+  "toolId": "personalized-donation-ai.status",
+  "tool": "personalized-donation-ai.status",
+  "input": {
+    "smoke": true,
+    "service": "personalized-donation-ai",
+    "source": "platform_bootstrap"
+  }
+}

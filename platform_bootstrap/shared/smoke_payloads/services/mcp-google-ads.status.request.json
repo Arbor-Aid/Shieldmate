@@ -1,0 +1,9 @@
+{
+  "toolId": "mcp-google-ads.status",
+  "tool": "mcp-google-ads.status",
+  "input": {
+    "smoke": true,
+    "service": "mcp-google-ads",
+    "source": "platform_bootstrap"
+  }
+}

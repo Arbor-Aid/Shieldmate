@@ -1,0 +1,9 @@
+{
+  "toolId": "hr-ai-agent.status",
+  "tool": "hr-ai-agent.status",
+  "input": {
+    "smoke": true,
+    "service": "hr-ai-agent",
+    "source": "platform_bootstrap"
+  }
+}

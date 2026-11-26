@@ -1,0 +1,26 @@
+{
+  "service_name": "Information Retrieval Ai",
+  "slug": "information-retrieval-ai",
+  "version": "1.0.0",
+  "owner": "2Marines",
+  "description": "Contract-first skeleton service for information-retrieval-ai.",
+  "endpoints": [
+    "/health",
+    "/meta",
+    "/openapi.json"
+  ],
+  "capabilities": [],
+  "inputs": [],
+  "outputs": [],
+  "required_env": [
+    "PORT",
+    "SERVICE_NAME",
+    "SERVICE_SLUG",
+    "SERVICE_VERSION",
+    "SERVICE_DESCRIPTION",
+    "LOG_LEVEL",
+    "GIT_SHA",
+    "K_REVISION"
+  ],
+  "slack_channel": "#mcp-information-retrieval-ai"
+}

@@ -1,0 +1,7 @@
+{
+  "service": "email-campaign-optimizer-ai",
+  "env": {
+    "PORT": "8080",
+    "MCP_SERVICE_NAME": "email-campaign-optimizer-ai"
+  }
+}

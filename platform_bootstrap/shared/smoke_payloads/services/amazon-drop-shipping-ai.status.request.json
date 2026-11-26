@@ -1,0 +1,9 @@
+{
+  "toolId": "amazon-drop-shipping-ai.status",
+  "tool": "amazon-drop-shipping-ai.status",
+  "input": {
+    "smoke": true,
+    "service": "amazon-drop-shipping-ai",
+    "source": "platform_bootstrap"
+  }
+}

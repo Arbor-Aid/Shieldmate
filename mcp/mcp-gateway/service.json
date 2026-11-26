@@ -1,0 +1,32 @@
+{
+  "service_name": "mcp-gateway",
+  "version": "1.0.0",
+  "description": "Gateway routing MCP requests with RBAC enforcement and registry-based dispatch.",
+  "endpoints": [
+    "/health",
+    "/meta",
+    "/openapi.json"
+  ],
+  "capabilities": [
+    "gateway_proxy",
+    "rbac_enforced",
+    "mcp_registry_routing"
+  ],
+  "inputs": [
+    "toolId",
+    "orgId",
+    "input",
+    "meta"
+  ],
+  "outputs": [
+    "upstream_response"
+  ],
+  "required_env": [
+    "GIT_SHA",
+    "K_REVISION",
+    "LOG_LEVEL",
+    "PORT",
+    "SERVICE_NAME",
+    "SERVICE_VERSION"
+  ]
+}

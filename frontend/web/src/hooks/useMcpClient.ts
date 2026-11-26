@@ -7,21 +7,12 @@ import {
   mockReferralsResponse,
   mockResumeResponse,
 } from '@/mocks/mcpResponses';
+import { isDevelopmentRuntime } from '@/config/runtimeMode';
 
 interface McpClientOptions {
   analyticsOrgId?: string | null;
   orgId?: string | null;
 }
-
-const isDevelopment = () => {
-  if (typeof process !== 'undefined' && process.env?.NODE_ENV) {
-    return process.env.NODE_ENV !== 'production';
-  }
-  if (typeof import.meta !== 'undefined' && (import.meta as any).env?.MODE) {
-    return (import.meta as any).env.MODE !== 'production';
-  }
-  return true;
-};
 
 export function useMcpClient(options: McpClientOptions = {}) {
   const { currentUser, getIdToken } = useAuth();
@@ -51,7 +42,7 @@ export function useMcpClient(options: McpClientOptions = {}) {
           payload: { uid: currentUser?.uid, payload },
         });
       } catch (error) {
-        if (isDevelopment()) {
+        if (isDevelopmentRuntime()) {
           console.debug('Using mock resume response due to MCP error:', error);
           return mockResumeResponse;
         }
@@ -69,7 +60,7 @@ export function useMcpClient(options: McpClientOptions = {}) {
           payload: { uid: currentUser?.uid, answers },
         });
       } catch (error) {
-        if (isDevelopment()) {
+        if (isDevelopmentRuntime()) {
           console.debug('Using mock referral response due to MCP error:', error);
           return mockReferralsResponse;
         }
@@ -89,7 +80,7 @@ export function useMcpClient(options: McpClientOptions = {}) {
           orgId: options.analyticsOrgId ?? undefined,
         });
       } catch (error) {
-        if (isDevelopment()) {
+        if (isDevelopmentRuntime()) {
           console.debug('Using mock analytics response due to MCP error:', error);
           return mockAnalyticsResponse;
         }

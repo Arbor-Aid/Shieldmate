@@ -1,0 +1,12 @@
+{
+  "toolId": "sop.generate",
+  "tool": "sop.generate",
+  "input": {
+    "doc_id": "doc-smoke-activation-005",
+    "title": "Activation SOP",
+    "lessons": [
+      "Capture smoke outputs",
+      "Escalate failures quickly"
+    ]
+  }
+}

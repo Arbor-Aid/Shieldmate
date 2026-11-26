@@ -1,7 +1,6 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-    <base href="/">
   <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
@@ -19,7 +18,7 @@
   <meta name="description" content="A new Flutter project.">
 
   <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="arbor_aid_app">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
@@ -29,56 +28,13 @@
 
   <title>arbor_aid_app</title>
   <link rel="manifest" href="manifest.json">
-
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    const serviceWorkerVersion = '{{flutter_service_worker_version}}';
-  </script>
-
-  <!-- Inject environment variables here -->
-  <script>
-    // Load the .env file
-    fetch('assets/.env')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.text();
-      })
-      .then(text => {
-        const env = text.split('\n').reduce((acc, line) => {
-          const [key, value] = line.split('=');
-          if (key && value) {
-            acc[key.trim()] = value.trim();
-          }
-          return acc;
-        }, {});
-        window.env = env;
-      })
-      .catch(error => {
-        console.error('Error loading .env file:', error);
-      });
-  </script>
-
-  <!-- This script adds the flutter initialization JS code -->
-  <script src="flutter.js" defer></script>
 </head>
 <body>
   <script>
-    window.addEventListener('load', function(ev) {
-      // Download main.dart.js
-      FlutterLoader.load({
-        serviceWorker: {
-          serviceWorkerVersion: '{{flutter_service_worker_version}}',
-        },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            appRunner.runApp();
-          });
-        }
-      });
-    });
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
+    }
   </script>
+  <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
-

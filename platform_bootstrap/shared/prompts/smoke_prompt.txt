@@ -1,0 +1,1 @@
+Use this prompt for deterministic smoke checks. Return concise JSON status only.

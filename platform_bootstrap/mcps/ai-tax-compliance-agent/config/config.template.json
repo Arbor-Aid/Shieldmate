@@ -1,0 +1,7 @@
+{
+  "service": "ai-tax-compliance-agent",
+  "env": {
+    "PORT": "8080",
+    "MCP_SERVICE_NAME": "ai-tax-compliance-agent"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "service": "ai-expense-manager",
+  "env": {
+    "PORT": "8080",
+    "MCP_SERVICE_NAME": "ai-expense-manager"
+  }
+}

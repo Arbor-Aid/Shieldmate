@@ -15,7 +15,7 @@ if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
   exit 1
 }
 
-$repoRoot = "D:\shieldmatessd\shieldmate"
+$repoRoot = "D:\2marines\Shieldmate"
 if (-not (Test-Path $repoRoot)) {
   Write-Host "Repo root not found: $repoRoot" -ForegroundColor Red
   exit 1

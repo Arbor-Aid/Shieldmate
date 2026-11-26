@@ -1,0 +1,9 @@
+{
+  "toolId": "reporting-dashboard-ai.status",
+  "tool": "reporting-dashboard-ai.status",
+  "input": {
+    "smoke": true,
+    "service": "reporting-dashboard-ai",
+    "source": "platform_bootstrap"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "toolId": "mcp-analytics.status",
+  "input": {
+    "source": "windows_admin_tools",
+    "collector": "event_logs",
+    "sample_path": "platform_bootstrap/integrations/windows_admin_tools/outputs/normalized_json/event_logs.normalized.sample.json",
+    "mode": "readiness_smoke"
+  }
+}

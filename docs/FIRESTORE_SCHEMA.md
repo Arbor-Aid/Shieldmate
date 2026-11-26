@@ -29,8 +29,10 @@
 
 ## Claims Model
 - Custom claims:
-  - `roles: string[]` (global) supports `super_admin`, `org_admin`, `staff`, `client`
+  - `roles: string[]` supports `super_admin`, `org_admin`, `staff`, `case_worker`, `client`; only `super_admin` is global, while non-global roles require matching `orgId`
   - `orgRoles: { [orgId]: string[] }` for org-scoped roles
+  - `orgId: string` selects the active organization scope
+  - legacy `role` and `org` are accepted only as an organization-scoped compatibility pair and never grant global `super_admin`
 
 ## RBAC Summary
 - super_admin: global manage/read

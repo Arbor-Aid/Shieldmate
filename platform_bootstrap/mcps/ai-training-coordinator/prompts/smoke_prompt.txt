@@ -1,0 +1,1 @@
+Return health/status readiness summary for ai-training-coordinator in compact JSON.

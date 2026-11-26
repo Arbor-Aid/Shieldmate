@@ -31,6 +31,15 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
     }
   }, [currentUser, isInitializing, toast, location.pathname]);
 
+  useEffect(() => {
+    if (currentUser && !isInitializing) {
+      trackEvent('protected_route_access', {
+        route: location.pathname,
+        userId: currentUser.uid
+      });
+    }
+  }, [currentUser, isInitializing, location.pathname]);
+
   if (isInitializing) {
     return (
       <div className="flex min-h-screen items-center justify-center">
@@ -42,16 +51,6 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   if (!currentUser) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
-
-  // Track successful access to protected route
-  useEffect(() => {
-    if (currentUser) {
-      trackEvent('protected_route_access', {
-        route: location.pathname,
-        userId: currentUser.uid
-      });
-    }
-  }, [currentUser, location.pathname]);
 
   return <>{children}</>;
 };

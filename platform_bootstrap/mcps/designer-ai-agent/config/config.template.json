@@ -1,0 +1,7 @@
+{
+  "service": "designer-ai-agent",
+  "env": {
+    "PORT": "8080",
+    "MCP_SERVICE_NAME": "designer-ai-agent"
+  }
+}

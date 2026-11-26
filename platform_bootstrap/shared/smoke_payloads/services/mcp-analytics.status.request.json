@@ -1,0 +1,9 @@
+{
+  "toolId": "mcp-analytics.status",
+  "tool": "mcp-analytics.status",
+  "input": {
+    "smoke": true,
+    "service": "mcp-analytics",
+    "source": "platform_bootstrap"
+  }
+}

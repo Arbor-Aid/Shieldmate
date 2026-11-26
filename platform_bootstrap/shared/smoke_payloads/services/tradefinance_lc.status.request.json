@@ -1,0 +1,9 @@
+{
+  "toolId": "tradefinance_lc.status",
+  "tool": "tradefinance_lc.status",
+  "input": {
+    "smoke": true,
+    "service": "tradefinance_lc",
+    "source": "platform_bootstrap"
+  }
+}

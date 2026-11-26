@@ -1,0 +1,1 @@
+Return health/status readiness summary for trade_execution_gateway in compact JSON.

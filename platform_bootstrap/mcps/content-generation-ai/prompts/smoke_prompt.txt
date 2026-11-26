@@ -1,0 +1,1 @@
+Return health/status readiness summary for content-generation-ai in compact JSON.

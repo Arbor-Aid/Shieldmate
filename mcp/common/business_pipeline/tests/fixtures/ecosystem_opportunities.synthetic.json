@@ -1,0 +1,41 @@
+{
+  "fixtureType": "SYNTHETIC",
+  "grant": {
+    "id": "SIM-GRANT-001",
+    "number": "SIM-NOFO-2026-001",
+    "title": "SIMULATION Community Transition Support",
+    "agencyCode": "SIM-AGENCY",
+    "agency": "SIMULATION GRANT AGENCY",
+    "openDate": "10/14/2026",
+    "closeDate": "12/01/2026",
+    "oppStatus": "posted",
+    "docType": "synopsis",
+    "cfdaList": ["00.000"]
+  },
+  "commercialTrade": {
+    "sourceIdentifier": "SYNTHETIC_COMMERCIAL_TRADE_SOURCE",
+    "stableSourceRecordId": "SIM-TRADE-001",
+    "title": "SIMULATION Buyer inquiry for commercial pumps",
+    "officialLink": "fixture://commercial/SIM-TRADE-001",
+    "agencyOrBuyer": "Fictional Buyer LLC",
+    "parties": ["Fictional Buyer LLC", "North Star Example Trading"],
+    "details": {
+      "origin": "Thailand",
+      "destination": "United States",
+      "screening": "NOT_SCREENED",
+      "ior": "UNRESOLVED"
+    }
+  },
+  "subcontracting": {
+    "sourceIdentifier": "SYNTHETIC_SUBCONTRACT_SOURCE",
+    "stableSourceRecordId": "SIM-SUB-001",
+    "title": "SIMULATION Prime seeks logistics subcontractor",
+    "officialLink": "fixture://subcontract/SIM-SUB-001",
+    "agencyOrBuyer": "Fictional Prime Contractor",
+    "parties": ["Fictional Prime Contractor"],
+    "details": {
+      "naics": "488510",
+      "sourceAccess": "SYNTHETIC_ONLY"
+    }
+  }
+}

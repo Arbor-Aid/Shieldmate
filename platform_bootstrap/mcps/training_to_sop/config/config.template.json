@@ -1,0 +1,7 @@
+{
+  "service": "training_to_sop",
+  "env": {
+    "PORT": "8080",
+    "MCP_SERVICE_NAME": "training_to_sop"
+  }
+}

@@ -1,6 +1,6 @@
 
 import { UserProfile } from "@/services/userProfileService";
-import { UserRole } from "@/services/roleService";
+import { doesEffectiveRoleSatisfy, UserRole } from "@/services/roleService";
 
 // Define types for prompt suggestions
 export type MessageContext = {
@@ -20,33 +20,36 @@ export const getGuidancePrompts = (role: UserRole | null): string[] => {
     "I need mental health support"
   ];
 
-  switch (role) {
-    case "client":
-      return [
-        ...commonPrompts,
-        "How can I find employment opportunities?",
-        "What documents do I need for VA benefits?",
-        "Are there any emergency housing options?"
-      ];
-    case "organization":
-      return [
-        "How do I process a new referral?",
-        "Can you help me with client documentation?",
-        "What resources are available for my clients?",
-        "How do I track client progress?",
-        "Generate a summary of recent activity"
-      ];
-    case "admin":
-      return [
-        "Show me system statistics",
-        "How many new users registered this week?",
-        "Generate a report on resource utilization",
-        "Show flagged conversations requiring attention",
-        "How many appointments were scheduled today?"
-      ];
-    default:
-      return commonPrompts;
+  if (doesEffectiveRoleSatisfy(role, "client")) {
+    return [
+      ...commonPrompts,
+      "How can I find employment opportunities?",
+      "What documents do I need for VA benefits?",
+      "Are there any emergency housing options?"
+    ];
   }
+
+  if (doesEffectiveRoleSatisfy(role, "organization")) {
+    return [
+      "How do I process a new referral?",
+      "Can you help me with client documentation?",
+      "What resources are available for my clients?",
+      "How do I track client progress?",
+      "Generate a summary of recent activity"
+    ];
+  }
+
+  if (doesEffectiveRoleSatisfy(role, "admin")) {
+    return [
+      "Show me system statistics",
+      "How many new users registered this week?",
+      "Generate a report on resource utilization",
+      "Show flagged conversations requiring attention",
+      "How many appointments were scheduled today?"
+    ];
+  }
+
+  return commonPrompts;
 };
 
 /**
@@ -110,7 +113,7 @@ export const getContextualSuggestions = (
       "What companies prioritize hiring veterans?",
       "Can you help me prepare for a job interview?"
     ];
-  } else if (userRole === "organization") {
+  } else if (doesEffectiveRoleSatisfy(userRole, "organization")) {
     return [
       "How do I manage client referrals?",
       "What resources should I recommend for a homeless veteran?",
@@ -128,7 +131,7 @@ export const getContextualSuggestions = (
  * Get fallback suggestions based on user profile data
  */
 export const getFallbackSuggestions = (profile: UserProfile | null, userRole: UserRole | null): string[] => {
-  if (userRole === "organization") {
+  if (doesEffectiveRoleSatisfy(userRole, "organization")) {
     return [
       "How do I process new referrals?",
       "What housing resources are available?",
@@ -138,7 +141,7 @@ export const getFallbackSuggestions = (profile: UserProfile | null, userRole: Us
     ];
   }
   
-  if (userRole === "admin") {
+  if (doesEffectiveRoleSatisfy(userRole, "admin")) {
     return [
       "Show system statistics",
       "Generate a report of active users",

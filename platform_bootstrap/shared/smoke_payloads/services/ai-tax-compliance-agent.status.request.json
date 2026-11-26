@@ -1,0 +1,9 @@
+{
+  "toolId": "ai-tax-compliance-agent.status",
+  "tool": "ai-tax-compliance-agent.status",
+  "input": {
+    "smoke": true,
+    "service": "ai-tax-compliance-agent",
+    "source": "platform_bootstrap"
+  }
+}
