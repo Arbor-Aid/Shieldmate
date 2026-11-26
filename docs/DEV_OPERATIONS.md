@@ -6,6 +6,16 @@
 
 ---
 
+## 2026-11-25 FIELDBOT Codex and Canon v3.0
+
+- FIELDBOT is the engineering host. Launch ecosystem tasks from `D:\2marines` and ShieldMate work from `D:\2marines\Shieldmate` on `ui-rebuild-flutter-gen-ui`. The 2026-04 and 2026-05 sections below document earlier host assignments.
+- The existing `2marines app build` ChatGPT project is visible in the desktop Projects inventory. Its same-named local entry runs from `D:\2marines`. In the desktop project menu, use **Edit project → Make primary** on that folder if its assignment changes.
+- Codex loads the local Canon entry point at `D:\2marines\AGENTS.md`. The ShieldMate repository instructions reference it. The app-managed ChatGPT mirror still contains the October 15 v2.0 snapshot. Use the existing cloud project and supported desktop project controls to test refresh.
+- FIELDBOT pairing is blocked by HTTP 403 `codex_workspace_access_denied`. Verify the active workspace and Remote Control eligibility before retrying.
+- Use the [FIELDBOT integration checkpoint](../../RuntimeStore/receipts/2026-11-25-fieldbot-codex-integration.md) for verification, connector status, rollback, and THEBOT and HONEY work packets.
+
+---
+
 ## 2026-04-13 Multi-Node Authority Snapshot
 
 Updated: 2026-06-01 15:16:28

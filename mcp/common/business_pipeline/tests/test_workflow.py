@@ -7,9 +7,13 @@ if str(COMMON) not in sys.path:
     sys.path.insert(0, str(COMMON))
 
 from business_pipeline.workflow import (
+    build_local_audit_event,
     build_daily_handoff,
     create_approval_packet,
+    create_draft_scope,
     create_email_draft,
+    create_procurement_packet,
+    create_supplier_record,
     evaluate_opportunity_fit,
     route_discovery_record,
 )
@@ -64,6 +68,51 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual(grant["possiblePartners"], ["2Marines"])
         self.assertEqual(trade["screeningStatus"], "NOT_SCREENED")
         self.assertTrue(trade["executionHold"])
+
+    def test_procurement_packet_chain_is_review_only_and_auditable(self):
+        opportunity = {"stableOpportunityId": "SAM:SIM-PROC-1"}
+        qualification = {
+            "reviewStatus": "PENDING_REVIEW",
+            "eligibilityConcerns": ["Entity eligibility not verified"],
+        }
+        supplier = create_supplier_record(
+            opportunity_reference="SAM:SIM-PROC-1",
+            legal_name="Synthetic Industrial Supply LLC",
+            entity_role="SUPPLIER",
+            source_reference="fixture://supplier/SIM-001",
+            screening_status="PENDING_REVIEW",
+            capacity_status="VERIFIED",
+            ownership_status="PENDING_REVIEW",
+        )
+        scope = create_draft_scope(
+            opportunity_reference="SAM:SIM-PROC-1",
+            supplier_record_id=supplier["supplierRecordId"],
+            deliverables=[{"item": "Synthetic safety kit", "quantity": 10}],
+            assumptions=["SIMULATION only"],
+            exclusions=["No bid submission", "No purchase order"],
+        )
+        packet = create_procurement_packet(
+            opportunity=opportunity,
+            qualification=qualification,
+            supplier_record=supplier,
+            draft_scope=scope,
+            simulated_integrations=["document.process", "tradeops:/shipment/docs/generate"],
+        )
+        event = build_local_audit_event(
+            sequence=1,
+            stage="PROCUREMENT_PACKET",
+            record_reference=packet["procurementPacketId"],
+            artifact=packet,
+            generated_at="2026-10-26T16:00:00Z",
+        )
+        self.assertEqual(supplier["verificationStatus"], "HOLD_REVIEW")
+        self.assertFalse(scope["binding"])
+        self.assertEqual(packet["status"], "HOLD_REVIEW")
+        self.assertFalse(packet["externalActionAuthorized"])
+        self.assertFalse(packet["transactionAuthorized"])
+        self.assertEqual(len(packet["contentHash"]), 64)
+        self.assertTrue(event["appendOnly"])
+        self.assertEqual(event["mode"], "LOCAL_SIMULATION_NO_EXTERNAL_WRITE")
 
 
 if __name__ == "__main__":

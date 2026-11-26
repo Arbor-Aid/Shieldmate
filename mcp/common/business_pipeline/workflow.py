@@ -2,6 +2,7 @@
 
 from datetime import datetime, timezone
 import hashlib
+import json
 from typing import Any, Dict, Iterable, List, Mapping, Optional
 
 
@@ -207,6 +208,146 @@ def approval_payload(packet: Mapping[str, Any], *, daily_tracker_link: str) -> D
         "external_send_status": "NOT_SENT",
         "daily_tracker_link": daily_tracker_link,
         "last_updated": packet.get("createdAt"),
+    }
+
+
+def create_supplier_record(
+    *,
+    opportunity_reference: str,
+    legal_name: str,
+    entity_role: str,
+    source_reference: str,
+    screening_status: str,
+    capacity_status: str,
+    ownership_status: str,
+) -> Dict[str, Any]:
+    """Build a sanitized, non-authoritative supplier/subcontractor review record."""
+    normalized_role = entity_role.strip().upper()
+    if normalized_role not in {"SUPPLIER", "SUBCONTRACTOR"}:
+        raise ValueError("entity_role must be SUPPLIER or SUBCONTRACTOR")
+    verification_complete = all(
+        status == "VERIFIED"
+        for status in (screening_status, capacity_status, ownership_status)
+    )
+    return {
+        "supplierRecordId": stable_id(
+            "SUP", opportunity_reference, legal_name, normalized_role
+        ),
+        "opportunityReference": opportunity_reference,
+        "legalName": legal_name,
+        "entityRole": normalized_role,
+        "sourceReference": source_reference,
+        "screeningStatus": screening_status,
+        "capacityStatus": capacity_status,
+        "ownershipStatus": ownership_status,
+        "verificationStatus": "VERIFIED" if verification_complete else "HOLD_REVIEW",
+        "selectionAuthorized": False,
+        "externalContactAuthorized": False,
+        "sensitiveIdentifiersIncluded": False,
+    }
+
+
+def create_draft_scope(
+    *,
+    opportunity_reference: str,
+    supplier_record_id: str,
+    deliverables: List[Mapping[str, Any]],
+    assumptions: List[str],
+    exclusions: List[str],
+) -> Dict[str, Any]:
+    """Build a review-only scope; it cannot bind either party."""
+    if not deliverables:
+        raise ValueError("At least one draft deliverable is required")
+    return {
+        "scopeId": stable_id("SCP", opportunity_reference, supplier_record_id),
+        "opportunityReference": opportunity_reference,
+        "supplierRecordId": supplier_record_id,
+        "status": "DRAFT_FOR_HUMAN_REVIEW",
+        "deliverables": [dict(item) for item in deliverables],
+        "assumptions": list(assumptions),
+        "exclusions": list(exclusions),
+        "acceptanceCriteriaStatus": "PENDING_CONTRACTING_REVIEW",
+        "binding": False,
+        "signatureAuthorized": False,
+    }
+
+
+def create_procurement_packet(
+    *,
+    opportunity: Mapping[str, Any],
+    qualification: Mapping[str, Any],
+    supplier_record: Mapping[str, Any],
+    draft_scope: Mapping[str, Any],
+    simulated_integrations: List[str],
+) -> Dict[str, Any]:
+    """Assemble linked artifacts while keeping every external action disabled."""
+    opportunity_reference = str(
+        opportunity.get("stableOpportunityId")
+        or opportunity.get("stableSourceRecordId")
+        or ""
+    )
+    if not opportunity_reference:
+        raise ValueError("Opportunity reference is required")
+    packet_id = stable_id(
+        "PRC",
+        opportunity_reference,
+        supplier_record.get("supplierRecordId"),
+        draft_scope.get("scopeId"),
+    )
+    hold_reasons = list(qualification.get("eligibilityConcerns") or [])
+    if supplier_record.get("verificationStatus") != "VERIFIED":
+        hold_reasons.append("Supplier/subcontractor verification is incomplete")
+    packet = {
+        "procurementPacketId": packet_id,
+        "opportunityReference": opportunity_reference,
+        "qualificationStatus": qualification.get("reviewStatus", "PENDING_REVIEW"),
+        "supplierRecordId": supplier_record.get("supplierRecordId"),
+        "draftScopeId": draft_scope.get("scopeId"),
+        "status": "HOLD_REVIEW" if hold_reasons else "PENDING_APPROVAL",
+        "holdReasons": hold_reasons,
+        "documents": {
+            "opportunityIntake": "SIMULATED_LOCAL_ARTIFACT",
+            "supplierVerification": "SIMULATED_LOCAL_ARTIFACT",
+            "draftScope": "SIMULATED_LOCAL_ARTIFACT",
+            "draftPurchaseOrder": "NOT_CREATED_APPROVAL_REQUIRED",
+            "invoiceControl": "NOT_CREATED_ACCEPTANCE_REQUIRED",
+            "shippingCustomsPacket": "NOT_CREATED_TRADE_REVIEW_REQUIRED",
+            "tradeFinanceHandoff": "NOT_CREATED_AUTHORITY_REQUIRED",
+        },
+        "simulatedIntegrations": list(simulated_integrations),
+        "approvalRequired": True,
+        "externalActionAuthorized": False,
+        "transactionAuthorized": False,
+        "signatureAuthorized": False,
+        "productionRecordWritten": False,
+    }
+    packet["contentHash"] = hashlib.sha256(
+        json.dumps(packet, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+    return packet
+
+
+def build_local_audit_event(
+    *,
+    sequence: int,
+    stage: str,
+    record_reference: str,
+    artifact: Mapping[str, Any],
+    generated_at: str,
+) -> Dict[str, Any]:
+    """Create deterministic evidence for a local dry run; performs no external write."""
+    artifact_hash = hashlib.sha256(
+        json.dumps(artifact, sort_keys=True, separators=(",", ":"), default=str).encode("utf-8")
+    ).hexdigest()
+    return {
+        "eventId": stable_id("LAU", sequence, stage, record_reference, artifact_hash),
+        "sequence": sequence,
+        "stage": stage,
+        "recordReference": record_reference,
+        "artifactHash": artifact_hash,
+        "generatedAt": generated_at,
+        "mode": "LOCAL_SIMULATION_NO_EXTERNAL_WRITE",
+        "appendOnly": True,
     }
 
 
